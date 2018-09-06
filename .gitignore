@@ -28,5 +28,5 @@ workspace/
 runtime-EclipseApplication/
 
 # Plugin stuff
-libs/z3
-libs/*.jar
+plugins/de.tu-bs.ccc.contracting.core/libs/z3
+plugins/de.tu-bs.ccc.contracting.core/libs/*.jar
