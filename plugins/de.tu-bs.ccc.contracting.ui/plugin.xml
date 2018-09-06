@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="de.tu-bs.ccc.contracting.ui.wizards"
+            name="CCC">
+      </category>
+      <wizard
+            category="de.tu-bs.ccc.contracting.ui.wizards"
+            class="de.tu_bs.ccc.contracting.ui.wizards.CCCProjectNewWizard"
+            icon="icons/sample.png"
+            id="de.tu-bs.ccc.contracting.ui.wizards.new.custom"
+            name="CCC Project">
+      </wizard>
+   </extension>
+   
+	<extension point="org.eclipse.ui.menus">
+	  <menuContribution  allPopups="false" locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+         <menu
+               id="de.tu-bs.ccc.contracting.ui.CCCMenu"
+               label="CCC">
+            <command
+                  commandId="de.tu-bs.ccc.contracting.ui.exporter_command"
+                  label="Command"
+                  style="push">
+            </command>
+         </menu>
+	  </menuContribution>
+	</extension>
+ <extension
+       point="org.eclipse.ui.commands">
+    <command
+          defaultHandler="de.tu_bs.ccc.contracting.ui.handler.ExportHandler"
+          id="de.tu-bs.ccc.contracting.ui.exporter_command"
+          name="ExportToXML">
+    </command>
+ </extension>
+
+</plugin>

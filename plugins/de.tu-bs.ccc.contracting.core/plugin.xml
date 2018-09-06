@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.graphiti.ui.diagramTypes">
+      <diagramType
+            name="ContractModelling Diagram Type"
+            type="ContractModelling"
+            description="hoo"
+            id="ContractModelling.ContractModellingDiagramType">
+      </diagramType>
+   </extension>
+   <extension
+         point="org.eclipse.graphiti.ui.diagramTypeProviders">
+      <diagramTypeProvider
+            name="ContractModelling Diagram Type Provider"
+            description="ddd"
+            class="de.tu_bs.ccc.contracting.core.diagram.ContractModellingDiagramTypeProvider"
+            id="ContractModelling.ContractModellingDiagramTypeProvider">
+         <diagramType
+               id="ContractModelling.ContractModellingDiagramType">
+         </diagramType>
+         <imageProvider
+               id="de.tu-bs.ccc.contracting.core.imageProvider">
+         </imageProvider>
+      </diagramTypeProvider>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="ContractModelling"
+            name="DBC">
+      </category>
+      <wizard
+            category="ContractModelling"
+            class="de.tu_bs.ccc.contracting.core.wizards.CompoundWizard"
+            icon="icons/sample.png"
+            id="contractmodelling.wizards.CompoundWizard"
+            name="Compound">
+      </wizard>
+      <wizard
+            category="ContractModelling"
+            class="de.tu_bs.ccc.contracting.core.wizards.ComponentWizard"
+            icon="icons/sample.png"
+            id="contractmodelling.wizards.ComponentWizard"
+            name="Component">
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.graphiti.ui.imageProviders">
+      <imageProvider
+            class="de.tu_bs.ccc.contracting.core.diagram.ContractModellingImageProvider"
+            id="de.tu-bs.ccc.contracting.core.imageProvider">
+      </imageProvider>
+   </extension>
+
+</plugin>

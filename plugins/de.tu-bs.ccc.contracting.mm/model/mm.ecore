@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="Verification" nsURI="http://www.example.org/contractVerificationMM"
+    nsPrefix="Verification">
+  <eClassifiers xsi:type="ecore:EClass" name="Module">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="isPartOf" eType="#//Compound"
+        eOpposite="#//Compound/consitsOf"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="getsrealized" upperBound="-1"
+        eType="#//Interface" eOpposite="#//Interface/realizes"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ports" upperBound="-1"
+        eType="#//Ports" containment="true" eOpposite="#//Ports/module"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contract" upperBound="-1"
+        eType="#//Contract" containment="true" eOpposite="#//Contract/module"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="module" eType="#//Module"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Interface" eSuperTypes="#//Module">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="realizes" upperBound="-1"
+        eType="#//Module" eOpposite="#//Module/getsrealized"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Component" eSuperTypes="#//Module"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Compound" eSuperTypes="#//Module">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="consitsOf" upperBound="-1"
+        eType="#//Module" containment="true" eOpposite="#//Module/isPartOf"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Contract">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="module" lowerBound="1"
+        eType="#//Module" eOpposite="#//Module/contract"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ViewPoint" eType="#//ViewPoint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assumption" upperBound="-1"
+        eType="#//Assumption" containment="true" eOpposite="#//Assumption/contract"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="guarantee" upperBound="-1"
+        eType="#//Guarantee" containment="true" eOpposite="#//Guarantee/contract"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Ports">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//PortType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ports" upperBound="-1"
+        eType="#//Ports" eOpposite="#//Ports/portseOpposite"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="portseOpposite" eType="#//Ports"
+        eOpposite="#//Ports/ports"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="module" lowerBound="1"
+        eType="#//Module" eOpposite="#//Module/ports"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="insidePorts" upperBound="-1"
+        eType="#//Ports" eOpposite="#//Ports/insidePortseOpposite"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="insidePortseOpposite" eType="#//Ports"
+        eOpposite="#//Ports/insidePorts"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="service" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="OuterDirection" eType="#//DirectionType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PortType">
+    <eLiterals name="INT" literal="INT"/>
+    <eLiterals name="STRING" value="1"/>
+    <eLiterals name="BOOLEAN" value="2"/>
+    <eLiterals name="REAL" value="3"/>
+    <eLiterals name="SERVICE" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ContractProperty">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyTipe" eType="#//PropertyType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="property" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ViewPoint">
+    <eLiterals name="FUNCTIONAL"/>
+    <eLiterals name="TIMING" value="1"/>
+    <eLiterals name="MEMORY" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PropertyType">
+    <eLiterals name="EQUATION"/>
+    <eLiterals name="MINDELAY" value="1"/>
+    <eLiterals name="MAXDELAY" value="2"/>
+    <eLiterals name="FREQUENCY" value="3"/>
+    <eLiterals name="JITTER" value="4"/>
+    <eLiterals name="MINDURATION" value="5"/>
+    <eLiterals name="MAXDURATION" value="6"/>
+    <eLiterals name="MEMORY" value="7"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ContractType">
+    <eLiterals name="ASSUMPTION"/>
+    <eLiterals name="GUARANTEE" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Guarantee" eSuperTypes="#//ContractProperty">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contract" lowerBound="1"
+        eType="#//Contract" eOpposite="#//Contract/guarantee"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Assumption" eSuperTypes="#//ContractProperty">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contract" lowerBound="1"
+        eType="#//Contract" eOpposite="#//Contract/assumption"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DirectionType">
+    <eLiterals name="INTERNAL" literal="INTERNAL"/>
+    <eLiterals name="EXTERNAL" value="1"/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ContractModellingWizard
+Bundle-SymbolicName: de.tu-bs.ccc.contracting.ui;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: de.tu_bs.ccc.contracting.ui.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.ui.ide;bundle-version="3.13.1",
+ org.eclipse.core.resources,
+ org.eclipse.ui.navigator,
+ org.eclipse.ui.navigator.resources
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: ContractModellingWizard
+Bundle-ActivationPolicy: lazy

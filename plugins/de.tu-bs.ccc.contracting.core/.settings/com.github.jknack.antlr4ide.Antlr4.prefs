@@ -1,0 +1,4 @@
+antlr4.listener=false
+antlr4.visitor=true
+autobuilding=false
+eclipse.preferences.version=1
