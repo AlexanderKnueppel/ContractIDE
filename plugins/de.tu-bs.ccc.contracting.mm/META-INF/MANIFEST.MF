@@ -1,15 +1,15 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: de.tu-bs.de.ccc.contracting.mm;singleton:=true
+Bundle-SymbolicName: de.tu-bs.ccc.contracting.mm;singleton:=true
 Bundle-Version: 0.1.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: de.tu_bs.de.ccc.contracting.Verification,
- de.tu_bs.de.ccc.contracting.Verification.impl,
- de.tu_bs.de.ccc.contracting.Verification.util
+Export-Package: de.tu_bs.ccc.contracting.Verification,
+ de.tu_bs.ccc.contracting.Verification.impl,
+ de.tu_bs.ccc.contracting.Verification.util
 Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.core.runtime
 Bundle-ActivationPolicy: lazy

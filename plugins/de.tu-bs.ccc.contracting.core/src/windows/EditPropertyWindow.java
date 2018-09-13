@@ -10,11 +10,11 @@ import javax.swing.border.EmptyBorder;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import de.tu_bs.de.ccc.contracting.Verification.Assumption;
-import de.tu_bs.de.ccc.contracting.Verification.Contract;
-import de.tu_bs.de.ccc.contracting.Verification.ContractType;
-import de.tu_bs.de.ccc.contracting.Verification.Guarantee;
-import de.tu_bs.de.ccc.contracting.Verification.PropertyType;
+import de.tu_bs.ccc.contracting.Verification.Assumption;
+import de.tu_bs.ccc.contracting.Verification.Contract;
+import de.tu_bs.ccc.contracting.Verification.ContractType;
+import de.tu_bs.ccc.contracting.Verification.Guarantee;
+import de.tu_bs.ccc.contracting.Verification.PropertyType;
 
 import javax.swing.JList;
 import javax.swing.JLabel;

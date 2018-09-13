@@ -15,8 +15,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 
-import de.tu_bs.de.ccc.contracting.Verification.Component;
-import de.tu_bs.de.ccc.contracting.Verification.Contract;
+import de.tu_bs.ccc.contracting.Verification.Component;
+import de.tu_bs.ccc.contracting.Verification.Contract;
 
 public class SaveDomainModel {
 	public static void saveToModelFile(final EObject obj, final Diagram d) throws CoreException, IOException {

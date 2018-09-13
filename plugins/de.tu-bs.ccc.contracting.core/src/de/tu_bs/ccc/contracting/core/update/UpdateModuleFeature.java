@@ -23,11 +23,11 @@ import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 
-import de.tu_bs.de.ccc.contracting.Verification.Compound;
-import de.tu_bs.de.ccc.contracting.Verification.Contract;
-import de.tu_bs.de.ccc.contracting.Verification.Module;
-import de.tu_bs.de.ccc.contracting.Verification.Ports;
-import de.tu_bs.de.ccc.contracting.Verification.MmFactory;
+import de.tu_bs.ccc.contracting.Verification.Compound;
+import de.tu_bs.ccc.contracting.Verification.Contract;
+import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.Verification.MmFactory;
 
 public class UpdateModuleFeature extends AbstractUpdateFeature {
 

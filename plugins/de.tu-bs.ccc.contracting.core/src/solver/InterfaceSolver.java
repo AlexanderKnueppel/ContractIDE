@@ -14,16 +14,16 @@ import com.microsoft.z3.Z3Exception;
 
 import de.tu_bs.ccc.contracting.core.grammar.GrammarSolver;
 import general.LogWriter;
-import de.tu_bs.de.ccc.contracting.Verification.Assumption;
-import de.tu_bs.de.ccc.contracting.Verification.Contract;
-import de.tu_bs.de.ccc.contracting.Verification.ContractProperty;
-import de.tu_bs.de.ccc.contracting.Verification.Guarantee;
-import de.tu_bs.de.ccc.contracting.Verification.Interface;
-import de.tu_bs.de.ccc.contracting.Verification.Module;
-import de.tu_bs.de.ccc.contracting.Verification.PortType;
-import de.tu_bs.de.ccc.contracting.Verification.Ports;
-import de.tu_bs.de.ccc.contracting.Verification.PropertyType;
-import de.tu_bs.de.ccc.contracting.Verification.ViewPoint;
+import de.tu_bs.ccc.contracting.Verification.Assumption;
+import de.tu_bs.ccc.contracting.Verification.Contract;
+import de.tu_bs.ccc.contracting.Verification.ContractProperty;
+import de.tu_bs.ccc.contracting.Verification.Guarantee;
+import de.tu_bs.ccc.contracting.Verification.Interface;
+import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.PortType;
+import de.tu_bs.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.Verification.PropertyType;
+import de.tu_bs.ccc.contracting.Verification.ViewPoint;
 
 public class InterfaceSolver {
 

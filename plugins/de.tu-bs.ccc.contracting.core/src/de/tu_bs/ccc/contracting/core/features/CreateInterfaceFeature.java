@@ -14,9 +14,9 @@ import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 
 import general.SaveDomainModel;
-import de.tu_bs.de.ccc.contracting.Verification.Compound;
-import de.tu_bs.de.ccc.contracting.Verification.Interface;
-import de.tu_bs.de.ccc.contracting.Verification.MmFactory;
+import de.tu_bs.ccc.contracting.Verification.Compound;
+import de.tu_bs.ccc.contracting.Verification.Interface;
+import de.tu_bs.ccc.contracting.Verification.MmFactory;
 
 public class CreateInterfaceFeature extends AbstractCreateFeature implements ICreateFeature {
  

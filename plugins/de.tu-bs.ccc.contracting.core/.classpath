@@ -5,6 +5,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="libs/z3/bin/com.microsoft.z3.jar"/>
 	<classpathentry kind="lib" path="libs/antlr-4.7.1-complete.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/de.tu-bs.de.ccc.contracting.mm"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/de.tu-bs.ccc.contracting.mm"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

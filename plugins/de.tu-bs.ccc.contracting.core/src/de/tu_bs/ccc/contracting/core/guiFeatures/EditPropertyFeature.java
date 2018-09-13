@@ -10,11 +10,11 @@ import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 
-import de.tu_bs.de.ccc.contracting.Verification.Assumption;
-import de.tu_bs.de.ccc.contracting.Verification.Contract;
-import de.tu_bs.de.ccc.contracting.Verification.ContractProperty;
-import de.tu_bs.de.ccc.contracting.Verification.Guarantee;
-import de.tu_bs.de.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.Verification.Assumption;
+import de.tu_bs.ccc.contracting.Verification.Contract;
+import de.tu_bs.ccc.contracting.Verification.ContractProperty;
+import de.tu_bs.ccc.contracting.Verification.Guarantee;
+import de.tu_bs.ccc.contracting.Verification.Ports;
 import windows.EditPropertyWindow;
 
 public class EditPropertyFeature extends AbstractCustomFeature {

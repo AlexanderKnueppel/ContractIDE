@@ -7,9 +7,9 @@ import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.platform.IPlatformImageConstants;
 
-import de.tu_bs.de.ccc.contracting.Verification.Compound;
-import de.tu_bs.de.ccc.contracting.Verification.Interface;
-import de.tu_bs.de.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.Compound;
+import de.tu_bs.ccc.contracting.Verification.Interface;
+import de.tu_bs.ccc.contracting.Verification.Module;
 import windows.InterfaceList;
 
 public class EditInterfaceFeature extends AbstractCustomFeature {

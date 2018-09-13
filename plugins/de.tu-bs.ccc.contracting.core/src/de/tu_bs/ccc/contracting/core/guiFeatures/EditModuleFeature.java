@@ -12,7 +12,7 @@ import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 
-import de.tu_bs.de.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.Module;
 
 public class EditModuleFeature extends AbstractCustomFeature{
 

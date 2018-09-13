@@ -9,14 +9,14 @@ import javax.swing.text.StyledEditorKit.ForegroundAction;
 
 import org.eclipse.ui.testing.TestableObject;
 
-import de.tu_bs.de.ccc.contracting.Verification.Assumption;
-import de.tu_bs.de.ccc.contracting.Verification.Component;
-import de.tu_bs.de.ccc.contracting.Verification.Compound;
-import de.tu_bs.de.ccc.contracting.Verification.Contract;
-import de.tu_bs.de.ccc.contracting.Verification.Guarantee;
-import de.tu_bs.de.ccc.contracting.Verification.Module;
-import de.tu_bs.de.ccc.contracting.Verification.Ports;
-import de.tu_bs.de.ccc.contracting.Verification.MmFactory;
+import de.tu_bs.ccc.contracting.Verification.Assumption;
+import de.tu_bs.ccc.contracting.Verification.Component;
+import de.tu_bs.ccc.contracting.Verification.Compound;
+import de.tu_bs.ccc.contracting.Verification.Contract;
+import de.tu_bs.ccc.contracting.Verification.Guarantee;
+import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.Verification.MmFactory;
 
 public class SMTSolver {
 	public static void main(String[] args) {

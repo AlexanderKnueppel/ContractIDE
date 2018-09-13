@@ -33,11 +33,11 @@ import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 
 import general.SaveDomainModel;
-import de.tu_bs.de.ccc.contracting.Verification.Component;
-import de.tu_bs.de.ccc.contracting.Verification.Compound;
-import de.tu_bs.de.ccc.contracting.Verification.Module;
-import de.tu_bs.de.ccc.contracting.Verification.MmFactory;
-import de.tu_bs.de.ccc.contracting.Verification.MmPackage;
+import de.tu_bs.ccc.contracting.Verification.Component;
+import de.tu_bs.ccc.contracting.Verification.Compound;
+import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.MmFactory;
+import de.tu_bs.ccc.contracting.Verification.MmPackage;
 import windows.Dialog;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;

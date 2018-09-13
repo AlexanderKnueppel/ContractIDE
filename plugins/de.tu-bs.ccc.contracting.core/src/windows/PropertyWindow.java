@@ -18,8 +18,8 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.DefaultComboBoxModel;
-import de.tu_bs.de.ccc.contracting.Verification.PropertyType;
-import de.tu_bs.de.ccc.contracting.Verification.ContractType;
+import de.tu_bs.ccc.contracting.Verification.PropertyType;
+import de.tu_bs.ccc.contracting.Verification.ContractType;
 
 public class PropertyWindow extends JDialog implements ActionListener {
 

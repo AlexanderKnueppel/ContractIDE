@@ -21,11 +21,11 @@ import org.eclipse.graphiti.ui.editor.DiagramEditor;
 import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
 
-import de.tu_bs.de.ccc.contracting.Verification.Assumption;
-import de.tu_bs.de.ccc.contracting.Verification.Contract;
-import de.tu_bs.de.ccc.contracting.Verification.Guarantee;
-import de.tu_bs.de.ccc.contracting.Verification.Ports;
-import de.tu_bs.de.ccc.contracting.Verification.ViewPoint;
+import de.tu_bs.ccc.contracting.Verification.Assumption;
+import de.tu_bs.ccc.contracting.Verification.Contract;
+import de.tu_bs.ccc.contracting.Verification.Guarantee;
+import de.tu_bs.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.Verification.ViewPoint;
 
 public class UpdateContractFeature extends AbstractUpdateFeature {
 

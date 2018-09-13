@@ -18,8 +18,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
-import de.tu_bs.de.ccc.contracting.Verification.DirectionType;
-import de.tu_bs.de.ccc.contracting.Verification.PortType;
+import de.tu_bs.ccc.contracting.Verification.DirectionType;
+import de.tu_bs.ccc.contracting.Verification.PortType;
 import java.awt.Dimension;
 import java.awt.Component;
 

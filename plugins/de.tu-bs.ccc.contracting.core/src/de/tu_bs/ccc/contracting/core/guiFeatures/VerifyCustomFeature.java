@@ -16,10 +16,10 @@ import org.eclipse.graphiti.platform.IPlatformImageConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.PlatformUI;
 
-import de.tu_bs.de.ccc.contracting.Verification.Component;
-import de.tu_bs.de.ccc.contracting.Verification.Compound;
-import de.tu_bs.de.ccc.contracting.Verification.Interface;
-import de.tu_bs.de.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.Component;
+import de.tu_bs.ccc.contracting.Verification.Compound;
+import de.tu_bs.ccc.contracting.Verification.Interface;
+import de.tu_bs.ccc.contracting.Verification.Module;
 import solver.CompoundSolver;
 import solver.InterfaceSolver;
 

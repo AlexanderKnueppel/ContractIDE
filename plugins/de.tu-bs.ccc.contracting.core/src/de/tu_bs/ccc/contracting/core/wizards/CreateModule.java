@@ -25,8 +25,8 @@ import org.eclipse.graphiti.mm.pictograms.PictogramsFactory;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.services.GraphitiUi;
 
-import de.tu_bs.de.ccc.contracting.Verification.Component;
-import de.tu_bs.de.ccc.contracting.Verification.MmFactory;
+import de.tu_bs.ccc.contracting.Verification.Component;
+import de.tu_bs.ccc.contracting.Verification.MmFactory;
 
 
 public class CreateModule extends RecordingCommand {
@@ -113,7 +113,7 @@ public class CreateModule extends RecordingCommand {
 			e1.printStackTrace();
 		}
 		} else if (this.type == CreationType.COMPOUND) {
-			 de.tu_bs.de.ccc.contracting.Verification.Compound c = MmFactory.eINSTANCE.createCompound();
+			 de.tu_bs.ccc.contracting.Verification.Compound c = MmFactory.eINSTANCE.createCompound();
 			creat.setNewObject(c);
 			c.setName(file.getName().substring(0, dot));
 			c.setModule(null);

@@ -9,16 +9,16 @@ import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 
-import de.tu_bs.de.ccc.contracting.Verification.Assumption;
-import de.tu_bs.de.ccc.contracting.Verification.Contract;
-import de.tu_bs.de.ccc.contracting.Verification.ContractProperty;
-import de.tu_bs.de.ccc.contracting.Verification.ContractType;
-import de.tu_bs.de.ccc.contracting.Verification.Guarantee;
-import de.tu_bs.de.ccc.contracting.Verification.Module;
-import de.tu_bs.de.ccc.contracting.Verification.Ports;
-import de.tu_bs.de.ccc.contracting.Verification.PropertyType;
-import de.tu_bs.de.ccc.contracting.Verification.MmFactory;
-import de.tu_bs.de.ccc.contracting.Verification.ViewPoint;
+import de.tu_bs.ccc.contracting.Verification.Assumption;
+import de.tu_bs.ccc.contracting.Verification.Contract;
+import de.tu_bs.ccc.contracting.Verification.ContractProperty;
+import de.tu_bs.ccc.contracting.Verification.ContractType;
+import de.tu_bs.ccc.contracting.Verification.Guarantee;
+import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.Verification.PropertyType;
+import de.tu_bs.ccc.contracting.Verification.MmFactory;
+import de.tu_bs.ccc.contracting.Verification.ViewPoint;
 
 import windows.PropertyWindow;
 

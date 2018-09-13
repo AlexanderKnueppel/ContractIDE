@@ -10,7 +10,7 @@
       <!-- @generated mm -->
       <package
             uri="http://www.example.org/contractVerificationMM"
-            class="de.tu_bs.de.ccc.contracting.Verification.MmPackage"
+            class="de.tu_bs.ccc.contracting.Verification.MmPackage"
             genModel="model/mm.genmodel"/>
    </extension>
 

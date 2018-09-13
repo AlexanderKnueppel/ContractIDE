@@ -23,10 +23,10 @@ import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
 
 import de.tu_bs.ccc.contracting.core.diagram.ContractModellingImageProvider;
-import de.tu_bs.de.ccc.contracting.Verification.Component;
-import de.tu_bs.de.ccc.contracting.Verification.Module;
-import de.tu_bs.de.ccc.contracting.Verification.PortType;
-import de.tu_bs.de.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.Verification.Component;
+import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.PortType;
+import de.tu_bs.ccc.contracting.Verification.Ports;
 
 public class AddPortFeature extends AbstractAddFeature {
 	private static final IColorConstant E_CLASS_FOREGROUND = new ColorConstant(98, 131, 167);

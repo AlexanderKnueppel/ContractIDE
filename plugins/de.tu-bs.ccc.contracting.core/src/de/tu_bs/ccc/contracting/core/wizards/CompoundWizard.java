@@ -35,9 +35,9 @@ import org.eclipse.ui.*;
 import org.eclipse.ui.ide.IDE;
 
 import general.SaveDomainModel;
-import de.tu_bs.de.ccc.contracting.Verification.Component;
-import de.tu_bs.de.ccc.contracting.Verification.Compound;
-import de.tu_bs.de.ccc.contracting.Verification.MmFactory;
+import de.tu_bs.ccc.contracting.Verification.Component;
+import de.tu_bs.ccc.contracting.Verification.Compound;
+import de.tu_bs.ccc.contracting.Verification.MmFactory;
 
 /**
  * This is a sample new wizard. Its role is to create a new file resource in the

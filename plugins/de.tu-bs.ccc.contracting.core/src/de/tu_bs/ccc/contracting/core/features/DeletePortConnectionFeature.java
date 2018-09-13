@@ -7,7 +7,7 @@ import org.eclipse.graphiti.features.context.IDeleteContext;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.ui.features.DefaultDeleteFeature;
 
-import de.tu_bs.de.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.Verification.Ports;
 
 public class DeletePortConnectionFeature extends DefaultDeleteFeature {
 

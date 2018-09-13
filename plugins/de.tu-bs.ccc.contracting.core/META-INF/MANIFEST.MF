@@ -17,7 +17,7 @@ Require-Bundle: org.eclipse.graphiti,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: com.microsoft.z3,
  com.microsoft.z3.enumerations,
- de.tu_bs.de.ccc.contracting.Verification,
+ de.tu_bs.ccc.contracting.Verification,
  org.antlr.v4,
  org.eclipse.core.resources,
  org.eclipse.core.runtime
