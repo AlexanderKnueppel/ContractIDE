@@ -13,19 +13,24 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
+import org.eclipse.ui.internal.util.BundleUtility;
 import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
 
 import de.tu_bs.ccc.contracting.ui.Activator;
 
 public class CCCProjectNewWizard extends Wizard implements INewWizard {
 
-	private static final String WIZARD_NAME = "New CCC Project";
-	
+	private static final String WIZARD_NAME = "New ContractIDE Project";
+
 	private WizardNewProjectCreationPage _pageOne;
 	private String _folderPath;
 	private String _pluginPath;
@@ -46,8 +51,8 @@ public class CCCProjectNewWizard extends Wizard implements INewWizard {
 		if (_pageOne.getProjectName() != null) {
 			IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 			IProject project = root.getProject(_pageOne.getProjectName());
-			_folderPath = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString() + "/" + _pageOne.getProjectName() 
-					+ "/src/";
+			_folderPath = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString() + "/"
+					+ _pageOne.getProjectName() + "/src/";
 
 			Bundle wizardBundle = Platform.getBundle(Activator.PLUGIN_ID);
 			Path sourcePath = new Path("DummyProject");
@@ -82,7 +87,7 @@ public class CCCProjectNewWizard extends Wizard implements INewWizard {
 						e.printStackTrace();
 					}
 				}
-				
+
 				systemFolder.refreshLocal(1, null);
 
 			} catch (CoreException e) {
@@ -97,10 +102,15 @@ public class CCCProjectNewWizard extends Wizard implements INewWizard {
 	public void addPages() {
 		super.addPages();
 
-		_pageOne = new WizardNewProjectCreationPage("New CCC Project");
-		_pageOne.setTitle("New CCC Project");
-		_pageOne.setDescription("Create a new CCC project from scratch.");
+		_pageOne = new WizardNewProjectCreationPage("New ContractIDE Project");
+		_pageOne.setTitle("New ContractIDE Project");
+		_pageOne.setDescription("Create a new ContractIDE project from scratch.");
 
+		Bundle bundle = FrameworkUtil.getBundle(this.getClass());
+		URL url = FileLocator.find(bundle, new Path("icons/cide64.png"), null);
+		ImageDescriptor imageDescriptor = ImageDescriptor.createFromURL(url);
+		
+		_pageOne.setImageDescriptor(imageDescriptor);
 		addPage(_pageOne);
 	}
 

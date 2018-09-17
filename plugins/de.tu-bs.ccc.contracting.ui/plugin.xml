@@ -10,23 +10,23 @@
       <wizard
             category="de.tu-bs.ccc.contracting.ui.wizards"
             class="de.tu_bs.ccc.contracting.ui.wizards.CCCProjectNewWizard"
-            icon="icons/sample.png"
+            icon="icons/cide.png"
             id="de.tu-bs.ccc.contracting.ui.wizards.new.custom"
             name="ContractIDE Project">
       </wizard>
       <wizard
             category="de.tu-bs.ccc.contracting.ui.wizards"
             class="de.tu_bs.ccc.contracting.ui.wizards.CompoundWizard"
-            icon="icons/sample.png"
+            icon="icons/compound.png"
             id="contractmodelling.wizards.CompoundWizard"
             name="Compound">
       </wizard>
       <wizard
             category="de.tu-bs.ccc.contracting.ui.wizards"
             class="de.tu_bs.ccc.contracting.ui.wizards.ComponentWizard"
-            icon="icons/sample.png"
+            icon="icons/atomic_component.png"
             id="contractmodelling.wizards.ComponentWizard"
-            name="Component">
+            name="Atomic Component">
       </wizard>
    </extension>
    
