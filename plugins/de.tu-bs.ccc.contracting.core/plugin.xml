@@ -27,27 +27,6 @@
       </diagramTypeProvider>
    </extension>
    <extension
-         point="org.eclipse.ui.newWizards">
-      <category
-            id="ContractModelling"
-            name="DBC">
-      </category>
-      <wizard
-            category="ContractModelling"
-            class="de.tu_bs.ccc.contracting.core.wizards.CompoundWizard"
-            icon="icons/sample.png"
-            id="contractmodelling.wizards.CompoundWizard"
-            name="Compound">
-      </wizard>
-      <wizard
-            category="ContractModelling"
-            class="de.tu_bs.ccc.contracting.core.wizards.ComponentWizard"
-            icon="icons/sample.png"
-            id="contractmodelling.wizards.ComponentWizard"
-            name="Component">
-      </wizard>
-   </extension>
-   <extension
          point="org.eclipse.graphiti.ui.imageProviders">
       <imageProvider
             class="de.tu_bs.ccc.contracting.core.diagram.ContractModellingImageProvider"

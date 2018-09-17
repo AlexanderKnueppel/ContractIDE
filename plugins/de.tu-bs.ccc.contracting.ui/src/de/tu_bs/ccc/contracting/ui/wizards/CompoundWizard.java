@@ -1,4 +1,4 @@
-package de.tu_bs.ccc.contracting.core.wizards;
+package de.tu_bs.ccc.contracting.ui.wizards;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
@@ -7,37 +7,23 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.core.runtime.*;
 import org.eclipse.jface.operation.*;
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
-
-import javax.swing.JOptionPane;
 
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.core.resources.*;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
-import org.eclipse.graphiti.dt.IDiagramTypeProvider;
-import org.eclipse.graphiti.features.IAddFeature;
-import org.eclipse.graphiti.features.IFeatureProvider;
-import org.eclipse.graphiti.features.context.impl.AddContext;
-import org.eclipse.graphiti.features.context.impl.CreateContext;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.services.Graphiti;
-import org.eclipse.graphiti.ui.services.GraphitiUi;
 
 import java.io.*;
 import org.eclipse.ui.*;
 import org.eclipse.ui.ide.IDE;
 
-import general.SaveDomainModel;
-import de.tu_bs.ccc.contracting.Verification.Component;
-import de.tu_bs.ccc.contracting.Verification.Compound;
-import de.tu_bs.ccc.contracting.Verification.MmFactory;
 
 /**
  * This is a sample new wizard. Its role is to create a new file resource in the

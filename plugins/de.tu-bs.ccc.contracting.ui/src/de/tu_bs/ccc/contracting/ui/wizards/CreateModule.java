@@ -1,4 +1,4 @@
-package de.tu_bs.ccc.contracting.core.wizards;
+package de.tu_bs.ccc.contracting.ui.wizards;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -12,7 +12,6 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;

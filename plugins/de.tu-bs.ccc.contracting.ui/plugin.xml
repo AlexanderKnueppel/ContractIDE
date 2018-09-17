@@ -5,14 +5,28 @@
          point="org.eclipse.ui.newWizards">
       <category
             id="de.tu-bs.ccc.contracting.ui.wizards"
-            name="CCC">
+            name="ContractIDE">
       </category>
       <wizard
             category="de.tu-bs.ccc.contracting.ui.wizards"
             class="de.tu_bs.ccc.contracting.ui.wizards.CCCProjectNewWizard"
             icon="icons/sample.png"
             id="de.tu-bs.ccc.contracting.ui.wizards.new.custom"
-            name="CCC Project">
+            name="ContractIDE Project">
+      </wizard>
+      <wizard
+            category="de.tu-bs.ccc.contracting.ui.wizards"
+            class="de.tu_bs.ccc.contracting.ui.wizards.CompoundWizard"
+            icon="icons/sample.png"
+            id="contractmodelling.wizards.CompoundWizard"
+            name="Compound">
+      </wizard>
+      <wizard
+            category="de.tu-bs.ccc.contracting.ui.wizards"
+            class="de.tu_bs.ccc.contracting.ui.wizards.ComponentWizard"
+            icon="icons/sample.png"
+            id="contractmodelling.wizards.ComponentWizard"
+            name="Component">
       </wizard>
    </extension>
    
@@ -20,7 +34,7 @@
 	  <menuContribution  allPopups="false" locationURI="popup:org.eclipse.ui.popup.any?after=additions">
          <menu
                id="de.tu-bs.ccc.contracting.ui.CCCMenu"
-               label="CCC">
+               label="ContractIDE">
             <command
                   commandId="de.tu-bs.ccc.contracting.ui.exporter_command"
                   label="Command"

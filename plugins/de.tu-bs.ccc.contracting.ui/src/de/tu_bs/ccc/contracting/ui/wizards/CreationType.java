@@ -1,4 +1,4 @@
-package de.tu_bs.ccc.contracting.core.wizards;
+package de.tu_bs.ccc.contracting.ui.wizards;
 
 public enum CreationType {
 	

@@ -61,16 +61,16 @@ public class ComponentModellingFeatureProvider extends DefaultFeatureProvider {
 	public IAddFeature getAddFeature(IAddContext context) {
 		Object test = context.getNewObject();
 		
-		if (test instanceof Component ) {
-					return new AddComponentFeature(this);
-				}
-	
-		else if (context instanceof IAddContext &&context.getNewObject() instanceof Contract) {
-	        return new AddContractFeature(this);
-	        
-	    }
+//		if (test instanceof Component ) {
+//					return new AddComponentFeature(this);
+//				}
+//	
+//		else if (context instanceof IAddContext &&context.getNewObject() instanceof Contract) {
+//	        return new AddContractFeature(this);
+//	        
+//	    }
 		
-		else  if (context instanceof IAddContext  && context.getNewObject() instanceof Interface ) {
+		  if (context instanceof IAddContext  && context.getNewObject() instanceof Interface ) {
 			return new AddInterfaceFeature(this);
 		}
 		else  if (context instanceof IAddContext && context.getNewObject() instanceof Compound) {

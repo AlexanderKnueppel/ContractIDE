@@ -1,4 +1,4 @@
-package de.tu_bs.ccc.contracting.core.wizards;
+package de.tu_bs.ccc.contracting.ui.wizards;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IResource;
