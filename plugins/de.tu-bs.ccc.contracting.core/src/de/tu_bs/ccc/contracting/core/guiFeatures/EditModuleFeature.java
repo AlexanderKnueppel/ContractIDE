@@ -9,7 +9,6 @@ import javax.swing.JTextField;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
-import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 
 import de.tu_bs.ccc.contracting.Verification.Module;
@@ -40,6 +39,7 @@ public class EditModuleFeature extends AbstractCustomFeature{
 	public void execute(ICustomContext context) {
 		PictogramElement[] pes = context.getPictogramElements();
 		Object bo = getBusinessObjectForPictogramElement(pes[0]);
+		
 		if(bo instanceof Module) {
 			Module m = (Module) bo;
 			JTextField xField = new JTextField(5);
@@ -64,7 +64,4 @@ public class EditModuleFeature extends AbstractCustomFeature{
 			
 			
 		}
-		
-	
-
 }

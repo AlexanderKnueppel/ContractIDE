@@ -1,13 +1,8 @@
 package de.tu_bs.ccc.contracting.core.features;
 
-import java.io.IOException;
 
-import javax.swing.JOptionPane;
-
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.impl.BinaryResourceImpl.BinaryIO.Version;
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateContext;
@@ -17,14 +12,11 @@ import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 
-import general.SaveDomainModel;
-import de.tu_bs.ccc.contracting.Verification.Component;
-import de.tu_bs.ccc.contracting.Verification.Contract;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.PortType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.Verification.MmFactory;
-import de.tu_bs.ccc.contracting.Verification.MmPackage;
+
 
 public class CreatePortFeature extends AbstractCreateFeature implements ICreateFeature {
 	public static final PortType pt = PortType.STRING;

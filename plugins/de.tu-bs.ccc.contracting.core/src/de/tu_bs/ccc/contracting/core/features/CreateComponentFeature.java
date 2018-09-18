@@ -1,9 +1,5 @@
 package de.tu_bs.ccc.contracting.core.features;
 
-import java.awt.FileDialog;
-import java.awt.Frame;
-import java.io.File;
-import java.io.FilenameFilter;
 import java.io.IOException;
 
 import javax.swing.JOptionPane;
@@ -11,7 +7,6 @@ import javax.swing.JOptionPane;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateContext;
@@ -23,7 +18,6 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import general.SaveDomainModel;
 import de.tu_bs.ccc.contracting.Verification.Component;
 import de.tu_bs.ccc.contracting.Verification.Compound;
-import de.tu_bs.ccc.contracting.Verification.Contract;
 import de.tu_bs.ccc.contracting.Verification.MmFactory;
 
 public class CreateComponentFeature extends AbstractCreateFeature implements ICreateFeature {
@@ -50,17 +44,17 @@ public class CreateComponentFeature extends AbstractCreateFeature implements ICr
 	}
 
 	public Object[] create(ICreateContext context) {
-
-		String classname = JOptionPane.showInputDialog(null, "Name the Component");
-		String description = JOptionPane.showInputDialog(null, "Set the Descritption");
+		
+//		String classname = JOptionPane.showInputDialog(null, "Name the Component");
+//		String description = JOptionPane.showInputDialog(null, "Set the Descritption");
 		// Frame frame = null;
 		// FileDialog dialog = new FileDialog(frame, "Ressource", FileDialog.LOAD);
 		// dialog.show();
 		//
 		// String result = dialog.getFile();
 		Component newClass = MmFactory.eINSTANCE.createComponent();
-		newClass.setName(classname);
-		newClass.setDescription(description);
+		newClass.setName("new Component");
+		newClass.setDescription("Describe");
 		try {
 			SaveDomainModel.saveToModelFile(newClass, getDiagram());
 		} catch (CoreException | IOException e) {

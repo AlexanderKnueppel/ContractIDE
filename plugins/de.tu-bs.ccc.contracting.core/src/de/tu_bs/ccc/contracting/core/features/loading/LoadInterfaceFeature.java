@@ -1,12 +1,8 @@
 package de.tu_bs.ccc.contracting.core.features.loading;
 
-import java.awt.FileDialog;
+
 import java.awt.Frame;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FilenameFilter;
-import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +10,6 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import org.eclipse.core.internal.resources.Workspace;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
@@ -24,7 +19,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
@@ -73,7 +67,7 @@ public class LoadInterfaceFeature extends AbstractCreateFeature {
         // Dialog zum Oeffnen von Dateien anzeigen
         int rueckgabeWert = chooser.showOpenDialog(null);
         
-        /* Abfrage, ob auf "Öffnen" geklickt wurde */
+        /* Abfrage, ob auf "ï¿½ffnen" geklickt wurde */
         if(rueckgabeWert == JFileChooser.APPROVE_OPTION)
         {
         	String result = chooser.getSelectedFile().getPath();

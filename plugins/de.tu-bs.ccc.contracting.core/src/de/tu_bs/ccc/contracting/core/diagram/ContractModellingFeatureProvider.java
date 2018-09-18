@@ -1,10 +1,5 @@
 package de.tu_bs.ccc.contracting.core.diagram;
 
-import org.eclipse.emf.common.command.CommandStack;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IAddFeature;
 import org.eclipse.graphiti.features.ICreateConnectionFeature;
@@ -20,7 +15,6 @@ import org.eclipse.graphiti.features.context.IDeleteContext;
 import org.eclipse.graphiti.features.context.ILayoutContext;
 import org.eclipse.graphiti.features.context.IReconnectionContext;
 import org.eclipse.graphiti.features.context.IUpdateContext;
-import org.eclipse.graphiti.features.context.impl.DeleteContext;
 import org.eclipse.graphiti.features.custom.ICustomFeature;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
@@ -39,9 +33,7 @@ import de.tu_bs.ccc.contracting.core.features.CreateInterfaceFeature;
 import de.tu_bs.ccc.contracting.core.features.CreatePortConnection;
 import de.tu_bs.ccc.contracting.core.features.CreatePortFeature;
 import de.tu_bs.ccc.contracting.core.features.DeletePortConnectionFeature;
-import de.tu_bs.ccc.contracting.core.features.LayoutDomainObjectFeature;
 import de.tu_bs.ccc.contracting.core.features.connections.AddContractConnectionFeature;
-import de.tu_bs.ccc.contracting.core.features.connections.CreateContractConnectionFeature;
 import de.tu_bs.ccc.contracting.core.features.connections.ReconnectionFeature;
 import de.tu_bs.ccc.contracting.core.features.loading.LoadComponentFeature;
 import de.tu_bs.ccc.contracting.core.features.loading.LoadInterfaceFeature;

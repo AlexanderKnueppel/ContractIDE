@@ -1,6 +1,6 @@
 package de.tu_bs.ccc.contracting.core.features.connections;
 
-import javax.swing.JOptionPane;
+
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddConnectionContext;

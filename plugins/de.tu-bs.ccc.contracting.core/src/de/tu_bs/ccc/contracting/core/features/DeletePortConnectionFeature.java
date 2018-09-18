@@ -1,8 +1,6 @@
 package de.tu_bs.ccc.contracting.core.features;
 
-import org.eclipse.graphiti.features.IDeleteFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
-import org.eclipse.graphiti.features.context.IContext;
 import org.eclipse.graphiti.features.context.IDeleteContext;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.ui.features.DefaultDeleteFeature;

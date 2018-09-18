@@ -2,19 +2,12 @@ package de.tu_bs.ccc.contracting.core.diagram;
 
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IAddFeature;
-import org.eclipse.graphiti.features.ICopyFeature;
 import org.eclipse.graphiti.features.ICreateConnectionFeature;
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.ILayoutFeature;
-import org.eclipse.graphiti.features.IPasteFeature;
-import org.eclipse.graphiti.features.IPrintFeature;
-import org.eclipse.graphiti.features.ISaveImageFeature;
 import org.eclipse.graphiti.features.context.IAddConnectionContext;
 import org.eclipse.graphiti.features.context.IAddContext;
-import org.eclipse.graphiti.features.context.ICopyContext;
 import org.eclipse.graphiti.features.context.ILayoutContext;
-import org.eclipse.graphiti.features.context.IPasteContext;
-import org.eclipse.graphiti.features.impl.AbstractFeatureProvider;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
@@ -61,14 +54,14 @@ public class ComponentModellingFeatureProvider extends DefaultFeatureProvider {
 	public IAddFeature getAddFeature(IAddContext context) {
 		Object test = context.getNewObject();
 		
-//		if (test instanceof Component ) {
-//					return new AddComponentFeature(this);
-//				}
-//	
-//		else if (context instanceof IAddContext &&context.getNewObject() instanceof Contract) {
-//	        return new AddContractFeature(this);
-//	        
-//	    }
+		if (test instanceof Component ) {
+					return new AddComponentFeature(this);
+				}
+	
+		else if (context instanceof IAddContext &&context.getNewObject() instanceof Contract) {
+	        return new AddContractFeature(this);
+	        
+	    }
 		
 		  if (context instanceof IAddContext  && context.getNewObject() instanceof Interface ) {
 			return new AddInterfaceFeature(this);
