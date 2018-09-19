@@ -51,7 +51,7 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 			ContainerShape cs = (ContainerShape) pictogramElement;
 			Shape s2 = cs.getChildren().get(1);
 			Text nameText = (Text) s2.getGraphicsAlgorithm();
-			if (!nameText.getValue().equals(m.getName() + "   " + m.getDescription())) {
+			if (!nameText.getValue().equals(m.getName() + "   " + m.getVersion())) {
 				return Reason.createTrueReason("Name is out of date");
 			} else
 				return Reason.createFalseReason("Other Reason");
@@ -71,7 +71,7 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 			Shape s1 = cs.getChildren().get(0);
 			Shape s2 = cs.getChildren().get(1);
 			Text nameText = (Text) s2.getGraphicsAlgorithm();
-			nameText.setValue(m.getName() + "   " + m.getDescription());
+			nameText.setValue(m.getName() + "   " + m.getVersion());
 			IGaService gaService = Graphiti.getGaService();
 			Polyline line = (Polyline) s1.getGraphicsAlgorithm();
 			Point secondPoint = line.getPoints().get(1);

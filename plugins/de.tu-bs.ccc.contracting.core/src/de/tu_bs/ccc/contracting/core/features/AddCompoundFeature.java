@@ -105,7 +105,7 @@ public class AddCompoundFeature extends AbstractAddFeature {
 			Shape shape = peCreateService.createShape(containerShape, false);
 
 			// create and set text graphics algorithm
-			Text text = gaService.createText(shape, addedClass.getName()+"   "+addedClass.getDescription());
+			Text text = gaService.createText(shape, addedClass.getName()+"   "+addedClass.getVersion());
 			text.setForeground(manageColor(E_CLASS_TEXT_FOREGROUND));
 			text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 			// vertical alignment has as default value "center"

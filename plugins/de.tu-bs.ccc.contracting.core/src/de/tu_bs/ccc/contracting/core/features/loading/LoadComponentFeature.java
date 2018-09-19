@@ -135,7 +135,7 @@ public class LoadComponentFeature extends AbstractCreateFeature {
 		List<String> names = new ArrayList<String>();
 		for (int i = 0; i < list.size(); i++) {
 			try {
-				names.add(((Module) list.get(i)).getName() + ((Module) list.get(i)).getDescription());
+				names.add(((Module) list.get(i)).getName() + " " + ((Module) list.get(i)).getVersion());
 			} catch (Exception e) {
 				// TODO: handle exception
 			}

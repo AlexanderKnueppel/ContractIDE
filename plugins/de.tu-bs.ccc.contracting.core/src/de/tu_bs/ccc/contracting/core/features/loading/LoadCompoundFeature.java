@@ -4,9 +4,9 @@ import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
 
-public class LoadCompundFeature extends AbstractCreateFeature {
+public class LoadCompoundFeature extends AbstractCreateFeature {
 
-	public LoadCompundFeature(IFeatureProvider fp, String name, String description) {
+	public LoadCompoundFeature(IFeatureProvider fp, String name, String description) {
 		super(fp, name, description);
 		// TODO Auto-generated constructor stub
 	}
