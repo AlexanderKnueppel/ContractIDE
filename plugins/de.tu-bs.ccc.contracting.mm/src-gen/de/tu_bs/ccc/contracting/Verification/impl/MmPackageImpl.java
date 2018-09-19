@@ -277,6 +277,15 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getModule_Version() {
+		return (EAttribute) moduleEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getInterface() {
 		return interfaceEClass;
 	}
@@ -606,6 +615,7 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 		createEReference(moduleEClass, MODULE__PORTS);
 		createEReference(moduleEClass, MODULE__CONTRACT);
 		createEReference(moduleEClass, MODULE__MODULE);
+		createEAttribute(moduleEClass, MODULE__VERSION);
 
 		interfaceEClass = createEClass(INTERFACE);
 		createEReference(interfaceEClass, INTERFACE__REALIZES);
@@ -711,6 +721,8 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 		initEReference(getModule_Module(), this.getModule(), null, "module", null, 0, 1, Module.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		initEAttribute(getModule_Version(), ecorePackage.getEString(), "version", "1.0", 0, 1, Module.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(interfaceEClass, Interface.class, "Interface", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
