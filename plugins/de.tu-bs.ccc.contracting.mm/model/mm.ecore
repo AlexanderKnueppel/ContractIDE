@@ -14,6 +14,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="contract" upperBound="-1"
         eType="#//Contract" containment="true" eOpposite="#//Contract/module"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="module" eType="#//Module"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="1.0"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Interface" eSuperTypes="#//Module">
     <eStructuralFeatures xsi:type="ecore:EReference" name="realizes" upperBound="-1"
