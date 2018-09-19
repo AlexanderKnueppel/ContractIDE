@@ -45,7 +45,7 @@ public class EditModuleFeature extends AbstractCustomFeature{
 			JTextField xField = new JTextField(5);
 			xField.setText(m.getName());
 		    JTextField yField = new JTextField(5);
-		    yField.setText(m.getDescription());
+		    yField.setText(m.getVersion());
 		    JPanel myPanel = new JPanel();
 		    myPanel.add(new JLabel("Name:"));
 		    myPanel.add(xField);
@@ -57,7 +57,7 @@ public class EditModuleFeature extends AbstractCustomFeature{
 		        "Please Enter X and Y Values", JOptionPane.OK_CANCEL_OPTION);
 		    if (result == JOptionPane.OK_OPTION) {
 		      m.setName(xField.getText());
-		      m.setDescription(yField.getText());
+		      m.setVersion(yField.getText());
 		    }
 
 		}

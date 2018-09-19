@@ -131,13 +131,22 @@ public interface MmPackage extends EPackage {
 	int MODULE__MODULE = 6;
 
 	/**
+	 * The feature id for the '<em><b>Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODULE__VERSION = 7;
+
+	/**
 	 * The number of structural features of the '<em>Module</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODULE_FEATURE_COUNT = 7;
+	int MODULE_FEATURE_COUNT = 8;
 
 	/**
 	 * The number of operations of the '<em>Module</em>' class.
@@ -220,6 +229,15 @@ public interface MmPackage extends EPackage {
 	 * @ordered
 	 */
 	int INTERFACE__MODULE = MODULE__MODULE;
+
+	/**
+	 * The feature id for the '<em><b>Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERFACE__VERSION = MODULE__VERSION;
 
 	/**
 	 * The feature id for the '<em><b>Realizes</b></em>' reference list.
@@ -322,6 +340,15 @@ public interface MmPackage extends EPackage {
 	int COMPONENT__MODULE = MODULE__MODULE;
 
 	/**
+	 * The feature id for the '<em><b>Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT__VERSION = MODULE__VERSION;
+
+	/**
 	 * The number of structural features of the '<em>Component</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -411,6 +438,15 @@ public interface MmPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPOUND__MODULE = MODULE__MODULE;
+
+	/**
+	 * The feature id for the '<em><b>Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND__VERSION = MODULE__VERSION;
 
 	/**
 	 * The feature id for the '<em><b>Consits Of</b></em>' containment reference list.
@@ -915,6 +951,17 @@ public interface MmPackage extends EPackage {
 	EReference getModule_Module();
 
 	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.ccc.contracting.Verification.Module#getVersion <em>Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Version</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Module#getVersion()
+	 * @see #getModule()
+	 * @generated
+	 */
+	EAttribute getModule_Version();
+
+	/**
 	 * Returns the meta object for class '{@link de.tu_bs.ccc.contracting.Verification.Interface <em>Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1352,6 +1399,14 @@ public interface MmPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MODULE__MODULE = eINSTANCE.getModule_Module();
+
+		/**
+		 * The meta object literal for the '<em><b>Version</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MODULE__VERSION = eINSTANCE.getModule_Version();
 
 		/**
 		 * The meta object literal for the '{@link de.tu_bs.ccc.contracting.Verification.impl.InterfaceImpl <em>Interface</em>}' class.

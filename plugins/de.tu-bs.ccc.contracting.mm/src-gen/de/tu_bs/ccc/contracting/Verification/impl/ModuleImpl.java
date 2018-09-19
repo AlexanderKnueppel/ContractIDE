@@ -42,6 +42,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.ModuleImpl#getPorts <em>Ports</em>}</li>
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.ModuleImpl#getContract <em>Contract</em>}</li>
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.ModuleImpl#getModule <em>Module</em>}</li>
+ *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.ModuleImpl#getVersion <em>Version</em>}</li>
  * </ul>
  *
  * @generated
@@ -126,6 +127,26 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * @ordered
 	 */
 	protected Module module;
+
+	/**
+	 * The default value of the '{@link #getVersion() <em>Version</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVersion()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String VERSION_EDEFAULT = "1.0";
+
+	/**
+	 * The cached value of the '{@link #getVersion() <em>Version</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVersion()
+	 * @generated
+	 * @ordered
+	 */
+	protected String version = VERSION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -317,6 +338,27 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getVersion() {
+		return version;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setVersion(String newVersion) {
+		String oldVersion = version;
+		version = newVersion;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MmPackage.MODULE__VERSION, oldVersion, version));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -393,6 +435,8 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 			if (resolve)
 				return getModule();
 			return basicGetModule();
+		case MmPackage.MODULE__VERSION:
+			return getVersion();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -430,6 +474,9 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 		case MmPackage.MODULE__MODULE:
 			setModule((Module) newValue);
 			return;
+		case MmPackage.MODULE__VERSION:
+			setVersion((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -463,6 +510,9 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 		case MmPackage.MODULE__MODULE:
 			setModule((Module) null);
 			return;
+		case MmPackage.MODULE__VERSION:
+			setVersion(VERSION_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -489,6 +539,8 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 			return contract != null && !contract.isEmpty();
 		case MmPackage.MODULE__MODULE:
 			return module != null;
+		case MmPackage.MODULE__VERSION:
+			return VERSION_EDEFAULT == null ? version != null : !VERSION_EDEFAULT.equals(version);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -508,6 +560,8 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 		result.append(name);
 		result.append(", description: ");
 		result.append(description);
+		result.append(", version: ");
+		result.append(version);
 		result.append(')');
 		return result.toString();
 	}

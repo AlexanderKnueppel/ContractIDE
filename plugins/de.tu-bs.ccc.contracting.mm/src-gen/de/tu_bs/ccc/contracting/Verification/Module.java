@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.Module#getPorts <em>Ports</em>}</li>
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.Module#getContract <em>Contract</em>}</li>
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.Module#getModule <em>Module</em>}</li>
+ *   <li>{@link de.tu_bs.ccc.contracting.Verification.Module#getVersion <em>Version</em>}</li>
  * </ul>
  *
  * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getModule()
@@ -188,5 +189,32 @@ public interface Module extends EObject {
 	 * @generated
 	 */
 	void setModule(Module value);
+
+	/**
+	 * Returns the value of the '<em><b>Version</b></em>' attribute.
+	 * The default value is <code>"1.0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Version</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Version</em>' attribute.
+	 * @see #setVersion(String)
+	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getModule_Version()
+	 * @model default="1.0"
+	 * @generated
+	 */
+	String getVersion();
+
+	/**
+	 * Sets the value of the '{@link de.tu_bs.ccc.contracting.Verification.Module#getVersion <em>Version</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Version</em>' attribute.
+	 * @see #getVersion()
+	 * @generated
+	 */
+	void setVersion(String value);
 
 } // Module
