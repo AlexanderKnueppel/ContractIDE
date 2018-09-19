@@ -1,5 +1,8 @@
 package de.tu_bs.ccc.contracting.core.diagram;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
@@ -11,11 +14,14 @@ import org.eclipse.graphiti.features.custom.ICustomFeature;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.tb.ContextButtonEntry;
 import org.eclipse.graphiti.tb.ContextEntryHelper;
+import org.eclipse.graphiti.tb.ContextMenuEntry;
 import org.eclipse.graphiti.tb.DefaultToolBehaviorProvider;
 import org.eclipse.graphiti.tb.IContextButtonEntry;
 import org.eclipse.graphiti.tb.IContextButtonPadData;
+import org.eclipse.graphiti.tb.IContextMenuEntry;
 
 import de.tu_bs.ccc.contracting.core.guiFeatures.CollapseFeature;
+import de.tu_bs.ccc.contracting.core.guiFeatures.EditDescriptionFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.EditInterfaceFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.EditModuleFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.EditPortFeature;
@@ -36,15 +42,15 @@ public class ContractModellingToolBehaviorProvider extends DefaultToolBehaviorPr
 		setGenericContextButtons(data, pe, CONTEXT_BUTTON_DELETE | CONTEXT_BUTTON_UPDATE);
 		ICustomFeature[] cf = getFeatureProvider().getCustomFeatures(cc);
 		ICustomFeature[] cf2 = getFeatureProvider().getCustomFeatures(cc);
-	    for (int i = 0; i < cf2.length; i++) {
-	        ICustomFeature iCustomFeature = cf2[i];
-	        if (iCustomFeature instanceof CollapseFeature) {
-	            IContextButtonEntry collapseButton = ContextEntryHelper.
-	               createCollapseContextButton(true, iCustomFeature, cc);
-	            data.setCollapseContextButton(collapseButton);
-	            break;
-	           }
-	    }
+		for (int i = 0; i < cf2.length; i++) {
+			ICustomFeature iCustomFeature = cf2[i];
+			if (iCustomFeature instanceof CollapseFeature) {
+				IContextButtonEntry collapseButton = ContextEntryHelper.createCollapseContextButton(true,
+						iCustomFeature, cc);
+				data.setCollapseContextButton(collapseButton);
+				break;
+			}
+		}
 		for (int i = 0; i < cf.length; i++) {
 			ICustomFeature iCustomFeature = cf[i];
 			if (iCustomFeature instanceof VerifyCustomFeature) {
@@ -78,8 +84,33 @@ public class ContractModellingToolBehaviorProvider extends DefaultToolBehaviorPr
 				break;
 			}
 		}
-	    
+
 		return data;
+	}
+
+	@Override
+	public IContextMenuEntry[] getContextMenu(ICustomContext context) {
+		List<IContextMenuEntry> menuEntries = new ArrayList<IContextMenuEntry>();
+
+		// create a menu-entry for each custom feature
+		ICustomFeature[] customFeatures = getFeatureProvider().getCustomFeatures(context);
+		for (int i = 0; i < customFeatures.length; i++) {
+			ICustomFeature customFeature = customFeatures[i];
+			if (customFeature.isAvailable(context)) {
+				ContextMenuEntry menuEntry = new ContextMenuEntry(customFeature, context);
+				menuEntries.add(menuEntry);
+			}
+		}
+
+		ICustomFeature changeDesc = new EditDescriptionFeature(getFeatureProvider());
+		if (changeDesc.canExecute(context)) {
+			ContextMenuEntry menuEntry = new ContextMenuEntry(changeDesc, context);
+			menuEntry.setText("Edit Description");
+			menuEntry.setDescription("Opens Dialog to Edit the Description");
+			menuEntries.add(menuEntry);
+		}
+
+		return (IContextMenuEntry[]) menuEntries.toArray(new IContextMenuEntry[0]);
 	}
 
 	@Override
