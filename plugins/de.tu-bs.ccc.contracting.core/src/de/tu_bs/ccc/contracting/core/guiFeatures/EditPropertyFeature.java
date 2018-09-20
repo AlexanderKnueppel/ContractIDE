@@ -1,8 +1,6 @@
 package de.tu_bs.ccc.contracting.core.guiFeatures;
 
-import java.awt.TrayIcon.MessageType;
 
-import javax.swing.JOptionPane;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.graphiti.features.IFeatureProvider;
@@ -12,9 +10,7 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 
 import de.tu_bs.ccc.contracting.Verification.Assumption;
 import de.tu_bs.ccc.contracting.Verification.Contract;
-import de.tu_bs.ccc.contracting.Verification.ContractProperty;
 import de.tu_bs.ccc.contracting.Verification.Guarantee;
-import de.tu_bs.ccc.contracting.Verification.Ports;
 import windows.EditPropertyWindow;
 
 public class EditPropertyFeature extends AbstractCustomFeature {

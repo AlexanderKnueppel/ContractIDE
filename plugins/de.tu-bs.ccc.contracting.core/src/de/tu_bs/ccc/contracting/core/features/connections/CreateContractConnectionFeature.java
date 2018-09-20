@@ -14,7 +14,6 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 
 import de.tu_bs.ccc.contracting.Verification.Contract;
 import de.tu_bs.ccc.contracting.Verification.Module;
-import de.tu_bs.ccc.contracting.Verification.Ports;
 
 public class CreateContractConnectionFeature extends AbstractCreateConnectionFeature{
 

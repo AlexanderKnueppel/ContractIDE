@@ -61,7 +61,7 @@ public class EditDescriptionFeature extends AbstractCustomFeature {
 			description = ((Module)bo).getDescription();
 			
 			final ChangeDescriptionDialog dialog =
-					new ChangeDescriptionDialog(null, "Description", "Please enter a description for '" + ((Module)bo).getName() + " " + ((Module)bo).getVersion(), description);
+					new ChangeDescriptionDialog(null, "Description", "Please enter a description for '" + ((Module)bo).getName() + " " + ((Module)bo).getVersion() + "'", description);
 			dialog.open();
 			final String descriptemp = dialog.getValue();
 			if (!description.equals(descriptemp.trim())) {
