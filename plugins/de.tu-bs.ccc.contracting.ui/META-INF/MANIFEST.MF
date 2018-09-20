@@ -25,5 +25,5 @@ Import-Package: de.tu_bs.ccc.contracting.Verification
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: ContractModellingWizard
 Bundle-ActivationPolicy: lazy
-Export-Package: de.tu_bs.ccc.contracting.ui.editors,
+Export-Package: 
  de.tu_bs.ccc.contracting.ui.dialogs

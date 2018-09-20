@@ -8,8 +8,7 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.platform.IPlatformImageConstants;
 
 import de.tu_bs.ccc.contracting.Verification.Module;
-import de.tu_bs.ccc.contracting.Verification.Ports;
-import de.tu_bs.ccc.contracting.ui.editors.ChangeDescriptionDialog;
+import de.tu_bs.ccc.contracting.ui.dialogs.ChangeDescriptionDialog;
 
 public class EditDescriptionFeature extends AbstractCustomFeature {
 	

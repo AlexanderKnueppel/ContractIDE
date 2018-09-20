@@ -1,4 +1,4 @@
-package de.tu_bs.ccc.contracting.ui.editors;
+package de.tu_bs.ccc.contracting.ui.dialogs;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
