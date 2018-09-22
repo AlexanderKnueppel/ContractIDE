@@ -32,12 +32,12 @@ public class EditDescriptionFeature extends AbstractCustomFeature {
 	
 	@Override
 	public String getName() {
-		return "Verify";
+		return "Description";
 	}
 
 	@Override
 	public String getDescription() {
-		return "Verify Figure";
+		return "Edit Description";
 	}
 
 	@Override

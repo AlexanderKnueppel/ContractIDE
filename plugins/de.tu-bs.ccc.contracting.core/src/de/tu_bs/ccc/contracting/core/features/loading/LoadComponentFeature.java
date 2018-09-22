@@ -54,17 +54,16 @@ public class LoadComponentFeature extends AbstractCreateFeature {
 		if (!(context.getTargetContainer() instanceof Diagram)) {
 			PictogramElement pict = context.getTargetContainer();
 			if (!(pict instanceof ContainerShape)) {
-				
+
 				return false;
 			}
-			
+
 			EList<EObject> businessObjects = pict.getLink().getBusinessObjects();
 			return businessObjects.size() == 1 && businessObjects.get(0) instanceof Compound;
 		} else {
 			return false;
 		}
-		}
-
+	}
 
 	@Override
 	public Object[] create(ICreateContext context) {
@@ -97,37 +96,37 @@ public class LoadComponentFeature extends AbstractCreateFeature {
 		d.setVisible(true);
 		try {
 			Component c = (Component) resource.getContents().get(d.getCount());
-			Component copy =EcoreUtil.copy(c);
+			Component copy = EcoreUtil.copy(c);
 			addGraphicalRepresentation(context, copy);
 			PictogramElement pict = context.getTargetContainer();
-			Compound x = (Compound)getBusinessObjectForPictogramElement(pict);
+			Compound x = (Compound) getBusinessObjectForPictogramElement(pict);
 			copy.setIsPartOf(x);
 			copy.setModule(c);
 			x.getConsitsOf().add(copy);
-			
+
 			return new Object[] { copy };
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		try {
 			Compound c = (Compound) resource.getContents().get(d.getCount());
-			Compound copy =EcoreUtil.copy(c);
+			Compound copy = EcoreUtil.copy(c);
 			for (Module m : copy.getConsitsOf()) {
 				EcoreUtil.delete(m);
 			}
 			addGraphicalRepresentation(context, copy);
 			PictogramElement pict = context.getTargetContainer();
-			Compound x = (Compound)getBusinessObjectForPictogramElement(pict);
+			Compound x = (Compound) getBusinessObjectForPictogramElement(pict);
 			copy.setIsPartOf(x);
 			copy.setModule(c);
 			x.getConsitsOf().add(copy);
-			
+
 			return new Object[] { copy };
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-	
+
 		return null;
 	}
 
@@ -139,7 +138,7 @@ public class LoadComponentFeature extends AbstractCreateFeature {
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
-			
+
 		}
 		return names;
 

@@ -21,6 +21,12 @@ import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
+import de.tu_bs.ccc.contracting.Verification.Component;
+import de.tu_bs.ccc.contracting.Verification.Compound;
+import de.tu_bs.ccc.contracting.Verification.Contract;
+import de.tu_bs.ccc.contracting.Verification.Interface;
+import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.core.features.AddComponentFeature;
 import de.tu_bs.ccc.contracting.core.features.AddCompoundFeature;
 import de.tu_bs.ccc.contracting.core.features.AddContractFeature;
@@ -35,8 +41,8 @@ import de.tu_bs.ccc.contracting.core.features.CreatePortFeature;
 import de.tu_bs.ccc.contracting.core.features.DeletePortConnectionFeature;
 import de.tu_bs.ccc.contracting.core.features.connections.AddContractConnectionFeature;
 import de.tu_bs.ccc.contracting.core.features.connections.ReconnectionFeature;
-import de.tu_bs.ccc.contracting.core.features.loading.LoadComponentFeature;
 import de.tu_bs.ccc.contracting.core.features.loading.LoadInterfaceFeature;
+import de.tu_bs.ccc.contracting.core.features.loading.LoadModuleFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.CollapseFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.EditInterfaceFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.LayoutFeature;
@@ -46,12 +52,6 @@ import de.tu_bs.ccc.contracting.core.propertyFeature.CreateProperty;
 import de.tu_bs.ccc.contracting.core.update.UpdateContractFeature;
 import de.tu_bs.ccc.contracting.core.update.UpdateModuleFeature;
 import de.tu_bs.ccc.contracting.core.update.UpdatePortFeature;
-import de.tu_bs.ccc.contracting.Verification.Component;
-import de.tu_bs.ccc.contracting.Verification.Compound;
-import de.tu_bs.ccc.contracting.Verification.Contract;
-import de.tu_bs.ccc.contracting.Verification.Interface;
-import de.tu_bs.ccc.contracting.Verification.Module;
-import de.tu_bs.ccc.contracting.Verification.Ports;
 
 
 public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
@@ -91,7 +91,7 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 	@Override
 	public ICreateFeature[] getCreateFeatures() {
 		return new ICreateFeature[] { new CreateComponentFeature(this), new CreateContractFeature(this),
-				new CreateInterfaceFeature(this), new CreatePortFeature(this), new LoadComponentFeature(this), new CreateProperty(this), new LoadInterfaceFeature(this)};
+				new CreateInterfaceFeature(this), new CreatePortFeature(this), new LoadModuleFeature(this), new CreateProperty(this), new LoadInterfaceFeature(this)};
 		
 	}
 	
@@ -102,35 +102,29 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 	
 	@Override
 	public IAddFeature getAddFeature(IAddContext context) {
-		Object test = context.getNewObject();
+		Object obj = context.getNewObject();
 		
-		if (test instanceof Component ) {
-					return new AddComponentFeature(this);
-				}
-	
-		else if (context instanceof IAddContext &&context.getNewObject() instanceof Contract) {
+		if (obj instanceof Component ) {
+			return new AddComponentFeature(this);
+		}
+		else if (obj instanceof Contract) {
 	        return new AddContractFeature(this);
-	        
 	    }
-		
-		else  if (context instanceof IAddContext  && context.getNewObject() instanceof Interface ) {
+		else  if (obj instanceof Interface ) {
 			return new AddInterfaceFeature(this);
 		}
-		else  if (context instanceof IAddContext && context.getNewObject() instanceof Compound) {
+		else  if (obj instanceof Compound) {
 			return new AddCompoundFeature(this);
 		}
-		else  if (context instanceof IAddContext && context.getNewObject() instanceof Ports) {
+		else  if (obj instanceof Ports) {
 			return new AddPortFeature(this);
 		}
 		else if (context instanceof IAddConnectionContext &&(  getBusinessObjectForPictogramElement(( (IAddConnectionContext) context).getSourceAnchor().getParent()) instanceof Ports)){
 			return new AddPortConnetion(this);
-			
 		}
 		else if (context instanceof IAddConnectionContext) {
 			return new AddContractConnectionFeature(this);
-			
 		}
-
 
 		return super.getAddFeature(context);
 	}
