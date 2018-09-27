@@ -27,4 +27,5 @@ Automatic-Module-Name: ContractModellingWizard
 Bundle-ActivationPolicy: lazy
 Export-Package: 
  de.tu_bs.ccc.contracting.ui.dialogs,
- de.tu_bs.ccc.contracting.ui.provider
+ de.tu_bs.ccc.contracting.ui.provider,
+ de.tu_bs.ccc.contracting.ui.views

@@ -52,5 +52,18 @@
           name="ExportToXML">
     </command>
  </extension>
-   
+ <extension
+       point="org.eclipse.ui.views">
+    <category
+          id="contractide.views.category"
+          name="ContractIDE">
+    </category>
+    <view
+          category="contractide.views.category"
+          class="de.tu_bs.ccc.contracting.ui.views.ModulePropertiesView"
+          id="contractide.views.moduleproperties"
+          name="ContractIDE Properties"
+          restorable="true">
+    </view>
+ </extension>
 </plugin>
