@@ -7,7 +7,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="isPartOf" eType="#//Compound"
         eOpposite="#//Compound/consitsOf"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="getsrealized" upperBound="-1"
-        eType="#//Interface" eOpposite="#//Interface/realizes"/>
+        eType="#//Abstract" eOpposite="#//Abstract/realizes"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ports" upperBound="-1"
         eType="#//Ports" containment="true" eOpposite="#//Ports/module"/>
@@ -17,7 +17,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral="1.0"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Interface" eSuperTypes="#//Module">
+  <eClassifiers xsi:type="ecore:EClass" name="Abstract" eSuperTypes="#//Module">
     <eStructuralFeatures xsi:type="ecore:EReference" name="realizes" upperBound="-1"
         eType="#//Module" eOpposite="#//Module/getsrealized"/>
   </eClassifiers>

@@ -158,14 +158,14 @@ public interface MmPackage extends EPackage {
 	int MODULE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link de.tu_bs.ccc.contracting.Verification.impl.InterfaceImpl <em>Interface</em>}' class.
+	 * The meta object id for the '{@link de.tu_bs.ccc.contracting.Verification.impl.AbstractImpl <em>Abstract</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.tu_bs.ccc.contracting.Verification.impl.InterfaceImpl
-	 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getInterface()
+	 * @see de.tu_bs.ccc.contracting.Verification.impl.AbstractImpl
+	 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getAbstract()
 	 * @generated
 	 */
-	int INTERFACE = 1;
+	int ABSTRACT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -174,7 +174,7 @@ public interface MmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTERFACE__NAME = MODULE__NAME;
+	int ABSTRACT__NAME = MODULE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Is Part Of</b></em>' container reference.
@@ -183,7 +183,7 @@ public interface MmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTERFACE__IS_PART_OF = MODULE__IS_PART_OF;
+	int ABSTRACT__IS_PART_OF = MODULE__IS_PART_OF;
 
 	/**
 	 * The feature id for the '<em><b>Getsrealized</b></em>' reference list.
@@ -192,7 +192,7 @@ public interface MmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTERFACE__GETSREALIZED = MODULE__GETSREALIZED;
+	int ABSTRACT__GETSREALIZED = MODULE__GETSREALIZED;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -201,7 +201,7 @@ public interface MmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTERFACE__DESCRIPTION = MODULE__DESCRIPTION;
+	int ABSTRACT__DESCRIPTION = MODULE__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -210,7 +210,7 @@ public interface MmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTERFACE__PORTS = MODULE__PORTS;
+	int ABSTRACT__PORTS = MODULE__PORTS;
 
 	/**
 	 * The feature id for the '<em><b>Contract</b></em>' containment reference list.
@@ -219,7 +219,7 @@ public interface MmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTERFACE__CONTRACT = MODULE__CONTRACT;
+	int ABSTRACT__CONTRACT = MODULE__CONTRACT;
 
 	/**
 	 * The feature id for the '<em><b>Module</b></em>' reference.
@@ -228,7 +228,7 @@ public interface MmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTERFACE__MODULE = MODULE__MODULE;
+	int ABSTRACT__MODULE = MODULE__MODULE;
 
 	/**
 	 * The feature id for the '<em><b>Version</b></em>' attribute.
@@ -237,7 +237,7 @@ public interface MmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTERFACE__VERSION = MODULE__VERSION;
+	int ABSTRACT__VERSION = MODULE__VERSION;
 
 	/**
 	 * The feature id for the '<em><b>Realizes</b></em>' reference list.
@@ -246,25 +246,25 @@ public interface MmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTERFACE__REALIZES = MODULE_FEATURE_COUNT + 0;
+	int ABSTRACT__REALIZES = MODULE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Interface</em>' class.
+	 * The number of structural features of the '<em>Abstract</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTERFACE_FEATURE_COUNT = MODULE_FEATURE_COUNT + 1;
+	int ABSTRACT_FEATURE_COUNT = MODULE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Interface</em>' class.
+	 * The number of operations of the '<em>Abstract</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTERFACE_OPERATION_COUNT = MODULE_OPERATION_COUNT + 0;
+	int ABSTRACT_OPERATION_COUNT = MODULE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.tu_bs.ccc.contracting.Verification.impl.ComponentImpl <em>Component</em>}' class.
@@ -962,25 +962,25 @@ public interface MmPackage extends EPackage {
 	EAttribute getModule_Version();
 
 	/**
-	 * Returns the meta object for class '{@link de.tu_bs.ccc.contracting.Verification.Interface <em>Interface</em>}'.
+	 * Returns the meta object for class '{@link de.tu_bs.ccc.contracting.Verification.Abstract <em>Abstract</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Interface</em>'.
-	 * @see de.tu_bs.ccc.contracting.Verification.Interface
+	 * @return the meta object for class '<em>Abstract</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Abstract
 	 * @generated
 	 */
-	EClass getInterface();
+	EClass getAbstract();
 
 	/**
-	 * Returns the meta object for the reference list '{@link de.tu_bs.ccc.contracting.Verification.Interface#getRealizes <em>Realizes</em>}'.
+	 * Returns the meta object for the reference list '{@link de.tu_bs.ccc.contracting.Verification.Abstract#getRealizes <em>Realizes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Realizes</em>'.
-	 * @see de.tu_bs.ccc.contracting.Verification.Interface#getRealizes()
-	 * @see #getInterface()
+	 * @see de.tu_bs.ccc.contracting.Verification.Abstract#getRealizes()
+	 * @see #getAbstract()
 	 * @generated
 	 */
-	EReference getInterface_Realizes();
+	EReference getAbstract_Realizes();
 
 	/**
 	 * Returns the meta object for class '{@link de.tu_bs.ccc.contracting.Verification.Component <em>Component</em>}'.
@@ -1409,14 +1409,14 @@ public interface MmPackage extends EPackage {
 		EAttribute MODULE__VERSION = eINSTANCE.getModule_Version();
 
 		/**
-		 * The meta object literal for the '{@link de.tu_bs.ccc.contracting.Verification.impl.InterfaceImpl <em>Interface</em>}' class.
+		 * The meta object literal for the '{@link de.tu_bs.ccc.contracting.Verification.impl.AbstractImpl <em>Abstract</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see de.tu_bs.ccc.contracting.Verification.impl.InterfaceImpl
-		 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getInterface()
+		 * @see de.tu_bs.ccc.contracting.Verification.impl.AbstractImpl
+		 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getAbstract()
 		 * @generated
 		 */
-		EClass INTERFACE = eINSTANCE.getInterface();
+		EClass ABSTRACT = eINSTANCE.getAbstract();
 
 		/**
 		 * The meta object literal for the '<em><b>Realizes</b></em>' reference list feature.
@@ -1424,7 +1424,7 @@ public interface MmPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference INTERFACE__REALIZES = eINSTANCE.getInterface_Realizes();
+		EReference ABSTRACT__REALIZES = eINSTANCE.getAbstract_Realizes();
 
 		/**
 		 * The meta object literal for the '{@link de.tu_bs.ccc.contracting.Verification.impl.ComponentImpl <em>Component</em>}' class.

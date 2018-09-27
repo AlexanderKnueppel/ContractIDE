@@ -53,8 +53,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mm.ecore#//Module/contract"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//Module/module"/>
     </genClasses>
-    <genClasses ecoreClass="mm.ecore#//Interface">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//Interface/realizes"/>
+    <genClasses ecoreClass="mm.ecore#//Abstract">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//Abstract/realizes"/>
     </genClasses>
     <genClasses ecoreClass="mm.ecore#//Component"/>
     <genClasses ecoreClass="mm.ecore#//Compound">

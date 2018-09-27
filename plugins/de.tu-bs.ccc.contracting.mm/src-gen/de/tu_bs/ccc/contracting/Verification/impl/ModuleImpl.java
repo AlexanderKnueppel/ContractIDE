@@ -2,9 +2,9 @@
  */
 package de.tu_bs.ccc.contracting.Verification.impl;
 
+import de.tu_bs.ccc.contracting.Verification.Abstract;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Contract;
-import de.tu_bs.ccc.contracting.Verification.Interface;
 import de.tu_bs.ccc.contracting.Verification.MmPackage;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.Ports;
@@ -76,7 +76,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Interface> getsrealized;
+	protected EList<Abstract> getsrealized;
 
 	/**
 	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
@@ -238,10 +238,10 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Interface> getGetsrealized() {
+	public EList<Abstract> getGetsrealized() {
 		if (getsrealized == null) {
-			getsrealized = new EObjectWithInverseResolvingEList.ManyInverse<Interface>(Interface.class, this,
-					MmPackage.MODULE__GETSREALIZED, MmPackage.INTERFACE__REALIZES);
+			getsrealized = new EObjectWithInverseResolvingEList.ManyInverse<Abstract>(Abstract.class, this,
+					MmPackage.MODULE__GETSREALIZED, MmPackage.ABSTRACT__REALIZES);
 		}
 		return getsrealized;
 	}
@@ -458,7 +458,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 			return;
 		case MmPackage.MODULE__GETSREALIZED:
 			getGetsrealized().clear();
-			getGetsrealized().addAll((Collection<? extends Interface>) newValue);
+			getGetsrealized().addAll((Collection<? extends Abstract>) newValue);
 			return;
 		case MmPackage.MODULE__DESCRIPTION:
 			setDescription((String) newValue);

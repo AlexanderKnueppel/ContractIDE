@@ -86,8 +86,8 @@ public interface Module extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Getsrealized</b></em>' reference list.
-	 * The list contents are of type {@link de.tu_bs.ccc.contracting.Verification.Interface}.
-	 * It is bidirectional and its opposite is '{@link de.tu_bs.ccc.contracting.Verification.Interface#getRealizes <em>Realizes</em>}'.
+	 * The list contents are of type {@link de.tu_bs.ccc.contracting.Verification.Abstract}.
+	 * It is bidirectional and its opposite is '{@link de.tu_bs.ccc.contracting.Verification.Abstract#getRealizes <em>Realizes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Getsrealized</em>' reference list isn't clear,
@@ -96,11 +96,11 @@ public interface Module extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Getsrealized</em>' reference list.
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getModule_Getsrealized()
-	 * @see de.tu_bs.ccc.contracting.Verification.Interface#getRealizes
+	 * @see de.tu_bs.ccc.contracting.Verification.Abstract#getRealizes
 	 * @model opposite="realizes"
 	 * @generated
 	 */
-	EList<Interface> getGetsrealized();
+	EList<Abstract> getGetsrealized();
 
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.
