@@ -10,7 +10,7 @@
       <wizard
             category="de.tu-bs.ccc.contracting.ui.wizards"
             class="de.tu_bs.ccc.contracting.ui.wizards.CCCProjectNewWizard"
-            icon="icons/cide2_64.png"
+            icon="icons/cide2_16.png"
             id="de.tu-bs.ccc.contracting.ui.wizards.new.custom"
             name="ContractIDE Project">
       </wizard>
@@ -35,7 +35,7 @@
          <menu
                id="de.tu-bs.ccc.contracting.ui.CCCMenu"
                label="ContractIDE"
-               icon="icons/cide2_64.png">
+               icon="icons/cide2_16.png">
             <command
                   commandId="de.tu-bs.ccc.contracting.ui.exporter_command"
                   label="Export to CCC config. (.xml)"
