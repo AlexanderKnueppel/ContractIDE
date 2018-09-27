@@ -110,6 +110,25 @@ public class ContractModellingToolBehaviorProvider extends DefaultToolBehaviorPr
 
 		return (IContextMenuEntry[]) menuEntries.toArray(new IContextMenuEntry[0]);
 	}
+	
+//	@Override public PictogramElement getSelection(PictogramElement originalPe, PictogramElement[] oldSelection) {
+//		//System.out.println(originalPe.toString());
+//		for(PictogramElement pe : oldSelection) {
+//			System.out.println(pe);
+//		}
+////		if(oldSelection.length > 1) {
+////			List<PictogramElement> withoutLabels = new ArrayList<>();
+////			for(PictogramElement pe : oldSelection) {
+////				String labelProperty = Graphiti.getPeService().getPropertyValue(pe,	SicConstants.LABEL_PROPERTY);
+////				if (Boolean.parseBoolean(labelProperty)) continue;
+////				withoutLabels.add(pe);
+////			}
+////			PictogramElement[] withoutLabelsArray = new PictogramElement[withoutLabels.size()];
+////			withoutLabels.toArray(withoutLabelsArray);
+////			getDiagramTypeProvider().getDiagramBehavior().getDiagramContainer().selectPictogramElements(withoutLabelsArray);
+////		}
+//		return null;
+//	}
 
 	@Override
 	public ICustomFeature getDoubleClickFeature(IDoubleClickContext context) {
