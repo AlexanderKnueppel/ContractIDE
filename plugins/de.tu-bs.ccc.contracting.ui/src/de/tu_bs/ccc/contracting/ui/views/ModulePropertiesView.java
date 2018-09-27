@@ -31,40 +31,9 @@ public class ModulePropertiesView extends ViewPart {
 		columnTerm.getColumn().setWidth(250);
 		columnTerm.getColumn().setText("Value");
 		columnTerm.setEditingSupport(new ValueEditingSupport(viewer));
-//
-//		TreeViewerColumn columnComment = new TreeViewerColumn(viewer, SWT.NONE);
-//		columnComment.getColumn().setWidth(600);
-//		columnComment.getColumn().setText("Comment");
-//		columnComment.setEditingSupport(new CommentEditingSupport(viewer));
-//
-//		TreeViewerColumn columnType = new TreeViewerColumn(viewer, SWT.NONE);
-//		columnType.getColumn().setWidth(50);
-//		columnType.getColumn().setText("Type");
-//		columnType.setEditingSupport(new TypeEditingSupport(viewer));
-//
-		viewer.setContentProvider(new ModulePropertiesContentProvider());
-		viewer.setLabelProvider(new ModulePropertiesLabelProvider());
 
-//		MenuManager manager = new MenuManager();
-//		viewer.getControl().setMenu(manager.createContextMenu(viewer.getControl()));
-//		manager.add(new Action("Delete Requirement") {
-//
-//			@Override
-//			public void run() {
-//				if (viewer.getStructuredSelection().getFirstElement() instanceof Requirement) {
-//					Requirement deletReq = (Requirement) viewer.getStructuredSelection().getFirstElement();
-//					Node node = deletReq.getNode();
-//					TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(node);
-//					domain.getCommandStack().execute(new RecordingCommand(domain) {
-//						@Override
-//						protected void doExecute() {
-//							node.getRequirements().remove(deletReq);
-//						}
-//					});
-//				}
-//				viewer.refresh();
-//			}
-//		});
+		viewer.setContentProvider(new ModulePropertiesContentProvider(viewer));
+		viewer.setLabelProvider(new ModulePropertiesLabelProvider());
 
 		GridLayoutFactory.fillDefaults().generateLayout(parent);
 	}

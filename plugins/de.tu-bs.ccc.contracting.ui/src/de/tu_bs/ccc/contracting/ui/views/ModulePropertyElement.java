@@ -1,13 +1,12 @@
 package de.tu_bs.ccc.contracting.ui.views;
 
 import org.eclipse.jface.viewers.CellEditor;
-import org.eclipse.jface.viewers.TextCellEditor;
-import org.eclipse.swt.widgets.Composite;
 
 public class ModulePropertyElement {
 	private String attribute = "";
 	private String value = "";
-	private Object object = "";
+	private Object object = null;
+	private CellEditor editor = null;
 	
 	public String getAttribute() {
 		return attribute;
@@ -21,18 +20,30 @@ public class ModulePropertyElement {
 		return object;
 	}
 	
-	public ModulePropertyElement(String attr, String val, Object obj) {
-		attribute = attr;
-		value = val;
-		object = obj;
+	public CellEditor getCellEditor() {
+		return editor;
 	}
 	
-	protected boolean isVisible() {
-		return false;
+	public void setAttribute(String attribute) {
+		this.attribute = attribute;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+
+	public void setObject(Object object) {
+		this.object = object;
+	}
+
+	public void setCellEditor(CellEditor editor) {
+		this.editor = editor;
 	}
 	
-	protected CellEditor getCellEditor() {
-		return null;
-		//return new TextCellEditor((Composite) getViewer().getControl());;
+	public ModulePropertyElement(String attr, String value, Object obj, CellEditor editor) {
+		this.attribute = attr;
+		this.value = value;
+		this.object = obj;
+		this.editor = editor;
 	}
 }

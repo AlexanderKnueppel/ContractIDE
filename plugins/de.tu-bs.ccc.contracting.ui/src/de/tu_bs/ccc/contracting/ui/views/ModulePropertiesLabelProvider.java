@@ -4,8 +4,6 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
-import de.tu_bs.ccc.contracting.Verification.Module;
-
 public class ModulePropertiesLabelProvider implements ITableLabelProvider {
 
 	@Override
@@ -34,13 +32,12 @@ public class ModulePropertiesLabelProvider implements ITableLabelProvider {
 
 	@Override
 	public String getColumnText(Object element, int columnIndex) {
-		if (element instanceof Module) {
-			Module node = (Module) element;
+		if (element instanceof ModulePropertyElement) {
 			switch (columnIndex) {
 			case 0:
-				
+				return ((ModulePropertyElement) element).getAttribute();
 			case 1:
-				return node.getName();
+				return ((ModulePropertyElement) element).getValue();
 			default:
 				break;
 			}

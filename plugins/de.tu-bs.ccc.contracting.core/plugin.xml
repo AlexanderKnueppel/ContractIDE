@@ -37,7 +37,7 @@
          point="org.eclipse.ui.editors">
       <editor
             class="de.tu_bs.ccc.contracting.core.diagram.ContractModellingDiagramEditor"
-            default="false"
+            default="true"
             extensions=".diagram"
             id="de.tu-bs.ccc.contracting.diagram"
             name="ContractIDE Editor">
