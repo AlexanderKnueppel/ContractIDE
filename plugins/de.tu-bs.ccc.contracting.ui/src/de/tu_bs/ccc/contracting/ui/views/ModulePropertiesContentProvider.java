@@ -7,18 +7,18 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.swt.widgets.Composite;
 
-import de.tu_bs.ccc.contracting.Verification.Module;
-import de.tu_bs.ccc.contracting.Verification.Compound;
+import de.tu_bs.ccc.contracting.Verification.Abstract;
 import de.tu_bs.ccc.contracting.Verification.Component;
-import de.tu_bs.ccc.contracting.Verification.Interface;
+import de.tu_bs.ccc.contracting.Verification.Compound;
+import de.tu_bs.ccc.contracting.Verification.Module;
 
 public class ModulePropertiesContentProvider implements ITreeContentProvider {
 	private ColumnViewer viewer;
-	
+
 	ModulePropertiesContentProvider(ColumnViewer viewer) {
 		this.viewer = viewer;
 	}
-	
+
 	public ColumnViewer getViewer() {
 		return viewer;
 	}
@@ -30,33 +30,38 @@ public class ModulePropertiesContentProvider implements ITreeContentProvider {
 
 	@Override
 	public Object[] getElements(Object object) {
-		Module m = (Module)object;
+		Module m = (Module) object;
 		ArrayList<ModulePropertyElement> elements = new ArrayList<ModulePropertyElement>();
-		
-		elements.add(new ModulePropertyElement("Name", m.getName(), m, new TextCellEditor((Composite) getViewer().getControl())));
-		elements.add(new ModulePropertyElement("Version", m.getVersion(), m, new TextCellEditor((Composite) getViewer().getControl())));
-		elements.add(new ModulePropertyElement("Description", m.getDescription(), m, new TextCellEditor((Composite) getViewer().getControl())));
-		
-		//Type
+
+		elements.add(new ModulePropertyElement("Name", m.getName(), m,
+				new TextCellEditor((Composite) getViewer().getControl())));
+		elements.add(new ModulePropertyElement("Version", m.getVersion(), m,
+				new TextCellEditor((Composite) getViewer().getControl())));
+		elements.add(new ModulePropertyElement("Description", m.getDescription(), m,
+				new TextCellEditor((Composite) getViewer().getControl())));
+
+		// Type
 		String type = "Atomic component";
-		if(m instanceof Compound)
+		if (m instanceof Compound)
 			type = "Compound component";
-		else if(m instanceof Interface)
+		else if (m instanceof Abstract)
 			type = "Abstract component";
-			
-		elements.add(new ModulePropertyElement("Type", type, m, new TextCellEditor((Composite) getViewer().getControl())));
-		
-		//Realized by
-		if(m instanceof Component || m instanceof Compound) {
+
+		elements.add(
+				new ModulePropertyElement("Type", type, m, new TextCellEditor((Composite) getViewer().getControl())));
+
+		// Realized by
+		if (m instanceof Component || m instanceof Compound) {
 			String realizedBy = "";
-			for(Interface l : m.getGetsrealized()) {
+			for (Abstract l : m.getGetsrealized()) {
 				realizedBy += l.getName() + " " + l.getVersion() + ", ";
 			}
-			if(realizedBy.length() > 0)
-				realizedBy = realizedBy.substring(0, realizedBy.length()-2);
-			elements.add(new ModulePropertyElement("Realized by", realizedBy, m, new TextCellEditor((Composite) getViewer().getControl())));
+			if (realizedBy.length() > 0)
+				realizedBy = realizedBy.substring(0, realizedBy.length() - 2);
+			elements.add(new ModulePropertyElement("Realized by", realizedBy, m,
+					new TextCellEditor((Composite) getViewer().getControl())));
 		}
-		
+
 		return elements.toArray();
 	}
 

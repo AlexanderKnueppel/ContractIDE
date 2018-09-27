@@ -20,7 +20,7 @@ import org.eclipse.graphiti.tb.IContextMenuEntry;
 
 import de.tu_bs.ccc.contracting.core.guiFeatures.CollapseFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.EditDescriptionFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.EditInterfaceFeature;
+import de.tu_bs.ccc.contracting.core.guiFeatures.EditAbstractFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.EditModuleFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.EditPortFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.EditPropertyFeature;
@@ -62,8 +62,8 @@ public class ContractModellingToolBehaviorProvider extends DefaultToolBehaviorPr
 		}
 		for (int i = 0; i < cf.length; i++) {
 			ICustomFeature iCustomFeature = cf[i];
-			if (iCustomFeature instanceof EditInterfaceFeature) {
-				ContextButtonEntry button = new ContextButtonEntry((EditInterfaceFeature) iCustomFeature, cc);
+			if (iCustomFeature instanceof EditAbstractFeature) {
+				ContextButtonEntry button = new ContextButtonEntry((EditAbstractFeature) iCustomFeature, cc);
 				button.setText("Edit Interface relation");
 				button.setDescription("Allows to edit the interface or refinements");
 				data.getDomainSpecificContextButtons().add(button);

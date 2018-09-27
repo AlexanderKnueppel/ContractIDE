@@ -2,7 +2,6 @@ package solver;
 
 import java.util.ArrayList;
 
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 import org.eclipse.emf.common.util.URI;
@@ -13,25 +12,20 @@ import com.microsoft.z3.Solver;
 import com.microsoft.z3.Status;
 import com.microsoft.z3.Symbol;
 
-import de.tu_bs.ccc.contracting.core.grammar.GrammarSolver;
-import general.LogWriter;
 import de.tu_bs.ccc.contracting.Verification.Assumption;
-import de.tu_bs.ccc.contracting.Verification.Component;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Contract;
 import de.tu_bs.ccc.contracting.Verification.ContractProperty;
 import de.tu_bs.ccc.contracting.Verification.Guarantee;
-import de.tu_bs.ccc.contracting.Verification.Interface;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.PortType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.Verification.PropertyType;
-import de.tu_bs.ccc.contracting.Verification.MmFactory;
 import de.tu_bs.ccc.contracting.Verification.ViewPoint;
-import windows.PortDialog;
+import de.tu_bs.ccc.contracting.core.grammar.GrammarSolver;
+import general.LogWriter;
 
 public class CompoundSolver {
-
 
 	Compound m;
 	Context ctx;
@@ -47,15 +41,15 @@ public class CompoundSolver {
 	public boolean checkCompound() {
 		boolean checked = true;
 		for (Module c : m.getConsitsOf()) {
-			if(c.getModule() instanceof Compound) {
+			if (c.getModule() instanceof Compound) {
 				CompoundSolver s = new CompoundSolver((Compound) c.getModule());
-				if(!s.checkCompound()) {
-					checked=false;
+				if (!s.checkCompound()) {
+					checked = false;
 				}
 			}
-			
+
 		}
-		if(!(checkTiming() && checkFunctional() && checkMemory())) {
+		if (!(checkTiming() && checkFunctional() && checkMemory())) {
 			checked = false;
 		}
 		return checked;
@@ -130,12 +124,13 @@ public class CompoundSolver {
 			for (Contract c : component.getContract()) {
 				if (c.getViewPoint().getValue() == ViewPoint.FUNCTIONAL_VALUE) {
 					try {
-						solver.add(this.ctx.parseSMTLIB2String(this.getStringofContract(c), null, null, declNames, decl));
+						solver.add(
+								this.ctx.parseSMTLIB2String(this.getStringofContract(c), null, null, declNames, decl));
 					} catch (Exception e) {
-						String x = "Error caused by: "+c.getModule().getName()+" "+c.getViewPoint();
+						String x = "Error caused by: " + c.getModule().getName() + " " + c.getViewPoint();
 						JOptionPane.showMessageDialog(null, x, "Contract Parsing Error", JOptionPane.ERROR_MESSAGE);
 					}
-					
+
 				}
 			}
 		}
@@ -143,11 +138,12 @@ public class CompoundSolver {
 			if (con.getViewPoint().getValue() == ViewPoint.FUNCTIONAL_VALUE) {
 				solver.push();
 				try {
-				solver.add(this.ctx.parseSMTLIB2String(this.getStringFuncofContract(con), null, null, declNames, decl));
-			} catch (Exception e) {
-				String x = "Error caused by: "+con.getModule().getName()+" "+con.getViewPoint();
-				JOptionPane.showMessageDialog(null, x, "Contract Parsing Error", JOptionPane.ERROR_MESSAGE);
-			}
+					solver.add(this.ctx.parseSMTLIB2String(this.getStringFuncofContract(con), null, null, declNames,
+							decl));
+				} catch (Exception e) {
+					String x = "Error caused by: " + con.getModule().getName() + " " + con.getViewPoint();
+					JOptionPane.showMessageDialog(null, x, "Contract Parsing Error", JOptionPane.ERROR_MESSAGE);
+				}
 				if (solver.check() == Status.SATISFIABLE) {
 					contractsMet = false;
 					URI fileURI = this.m.eResource().getURI();
@@ -285,7 +281,6 @@ public class CompoundSolver {
 
 		}
 
-
 		Solver solver = this.ctx.mkSolver();
 		String[] ending = { ".minduration", ".maxduration", ".mindelay", ".maxdelay", ".frequency", ".jitter" };
 
@@ -298,14 +293,15 @@ public class CompoundSolver {
 							"(assert (" + "= " + endport.getModule().getName() + "." + endport.getName() + string + " "
 									+ p.get(i).getModule().getName() + "." + p.get(i).getName() + string + "))",
 							null, null, declNames, decl));
-		
 
 				}
 				for (Ports endport : p.get(i).getInsidePorts()) {
 					if (endport.getModule().getName().equals(this.m.getName())) {
-//						System.out.println("(assert (" + "= " + endport.getModule().getName() + "." + endport.getName()
-//								+ string + " " + p.get(i).getModule().getName() + "." + p.get(i).getName() + string
-//								+ "))");
+						// System.out.println("(assert (" + "= " + endport.getModule().getName() + "." +
+						// endport.getName()
+						// + string + " " + p.get(i).getModule().getName() + "." + p.get(i).getName() +
+						// string
+						// + "))");
 						solver.add(this.ctx.parseSMTLIB2String("(assert (" + "= " + endport.getModule().getName() + "."
 								+ endport.getName() + string + " " + p.get(i).getModule().getName() + "."
 								+ p.get(i).getName() + string + "))", null, null, declNames, decl));
@@ -349,7 +345,6 @@ public class CompoundSolver {
 
 			} else if (inputPorts.size() == 2) {
 
-
 				solver.add(this.ctx.parseSMTLIB2String("(assert (=> (>= " + inputPorts.get(1).getModule().getName()
 						+ "." + inputPorts.get(1).getName() + ".mindelay" + " "
 						+ inputPorts.get(0).getModule().getName() + "." + inputPorts.get(0).getName() + ".mindelay)"
@@ -392,8 +387,8 @@ public class CompoundSolver {
 							+ "." + inputPorts.get(j).getName() + ".mindelay" + ")))";
 					check2 = check2 + ")(= " + part.getName() + ".inMaxdelay " + inputPorts.get(j).getModule().getName()
 							+ "." + inputPorts.get(j).getName() + ".maxdelay" + ")))";
-					//System.out.println(check1);
-					//System.out.println(check2);
+					// System.out.println(check1);
+					// System.out.println(check2);
 					solver.add(this.ctx.parseSMTLIB2String(check1, null, null, declNames, decl));
 					solver.add(this.ctx.parseSMTLIB2String(check2, null, null, declNames, decl));
 				}
@@ -412,7 +407,7 @@ public class CompoundSolver {
 			}
 			for (Contract c : part.getContract()) {
 				if (c.getViewPoint().getValue() == ViewPoint.TIMING_VALUE) {
-					//System.out.println(this.getTimingStringofContract(c));
+					// System.out.println(this.getTimingStringofContract(c));
 					solver.add(this.ctx.parseSMTLIB2String(this.getTimingStringofContract(c), null, null, declNames,
 							decl));
 				}
@@ -424,12 +419,12 @@ public class CompoundSolver {
 		for (Contract con : this.m.getContract()) {
 			if (con.getViewPoint().getValue() == ViewPoint.TIMING_VALUE) {
 				solver.push();
-				//System.out.println(this.getTimingFuncStringofContract(con));
+				// System.out.println(this.getTimingFuncStringofContract(con));
 				solver.add(
 
 						this.ctx.parseSMTLIB2String(this.getTimingFuncStringofContract(con), null, null, declNames,
 								decl));
-				//System.out.println(solver);
+				// System.out.println(solver);
 				if (solver.check() == Status.SATISFIABLE) {
 					contractsMet = false;
 					URI fileURI = this.m.eResource().getURI();
@@ -528,11 +523,11 @@ public class CompoundSolver {
 			constraint = constraint.replaceAll(
 					"(^)" + port.getName() + "([^a-zA-Z0-9.])" + "|([^a-zA-Z0-9.])" + port.getName()
 							+ "+([^a-zA-Z0-9.])" + "|([^a-zA-Z0-9.])+" + port.getName() + "($)",
-					"$1$3$5" + m.getName() + "." + port.getName()  + "$2$4$6");
+					"$1$3$5" + m.getName() + "." + port.getName() + "$2$4$6");
 			constraint = constraint.replaceAll(
 					"(^)" + port.getName() + "([^a-zA-Z0-9.])" + "|([^a-zA-Z0-9.])" + port.getName()
 							+ "+([^a-zA-Z0-9.])" + "|([^a-zA-Z0-9.])+" + port.getName() + "($)",
-					"$1$3$5" + m.getName() + "." + port.getName()  + "$2$4$6");
+					"$1$3$5" + m.getName() + "." + port.getName() + "$2$4$6");
 		}
 		return constraint;
 
