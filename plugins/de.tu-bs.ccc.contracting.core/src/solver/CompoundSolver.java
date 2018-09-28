@@ -40,7 +40,7 @@ public class CompoundSolver {
 
 	public boolean checkCompound() {
 		boolean checked = true;
-		for (Module c : m.getConsitsOf()) {
+		for (Module c : m.getConsistsOf()) {
 			if (c.getModule() instanceof Compound) {
 				CompoundSolver s = new CompoundSolver((Compound) c.getModule());
 				if (!s.checkCompound()) {
@@ -58,7 +58,7 @@ public class CompoundSolver {
 	private boolean checkFunctional() {
 		boolean contractsMet = true;
 		ArrayList<Ports> p = new ArrayList<Ports>();
-		for (Module mod : this.m.getConsitsOf()) {
+		for (Module mod : this.m.getConsistsOf()) {
 			for (Ports port : mod.getPorts()) {
 				p.add(port);
 			}
@@ -120,7 +120,7 @@ public class CompoundSolver {
 			}
 
 		}
-		for (Module component : this.m.getConsitsOf()) {
+		for (Module component : this.m.getConsistsOf()) {
 			for (Contract c : component.getContract()) {
 				if (c.getViewPoint().getValue() == ViewPoint.FUNCTIONAL_VALUE) {
 					try {
@@ -160,18 +160,18 @@ public class CompoundSolver {
 
 	private boolean checkMemory() {
 		boolean isVerified = true;
-		Symbol[] declNames = new Symbol[this.m.getConsitsOf().size() + 1];
-		FuncDecl[] decl = new FuncDecl[this.m.getConsitsOf().size() + 1];
+		Symbol[] declNames = new Symbol[this.m.getConsistsOf().size() + 1];
+		FuncDecl[] decl = new FuncDecl[this.m.getConsistsOf().size() + 1];
 		declNames[0] = this.ctx.mkSymbol(this.m.getName() + ".Memory");
 		decl[0] = this.ctx.mkConstDecl(declNames[0], ctx.mkRealSort());
-		for (int i = 1; i < this.m.getConsitsOf().size() + 1; i++) {
-			declNames[i] = this.ctx.mkSymbol(this.m.getConsitsOf().get(i - 1).getName() + ".Memory");
+		for (int i = 1; i < this.m.getConsistsOf().size() + 1; i++) {
+			declNames[i] = this.ctx.mkSymbol(this.m.getConsistsOf().get(i - 1).getName() + ".Memory");
 			decl[i] = this.ctx.mkConstDecl(declNames[i], ctx.mkRealSort());
 
 		}
 
 		Solver s = this.ctx.mkSolver();
-		for (Module mod : this.m.getConsitsOf()) {
+		for (Module mod : this.m.getConsistsOf()) {
 			for (Contract cont : mod.getContract()) {
 				if (cont.getViewPoint().getValue() == ViewPoint.MEMORY_VALUE) {
 					String inter = cont.getGuarantee().get(0).getProperty().replaceAll("Memory",
@@ -188,15 +188,15 @@ public class CompoundSolver {
 						this.m.getName() + ".Memory");
 				guarantee = this.gs.parseString(guarantee);
 				String assumption = new String();
-				for (Module mod : this.m.getConsitsOf()) {
+				for (Module mod : this.m.getConsistsOf()) {
 
 					assumption = assumption + " " + mod.getName() + ".Memory";
 
 				}
 
-				if (this.m.getConsitsOf().size() == 0) {
+				if (this.m.getConsistsOf().size() == 0) {
 
-				} else if (this.m.getConsitsOf().size() == 1) {
+				} else if (this.m.getConsistsOf().size() == 1) {
 					s.add(ctx.parseSMTLIB2String(
 							"(define-fun ValidContract () Bool (=> " + "(= " + this.m.getName() + ".Memory " + ""
 									+ assumption + ") " + guarantee + "))(assert (not ValidContract))",
@@ -231,7 +231,7 @@ public class CompoundSolver {
 		boolean contractsMet = true;
 
 		ArrayList<Ports> p = new ArrayList<Ports>();
-		for (Module mod : this.m.getConsitsOf()) {
+		for (Module mod : this.m.getConsistsOf()) {
 			for (Ports port : mod.getPorts()) {
 				p.add(port);
 			}
@@ -239,8 +239,8 @@ public class CompoundSolver {
 		for (Ports port : this.m.getPorts()) {
 			p.add(port);
 		}
-		Symbol[] declNames = new Symbol[(p.size() * 6) + ((this.m.getConsitsOf().size()) * 4)];
-		FuncDecl[] decl = new FuncDecl[(p.size() * 6) + ((this.m.getConsitsOf().size()) * 4)];
+		Symbol[] declNames = new Symbol[(p.size() * 6) + ((this.m.getConsistsOf().size()) * 4)];
+		FuncDecl[] decl = new FuncDecl[(p.size() * 6) + ((this.m.getConsistsOf().size()) * 4)];
 		for (int i = 0; i < p.size(); i++) {
 			declNames[i * 6] = this.ctx
 					.mkSymbol(p.get(i).getModule().getName() + "." + p.get(i).getName() + "." + "minduration");
@@ -262,20 +262,20 @@ public class CompoundSolver {
 			decl[(i * 6) + 5] = this.ctx.mkConstDecl(declNames[(i * 6) + 5], ctx.mkRealSort());
 
 		}
-		for (int i = 0; i < this.m.getConsitsOf().size(); i++) {
+		for (int i = 0; i < this.m.getConsistsOf().size(); i++) {
 			declNames[(p.size() * 6) + i * 4] = this.ctx
-					.mkSymbol(this.m.getConsitsOf().get(i).getName() + ".inMindelay");
+					.mkSymbol(this.m.getConsistsOf().get(i).getName() + ".inMindelay");
 			decl[(p.size() * 6) + i * 4] = this.ctx.mkConstDecl(declNames[(p.size() * 6) + (i * 4)], ctx.mkRealSort());
 			declNames[(p.size() * 6) + 1 + (i * 4)] = this.ctx
-					.mkSymbol(this.m.getConsitsOf().get(i).getName() + ".inMaxdelay");
+					.mkSymbol(this.m.getConsistsOf().get(i).getName() + ".inMaxdelay");
 			decl[(p.size() * 6) + 1 + (i * 4)] = this.ctx.mkConstDecl(declNames[(p.size() * 6) + (i * 4) + 1],
 					ctx.mkRealSort());
 			declNames[(p.size() * 6) + 2 + (i * 4)] = this.ctx
-					.mkSymbol(this.m.getConsitsOf().get(i).getName() + ".outMindelay");
+					.mkSymbol(this.m.getConsistsOf().get(i).getName() + ".outMindelay");
 			decl[(p.size() * 6) + 2 + (i * 4)] = this.ctx.mkConstDecl(declNames[(p.size() * 6) + (i * 4) + 2],
 					ctx.mkRealSort());
 			declNames[(p.size() * 6) + 3 + (i * 4)] = this.ctx
-					.mkSymbol(this.m.getConsitsOf().get(i).getName() + ".outMaxdelay");
+					.mkSymbol(this.m.getConsistsOf().get(i).getName() + ".outMaxdelay");
 			decl[(p.size() * 6) + 3 + (i * 4)] = this.ctx.mkConstDecl(declNames[(p.size() * 6) + (i * 4) + 3],
 					ctx.mkRealSort());
 
@@ -322,7 +322,7 @@ public class CompoundSolver {
 				}
 			}
 		}
-		for (Module part : this.m.getConsitsOf()) {
+		for (Module part : this.m.getConsistsOf()) {
 
 			ArrayList<Ports> inputPorts = this.getInputportOfModule(part);
 			if (inputPorts.size() == 0 || inputPorts == null) {

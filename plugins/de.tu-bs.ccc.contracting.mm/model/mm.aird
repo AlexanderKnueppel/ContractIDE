@@ -1000,9 +1000,9 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='Bi-directional%20EC_EReference%20']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_9qBTpnriEeiw5Lp65B-w9w" sourceNode="_9pWlQHriEeiw5Lp65B-w9w" targetNode="_9pZokHriEeiw5Lp65B-w9w" beginLabel="[0..*] realizes" endLabel="[0..*] getsrealized">
-      <target xmi:type="ecore:EReference" href="mm.ecore#//Module/getsrealized"/>
-      <semanticElements xmi:type="ecore:EReference" href="mm.ecore#//Module/getsrealized"/>
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_9qBTpnriEeiw5Lp65B-w9w" sourceNode="_9pWlQHriEeiw5Lp65B-w9w" targetNode="_9pZokHriEeiw5Lp65B-w9w" beginLabel="[0..*] realizes" endLabel="[0..*] realizedBy">
+      <target xmi:type="ecore:EReference" href="mm.ecore#//Module/realizedBy"/>
+      <semanticElements xmi:type="ecore:EReference" href="mm.ecore#//Module/realizedBy"/>
       <semanticElements xmi:type="ecore:EReference" href="mm.ecore#//Abstract/realizes"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_9qB6sHriEeiw5Lp65B-w9w" sourceArrow="InputArrow" routingStyle="manhattan" strokeColor="0,0,0">
         <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='Bi-directional%20EC_EReference%20']/@style"/>
@@ -1021,9 +1021,9 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='Bi-directional%20EC_EReference%20']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_9qDI0HriEeiw5Lp65B-w9w" sourceNode="_9pWlQHriEeiw5Lp65B-w9w" targetNode="_9pbdwHriEeiw5Lp65B-w9w" beginLabel="[0..*] consitsOf" endLabel="[0..1] isPartOf">
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_9qDI0HriEeiw5Lp65B-w9w" sourceNode="_9pWlQHriEeiw5Lp65B-w9w" targetNode="_9pbdwHriEeiw5Lp65B-w9w" beginLabel="[0..*] consistsOf" endLabel="[0..1] isPartOf">
       <target xmi:type="ecore:EReference" href="mm.ecore#//Module/isPartOf"/>
-      <semanticElements xmi:type="ecore:EReference" href="mm.ecore#//Compound/consitsOf"/>
+      <semanticElements xmi:type="ecore:EReference" href="mm.ecore#//Compound/consistsOf"/>
       <semanticElements xmi:type="ecore:EReference" href="mm.ecore#//Module/isPartOf"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_9qDv43riEeiw5Lp65B-w9w" description="_9qDv4HriEeiw5Lp65B-w9w" sourceArrow="InputArrow" targetArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
         <beginLabelStyle xmi:type="diagram:BeginLabelStyle" xmi:id="_9qDv5HriEeiw5Lp65B-w9w" showIcon="false"/>

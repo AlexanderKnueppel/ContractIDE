@@ -74,9 +74,9 @@ public class EditAbstractFeature extends AbstractCustomFeature {
 
 		} else if (bo instanceof Module) {
 			Module mod = (Module) getBusinessObjectForPictogramElement(pes[0]);
-			String[] list = new String[mod.getGetsrealized().size()];
+			String[] list = new String[mod.getRealizedBy().size()];
 			for (int i = 0; i < list.length; i++) {
-				list[i] = mod.getGetsrealized().get(i).getName();
+				list[i] = mod.getRealizedBy().get(i).getName();
 			}
 
 			InterfaceList il = new InterfaceList(list);
@@ -85,7 +85,7 @@ public class EditAbstractFeature extends AbstractCustomFeature {
 			int number = -1;
 			number = il.getCount();
 			if (number != -1 && il.isDelete()) {
-				mod.getGetsrealized().remove(number);
+				mod.getRealizedBy().remove(number);
 			}
 
 		}

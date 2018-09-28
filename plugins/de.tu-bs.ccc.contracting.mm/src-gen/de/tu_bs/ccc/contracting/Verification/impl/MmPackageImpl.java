@@ -232,7 +232,7 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModule_Getsrealized() {
+	public EReference getModule_RealizedBy() {
 		return (EReference) moduleEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -322,7 +322,7 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCompound_ConsitsOf() {
+	public EReference getCompound_ConsistsOf() {
 		return (EReference) compoundEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -610,7 +610,7 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 		moduleEClass = createEClass(MODULE);
 		createEAttribute(moduleEClass, MODULE__NAME);
 		createEReference(moduleEClass, MODULE__IS_PART_OF);
-		createEReference(moduleEClass, MODULE__GETSREALIZED);
+		createEReference(moduleEClass, MODULE__REALIZED_BY);
 		createEAttribute(moduleEClass, MODULE__DESCRIPTION);
 		createEReference(moduleEClass, MODULE__PORTS);
 		createEReference(moduleEClass, MODULE__CONTRACT);
@@ -623,7 +623,7 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 		componentEClass = createEClass(COMPONENT);
 
 		compoundEClass = createEClass(COMPOUND);
-		createEReference(compoundEClass, COMPOUND__CONSITS_OF);
+		createEReference(compoundEClass, COMPOUND__CONSISTS_OF);
 
 		contractEClass = createEClass(CONTRACT);
 		createEAttribute(contractEClass, CONTRACT__NAME);
@@ -704,11 +704,11 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 		initEClass(moduleEClass, Module.class, "Module", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getModule_Name(), ecorePackage.getEString(), "name", null, 0, 1, Module.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModule_IsPartOf(), this.getCompound(), this.getCompound_ConsitsOf(), "isPartOf", null, 0, 1,
+		initEReference(getModule_IsPartOf(), this.getCompound(), this.getCompound_ConsistsOf(), "isPartOf", null, 0, 1,
 				Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModule_Getsrealized(), this.getAbstract(), this.getAbstract_Realizes(), "getsrealized", null,
-				0, -1, Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+		initEReference(getModule_RealizedBy(), this.getAbstract(), this.getAbstract_Realizes(), "realizedBy", null, 0,
+				-1, Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getModule_Description(), ecorePackage.getEString(), "description", null, 0, 1, Module.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -726,7 +726,7 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 
 		initEClass(abstractEClass, Abstract.class, "Abstract", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAbstract_Realizes(), this.getModule(), this.getModule_Getsrealized(), "realizes", null, 0, -1,
+		initEReference(getAbstract_Realizes(), this.getModule(), this.getModule_RealizedBy(), "realizes", null, 0, -1,
 				Abstract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -735,7 +735,7 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 
 		initEClass(compoundEClass, Compound.class, "Compound", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCompound_ConsitsOf(), this.getModule(), this.getModule_IsPartOf(), "consitsOf", null, 0, -1,
+		initEReference(getCompound_ConsistsOf(), this.getModule(), this.getModule_IsPartOf(), "consistsOf", null, 0, -1,
 				Compound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

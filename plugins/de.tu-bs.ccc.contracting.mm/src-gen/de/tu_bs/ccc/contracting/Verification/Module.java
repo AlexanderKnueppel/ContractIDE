@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.Module#getName <em>Name</em>}</li>
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.Module#getIsPartOf <em>Is Part Of</em>}</li>
- *   <li>{@link de.tu_bs.ccc.contracting.Verification.Module#getGetsrealized <em>Getsrealized</em>}</li>
+ *   <li>{@link de.tu_bs.ccc.contracting.Verification.Module#getRealizedBy <em>Realized By</em>}</li>
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.Module#getDescription <em>Description</em>}</li>
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.Module#getPorts <em>Ports</em>}</li>
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.Module#getContract <em>Contract</em>}</li>
@@ -58,7 +58,7 @@ public interface Module extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Is Part Of</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link de.tu_bs.ccc.contracting.Verification.Compound#getConsitsOf <em>Consits Of</em>}'.
+	 * It is bidirectional and its opposite is '{@link de.tu_bs.ccc.contracting.Verification.Compound#getConsistsOf <em>Consists Of</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Is Part Of</em>' container reference isn't clear,
@@ -68,8 +68,8 @@ public interface Module extends EObject {
 	 * @return the value of the '<em>Is Part Of</em>' container reference.
 	 * @see #setIsPartOf(Compound)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getModule_IsPartOf()
-	 * @see de.tu_bs.ccc.contracting.Verification.Compound#getConsitsOf
-	 * @model opposite="consitsOf" transient="false"
+	 * @see de.tu_bs.ccc.contracting.Verification.Compound#getConsistsOf
+	 * @model opposite="consistsOf" transient="false"
 	 * @generated
 	 */
 	Compound getIsPartOf();
@@ -85,22 +85,22 @@ public interface Module extends EObject {
 	void setIsPartOf(Compound value);
 
 	/**
-	 * Returns the value of the '<em><b>Getsrealized</b></em>' reference list.
+	 * Returns the value of the '<em><b>Realized By</b></em>' reference list.
 	 * The list contents are of type {@link de.tu_bs.ccc.contracting.Verification.Abstract}.
 	 * It is bidirectional and its opposite is '{@link de.tu_bs.ccc.contracting.Verification.Abstract#getRealizes <em>Realizes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Getsrealized</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Realized By</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Getsrealized</em>' reference list.
-	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getModule_Getsrealized()
+	 * @return the value of the '<em>Realized By</em>' reference list.
+	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getModule_RealizedBy()
 	 * @see de.tu_bs.ccc.contracting.Verification.Abstract#getRealizes
 	 * @model opposite="realizes"
 	 * @generated
 	 */
-	EList<Abstract> getGetsrealized();
+	EList<Abstract> getRealizedBy();
 
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.

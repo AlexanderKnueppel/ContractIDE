@@ -80,14 +80,14 @@ public class LoadAbstractFeature extends AbstractCreateFeature {
 			// m.put("model", new XMIResourceFactoryImpl());
 			final Resource resource = rSet.getResource(uri2, true);
 			Compound m = (Compound) resource.getContents().get(0);
-			Dialog d = new Dialog(this.createList(m.getConsitsOf()).toArray());
+			Dialog d = new Dialog(this.createList(m.getConsistsOf()).toArray());
 			d.setVisible(true);
 
 			Compound c = (Compound) resource.getContents().get(0);
-			Abstract i = (Abstract) c.getConsitsOf().get(d.getCount());
+			Abstract i = (Abstract) c.getConsistsOf().get(d.getCount());
 			PictogramElement pict = context.getTargetContainer();
 			Module x = (Module) getBusinessObjectForPictogramElement(pict);
-			x.getGetsrealized().add(i);
+			x.getRealizedBy().add(i);
 
 		}
 

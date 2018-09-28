@@ -69,7 +69,7 @@ public class AbstractImpl extends ModuleImpl implements Abstract {
 	public EList<Module> getRealizes() {
 		if (realizes == null) {
 			realizes = new EObjectWithInverseResolvingEList.ManyInverse<Module>(Module.class, this,
-					MmPackage.ABSTRACT__REALIZES, MmPackage.MODULE__GETSREALIZED);
+					MmPackage.ABSTRACT__REALIZES, MmPackage.MODULE__REALIZED_BY);
 		}
 		return realizes;
 	}

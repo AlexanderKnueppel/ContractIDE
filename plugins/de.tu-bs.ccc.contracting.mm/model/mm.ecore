@@ -5,8 +5,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="Module">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="isPartOf" eType="#//Compound"
-        eOpposite="#//Compound/consitsOf"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="getsrealized" upperBound="-1"
+        eOpposite="#//Compound/consistsOf"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="realizedBy" upperBound="-1"
         eType="#//Abstract" eOpposite="#//Abstract/realizes"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ports" upperBound="-1"
@@ -19,11 +19,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Abstract" eSuperTypes="#//Module">
     <eStructuralFeatures xsi:type="ecore:EReference" name="realizes" upperBound="-1"
-        eType="#//Module" eOpposite="#//Module/getsrealized"/>
+        eType="#//Module" eOpposite="#//Module/realizedBy"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Component" eSuperTypes="#//Module"/>
   <eClassifiers xsi:type="ecore:EClass" name="Compound" eSuperTypes="#//Module">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="consitsOf" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="consistsOf" upperBound="-1"
         eType="#//Module" containment="true" eOpposite="#//Module/isPartOf"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Contract">

@@ -86,13 +86,13 @@ public interface MmPackage extends EPackage {
 	int MODULE__IS_PART_OF = 1;
 
 	/**
-	 * The feature id for the '<em><b>Getsrealized</b></em>' reference list.
+	 * The feature id for the '<em><b>Realized By</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODULE__GETSREALIZED = 2;
+	int MODULE__REALIZED_BY = 2;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -186,13 +186,13 @@ public interface MmPackage extends EPackage {
 	int ABSTRACT__IS_PART_OF = MODULE__IS_PART_OF;
 
 	/**
-	 * The feature id for the '<em><b>Getsrealized</b></em>' reference list.
+	 * The feature id for the '<em><b>Realized By</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT__GETSREALIZED = MODULE__GETSREALIZED;
+	int ABSTRACT__REALIZED_BY = MODULE__REALIZED_BY;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -295,13 +295,13 @@ public interface MmPackage extends EPackage {
 	int COMPONENT__IS_PART_OF = MODULE__IS_PART_OF;
 
 	/**
-	 * The feature id for the '<em><b>Getsrealized</b></em>' reference list.
+	 * The feature id for the '<em><b>Realized By</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT__GETSREALIZED = MODULE__GETSREALIZED;
+	int COMPONENT__REALIZED_BY = MODULE__REALIZED_BY;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -395,13 +395,13 @@ public interface MmPackage extends EPackage {
 	int COMPOUND__IS_PART_OF = MODULE__IS_PART_OF;
 
 	/**
-	 * The feature id for the '<em><b>Getsrealized</b></em>' reference list.
+	 * The feature id for the '<em><b>Realized By</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOUND__GETSREALIZED = MODULE__GETSREALIZED;
+	int COMPOUND__REALIZED_BY = MODULE__REALIZED_BY;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -449,13 +449,13 @@ public interface MmPackage extends EPackage {
 	int COMPOUND__VERSION = MODULE__VERSION;
 
 	/**
-	 * The feature id for the '<em><b>Consits Of</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Consists Of</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOUND__CONSITS_OF = MODULE_FEATURE_COUNT + 0;
+	int COMPOUND__CONSISTS_OF = MODULE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Compound</em>' class.
@@ -896,15 +896,15 @@ public interface MmPackage extends EPackage {
 	EReference getModule_IsPartOf();
 
 	/**
-	 * Returns the meta object for the reference list '{@link de.tu_bs.ccc.contracting.Verification.Module#getGetsrealized <em>Getsrealized</em>}'.
+	 * Returns the meta object for the reference list '{@link de.tu_bs.ccc.contracting.Verification.Module#getRealizedBy <em>Realized By</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Getsrealized</em>'.
-	 * @see de.tu_bs.ccc.contracting.Verification.Module#getGetsrealized()
+	 * @return the meta object for the reference list '<em>Realized By</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Module#getRealizedBy()
 	 * @see #getModule()
 	 * @generated
 	 */
-	EReference getModule_Getsrealized();
+	EReference getModule_RealizedBy();
 
 	/**
 	 * Returns the meta object for the attribute '{@link de.tu_bs.ccc.contracting.Verification.Module#getDescription <em>Description</em>}'.
@@ -1003,15 +1003,15 @@ public interface MmPackage extends EPackage {
 	EClass getCompound();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link de.tu_bs.ccc.contracting.Verification.Compound#getConsitsOf <em>Consits Of</em>}'.
+	 * Returns the meta object for the containment reference list '{@link de.tu_bs.ccc.contracting.Verification.Compound#getConsistsOf <em>Consists Of</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Consits Of</em>'.
-	 * @see de.tu_bs.ccc.contracting.Verification.Compound#getConsitsOf()
+	 * @return the meta object for the containment reference list '<em>Consists Of</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Compound#getConsistsOf()
 	 * @see #getCompound()
 	 * @generated
 	 */
-	EReference getCompound_ConsitsOf();
+	EReference getCompound_ConsistsOf();
 
 	/**
 	 * Returns the meta object for class '{@link de.tu_bs.ccc.contracting.Verification.Contract <em>Contract</em>}'.
@@ -1361,12 +1361,12 @@ public interface MmPackage extends EPackage {
 		EReference MODULE__IS_PART_OF = eINSTANCE.getModule_IsPartOf();
 
 		/**
-		 * The meta object literal for the '<em><b>Getsrealized</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Realized By</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODULE__GETSREALIZED = eINSTANCE.getModule_Getsrealized();
+		EReference MODULE__REALIZED_BY = eINSTANCE.getModule_RealizedBy();
 
 		/**
 		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
@@ -1447,12 +1447,12 @@ public interface MmPackage extends EPackage {
 		EClass COMPOUND = eINSTANCE.getCompound();
 
 		/**
-		 * The meta object literal for the '<em><b>Consits Of</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Consists Of</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPOUND__CONSITS_OF = eINSTANCE.getCompound_ConsitsOf();
+		EReference COMPOUND__CONSISTS_OF = eINSTANCE.getCompound_ConsistsOf();
 
 		/**
 		 * The meta object literal for the '{@link de.tu_bs.ccc.contracting.Verification.impl.ContractImpl <em>Contract</em>}' class.

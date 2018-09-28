@@ -53,7 +53,7 @@ public class ModulePropertiesContentProvider implements ITreeContentProvider {
 		// Realized by
 		if (m instanceof Component || m instanceof Compound) {
 			String realizedBy = "";
-			for (Abstract l : m.getGetsrealized()) {
+			for (Abstract l : m.getRealizedBy()) {
 				realizedBy += l.getName() + " " + l.getVersion() + ", ";
 			}
 			if (realizedBy.length() > 0)

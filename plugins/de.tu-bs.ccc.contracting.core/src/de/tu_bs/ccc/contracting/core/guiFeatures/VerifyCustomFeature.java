@@ -121,8 +121,8 @@ public class VerifyCustomFeature extends AbstractCustomFeature {
 			}
 			if (bo instanceof Component || bo instanceof Compound) {
 				Module mo = (Module) bo;
-				if (mo.getGetsrealized().size() != 0) {
-					for (Module m : mo.getGetsrealized()) {
+				if (mo.getRealizedBy().size() != 0) {
+					for (Module m : mo.getRealizedBy()) {
 
 						InterfaceSolver solver = new InterfaceSolver(mo, (Abstract) m);
 						long startTime = System.currentTimeMillis();

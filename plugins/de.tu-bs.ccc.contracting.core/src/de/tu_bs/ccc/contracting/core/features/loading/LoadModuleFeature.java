@@ -53,7 +53,7 @@ public class LoadModuleFeature extends AbstractCreateFeature {
 			Module copy = EcoreUtil.copy(c);
 
 			if (copy instanceof Compound) {
-				EcoreUtil.deleteAll(((Compound) copy).getConsitsOf(), true);
+				EcoreUtil.deleteAll(((Compound) copy).getConsistsOf(), true);
 			}
 
 			addGraphicalRepresentation(context, copy);
@@ -61,7 +61,7 @@ public class LoadModuleFeature extends AbstractCreateFeature {
 			Compound x = (Compound) getBusinessObjectForPictogramElement(pict);
 			copy.setIsPartOf(x);
 			copy.setModule(c);
-			x.getConsitsOf().add(copy);
+			x.getConsistsOf().add(copy);
 
 			return new Object[] { copy };
 		}

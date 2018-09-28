@@ -92,25 +92,25 @@ public class SMTSolver {
 				for (int j = 0; j < height; j++) {
 					for (int i = 0; i < width; i++) {
 						if (i == 0) {
-							Module m = c.getConsitsOf().get(j * width + i);
+							Module m = c.getConsistsOf().get(j * width + i);
 							m.getPorts().get(0);
 							c.getPorts().get(j * 2);
 							m.getPorts().get(0).setInsidePortseOpposite(c.getPorts().get(j * 2));
 
 						} else {
-							Module m = c.getConsitsOf().get(j * width + i);
-							Module m2 = c.getConsitsOf().get(j * width + (i - 1));
+							Module m = c.getConsistsOf().get(j * width + i);
+							Module m2 = c.getConsistsOf().get(j * width + (i - 1));
 							m.getPorts().get(0).setPortseOpposite(m2.getPorts().get(1));
 							;
 
 						}
 						if (i == (width - 1)) {
-							Module m = c.getConsitsOf().get(j * width + i);
+							Module m = c.getConsistsOf().get(j * width + i);
 							m.getPorts().get(1).getInsidePorts().add((c.getPorts().get((j * 2) + 1)));
 
 						} else {
-							Module m = c.getConsitsOf().get(j * width + i);
-							Module m2 = c.getConsitsOf().get(j * width + (i + 1));
+							Module m = c.getConsistsOf().get(j * width + i);
+							Module m2 = c.getConsistsOf().get(j * width + (i + 1));
 							m.getPorts().get(1).setPortseOpposite(m2.getPorts().get(0));
 							;
 						}

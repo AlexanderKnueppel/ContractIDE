@@ -47,7 +47,7 @@
     <genClasses ecoreClass="mm.ecore#//Module">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Module/name"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference mm.ecore#//Module/isPartOf"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//Module/getsrealized"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//Module/realizedBy"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Module/description"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mm.ecore#//Module/ports"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mm.ecore#//Module/contract"/>
@@ -58,7 +58,7 @@
     </genClasses>
     <genClasses ecoreClass="mm.ecore#//Component"/>
     <genClasses ecoreClass="mm.ecore#//Compound">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mm.ecore#//Compound/consitsOf"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mm.ecore#//Compound/consistsOf"/>
     </genClasses>
     <genClasses ecoreClass="mm.ecore#//Contract">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Contract/name"/>
