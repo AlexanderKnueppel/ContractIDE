@@ -125,7 +125,6 @@ public class AddComponentFeature extends AbstractAddFeature implements IAddFeatu
 			a.setY((containerShape.getGraphicsAlgorithm().getHeight() * i) / j);
 			a.setSize(40, 40);
 			i--;
-			System.out.println("added Contract");
 			addGraphicalRepresentation(a, element);
 		}
 		i = addedClass.getContract().size();
@@ -141,7 +140,6 @@ public class AddComponentFeature extends AbstractAddFeature implements IAddFeatu
 			System.out.println("addedPort");
 			addGraphicalRepresentation(a, element);
 		}
-		System.out.println("bin ferig");
 		return containerShape;
 	}
 

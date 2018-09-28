@@ -19,7 +19,7 @@
             class="de.tu_bs.ccc.contracting.ui.wizards.CompoundWizard"
             icon="icons/compound_64.png"
             id="contractmodelling.wizards.CompoundWizard"
-            name="Compound">
+            name="Compound Component">
       </wizard>
       <wizard
             category="de.tu-bs.ccc.contracting.ui.wizards"
@@ -27,6 +27,13 @@
             icon="icons/atomic_component_64.png"
             id="contractmodelling.wizards.ComponentWizard"
             name="Atomic Component">
+      </wizard>
+      <wizard
+            category="de.tu-bs.ccc.contracting.ui.wizards"
+            class="de.tu_bs.ccc.contracting.ui.wizards.AbstractWizard"
+            icon="icons/atomic_component_64.png"
+            id="contractmodelling.wizards.AbstractWizard"
+            name="Abstract Component">
       </wizard>
    </extension>
    

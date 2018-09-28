@@ -26,7 +26,7 @@ import org.eclipse.ui.dialogs.ContainerSelectionDialog;
  * OR with the extension that matches the expected one (diagram).
  */
 
-public class CompoundWizardPage extends WizardPage {
+public class AbstractWizardPage extends WizardPage {
 	private Text containerText;
 
 	private Text fileText;
@@ -38,10 +38,10 @@ public class CompoundWizardPage extends WizardPage {
 	 * 
 	 * @param pageName
 	 */
-	public CompoundWizardPage(ISelection selection) {
+	public AbstractWizardPage(ISelection selection) {
 		super("wizardPage");
-		setTitle("Compound Component Creation");
-		setDescription("This wizard creates a new compound component.");
+		setTitle("Abstract Component Creation");
+		setDescription("This wizard creates a new abstract component.");
 		this.selection = selection;
 	}
 
@@ -108,7 +108,7 @@ public class CompoundWizardPage extends WizardPage {
 				containerText.setText(container.getFullPath().toString());
 			}
 		}
-		fileText.setText("new_file.diagram");
+		fileText.setText("abstract.diagram");
 	}
 
 	/**
