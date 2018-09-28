@@ -41,7 +41,7 @@ import de.tu_bs.ccc.contracting.core.features.CreatePortFeature;
 import de.tu_bs.ccc.contracting.core.features.DeletePortConnectionFeature;
 import de.tu_bs.ccc.contracting.core.features.connections.AddContractConnectionFeature;
 import de.tu_bs.ccc.contracting.core.features.connections.ReconnectionFeature;
-import de.tu_bs.ccc.contracting.core.features.loading.LoadAbstractFeature;
+import de.tu_bs.ccc.contracting.core.features.loading.AssignAbstractFeature;
 import de.tu_bs.ccc.contracting.core.features.loading.LoadModuleFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.CollapseFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.EditAbstractFeature;
@@ -87,9 +87,12 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 
 	@Override
 	public ICreateFeature[] getCreateFeatures() {
-		return new ICreateFeature[] { new CreateComponentFeature(this), new CreateContractFeature(this),
-				new CreateAbstractFeature(this), new CreatePortFeature(this), new LoadModuleFeature(this),
-				new CreateProperty(this), new LoadAbstractFeature(this) };
+		return new ICreateFeature[] { 
+				//new CreateComponentFeature(this), 
+				new CreateContractFeature(this),
+				//new CreateAbstractFeature(this), 
+				new CreatePortFeature(this), new LoadModuleFeature(this),
+				new CreateProperty(this), new AssignAbstractFeature(this) };
 
 	}
 

@@ -48,14 +48,24 @@ public class CoreUtil {
 
 		return null;
 	}
-
+	
 	public static Collection<Module> getRootModules(IProject p) {
+		return getRootModules(p, new ModuleFilter() {
+			@Override
+			public boolean keep(Module m) {
+				return true;
+			}
+			
+		});
+	}
+
+	public static Collection<Module> getRootModules(IProject p, ModuleFilter filter) {
 		final List<IFile> files = getModelFiles(p);
 		final List<Module> moduleList = new ArrayList<Module>();
 		final ResourceSet rSet = new ResourceSetImpl();
 		for (final IFile file : files) {
 			final Module module = getRootModuleFromFile(file, rSet);
-			if (module != null) {
+			if (module != null && filter.keep(module)) {
 				moduleList.add(module);
 			}
 		}
