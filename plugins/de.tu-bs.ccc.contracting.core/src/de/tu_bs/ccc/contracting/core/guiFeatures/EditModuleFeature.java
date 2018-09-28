@@ -41,6 +41,6 @@ public class EditModuleFeature extends AbstractCustomFeature {
 		dialog.setOldProperties(object);
 		dialog.create();
 		dialog.open();
-		
+		updatePictogramElement(pes[0]);
 	}
 }

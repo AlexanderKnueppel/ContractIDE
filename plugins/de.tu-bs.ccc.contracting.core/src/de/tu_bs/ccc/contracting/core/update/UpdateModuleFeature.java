@@ -52,7 +52,7 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 			Shape s2 = cs.getChildren().get(1);
 			Text nameText = (Text) s2.getGraphicsAlgorithm();
 			if (!nameText.getValue().equals(m.getName() + "   " + m.getVersion())) {
-				return Reason.createTrueReason("Name is out of date");
+				return Reason.createTrueReason("Name or version is out of date!");
 			} else
 				return Reason.createFalseReason("Other Reason");
 
