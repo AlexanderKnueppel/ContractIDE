@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
+import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.context.IDoubleClickContext;
 import org.eclipse.graphiti.features.context.IPictogramElementContext;
 import org.eclipse.graphiti.features.context.impl.CustomContext;
 import org.eclipse.graphiti.features.custom.ICustomFeature;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.graphiti.platform.IPlatformImageConstants;
 import org.eclipse.graphiti.tb.ContextButtonEntry;
 import org.eclipse.graphiti.tb.ContextEntryHelper;
 import org.eclipse.graphiti.tb.ContextMenuEntry;
@@ -17,10 +19,15 @@ import org.eclipse.graphiti.tb.DefaultToolBehaviorProvider;
 import org.eclipse.graphiti.tb.IContextButtonEntry;
 import org.eclipse.graphiti.tb.IContextButtonPadData;
 import org.eclipse.graphiti.tb.IContextMenuEntry;
+import org.eclipse.graphiti.tb.IDecorator;
+import org.eclipse.graphiti.tb.ImageDecorator;
 
+import de.tu_bs.ccc.contracting.Verification.Compound;
+import de.tu_bs.ccc.contracting.Verification.Component;
+import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.core.guiFeatures.CollapseFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.EditDescriptionFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.EditAbstractFeature;
+import de.tu_bs.ccc.contracting.core.guiFeatures.EditDescriptionFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.EditModuleFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.EditPortFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.EditPropertyFeature;
@@ -110,25 +117,24 @@ public class ContractModellingToolBehaviorProvider extends DefaultToolBehaviorPr
 
 		return (IContextMenuEntry[]) menuEntries.toArray(new IContextMenuEntry[0]);
 	}
-	
-//	@Override public PictogramElement getSelection(PictogramElement originalPe, PictogramElement[] oldSelection) {
-//		//System.out.println(originalPe.toString());
-//		for(PictogramElement pe : oldSelection) {
-//			System.out.println(pe);
-//		}
-////		if(oldSelection.length > 1) {
-////			List<PictogramElement> withoutLabels = new ArrayList<>();
-////			for(PictogramElement pe : oldSelection) {
-////				String labelProperty = Graphiti.getPeService().getPropertyValue(pe,	SicConstants.LABEL_PROPERTY);
-////				if (Boolean.parseBoolean(labelProperty)) continue;
-////				withoutLabels.add(pe);
-////			}
-////			PictogramElement[] withoutLabelsArray = new PictogramElement[withoutLabels.size()];
-////			withoutLabels.toArray(withoutLabelsArray);
-////			getDiagramTypeProvider().getDiagramBehavior().getDiagramContainer().selectPictogramElements(withoutLabelsArray);
-////		}
-//		return null;
-//	}
+
+	@Override
+	public IDecorator[] getDecorators(PictogramElement pe) {
+		IFeatureProvider featureProvider = getFeatureProvider();
+		Object bo = featureProvider.getBusinessObjectForPictogramElement(pe);
+		if ((bo instanceof Compound) || (bo instanceof Component)) {
+			Module module = (Module) bo;
+			
+			if (!module.getRealizedBy().isEmpty()) {
+				IDecorator imageRenderingDecorator = new ImageDecorator(
+						IPlatformImageConstants.IMG_ECLIPSE_INFORMATION_TSK);
+				imageRenderingDecorator.setMessage("At least one abstract component is refined.");
+				return new IDecorator[] { imageRenderingDecorator };
+			}
+		}
+
+		return super.getDecorators(pe);
+	}
 
 	@Override
 	public ICustomFeature getDoubleClickFeature(IDoubleClickContext context) {
