@@ -11,12 +11,12 @@ import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.ui.dialogs.ChangeDescriptionDialog;
 
 public class EditDescriptionFeature extends AbstractCustomFeature {
-	
+
 	public EditDescriptionFeature(IFeatureProvider fp) {
 		super(fp);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	@Override
 	public boolean canExecute(ICustomContext context) {
 		boolean ret = false;
@@ -29,7 +29,7 @@ public class EditDescriptionFeature extends AbstractCustomFeature {
 		}
 		return ret;
 	}
-	
+
 	@Override
 	public String getName() {
 		return "Description";
@@ -53,21 +53,24 @@ public class EditDescriptionFeature extends AbstractCustomFeature {
 	@Override
 	public void execute(ICustomContext context) {
 		String description = "";
-		
+
 		PictogramElement[] pes = context.getPictogramElements();
 		if (pes != null && pes.length == 1) {
 			Object bo = getBusinessObjectForPictogramElement(pes[0]);
-			description = ((Module)bo).getDescription();
-			
-			final ChangeDescriptionDialog dialog =
-					new ChangeDescriptionDialog(null, "Description", "Please enter a description for '" + ((Module)bo).getName() + " " + ((Module)bo).getVersion() + "'", description);
+			description = ((Module) bo).getDescription();
+			if (description == null)
+				description = "";
+
+			final ChangeDescriptionDialog dialog = new ChangeDescriptionDialog(null, "Description",
+					"Please enter a description for '" + ((Module) bo).getName() + " " + ((Module) bo).getVersion()
+							+ "'",
+					description);
 			dialog.open();
 			final String descriptemp = dialog.getValue();
 			if (!description.equals(descriptemp.trim())) {
-				((Module)bo).setDescription(descriptemp.trim());
+				((Module) bo).setDescription(descriptemp.trim());
 			}
 		}
-		
+
 	}
 }
-
