@@ -1,5 +1,7 @@
 package de.tu_bs.ccc.contracting.core.features;
 
+import java.awt.Color;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.graphiti.features.IFeatureProvider;
@@ -27,6 +29,10 @@ public class AddPortFeature extends AbstractAddFeature {
 
 	private static final IColorConstant E_CLASS_BACKGROUND = IColorConstant.WHITE;
 
+	private IColorConstant signifierColor;
+	
+	private String signifier;
+	
 	public AddPortFeature(IFeatureProvider fp) {
 		super(fp);
 		// TODO Auto-generated constructor stub
@@ -83,12 +89,12 @@ public class AddPortFeature extends AbstractAddFeature {
 
 			Shape shape = peCreateService.createShape(containerShape, false);
 			String portName = addedClass.getName();
-			// create and set text graphics algorithm
 			Text text = gaService.createText(shape, portName);
 			text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 			// vertical alignment has as default value "center"
 			text.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
 			gaService.setLocationAndSize(text, 0, 0, portWidth, (portHeight) / 2);
+			
 			Shape shape2 = peCreateService.createShape(containerShape, false);
 			Text text2 = gaService.createText(shape2, addedClass.getType().toString());
 			text2.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
@@ -97,7 +103,14 @@ public class AddPortFeature extends AbstractAddFeature {
 			gaService.setLocationAndSize(text2, 0, portHeight / 2, portWidth, (portHeight) / 2);
 
 			
-
+			Shape shape3 = peCreateService.createShape(containerShape, false);
+			Text text3 = gaService.createText(shape3, signifier);
+			text3.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
+			// vertical alignment has as default value "center"
+			text3.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
+			text3.setForeground(gaService.manageColor(getDiagram(), signifierColor));
+			gaService.setLocationAndSize(text3, 5, 0, 20, 20);
+			
 			// if added Class has no resource we add it to the resource
 			// of the diagram
 			// in a real scenario the business model would have its own resource
@@ -128,11 +141,14 @@ public class AddPortFeature extends AbstractAddFeature {
 				coordinaten[0] = 0;
 				coordinaten[1] = context.getY();
 				((Ports) context.getNewObject()).setOuterDirection(DirectionType.INTERNAL);
-				
+				signifier = "i";
+				signifierColor = new ColorConstant(0, 100, 0);
 			} else {
 				coordinaten[0] = widthContainer - portWidth;
 				coordinaten[1] = context.getY();
 				((Ports) context.getNewObject()).setOuterDirection(DirectionType.EXTERNAL);
+				signifier = "e";
+				signifierColor = new ColorConstant(150, 0, 0);
 			}
 		return coordinaten;
 	}
