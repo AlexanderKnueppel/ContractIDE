@@ -1,6 +1,5 @@
 package de.tu_bs.ccc.contracting.core.features;
 
-import java.awt.Color;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
