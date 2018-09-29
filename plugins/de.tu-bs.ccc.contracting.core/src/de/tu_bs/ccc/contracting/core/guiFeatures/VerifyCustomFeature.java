@@ -14,9 +14,9 @@ import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.platform.IPlatformImageConstants;
 
+import de.tu_bs.ccc.contracting.Verification.Abstract;
 import de.tu_bs.ccc.contracting.Verification.Component;
 import de.tu_bs.ccc.contracting.Verification.Compound;
-import de.tu_bs.ccc.contracting.Verification.Interface;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import solver.CompoundSolver;
 import solver.InterfaceSolver;
@@ -73,97 +73,88 @@ public class VerifyCustomFeature extends AbstractCustomFeature {
 				long startTime = System.currentTimeMillis();
 				solver.checkCompound();
 				long stopTime = System.currentTimeMillis();
-			      long elapsedTime = stopTime - startTime;
-			      System.out.println(elapsedTime);
-				
-				if(solver.checkCompound())
-				{
-					JOptionPane.showMessageDialog(null,
-							"The Component " + c.getName()+" is valid composed","Legal Composition", JOptionPane.INFORMATION_MESSAGE);
-				}
-				else {
-					
+				long elapsedTime = stopTime - startTime;
+				System.out.println(elapsedTime);
+
+				if (solver.checkCompound()) {
+					JOptionPane.showMessageDialog(null, "The Component " + c.getName() + " is valid composed",
+							"Legal Composition", JOptionPane.INFORMATION_MESSAGE);
+				} else {
+
 					{
-						JOptionPane.showMessageDialog(null,
-								"The Component " + c.getName()+" is not valid composed! You can Look into the Info file to see a counteraxmple.","Illegal Composition", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "The Component " + c.getName()
+								+ " is not valid composed! You can Look into the Info file to see a counteraxmple.",
+								"Illegal Composition", JOptionPane.ERROR_MESSAGE);
 					}
 				}
-			} else if (bo instanceof Interface) {
-				Interface intface = (Interface) bo;
-				if (intface.getRealizes().size()!=0) {
+			} else if (bo instanceof Abstract) {
+				Abstract intface = (Abstract) bo;
+				if (intface.getRealizes().size() != 0) {
 					for (Module m : intface.getRealizes()) {
-						
-					
-					InterfaceSolver solver = new InterfaceSolver(m, intface);
-					long startTime = System.currentTimeMillis();
-					boolean valid = solver.validInstance();
-					long stopTime = System.currentTimeMillis();
-				      long elapsedTime = stopTime - startTime;
-				      System.out.println(elapsedTime);
-					
-					if (!valid) {
-						JOptionPane.showMessageDialog(null,
-								"The Component " + m.getName()
-										+ " doesn't  refine Interface " + intface.getName(),
-								"No refinenment", JOptionPane.ERROR_MESSAGE);
 
-					}
-					else{
-						JOptionPane.showMessageDialog(null,
-								"The Component " + m.getName()
-										+ "   refines Interface " + intface.getName(),
-								"Refinenment", JOptionPane.INFORMATION_MESSAGE);
+						InterfaceSolver solver = new InterfaceSolver(m, intface);
+						long startTime = System.currentTimeMillis();
+						boolean valid = solver.validInstance();
+						long stopTime = System.currentTimeMillis();
+						long elapsedTime = stopTime - startTime;
+						System.out.println(elapsedTime);
 
+						if (!valid) {
+							JOptionPane.showMessageDialog(null,
+									"The Component " + m.getName() + " doesn't  refine Interface " + intface.getName(),
+									"No refinenment", JOptionPane.ERROR_MESSAGE);
+
+						} else {
+							JOptionPane.showMessageDialog(null,
+									"The Component " + m.getName() + "   refines Interface " + intface.getName(),
+									"Refinenment", JOptionPane.INFORMATION_MESSAGE);
+
+						}
 					}
-					}}
-				
-				 else {
+				}
+
+				else {
 					JOptionPane.showMessageDialog(null, "No Component implments the Interface" + intface.getName(),
 							"No refinenment", JOptionPane.ERROR_MESSAGE);
-				
-			}
+
 				}
+			}
 			if (bo instanceof Component || bo instanceof Compound) {
 				Module mo = (Module) bo;
-				if (mo.getGetsrealized().size()!=0) {
-					for (Module m : mo.getGetsrealized()) {
-						
-					
-					InterfaceSolver solver = new InterfaceSolver(mo, (Interface) m);
-					long startTime = System.currentTimeMillis();
-					boolean valid = solver.validInstance();
-					long stopTime = System.currentTimeMillis();
-				      long elapsedTime = stopTime - startTime;
-				      System.out.println(elapsedTime);
-					
-					if (!valid) {
-						JOptionPane.showMessageDialog(null,
-								"The Component " + mo.getName()
-										+ " doesn't  refine Interface " + m.getName(),
-								"No refinenment", JOptionPane.ERROR_MESSAGE);
+				if (mo.getRealizedBy().size() != 0) {
+					for (Module m : mo.getRealizedBy()) {
 
-					}
-					else{
-						JOptionPane.showMessageDialog(null,
-								"The Component " + mo.getName()
-										+ "   refines Interface " + m.getName(),
-								"Refinenment", JOptionPane.INFORMATION_MESSAGE);
+						InterfaceSolver solver = new InterfaceSolver(mo, (Abstract) m);
+						long startTime = System.currentTimeMillis();
+						boolean valid = solver.validInstance();
+						long stopTime = System.currentTimeMillis();
+						long elapsedTime = stopTime - startTime;
+						System.out.println(elapsedTime);
 
+						if (!valid) {
+							JOptionPane.showMessageDialog(null,
+									"The Component " + mo.getName() + " doesn't  refine Interface " + m.getName(),
+									"No refinenment", JOptionPane.ERROR_MESSAGE);
+
+						} else {
+							JOptionPane.showMessageDialog(null,
+									"The Component " + mo.getName() + "   refines Interface " + m.getName(),
+									"Refinenment", JOptionPane.INFORMATION_MESSAGE);
+
+						}
 					}
-					}}
-				
+				}
+
 			}
 		}
 		List<MemoryPoolMXBean> pools = ManagementFactory.getMemoryPoolMXBeans();
 		long total = 0;
-		for (MemoryPoolMXBean memoryPoolMXBean : pools)
-		{
-		  if (memoryPoolMXBean.getType() == MemoryType.HEAP)
-		  {
-		    long peakUsed = memoryPoolMXBean.getPeakUsage().getUsed();
-		    System.out.println("Peak used for: " + memoryPoolMXBean.getName() + " is: " + peakUsed);
-		    total = total + peakUsed;
-		  }
+		for (MemoryPoolMXBean memoryPoolMXBean : pools) {
+			if (memoryPoolMXBean.getType() == MemoryType.HEAP) {
+				long peakUsed = memoryPoolMXBean.getPeakUsage().getUsed();
+				System.out.println("Peak used for: " + memoryPoolMXBean.getName() + " is: " + peakUsed);
+				total = total + peakUsed;
+			}
 		}
 
 		System.out.println("Total heap peak used: " + total);

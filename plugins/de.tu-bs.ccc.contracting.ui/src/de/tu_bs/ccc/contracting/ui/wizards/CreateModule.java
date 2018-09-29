@@ -27,16 +27,15 @@ import org.eclipse.graphiti.ui.services.GraphitiUi;
 import de.tu_bs.ccc.contracting.Verification.Component;
 import de.tu_bs.ccc.contracting.Verification.MmFactory;
 
-
 public class CreateModule extends RecordingCommand {
 	private TransactionalEditingDomain editingDomain;
 	private String diagramName;
 	private URI path;
 	private String containerName;
 	private CreationType type;
-	
 
-	public CreateModule(TransactionalEditingDomain domain, String containerName, String name, URI path, CreationType type) {
+	public CreateModule(TransactionalEditingDomain domain, String containerName, String name, URI path,
+			CreationType type) {
 		super(domain);
 		this.type = type;
 		this.editingDomain = domain;
@@ -74,14 +73,14 @@ public class CreateModule extends RecordingCommand {
 
 		}
 		final Resource resource2 = rSet.getResource(uri, true);
-		
+
 		resource2.getContents().add(diagram);
 		resource2.getContents().add(MmFactory.eINSTANCE.createComponent());
 		IDiagramTypeProvider dtp = GraphitiUi.getExtensionManager().createDiagramTypeProvider(diagram,
 				"ContractModelling.ContractModellingDiagramTypeProvider"); //$NON-NLS-1$
 		IFeatureProvider featureProvider = dtp.getFeatureProvider();
 		AddContext creat = new AddContext();
-		
+
 		int dot = file.getName().lastIndexOf(".");
 
 		uri = uri.trimFileExtension();
@@ -98,21 +97,21 @@ public class CreateModule extends RecordingCommand {
 			createResource.setTrackingModification(true);
 
 		}
-		if(this.type == CreationType.COMPONENT) {
-		Component c = MmFactory.eINSTANCE.createComponent();
-		c.setName(file.getName().substring(0, dot));
-		c.setModule(null);
-		creat.setNewObject(c);
-		final Resource resourceDomain = rSet.getResource(uri, true);
-		resourceDomain.getContents().add(c);
-		try {
-			resourceDomain.save(null);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		if (this.type == CreationType.COMPONENT) {
+			Component c = MmFactory.eINSTANCE.createComponent();
+			c.setName(file.getName().substring(0, dot));
+			c.setModule(null);
+			creat.setNewObject(c);
+			final Resource resourceDomain = rSet.getResource(uri, true);
+			resourceDomain.getContents().add(c);
+			try {
+				resourceDomain.save(null);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		} else if (this.type == CreationType.COMPOUND) {
-			 de.tu_bs.ccc.contracting.Verification.Compound c = MmFactory.eINSTANCE.createCompound();
+			de.tu_bs.ccc.contracting.Verification.Compound c = MmFactory.eINSTANCE.createCompound();
 			creat.setNewObject(c);
 			c.setName(file.getName().substring(0, dot));
 			c.setModule(null);
@@ -124,6 +123,19 @@ public class CreateModule extends RecordingCommand {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+		} else if (this.type == CreationType.ABSTRACT) {
+			de.tu_bs.ccc.contracting.Verification.Abstract c = MmFactory.eINSTANCE.createAbstract();
+			creat.setNewObject(c);
+			c.setName(file.getName().substring(0, dot));
+			c.setModule(null);
+			final Resource resourceDomain = rSet.getResource(uri, true);
+			resourceDomain.getContents().add(c);
+			try {
+				resourceDomain.save(null);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}		
 		}
 		creat.setTargetContainer(diagram);
 
@@ -132,9 +144,9 @@ public class CreateModule extends RecordingCommand {
 		creat.setSize(200, 200);
 		IAddFeature add = featureProvider.getAddFeature(creat);
 		PictogramLink link = PictogramsFactory.eINSTANCE.createPictogramLink();
-		
-		//diagram.setLink(link);
-		//link.getBusinessObjects().add(c);
+
+		// diagram.setLink(link);
+		// link.getBusinessObjects().add(c);
 		if (add.canAdd(creat)) {
 			add.add(creat);
 		}
@@ -145,7 +157,6 @@ public class CreateModule extends RecordingCommand {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
 
 	}
 

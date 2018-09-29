@@ -1,7 +1,6 @@
 package solver;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import org.eclipse.emf.common.util.URI;
 
@@ -12,22 +11,21 @@ import com.microsoft.z3.Status;
 import com.microsoft.z3.Symbol;
 import com.microsoft.z3.Z3Exception;
 
-import de.tu_bs.ccc.contracting.core.grammar.GrammarSolver;
-import general.LogWriter;
+import de.tu_bs.ccc.contracting.Verification.Abstract;
 import de.tu_bs.ccc.contracting.Verification.Assumption;
 import de.tu_bs.ccc.contracting.Verification.Contract;
 import de.tu_bs.ccc.contracting.Verification.ContractProperty;
 import de.tu_bs.ccc.contracting.Verification.Guarantee;
-import de.tu_bs.ccc.contracting.Verification.Interface;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.PortType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.Verification.PropertyType;
 import de.tu_bs.ccc.contracting.Verification.ViewPoint;
+import de.tu_bs.ccc.contracting.core.grammar.GrammarSolver;
 
 public class InterfaceSolver {
 
-	public InterfaceSolver(Module m, Interface c) {
+	public InterfaceSolver(Module m, Abstract c) {
 
 		super();
 		this.m = m;
@@ -37,7 +35,7 @@ public class InterfaceSolver {
 	GrammarSolver gs = new GrammarSolver();
 	private Context ctx = new Context();
 	private Module m;
-	private Interface c;
+	private Abstract c;
 
 	public boolean validInstance() {
 		int[][] combination = new int[c.getPorts().size()][2];
@@ -331,11 +329,11 @@ public class InterfaceSolver {
 			constraint = constraint.replaceAll(
 					"(^)" + port.getName() + "([^a-zA-Z0-9.])" + "|([^a-zA-Z0-9.])" + port.getName()
 							+ "+([^a-zA-Z0-9.])" + "|([^a-zA-Z0-9.])+" + port.getName() + "($)",
-					"$1$3$5" + m.getName() + "." + port.getName()  + "$2$4$6");
+					"$1$3$5" + m.getName() + "." + port.getName() + "$2$4$6");
 			constraint = constraint.replaceAll(
 					"(^)" + port.getName() + "([^a-zA-Z0-9.])" + "|([^a-zA-Z0-9.])" + port.getName()
 							+ "+([^a-zA-Z0-9.])" + "|([^a-zA-Z0-9.])+" + port.getName() + "($)",
-					"$1$3$5" + m.getName() + "." + port.getName()  + "$2$4$6");
+					"$1$3$5" + m.getName() + "." + port.getName() + "$2$4$6");
 		}
 		return constraint;
 

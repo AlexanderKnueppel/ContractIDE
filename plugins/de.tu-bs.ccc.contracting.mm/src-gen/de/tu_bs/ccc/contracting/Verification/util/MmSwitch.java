@@ -73,11 +73,11 @@ public class MmSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case MmPackage.INTERFACE: {
-			Interface interface_ = (Interface) theEObject;
-			T result = caseInterface(interface_);
+		case MmPackage.ABSTRACT: {
+			Abstract abstract_ = (Abstract) theEObject;
+			T result = caseAbstract(abstract_);
 			if (result == null)
-				result = caseModule(interface_);
+				result = caseModule(abstract_);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -160,17 +160,17 @@ public class MmSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Interface</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Interface</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseInterface(Interface object) {
+	public T caseAbstract(Abstract object) {
 		return null;
 	}
 

@@ -41,7 +41,7 @@ public class ComponentWizardPage extends WizardPage {
 	public ComponentWizardPage(ISelection selection) {
 		super("wizardPage");
 		setTitle("Component Creation");
-		setDescription("This wizard creates a new component.");
+		setDescription("This wizard creates a new atomic component.");
 		this.selection = selection;
 	}
 

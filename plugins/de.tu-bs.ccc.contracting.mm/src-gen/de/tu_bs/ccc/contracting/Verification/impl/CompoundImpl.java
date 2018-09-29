@@ -26,21 +26,21 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.CompoundImpl#getConsitsOf <em>Consits Of</em>}</li>
+ *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.CompoundImpl#getConsistsOf <em>Consists Of</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class CompoundImpl extends ModuleImpl implements Compound {
 	/**
-	 * The cached value of the '{@link #getConsitsOf() <em>Consits Of</em>}' containment reference list.
+	 * The cached value of the '{@link #getConsistsOf() <em>Consists Of</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getConsitsOf()
+	 * @see #getConsistsOf()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Module> consitsOf;
+	protected EList<Module> consistsOf;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -66,12 +66,12 @@ public class CompoundImpl extends ModuleImpl implements Compound {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Module> getConsitsOf() {
-		if (consitsOf == null) {
-			consitsOf = new EObjectContainmentWithInverseEList<Module>(Module.class, this,
-					MmPackage.COMPOUND__CONSITS_OF, MmPackage.MODULE__IS_PART_OF);
+	public EList<Module> getConsistsOf() {
+		if (consistsOf == null) {
+			consistsOf = new EObjectContainmentWithInverseEList<Module>(Module.class, this,
+					MmPackage.COMPOUND__CONSISTS_OF, MmPackage.MODULE__IS_PART_OF);
 		}
-		return consitsOf;
+		return consistsOf;
 	}
 
 	/**
@@ -83,8 +83,8 @@ public class CompoundImpl extends ModuleImpl implements Compound {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case MmPackage.COMPOUND__CONSITS_OF:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getConsitsOf()).basicAdd(otherEnd, msgs);
+		case MmPackage.COMPOUND__CONSISTS_OF:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getConsistsOf()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -97,8 +97,8 @@ public class CompoundImpl extends ModuleImpl implements Compound {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case MmPackage.COMPOUND__CONSITS_OF:
-			return ((InternalEList<?>) getConsitsOf()).basicRemove(otherEnd, msgs);
+		case MmPackage.COMPOUND__CONSISTS_OF:
+			return ((InternalEList<?>) getConsistsOf()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -111,8 +111,8 @@ public class CompoundImpl extends ModuleImpl implements Compound {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case MmPackage.COMPOUND__CONSITS_OF:
-			return getConsitsOf();
+		case MmPackage.COMPOUND__CONSISTS_OF:
+			return getConsistsOf();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -126,9 +126,9 @@ public class CompoundImpl extends ModuleImpl implements Compound {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case MmPackage.COMPOUND__CONSITS_OF:
-			getConsitsOf().clear();
-			getConsitsOf().addAll((Collection<? extends Module>) newValue);
+		case MmPackage.COMPOUND__CONSISTS_OF:
+			getConsistsOf().clear();
+			getConsistsOf().addAll((Collection<? extends Module>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -142,8 +142,8 @@ public class CompoundImpl extends ModuleImpl implements Compound {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case MmPackage.COMPOUND__CONSITS_OF:
-			getConsitsOf().clear();
+		case MmPackage.COMPOUND__CONSISTS_OF:
+			getConsistsOf().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -157,8 +157,8 @@ public class CompoundImpl extends ModuleImpl implements Compound {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case MmPackage.COMPOUND__CONSITS_OF:
-			return consitsOf != null && !consitsOf.isEmpty();
+		case MmPackage.COMPOUND__CONSISTS_OF:
+			return consistsOf != null && !consistsOf.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -61,7 +61,7 @@ public class ReloadImportFeature extends AbstractCustomFeature {
 	}
 
 	public boolean recursiveUpdateCompound(Compound m) throws IOException {
-		for (Object x : m.getConsitsOf()) {
+		for (Object x : m.getConsistsOf()) {
 			
 			if (x instanceof Module) {
 				Module theMod = (Module) x;

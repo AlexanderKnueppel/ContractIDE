@@ -27,30 +27,30 @@ import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
+import de.tu_bs.ccc.contracting.Verification.Abstract;
 import de.tu_bs.ccc.contracting.Verification.Component;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Contract;
-import de.tu_bs.ccc.contracting.Verification.Interface;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.core.features.AddAbstractFeature;
 import de.tu_bs.ccc.contracting.core.features.AddComponentFeature;
 import de.tu_bs.ccc.contracting.core.features.AddCompoundFeature;
 import de.tu_bs.ccc.contracting.core.features.AddContractFeature;
-import de.tu_bs.ccc.contracting.core.features.AddInterfaceFeature;
 import de.tu_bs.ccc.contracting.core.features.AddPortConnetion;
 import de.tu_bs.ccc.contracting.core.features.AddPortFeature;
+import de.tu_bs.ccc.contracting.core.features.CreateAbstractFeature;
 import de.tu_bs.ccc.contracting.core.features.CreateComponentFeature;
 import de.tu_bs.ccc.contracting.core.features.CreateContractFeature;
-import de.tu_bs.ccc.contracting.core.features.CreateInterfaceFeature;
 import de.tu_bs.ccc.contracting.core.features.CreatePortConnection;
 import de.tu_bs.ccc.contracting.core.features.CreatePortFeature;
 import de.tu_bs.ccc.contracting.core.features.DeletePortConnectionFeature;
 import de.tu_bs.ccc.contracting.core.features.connections.AddContractConnectionFeature;
 import de.tu_bs.ccc.contracting.core.features.connections.ReconnectionFeature;
-import de.tu_bs.ccc.contracting.core.features.loading.LoadInterfaceFeature;
+import de.tu_bs.ccc.contracting.core.features.loading.AssignAbstractFeature;
 import de.tu_bs.ccc.contracting.core.features.loading.LoadModuleFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.CollapseFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.EditInterfaceFeature;
+import de.tu_bs.ccc.contracting.core.guiFeatures.EditAbstractFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.LayoutFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.ReloadImportFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.VerifyCustomFeature;
@@ -71,7 +71,7 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 	@Override
 	public ICustomFeature[] getCustomFeatures(ICustomContext context) {
 		return new ICustomFeature[] { new VerifyCustomFeature(this), new CollapseFeature(this),
-				new EditInterfaceFeature(this), new ReloadImportFeature(this) };
+				new EditAbstractFeature(this), new ReloadImportFeature(this) };
 	}
 
 	@Override
@@ -95,10 +95,13 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 
 	@Override
 	public ICreateFeature[] getCreateFeatures() {
-		return new ICreateFeature[] { new CreateComponentFeature(this), new CreateContractFeature(this),
-				new CreateInterfaceFeature(this), new CreatePortFeature(this), new LoadModuleFeature(this),
-				new CreateProperty(this), new LoadInterfaceFeature(this) };
 
+		return new ICreateFeature[] { 
+				//new CreateComponentFeature(this), 
+				new CreateContractFeature(this),
+				//new CreateAbstractFeature(this), 
+				new CreatePortFeature(this), new LoadModuleFeature(this),
+				new CreateProperty(this), new AssignAbstractFeature(this) };
 	}
 
 	@Override
@@ -114,8 +117,8 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 			return new AddComponentFeature(this);
 		} else if (obj instanceof Contract) {
 			return new AddContractFeature(this);
-		} else if (obj instanceof Interface) {
-			return new AddInterfaceFeature(this);
+		} else if (obj instanceof Abstract) {
+			return new AddAbstractFeature(this);
 		} else if (obj instanceof Compound) {
 			return new AddCompoundFeature(this);
 		} else if (obj instanceof Ports) {
@@ -158,6 +161,7 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 			}
 		}
 		return super.getUpdateFeature(context);
+
 	}
 
 	@Override
@@ -171,6 +175,7 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 
 		}
 		return super.getMoveShapeFeature(context);
+
 	}
 	
 	@Override

@@ -58,8 +58,8 @@ public class MmFactoryImpl extends EFactoryImpl implements MmFactory {
 		switch (eClass.getClassifierID()) {
 		case MmPackage.MODULE:
 			return createModule();
-		case MmPackage.INTERFACE:
-			return createInterface();
+		case MmPackage.ABSTRACT:
+			return createAbstract();
 		case MmPackage.COMPONENT:
 			return createComponent();
 		case MmPackage.COMPOUND:
@@ -140,9 +140,9 @@ public class MmFactoryImpl extends EFactoryImpl implements MmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Interface createInterface() {
-		InterfaceImpl interface_ = new InterfaceImpl();
-		return interface_;
+	public Abstract createAbstract() {
+		AbstractImpl abstract_ = new AbstractImpl();
+		return abstract_;
 	}
 
 	/**

@@ -2,7 +2,6 @@ package solver;
 
 import java.util.ArrayList;
 
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 import org.eclipse.emf.common.util.URI;
@@ -13,25 +12,20 @@ import com.microsoft.z3.Solver;
 import com.microsoft.z3.Status;
 import com.microsoft.z3.Symbol;
 
-import de.tu_bs.ccc.contracting.core.grammar.GrammarSolver;
-import general.LogWriter;
 import de.tu_bs.ccc.contracting.Verification.Assumption;
-import de.tu_bs.ccc.contracting.Verification.Component;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Contract;
 import de.tu_bs.ccc.contracting.Verification.ContractProperty;
 import de.tu_bs.ccc.contracting.Verification.Guarantee;
-import de.tu_bs.ccc.contracting.Verification.Interface;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.PortType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.Verification.PropertyType;
-import de.tu_bs.ccc.contracting.Verification.MmFactory;
 import de.tu_bs.ccc.contracting.Verification.ViewPoint;
-import windows.PortDialog;
+import de.tu_bs.ccc.contracting.core.grammar.GrammarSolver;
+import general.LogWriter;
 
 public class CompoundSolver {
-
 
 	Compound m;
 	Context ctx;
@@ -46,16 +40,16 @@ public class CompoundSolver {
 
 	public boolean checkCompound() {
 		boolean checked = true;
-		for (Module c : m.getConsitsOf()) {
-			if(c.getModule() instanceof Compound) {
+		for (Module c : m.getConsistsOf()) {
+			if (c.getModule() instanceof Compound) {
 				CompoundSolver s = new CompoundSolver((Compound) c.getModule());
-				if(!s.checkCompound()) {
-					checked=false;
+				if (!s.checkCompound()) {
+					checked = false;
 				}
 			}
-			
+
 		}
-		if(!(checkTiming() && checkFunctional() && checkMemory())) {
+		if (!(checkTiming() && checkFunctional() && checkMemory())) {
 			checked = false;
 		}
 		return checked;
@@ -64,7 +58,7 @@ public class CompoundSolver {
 	private boolean checkFunctional() {
 		boolean contractsMet = true;
 		ArrayList<Ports> p = new ArrayList<Ports>();
-		for (Module mod : this.m.getConsitsOf()) {
+		for (Module mod : this.m.getConsistsOf()) {
 			for (Ports port : mod.getPorts()) {
 				p.add(port);
 			}
@@ -126,16 +120,17 @@ public class CompoundSolver {
 			}
 
 		}
-		for (Module component : this.m.getConsitsOf()) {
+		for (Module component : this.m.getConsistsOf()) {
 			for (Contract c : component.getContract()) {
 				if (c.getViewPoint().getValue() == ViewPoint.FUNCTIONAL_VALUE) {
 					try {
-						solver.add(this.ctx.parseSMTLIB2String(this.getStringofContract(c), null, null, declNames, decl));
+						solver.add(
+								this.ctx.parseSMTLIB2String(this.getStringofContract(c), null, null, declNames, decl));
 					} catch (Exception e) {
-						String x = "Error caused by: "+c.getModule().getName()+" "+c.getViewPoint();
+						String x = "Error caused by: " + c.getModule().getName() + " " + c.getViewPoint();
 						JOptionPane.showMessageDialog(null, x, "Contract Parsing Error", JOptionPane.ERROR_MESSAGE);
 					}
-					
+
 				}
 			}
 		}
@@ -143,11 +138,12 @@ public class CompoundSolver {
 			if (con.getViewPoint().getValue() == ViewPoint.FUNCTIONAL_VALUE) {
 				solver.push();
 				try {
-				solver.add(this.ctx.parseSMTLIB2String(this.getStringFuncofContract(con), null, null, declNames, decl));
-			} catch (Exception e) {
-				String x = "Error caused by: "+con.getModule().getName()+" "+con.getViewPoint();
-				JOptionPane.showMessageDialog(null, x, "Contract Parsing Error", JOptionPane.ERROR_MESSAGE);
-			}
+					solver.add(this.ctx.parseSMTLIB2String(this.getStringFuncofContract(con), null, null, declNames,
+							decl));
+				} catch (Exception e) {
+					String x = "Error caused by: " + con.getModule().getName() + " " + con.getViewPoint();
+					JOptionPane.showMessageDialog(null, x, "Contract Parsing Error", JOptionPane.ERROR_MESSAGE);
+				}
 				if (solver.check() == Status.SATISFIABLE) {
 					contractsMet = false;
 					URI fileURI = this.m.eResource().getURI();
@@ -164,18 +160,18 @@ public class CompoundSolver {
 
 	private boolean checkMemory() {
 		boolean isVerified = true;
-		Symbol[] declNames = new Symbol[this.m.getConsitsOf().size() + 1];
-		FuncDecl[] decl = new FuncDecl[this.m.getConsitsOf().size() + 1];
+		Symbol[] declNames = new Symbol[this.m.getConsistsOf().size() + 1];
+		FuncDecl[] decl = new FuncDecl[this.m.getConsistsOf().size() + 1];
 		declNames[0] = this.ctx.mkSymbol(this.m.getName() + ".Memory");
 		decl[0] = this.ctx.mkConstDecl(declNames[0], ctx.mkRealSort());
-		for (int i = 1; i < this.m.getConsitsOf().size() + 1; i++) {
-			declNames[i] = this.ctx.mkSymbol(this.m.getConsitsOf().get(i - 1).getName() + ".Memory");
+		for (int i = 1; i < this.m.getConsistsOf().size() + 1; i++) {
+			declNames[i] = this.ctx.mkSymbol(this.m.getConsistsOf().get(i - 1).getName() + ".Memory");
 			decl[i] = this.ctx.mkConstDecl(declNames[i], ctx.mkRealSort());
 
 		}
 
 		Solver s = this.ctx.mkSolver();
-		for (Module mod : this.m.getConsitsOf()) {
+		for (Module mod : this.m.getConsistsOf()) {
 			for (Contract cont : mod.getContract()) {
 				if (cont.getViewPoint().getValue() == ViewPoint.MEMORY_VALUE) {
 					String inter = cont.getGuarantee().get(0).getProperty().replaceAll("Memory",
@@ -192,15 +188,15 @@ public class CompoundSolver {
 						this.m.getName() + ".Memory");
 				guarantee = this.gs.parseString(guarantee);
 				String assumption = new String();
-				for (Module mod : this.m.getConsitsOf()) {
+				for (Module mod : this.m.getConsistsOf()) {
 
 					assumption = assumption + " " + mod.getName() + ".Memory";
 
 				}
 
-				if (this.m.getConsitsOf().size() == 0) {
+				if (this.m.getConsistsOf().size() == 0) {
 
-				} else if (this.m.getConsitsOf().size() == 1) {
+				} else if (this.m.getConsistsOf().size() == 1) {
 					s.add(ctx.parseSMTLIB2String(
 							"(define-fun ValidContract () Bool (=> " + "(= " + this.m.getName() + ".Memory " + ""
 									+ assumption + ") " + guarantee + "))(assert (not ValidContract))",
@@ -235,7 +231,7 @@ public class CompoundSolver {
 		boolean contractsMet = true;
 
 		ArrayList<Ports> p = new ArrayList<Ports>();
-		for (Module mod : this.m.getConsitsOf()) {
+		for (Module mod : this.m.getConsistsOf()) {
 			for (Ports port : mod.getPorts()) {
 				p.add(port);
 			}
@@ -243,8 +239,8 @@ public class CompoundSolver {
 		for (Ports port : this.m.getPorts()) {
 			p.add(port);
 		}
-		Symbol[] declNames = new Symbol[(p.size() * 6) + ((this.m.getConsitsOf().size()) * 4)];
-		FuncDecl[] decl = new FuncDecl[(p.size() * 6) + ((this.m.getConsitsOf().size()) * 4)];
+		Symbol[] declNames = new Symbol[(p.size() * 6) + ((this.m.getConsistsOf().size()) * 4)];
+		FuncDecl[] decl = new FuncDecl[(p.size() * 6) + ((this.m.getConsistsOf().size()) * 4)];
 		for (int i = 0; i < p.size(); i++) {
 			declNames[i * 6] = this.ctx
 					.mkSymbol(p.get(i).getModule().getName() + "." + p.get(i).getName() + "." + "minduration");
@@ -266,25 +262,24 @@ public class CompoundSolver {
 			decl[(i * 6) + 5] = this.ctx.mkConstDecl(declNames[(i * 6) + 5], ctx.mkRealSort());
 
 		}
-		for (int i = 0; i < this.m.getConsitsOf().size(); i++) {
+		for (int i = 0; i < this.m.getConsistsOf().size(); i++) {
 			declNames[(p.size() * 6) + i * 4] = this.ctx
-					.mkSymbol(this.m.getConsitsOf().get(i).getName() + ".inMindelay");
+					.mkSymbol(this.m.getConsistsOf().get(i).getName() + ".inMindelay");
 			decl[(p.size() * 6) + i * 4] = this.ctx.mkConstDecl(declNames[(p.size() * 6) + (i * 4)], ctx.mkRealSort());
 			declNames[(p.size() * 6) + 1 + (i * 4)] = this.ctx
-					.mkSymbol(this.m.getConsitsOf().get(i).getName() + ".inMaxdelay");
+					.mkSymbol(this.m.getConsistsOf().get(i).getName() + ".inMaxdelay");
 			decl[(p.size() * 6) + 1 + (i * 4)] = this.ctx.mkConstDecl(declNames[(p.size() * 6) + (i * 4) + 1],
 					ctx.mkRealSort());
 			declNames[(p.size() * 6) + 2 + (i * 4)] = this.ctx
-					.mkSymbol(this.m.getConsitsOf().get(i).getName() + ".outMindelay");
+					.mkSymbol(this.m.getConsistsOf().get(i).getName() + ".outMindelay");
 			decl[(p.size() * 6) + 2 + (i * 4)] = this.ctx.mkConstDecl(declNames[(p.size() * 6) + (i * 4) + 2],
 					ctx.mkRealSort());
 			declNames[(p.size() * 6) + 3 + (i * 4)] = this.ctx
-					.mkSymbol(this.m.getConsitsOf().get(i).getName() + ".outMaxdelay");
+					.mkSymbol(this.m.getConsistsOf().get(i).getName() + ".outMaxdelay");
 			decl[(p.size() * 6) + 3 + (i * 4)] = this.ctx.mkConstDecl(declNames[(p.size() * 6) + (i * 4) + 3],
 					ctx.mkRealSort());
 
 		}
-
 
 		Solver solver = this.ctx.mkSolver();
 		String[] ending = { ".minduration", ".maxduration", ".mindelay", ".maxdelay", ".frequency", ".jitter" };
@@ -298,14 +293,15 @@ public class CompoundSolver {
 							"(assert (" + "= " + endport.getModule().getName() + "." + endport.getName() + string + " "
 									+ p.get(i).getModule().getName() + "." + p.get(i).getName() + string + "))",
 							null, null, declNames, decl));
-		
 
 				}
 				for (Ports endport : p.get(i).getInsidePorts()) {
 					if (endport.getModule().getName().equals(this.m.getName())) {
-//						System.out.println("(assert (" + "= " + endport.getModule().getName() + "." + endport.getName()
-//								+ string + " " + p.get(i).getModule().getName() + "." + p.get(i).getName() + string
-//								+ "))");
+						// System.out.println("(assert (" + "= " + endport.getModule().getName() + "." +
+						// endport.getName()
+						// + string + " " + p.get(i).getModule().getName() + "." + p.get(i).getName() +
+						// string
+						// + "))");
 						solver.add(this.ctx.parseSMTLIB2String("(assert (" + "= " + endport.getModule().getName() + "."
 								+ endport.getName() + string + " " + p.get(i).getModule().getName() + "."
 								+ p.get(i).getName() + string + "))", null, null, declNames, decl));
@@ -326,7 +322,7 @@ public class CompoundSolver {
 				}
 			}
 		}
-		for (Module part : this.m.getConsitsOf()) {
+		for (Module part : this.m.getConsistsOf()) {
 
 			ArrayList<Ports> inputPorts = this.getInputportOfModule(part);
 			if (inputPorts.size() == 0 || inputPorts == null) {
@@ -348,7 +344,6 @@ public class CompoundSolver {
 						null, null, declNames, decl));
 
 			} else if (inputPorts.size() == 2) {
-
 
 				solver.add(this.ctx.parseSMTLIB2String("(assert (=> (>= " + inputPorts.get(1).getModule().getName()
 						+ "." + inputPorts.get(1).getName() + ".mindelay" + " "
@@ -392,8 +387,8 @@ public class CompoundSolver {
 							+ "." + inputPorts.get(j).getName() + ".mindelay" + ")))";
 					check2 = check2 + ")(= " + part.getName() + ".inMaxdelay " + inputPorts.get(j).getModule().getName()
 							+ "." + inputPorts.get(j).getName() + ".maxdelay" + ")))";
-					//System.out.println(check1);
-					//System.out.println(check2);
+					// System.out.println(check1);
+					// System.out.println(check2);
 					solver.add(this.ctx.parseSMTLIB2String(check1, null, null, declNames, decl));
 					solver.add(this.ctx.parseSMTLIB2String(check2, null, null, declNames, decl));
 				}
@@ -412,7 +407,7 @@ public class CompoundSolver {
 			}
 			for (Contract c : part.getContract()) {
 				if (c.getViewPoint().getValue() == ViewPoint.TIMING_VALUE) {
-					//System.out.println(this.getTimingStringofContract(c));
+					// System.out.println(this.getTimingStringofContract(c));
 					solver.add(this.ctx.parseSMTLIB2String(this.getTimingStringofContract(c), null, null, declNames,
 							decl));
 				}
@@ -424,12 +419,12 @@ public class CompoundSolver {
 		for (Contract con : this.m.getContract()) {
 			if (con.getViewPoint().getValue() == ViewPoint.TIMING_VALUE) {
 				solver.push();
-				//System.out.println(this.getTimingFuncStringofContract(con));
+				// System.out.println(this.getTimingFuncStringofContract(con));
 				solver.add(
 
 						this.ctx.parseSMTLIB2String(this.getTimingFuncStringofContract(con), null, null, declNames,
 								decl));
-				//System.out.println(solver);
+				// System.out.println(solver);
 				if (solver.check() == Status.SATISFIABLE) {
 					contractsMet = false;
 					URI fileURI = this.m.eResource().getURI();
@@ -528,11 +523,11 @@ public class CompoundSolver {
 			constraint = constraint.replaceAll(
 					"(^)" + port.getName() + "([^a-zA-Z0-9.])" + "|([^a-zA-Z0-9.])" + port.getName()
 							+ "+([^a-zA-Z0-9.])" + "|([^a-zA-Z0-9.])+" + port.getName() + "($)",
-					"$1$3$5" + m.getName() + "." + port.getName()  + "$2$4$6");
+					"$1$3$5" + m.getName() + "." + port.getName() + "$2$4$6");
 			constraint = constraint.replaceAll(
 					"(^)" + port.getName() + "([^a-zA-Z0-9.])" + "|([^a-zA-Z0-9.])" + port.getName()
 							+ "+([^a-zA-Z0-9.])" + "|([^a-zA-Z0-9.])+" + port.getName() + "($)",
-					"$1$3$5" + m.getName() + "." + port.getName()  + "$2$4$6");
+					"$1$3$5" + m.getName() + "." + port.getName() + "$2$4$6");
 		}
 		return constraint;
 

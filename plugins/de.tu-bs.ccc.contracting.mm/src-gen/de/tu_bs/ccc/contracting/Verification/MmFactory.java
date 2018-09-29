@@ -31,13 +31,13 @@ public interface MmFactory extends EFactory {
 	Module createModule();
 
 	/**
-	 * Returns a new object of class '<em>Interface</em>'.
+	 * Returns a new object of class '<em>Abstract</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Interface</em>'.
+	 * @return a new object of class '<em>Abstract</em>'.
 	 * @generated
 	 */
-	Interface createInterface();
+	Abstract createAbstract();
 
 	/**
 	 * Returns a new object of class '<em>Component</em>'.

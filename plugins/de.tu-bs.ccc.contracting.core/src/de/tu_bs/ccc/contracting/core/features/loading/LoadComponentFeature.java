@@ -102,7 +102,7 @@ public class LoadComponentFeature extends AbstractCreateFeature {
 			Compound x = (Compound) getBusinessObjectForPictogramElement(pict);
 			copy.setIsPartOf(x);
 			copy.setModule(c);
-			x.getConsitsOf().add(copy);
+			x.getConsistsOf().add(copy);
 
 			return new Object[] { copy };
 		} catch (Exception e) {
@@ -111,7 +111,7 @@ public class LoadComponentFeature extends AbstractCreateFeature {
 		try {
 			Compound c = (Compound) resource.getContents().get(d.getCount());
 			Compound copy = EcoreUtil.copy(c);
-			for (Module m : copy.getConsitsOf()) {
+			for (Module m : copy.getConsistsOf()) {
 				EcoreUtil.delete(m);
 			}
 			addGraphicalRepresentation(context, copy);
@@ -119,7 +119,7 @@ public class LoadComponentFeature extends AbstractCreateFeature {
 			Compound x = (Compound) getBusinessObjectForPictogramElement(pict);
 			copy.setIsPartOf(x);
 			copy.setModule(c);
-			x.getConsitsOf().add(copy);
+			x.getConsistsOf().add(copy);
 
 			return new Object[] { copy };
 

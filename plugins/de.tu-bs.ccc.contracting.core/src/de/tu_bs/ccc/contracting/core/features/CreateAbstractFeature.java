@@ -6,17 +6,17 @@ import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
 
+import de.tu_bs.ccc.contracting.Verification.Abstract;
 import de.tu_bs.ccc.contracting.Verification.Compound;
-import de.tu_bs.ccc.contracting.Verification.Interface;
 import de.tu_bs.ccc.contracting.Verification.MmFactory;
 
-public class CreateInterfaceFeature extends AbstractCreateFeature implements ICreateFeature {
+public class CreateAbstractFeature extends AbstractCreateFeature implements ICreateFeature {
  
     private static final String TITLE = "Create class";
  
     private static final String USER_QUESTION = "Enter new class name";
  
-    public CreateInterfaceFeature(IFeatureProvider fp) {
+    public CreateAbstractFeature(IFeatureProvider fp) {
         // set name and description of the creation feature
         super(fp, "Interface", "Creates an Interface");
     }
@@ -33,7 +33,7 @@ public class CreateInterfaceFeature extends AbstractCreateFeature implements ICr
         }*/
  
         // create EClass
-        Interface newClass = MmFactory.eINSTANCE.createInterface();
+        Abstract newClass = MmFactory.eINSTANCE.createAbstract();
         
         newClass.setName("DefaultInterface");
         newClass.setName("Default Description");

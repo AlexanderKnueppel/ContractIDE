@@ -72,8 +72,8 @@ public class MmAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseInterface(Interface object) {
-			return createInterfaceAdapter();
+		public Adapter caseAbstract(Abstract object) {
+			return createAbstractAdapter();
 		}
 
 		@Override
@@ -145,16 +145,16 @@ public class MmAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.tu_bs.ccc.contracting.Verification.Interface <em>Interface</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.tu_bs.ccc.contracting.Verification.Abstract <em>Abstract</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see de.tu_bs.ccc.contracting.Verification.Interface
+	 * @see de.tu_bs.ccc.contracting.Verification.Abstract
 	 * @generated
 	 */
-	public Adapter createInterfaceAdapter() {
+	public Adapter createAbstractAdapter() {
 		return null;
 	}
 

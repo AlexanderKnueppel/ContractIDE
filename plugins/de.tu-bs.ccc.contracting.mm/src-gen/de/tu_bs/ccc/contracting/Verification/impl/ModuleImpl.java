@@ -2,9 +2,9 @@
  */
 package de.tu_bs.ccc.contracting.Verification.impl;
 
+import de.tu_bs.ccc.contracting.Verification.Abstract;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Contract;
-import de.tu_bs.ccc.contracting.Verification.Interface;
 import de.tu_bs.ccc.contracting.Verification.MmPackage;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.Ports;
@@ -37,7 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.ModuleImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.ModuleImpl#getIsPartOf <em>Is Part Of</em>}</li>
- *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.ModuleImpl#getGetsrealized <em>Getsrealized</em>}</li>
+ *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.ModuleImpl#getRealizedBy <em>Realized By</em>}</li>
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.ModuleImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.ModuleImpl#getPorts <em>Ports</em>}</li>
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.ModuleImpl#getContract <em>Contract</em>}</li>
@@ -69,14 +69,14 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getGetsrealized() <em>Getsrealized</em>}' reference list.
+	 * The cached value of the '{@link #getRealizedBy() <em>Realized By</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getGetsrealized()
+	 * @see #getRealizedBy()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Interface> getsrealized;
+	protected EList<Abstract> realizedBy;
 
 	/**
 	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
@@ -223,8 +223,8 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newIsPartOf != null)
-				msgs = ((InternalEObject) newIsPartOf).eInverseAdd(this, MmPackage.COMPOUND__CONSITS_OF, Compound.class,
-						msgs);
+				msgs = ((InternalEObject) newIsPartOf).eInverseAdd(this, MmPackage.COMPOUND__CONSISTS_OF,
+						Compound.class, msgs);
 			msgs = basicSetIsPartOf(newIsPartOf, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -238,12 +238,12 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Interface> getGetsrealized() {
-		if (getsrealized == null) {
-			getsrealized = new EObjectWithInverseResolvingEList.ManyInverse<Interface>(Interface.class, this,
-					MmPackage.MODULE__GETSREALIZED, MmPackage.INTERFACE__REALIZES);
+	public EList<Abstract> getRealizedBy() {
+		if (realizedBy == null) {
+			realizedBy = new EObjectWithInverseResolvingEList.ManyInverse<Abstract>(Abstract.class, this,
+					MmPackage.MODULE__REALIZED_BY, MmPackage.ABSTRACT__REALIZES);
 		}
-		return getsrealized;
+		return realizedBy;
 	}
 
 	/**
@@ -367,8 +367,8 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetIsPartOf((Compound) otherEnd, msgs);
-		case MmPackage.MODULE__GETSREALIZED:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getGetsrealized()).basicAdd(otherEnd, msgs);
+		case MmPackage.MODULE__REALIZED_BY:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRealizedBy()).basicAdd(otherEnd, msgs);
 		case MmPackage.MODULE__PORTS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getPorts()).basicAdd(otherEnd, msgs);
 		case MmPackage.MODULE__CONTRACT:
@@ -387,8 +387,8 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 		switch (featureID) {
 		case MmPackage.MODULE__IS_PART_OF:
 			return basicSetIsPartOf(null, msgs);
-		case MmPackage.MODULE__GETSREALIZED:
-			return ((InternalEList<?>) getGetsrealized()).basicRemove(otherEnd, msgs);
+		case MmPackage.MODULE__REALIZED_BY:
+			return ((InternalEList<?>) getRealizedBy()).basicRemove(otherEnd, msgs);
 		case MmPackage.MODULE__PORTS:
 			return ((InternalEList<?>) getPorts()).basicRemove(otherEnd, msgs);
 		case MmPackage.MODULE__CONTRACT:
@@ -406,7 +406,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 		case MmPackage.MODULE__IS_PART_OF:
-			return eInternalContainer().eInverseRemove(this, MmPackage.COMPOUND__CONSITS_OF, Compound.class, msgs);
+			return eInternalContainer().eInverseRemove(this, MmPackage.COMPOUND__CONSISTS_OF, Compound.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -423,8 +423,8 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 			return getName();
 		case MmPackage.MODULE__IS_PART_OF:
 			return getIsPartOf();
-		case MmPackage.MODULE__GETSREALIZED:
-			return getGetsrealized();
+		case MmPackage.MODULE__REALIZED_BY:
+			return getRealizedBy();
 		case MmPackage.MODULE__DESCRIPTION:
 			return getDescription();
 		case MmPackage.MODULE__PORTS:
@@ -456,9 +456,9 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 		case MmPackage.MODULE__IS_PART_OF:
 			setIsPartOf((Compound) newValue);
 			return;
-		case MmPackage.MODULE__GETSREALIZED:
-			getGetsrealized().clear();
-			getGetsrealized().addAll((Collection<? extends Interface>) newValue);
+		case MmPackage.MODULE__REALIZED_BY:
+			getRealizedBy().clear();
+			getRealizedBy().addAll((Collection<? extends Abstract>) newValue);
 			return;
 		case MmPackage.MODULE__DESCRIPTION:
 			setDescription((String) newValue);
@@ -495,8 +495,8 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 		case MmPackage.MODULE__IS_PART_OF:
 			setIsPartOf((Compound) null);
 			return;
-		case MmPackage.MODULE__GETSREALIZED:
-			getGetsrealized().clear();
+		case MmPackage.MODULE__REALIZED_BY:
+			getRealizedBy().clear();
 			return;
 		case MmPackage.MODULE__DESCRIPTION:
 			setDescription(DESCRIPTION_EDEFAULT);
@@ -529,8 +529,8 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case MmPackage.MODULE__IS_PART_OF:
 			return getIsPartOf() != null;
-		case MmPackage.MODULE__GETSREALIZED:
-			return getsrealized != null && !getsrealized.isEmpty();
+		case MmPackage.MODULE__REALIZED_BY:
+			return realizedBy != null && !realizedBy.isEmpty();
 		case MmPackage.MODULE__DESCRIPTION:
 			return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		case MmPackage.MODULE__PORTS:
