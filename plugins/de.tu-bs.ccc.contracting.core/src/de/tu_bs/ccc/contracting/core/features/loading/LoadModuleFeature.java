@@ -44,24 +44,19 @@ public class LoadModuleFeature extends AbstractCreateFeature {
 	@Override
 	public Object[] create(ICreateContext context) {
 
-		List<Module> modules = (List<Module>) CoreUtil.getRootModules(CoreUtil.getCurrentProject(), new ModuleFilter() {
-			@Override
-			public boolean keep(Module m) {
-				PictogramElement pict = context.getTargetContainer();
-				Module x = (Module) getBusinessObjectForPictogramElement(pict);
+		List<Module> modules = (List<Module>) CoreUtil.getRootModules(CoreUtil.getCurrentProject(), m -> {
+			PictogramElement pict = context.getTargetContainer();
+			Module x = (Module) getBusinessObjectForPictogramElement(pict);
 
-				return x.eResource().getURI().toString().equals(m.eResource().getURI().toString());
-			}
-
+			return x.eResource().getURI().toString().equals(m.eResource().getURI().toString());
 		});
 
-		final LoadModuleDialog dialog = new LoadModuleDialog(null, new LoadModuleLabelProvider(), "Add Module to this Compound", "Add Module",
-				modules);
-		
+		final LoadModuleDialog dialog = new LoadModuleDialog(null, new LoadModuleLabelProvider(),
+				"Add Module to this Compound", "Add Module", modules);
+
 		if (dialog.open() == LoadModuleDialog.CANCEL) {
 			return null;
 		}
-
 
 		for (Object obj : dialog.getResult()) {
 			Module c = (Module) obj;
