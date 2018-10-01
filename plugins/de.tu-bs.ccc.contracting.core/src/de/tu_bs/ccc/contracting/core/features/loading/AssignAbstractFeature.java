@@ -48,22 +48,18 @@ public class AssignAbstractFeature extends AbstractCreateFeature {
 	@Override
 	public Object[] create(ICreateContext context) {
 
-		List<Module> modules = (List<Module>) CoreUtil.getRootModules(CoreUtil.getCurrentProject(), new ModuleFilter() {
-			@Override
-			public boolean keep(Module m) {
-				PictogramElement pict = context.getTargetContainer();
-				Module x = (Module) getBusinessObjectForPictogramElement(pict);
+		List<Module> modules = (List<Module>) CoreUtil.getRootModules(CoreUtil.getCurrentProject(), m -> {
+			PictogramElement pict = context.getTargetContainer();
+			Module x = (Module) getBusinessObjectForPictogramElement(pict);
 
-				boolean result = m instanceof Abstract;
+			boolean result = m instanceof Abstract;
 
-				for (Module realization : x.getRealizedBy()) {
-					result = result
-							&& !realization.eResource().getURI().toString().equals(m.eResource().getURI().toString());
-				}
-
-				return result;
+			for (Module realization : x.getRealizedBy()) {
+				result = result
+						&& !realization.eResource().getURI().toString().equals(m.eResource().getURI().toString());
 			}
 
+			return result;
 		});
 
 		final LoadModuleDialog dialog = new LoadModuleDialog(null, new LoadModuleLabelProvider(),
