@@ -28,6 +28,7 @@ Import-Package: com.microsoft.z3,
  org.eclipse.core.runtime
 Export-Package: com.microsoft.z3,
  com.microsoft.z3.enumerations,
+ de.tu_bs.ccc.contracting.core.io,
  org.antlr.v4,
  org.antlr.v4.analysis,
  org.antlr.v4.automata,
