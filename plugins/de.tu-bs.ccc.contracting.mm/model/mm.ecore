@@ -21,7 +21,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="realizes" upperBound="-1"
         eType="#//Module" eOpposite="#//Module/realizedBy"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Component" eSuperTypes="#//Module"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Component" eSuperTypes="#//Module">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="singleton" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="binary" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Compound" eSuperTypes="#//Module">
     <eStructuralFeatures xsi:type="ecore:EReference" name="consistsOf" upperBound="-1"
         eType="#//Module" containment="true" eOpposite="#//Module/isPartOf"/>

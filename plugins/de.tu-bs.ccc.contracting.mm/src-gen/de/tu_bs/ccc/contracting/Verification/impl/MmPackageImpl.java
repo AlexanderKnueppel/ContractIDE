@@ -313,6 +313,24 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getComponent_Singleton() {
+		return (EAttribute) componentEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getComponent_Binary() {
+		return (EAttribute) componentEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCompound() {
 		return compoundEClass;
 	}
@@ -621,6 +639,8 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 		createEReference(abstractEClass, ABSTRACT__REALIZES);
 
 		componentEClass = createEClass(COMPONENT);
+		createEAttribute(componentEClass, COMPONENT__SINGLETON);
+		createEAttribute(componentEClass, COMPONENT__BINARY);
 
 		compoundEClass = createEClass(COMPOUND);
 		createEReference(compoundEClass, COMPOUND__CONSISTS_OF);
@@ -732,6 +752,11 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 
 		initEClass(componentEClass, Component.class, "Component", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getComponent_Singleton(), ecorePackage.getEBoolean(), "singleton", "false", 0, 1,
+				Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getComponent_Binary(), ecorePackage.getEString(), "binary", null, 0, 1, Component.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compoundEClass, Compound.class, "Compound", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
