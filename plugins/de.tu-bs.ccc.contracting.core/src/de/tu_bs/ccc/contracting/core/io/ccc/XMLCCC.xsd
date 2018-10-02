@@ -1,0 +1,353 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:annotation>
+    <xs:documentation xml:lang="en">
+     Contracting language - Schema file
+     Version: xx
+     Last updated: xx
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:element name="xml">
+      <xs:complexType>
+        <xs:all>
+          <xs:element name="repository" type="RepositoryType" minOccurs="0" />
+          <xs:element name="system" type="SystemType" minOccurs="0" />
+        </xs:all>
+     </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="NameType">
+    <xs:attribute name="name" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="RefType">
+    <xs:attribute name="ref" type="xs:string" />
+  </xs:complexType>
+
+  <xs:complexType name="QuantumType">
+    <xs:attribute name="quantum" type="xs:integer" use="required"/>
+  </xs:complexType>
+
+   <xs:complexType name="RepositoryType">
+     <xs:choice maxOccurs="unbounded">
+       <xs:element name="binary" type="BinaryType" />
+       <xs:element name="component" type="ComponentType" />
+       <xs:element name="composite" type="CompositeType" />
+     </xs:choice>
+   </xs:complexType>
+
+   <xs:complexType name="BinaryType">
+     <xs:choice maxOccurs="unbounded">
+       <xs:element name="component" minOccurs="0" maxOccurs="unbounded">
+         <xs:complexType>
+           <xs:attribute name="name" type="xs:string" use="required"/>
+           <xs:attribute name="version" type="xs:string"/>
+         </xs:complexType>
+       </xs:element>
+     </xs:choice>
+     <xs:attribute name="name" type="xs:string"/>
+   </xs:complexType>
+
+   <xs:complexType name="ComponentType">
+     <xs:sequence>
+       <xs:choice minOccurs="0" maxOccurs="1">
+         <xs:element name="proxy"    type="ProxyType" />
+         <xs:element name="filter"   type="FilterType" />
+         <xs:element name="function" type="NameType" />
+         <xs:element name="mux"      type="MuxType" />
+         <xs:element name="protocol" type="ProtocolType" maxOccurs="unbounded" />
+       </xs:choice>
+       <xs:element name="provides" type="ProvidesType" minOccurs="0" />
+       <xs:element name="requires" type="RequiresType" minOccurs="0" />
+       <xs:element name="timing" type="TimingType" minOccurs="0" />
+       <xs:element name="defaults"                     minOccurs="0" />
+     </xs:sequence>
+     <xs:attribute name="name"      type="xs:string" use="required"/>
+     <xs:attribute name="singleton" type="xs:boolean"/>
+     <xs:attribute name="version"   type="xs:string"/>
+   </xs:complexType>
+
+   <xs:complexType name="ProvidesType">
+     <xs:sequence>
+       <xs:element name="service" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+              <xs:attribute name="name" type="xs:string" use="required"/>
+              <xs:attribute name="max_clients" type="xs:integer"/>
+              <xs:attribute name="filter" type="xs:string"/>
+              <xs:attribute name="ref" type="xs:string"/>
+              <xs:attribute name="type" default="native">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                      <xs:pattern value="legacy|network|native" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:attribute>
+          </xs:complexType>
+       </xs:element>
+     </xs:sequence>
+   </xs:complexType>
+
+   <xs:complexType name="RequiresType">
+     <xs:choice maxOccurs="unbounded">
+       <xs:element name="service" minOccurs="0" maxOccurs="unbounded">
+         <xs:complexType>
+           <xs:choice maxOccurs="unbounded">
+             <xs:element name="exclude-component" minOccurs="0" maxOccurs="unbounded">
+               <xs:complexType>
+                 <xs:attribute name="name" type="xs:string" use="required"/>
+                 <xs:attribute name="version_above" type="xs:string"/>
+                 <xs:attribute name="version_below" type="xs:string"/>
+               </xs:complexType>
+             </xs:element>
+           </xs:choice>
+           <xs:attribute name="name" type="xs:string" use="required"/>
+           <xs:attribute name="label" type="xs:string"/>
+			  <xs:attribute name="ref" type="xs:string"/>
+           <xs:attribute name="filter" type="xs:string"/>
+           <xs:attribute name="function" type="xs:string"/>
+         </xs:complexType>
+       </xs:element>
+
+       <xs:element name="rte" minOccurs="0" maxOccurs="1" type="NameType" />
+       <xs:element name="spec" minOccurs="0" maxOccurs="unbounded" type="NameType" />
+		 <xs:element name="ram" minOccurs="0" maxOccurs="1" type="QuantumType" />
+		 <xs:element name="caps" minOccurs="0" maxOccurs="1" type="QuantumType" />
+
+     </xs:choice>
+   </xs:complexType>
+
+   <xs:complexType name="ProxyType">
+     <xs:attribute name="carrier" type="xs:string" use="required"/>
+   </xs:complexType>
+
+   <xs:complexType name="FilterType">
+     <xs:choice maxOccurs="unbounded">
+       <xs:element name="add" minOccurs="0" maxOccurs="unbounded">
+         <xs:complexType>
+           <xs:attribute name="tag" type="xs:string" use="required"/>
+         </xs:complexType>
+       </xs:element>
+       <xs:element name="remove" minOccurs="0" maxOccurs="unbounded">
+         <xs:complexType>
+           <xs:attribute name="tag" type="xs:string" use="required"/>
+         </xs:complexType>
+       </xs:element>
+       <xs:element name="reset" minOccurs="0" maxOccurs="unbounded">
+         <xs:complexType>
+           <xs:attribute name="tag" type="xs:string" use="required"/>
+         </xs:complexType>
+       </xs:element>
+     </xs:choice>
+     <xs:attribute name="alias" type="xs:string"/>
+   </xs:complexType>
+
+   <xs:complexType name="MuxType">
+     <xs:attribute name="service" type="xs:string" use="required"/>
+   </xs:complexType>
+
+   <xs:complexType name="ProtocolType">
+     <xs:attribute name="from" type="xs:string" use="required"/>
+     <xs:attribute name="to" type="xs:string" use="required"/>
+   </xs:complexType>
+
+   <xs:complexType name="CompositeRequiresType">
+     <xs:choice maxOccurs="unbounded">
+       <xs:element name="service" minOccurs="0" maxOccurs="unbounded">
+         <xs:complexType>
+           <xs:attribute name="name" type="xs:string" use="required"/>
+           <xs:attribute name="label" type="xs:string"/>
+           <xs:attribute name="filter" type="xs:string"/>
+           <xs:attribute name="function" type="xs:string"/>
+			  <xs:attribute name="ref" type="xs:string"/>
+         </xs:complexType>
+       </xs:element>
+     </xs:choice>
+   </xs:complexType>
+
+	<xs:complexType name="TaskType">
+     <xs:choice minOccurs="1" maxOccurs="unbounded">
+       <xs:element name="task" minOccurs="1" maxOccurs="unbounded">
+         <xs:complexType>
+           <xs:attribute name="wcet" type="xs:integer" use="required"/>
+           <xs:attribute name="bcet" type="xs:integer" use="required"/>
+         </xs:complexType>
+       </xs:element>
+       <xs:element name="signal" minOccurs="1" maxOccurs="unbounded">
+         <xs:complexType>
+           <xs:attribute name="to_ref" type="xs:string" use="required"/>
+         </xs:complexType>
+       </xs:element>
+       <xs:element name="call" minOccurs="1" maxOccurs="unbounded">
+         <xs:complexType>
+           <xs:attribute name="to_ref" type="xs:string" use="required"/>
+           <xs:attribute name="method" type="xs:string" use="required"/>
+         </xs:complexType>
+       </xs:element>
+	  </xs:choice>
+	</xs:complexType>
+
+   <xs:complexType name="TimingType">
+     <xs:choice minOccurs="1" maxOccurs="unbounded">
+       <xs:element name="on-time" minOccurs="1" maxOccurs="1">
+			<xs:complexType>
+				<xs:complexContent>
+					<xs:extension base="TaskType">
+					  <xs:attribute name="period" type="xs:integer" use="required"/>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+       </xs:element>
+       <xs:element name="on-signal" minOccurs="1" maxOccurs="1">
+			<xs:complexType>
+				<xs:complexContent>
+					<xs:extension base="TaskType">
+					  <xs:attribute name="from_ref" type="xs:string" use="required"/>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+       </xs:element>
+       <xs:element name="on-rpc" minOccurs="1" maxOccurs="1">
+			<xs:complexType>
+				<xs:complexContent>
+					<xs:extension base="TaskType">
+					  <xs:attribute name="from_ref" type="xs:string" use="required"/>
+					  <xs:attribute name="method" type="xs:string" use="required"/>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+       </xs:element>
+     </xs:choice>
+   </xs:complexType>
+
+   <xs:complexType name="CompositeType">
+     <xs:sequence>
+       <xs:choice minOccurs="0" maxOccurs="1">
+         <xs:element name="proxy"    type="ProxyType" />
+         <xs:element name="filter"   type="FilterType" />
+         <xs:element name="mux"      type="MuxType" />
+         <xs:element name="function" type="NameType" />
+         <xs:element name="protocol" type="ProtocolType" maxOccurs="unbounded" />
+       </xs:choice>
+       <xs:element name="provides" minOccurs="0">
+         <xs:complexType>
+           <xs:choice maxOccurs="unbounded">
+             <xs:element name="service" minOccurs="0" maxOccurs="unbounded">
+               <xs:complexType>
+                 <xs:attribute name="name" type="xs:string" use="required"/>
+                 <xs:attribute name="max_clients" type="xs:string"/>
+                 <xs:attribute name="filter" type="xs:string"/>
+					  <xs:attribute name="ref" type="xs:string"/>
+               </xs:complexType>
+             </xs:element>
+           </xs:choice>
+         </xs:complexType>
+       </xs:element>
+       <xs:element name="requires" type="CompositeRequiresType" minOccurs="0" />
+       <xs:element name="timing" type="TimingType" minOccurs="0" />
+       <xs:element name="pattern" minOccurs="1" maxOccurs="unbounded">
+         <xs:complexType>
+           <xs:choice maxOccurs="unbounded">
+             <xs:element name="component" type="PatternComponentType" minOccurs="1" maxOccurs="unbounded"/>
+           </xs:choice>
+         </xs:complexType>
+       </xs:element>
+     </xs:sequence>
+     <xs:attribute name="name" type="xs:string"/>
+   </xs:complexType>
+
+   <xs:complexType name="PatternComponentType">
+      <xs:all>
+        <xs:element name="requires" type="CompositeRequiresType" minOccurs="0" />
+        <xs:element name="route" minOccurs="0">
+          <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element name="service">
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="ServiceType">
+								  <xs:choice maxOccurs="1">
+									 <xs:element name="external" type="RefType" />
+									 <xs:element name="child" type="NameType" />
+								  </xs:choice>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+            </xs:choice>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="expose" minOccurs="0">
+          <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+              <xs:element name="service" type="ServiceType" />
+            </xs:choice>
+            <xs:attribute name="ref" type="xs:string" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="config" minOccurs="0" />
+      </xs:all>
+      <xs:attribute name="name" type="xs:string" use="required"/>
+   </xs:complexType>
+
+   <xs:complexType name="ServiceType">
+     <xs:attribute name="name" type="xs:string" use="required"/>
+     <xs:attribute name="ref" type="xs:string" />
+   </xs:complexType>
+
+   <xs:complexType name="SystemType">
+     <xs:sequence>
+         <xs:element name="provides" minOccurs="0" maxOccurs="1">
+           <xs:complexType>
+             <xs:sequence maxOccurs="unbounded">
+               <xs:element name="rte" type="NameType" minOccurs="0" maxOccurs="1" />
+               <xs:element name="spec" type="NameType" minOccurs="0" />
+             </xs:sequence>
+           </xs:complexType>
+         </xs:element>
+         <xs:choice maxOccurs="unbounded">
+             <xs:element name="subsystem" type="SystemType" />
+             <xs:element name="child">
+                 <xs:complexType>
+                   <xs:sequence>
+                       <xs:choice maxOccurs="1">
+                         <xs:element name="function" type="NameType" />
+                         <xs:element name="component" type="NameType" />
+                       </xs:choice>
+                     <xs:element name="dependency" minOccurs="0" maxOccurs="1">
+                         <xs:complexType>
+                             <xs:choice maxOccurs="unbounded">
+                                <xs:element name="child">
+                                    <xs:complexType>
+                                        <xs:attribute name="name" type="xs:string" use="required"/>
+                                    </xs:complexType>
+                                </xs:element>
+                             </xs:choice>
+                         </xs:complexType>
+                     </xs:element>
+                     <xs:element name="route" minOccurs="0" maxOccurs="1">
+                       <xs:complexType>
+                         <xs:choice maxOccurs="unbounded">
+                           <xs:element name="service">
+                             <xs:complexType>
+                               <xs:all>
+                                 <xs:element name="child" type="NameType" />
+                               </xs:all>
+                               <xs:attribute name="name" type="xs:string" use="required"/>
+                               <xs:attribute name="label" type="xs:string"/>
+                             </xs:complexType>
+                           </xs:element>
+                         </xs:choice>
+                       </xs:complexType>
+                     </xs:element>
+                     <xs:element name="config" minOccurs="0" maxOccurs="1" />
+                   </xs:sequence>
+                   <xs:attribute name="name" type="xs:string"/>
+                 </xs:complexType>
+             </xs:element>
+         </xs:choice>
+     </xs:sequence>
+     <xs:attribute name="name" type="xs:string" use="required" />
+   </xs:complexType>
+
+</xs:schema>
