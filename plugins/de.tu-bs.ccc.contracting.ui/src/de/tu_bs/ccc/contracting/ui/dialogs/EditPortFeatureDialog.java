@@ -51,9 +51,9 @@ public class EditPortFeatureDialog extends TitleAreaDialog implements IEditFeatu
 		container.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		GridLayout layout = new GridLayout(2, false);
 		container.setLayout(layout);
-
-		createName(container);
+		
 		createDirection(container);
+		createName(container);
 		createType(container);
 		createServicename(container);
 		if (currentType != PortType.get("SERVICE").getValue()) {
@@ -79,12 +79,14 @@ public class EditPortFeatureDialog extends TitleAreaDialog implements IEditFeatu
 	private void createDirection(Composite container) {
 		Label lbDescription = new Label(container, SWT.NONE);
 		lbDescription.setText("Direction");
+		
+		Label lbProperty = new Label(container, SWT.NONE);
+		lbProperty.setText(DirectionType.get(currentDirection).getName());
 
-		comboDirection = new Combo(container, SWT.DROP_DOWN);
-
-		String[] items = new String[] { DirectionType.get(0).getName(), DirectionType.get(1).getName() };
-		comboDirection.setItems(items);
-		comboDirection.select(currentDirection);
+//		comboDirection = new Combo(container, SWT.DROP_DOWN);
+//		String[] items = new String[] { DirectionType.get(0).getName(), DirectionType.get(1).getName() };
+//		comboDirection.setItems(items);
+//		comboDirection.select(currentDirection);
 	}
 
 	private void createType(Composite container) {
@@ -142,7 +144,7 @@ public class EditPortFeatureDialog extends TitleAreaDialog implements IEditFeatu
 	public void setNewProperties() {
 		Ports port = (Ports) object;
 		port.setName(portName.getText());
-		port.setOuterDirection(DirectionType.get(comboDirection.getText()));
+//		port.setOuterDirection(DirectionType.get(comboDirection.getText()));
 		port.setType(PortType.get(comboType.getText()));
 		if (comboType.getText().equals("SERVICE")) {
 			port.setService(portServicename.getText());
