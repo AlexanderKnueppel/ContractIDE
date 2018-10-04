@@ -31,6 +31,7 @@ import de.tu_bs.ccc.contracting.core.guiFeatures.EditDescriptionFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.EditModuleFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.EditPortFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.EditPropertyFeature;
+import de.tu_bs.ccc.contracting.core.guiFeatures.OpenEditorFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.ReloadImportFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.VerifyCustomFeature;
 
@@ -112,6 +113,14 @@ public class ContractModellingToolBehaviorProvider extends DefaultToolBehaviorPr
 			ContextMenuEntry menuEntry = new ContextMenuEntry(changeDesc, context);
 			menuEntry.setText("Edit Description");
 			menuEntry.setDescription("Opens Dialog to Edit the Description");
+			menuEntries.add(menuEntry);
+		}
+		
+		ICustomFeature openFile = new OpenEditorFeature(getFeatureProvider());
+		if (openFile.canExecute(context)) {
+			ContextMenuEntry menuEntry = new ContextMenuEntry(openFile, context);
+			menuEntry.setText("Open Module");
+			menuEntry.setDescription("Opens Module in anew Editor.");
 			menuEntries.add(menuEntry);
 		}
 
