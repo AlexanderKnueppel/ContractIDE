@@ -6,16 +6,22 @@ import org.eclipse.graphiti.features.ICreateConnectionFeature;
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IDeleteFeature;
 import org.eclipse.graphiti.features.ILayoutFeature;
+import org.eclipse.graphiti.features.IMoveShapeFeature;
 import org.eclipse.graphiti.features.IReconnectionFeature;
+import org.eclipse.graphiti.features.IResizeShapeFeature;
 import org.eclipse.graphiti.features.IUpdateFeature;
 import org.eclipse.graphiti.features.context.IAddConnectionContext;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.context.IDeleteContext;
 import org.eclipse.graphiti.features.context.ILayoutContext;
+import org.eclipse.graphiti.features.context.IMoveShapeContext;
 import org.eclipse.graphiti.features.context.IReconnectionContext;
+import org.eclipse.graphiti.features.context.IResizeShapeContext;
 import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.features.custom.ICustomFeature;
+import org.eclipse.graphiti.features.impl.DefaultMoveShapeFeature;
+import org.eclipse.graphiti.features.impl.DefaultResizeShapeFeature;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
@@ -48,7 +54,9 @@ import de.tu_bs.ccc.contracting.core.guiFeatures.EditAbstractFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.LayoutFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.ReloadImportFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.VerifyCustomFeature;
+import de.tu_bs.ccc.contracting.core.move.MovePortFeature;
 import de.tu_bs.ccc.contracting.core.propertyFeature.CreateProperty;
+import de.tu_bs.ccc.contracting.core.resize.ResizeModuleFeature;
 import de.tu_bs.ccc.contracting.core.update.UpdateContractFeature;
 import de.tu_bs.ccc.contracting.core.update.UpdateModuleFeature;
 import de.tu_bs.ccc.contracting.core.update.UpdatePortFeature;
@@ -87,13 +95,13 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 
 	@Override
 	public ICreateFeature[] getCreateFeatures() {
+
 		return new ICreateFeature[] { 
 				//new CreateComponentFeature(this), 
 				new CreateContractFeature(this),
 				//new CreateAbstractFeature(this), 
 				new CreatePortFeature(this), new LoadModuleFeature(this),
 				new CreateProperty(this), new AssignAbstractFeature(this) };
-
 	}
 
 	@Override
@@ -153,5 +161,38 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 			}
 		}
 		return super.getUpdateFeature(context);
+
 	}
+
+	@Override
+	public IMoveShapeFeature getMoveShapeFeature(IMoveShapeContext context) {
+		PictogramElement pictogramElement = context.getPictogramElement();
+		if (pictogramElement instanceof ContainerShape) {
+			Object bo = getBusinessObjectForPictogramElement(pictogramElement);
+			if (bo instanceof Ports) {
+				return new MovePortFeature(this);
+			}
+
+		}
+		return super.getMoveShapeFeature(context);
+
+	}
+	
+	@Override
+	public IResizeShapeFeature getResizeShapeFeature(IResizeShapeContext context) {
+		PictogramElement pictogramElement = context.getPictogramElement();
+		if (pictogramElement instanceof ContainerShape) {
+			Object bo = getBusinessObjectForPictogramElement(pictogramElement);
+			 if (bo instanceof Module) {
+				return new ResizeModuleFeature(this);
+			}
+		}
+		return super.getResizeShapeFeature(context);
+//		IResizeShapeFeature ret = new DefaultResizeShapeFeature(this);
+//		return ret;
+	}
+	
+	
+	
+
 }
