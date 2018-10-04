@@ -41,11 +41,11 @@ public class ModulePropertiesContentProvider implements ITreeContentProvider {
 				new TextCellEditor((Composite) getViewer().getControl())));
 
 		// Type
-		String type = "Atomic component";
+		String type = "Atomic";
 		if (m instanceof Compound)
-			type = "Compound component";
+			type = "Compound";
 		else if (m instanceof Abstract)
-			type = "Abstract component";
+			type = "Abstract";
 
 		elements.add(
 				new ModulePropertyElement("Type", type, m, new TextCellEditor((Composite) getViewer().getControl())));
@@ -60,6 +60,16 @@ public class ModulePropertiesContentProvider implements ITreeContentProvider {
 				realizedBy = realizedBy.substring(0, realizedBy.length() - 2);
 			elements.add(new ModulePropertyElement("Realized by", realizedBy, m,
 					new TextCellEditor((Composite) getViewer().getControl())));
+		}
+		
+		// Binary
+		if (m instanceof Component) {
+			elements.add(
+					new ModulePropertyElement("Binary", ((Component)m).getBinary(), m, new TextCellEditor((Composite) getViewer().getControl()), true) {
+						public void update(Object obj) {
+							((Component)getObject()).setBinary((String)obj);
+						}
+					});
 		}
 
 		return elements.toArray();

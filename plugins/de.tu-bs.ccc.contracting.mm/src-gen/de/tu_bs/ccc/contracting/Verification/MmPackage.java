@@ -349,13 +349,31 @@ public interface MmPackage extends EPackage {
 	int COMPONENT__VERSION = MODULE__VERSION;
 
 	/**
+	 * The feature id for the '<em><b>Singleton</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT__SINGLETON = MODULE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Binary</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT__BINARY = MODULE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Component</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_FEATURE_COUNT = MODULE_FEATURE_COUNT + 0;
+	int COMPONENT_FEATURE_COUNT = MODULE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Component</em>' class.
@@ -993,6 +1011,28 @@ public interface MmPackage extends EPackage {
 	EClass getComponent();
 
 	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.ccc.contracting.Verification.Component#isSingleton <em>Singleton</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Singleton</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Component#isSingleton()
+	 * @see #getComponent()
+	 * @generated
+	 */
+	EAttribute getComponent_Singleton();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.ccc.contracting.Verification.Component#getBinary <em>Binary</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Binary</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Component#getBinary()
+	 * @see #getComponent()
+	 * @generated
+	 */
+	EAttribute getComponent_Binary();
+
+	/**
 	 * Returns the meta object for class '{@link de.tu_bs.ccc.contracting.Verification.Compound <em>Compound</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1435,6 +1475,22 @@ public interface MmPackage extends EPackage {
 		 * @generated
 		 */
 		EClass COMPONENT = eINSTANCE.getComponent();
+
+		/**
+		 * The meta object literal for the '<em><b>Singleton</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPONENT__SINGLETON = eINSTANCE.getComponent_Singleton();
+
+		/**
+		 * The meta object literal for the '<em><b>Binary</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPONENT__BINARY = eINSTANCE.getComponent_Binary();
 
 		/**
 		 * The meta object literal for the '{@link de.tu_bs.ccc.contracting.Verification.impl.CompoundImpl <em>Compound</em>}' class.

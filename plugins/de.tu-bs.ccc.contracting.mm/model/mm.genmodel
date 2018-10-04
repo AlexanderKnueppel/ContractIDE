@@ -52,11 +52,15 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mm.ecore#//Module/ports"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mm.ecore#//Module/contract"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//Module/module"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Module/version"/>
     </genClasses>
     <genClasses ecoreClass="mm.ecore#//Abstract">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//Abstract/realizes"/>
     </genClasses>
-    <genClasses ecoreClass="mm.ecore#//Component"/>
+    <genClasses ecoreClass="mm.ecore#//Component">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Component/singleton"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Component/binary"/>
+    </genClasses>
     <genClasses ecoreClass="mm.ecore#//Compound">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mm.ecore#//Compound/consistsOf"/>
     </genClasses>

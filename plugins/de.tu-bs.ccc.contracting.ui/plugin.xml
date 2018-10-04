@@ -37,28 +37,7 @@
       </wizard>
    </extension>
    
-	<extension point="org.eclipse.ui.menus">
-	  <menuContribution  allPopups="false" locationURI="popup:org.eclipse.ui.popup.any?after=additions">
-         <menu
-               id="de.tu-bs.ccc.contracting.ui.CCCMenu"
-               label="ContractIDE"
-               icon="icons/cide2_16.png">
-            <command
-                  commandId="de.tu-bs.ccc.contracting.ui.exporter_command"
-                  label="Export to CCC config. (.xml)"
-                  style="push">
-            </command>
-         </menu>
-	  </menuContribution>
-	</extension>
- <extension
-       point="org.eclipse.ui.commands">
-    <command
-          defaultHandler="de.tu_bs.ccc.contracting.ui.handler.ExportHandler"
-          id="de.tu-bs.ccc.contracting.ui.exporter_command"
-          name="ExportToXML">
-    </command>
- </extension>
+	
  <extension
        point="org.eclipse.ui.views">
     <category

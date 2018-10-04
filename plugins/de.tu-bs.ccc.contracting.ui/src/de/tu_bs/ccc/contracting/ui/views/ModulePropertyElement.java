@@ -7,6 +7,15 @@ public class ModulePropertyElement {
 	private String value = "";
 	private Object object = null;
 	private CellEditor editor = null;
+	private boolean canEdit = false;
+	
+	public boolean canEdit() {
+		return canEdit;
+	}
+	
+	public void enableEdit(boolean edit) {
+		canEdit = edit;
+	}
 	
 	public String getAttribute() {
 		return attribute;
@@ -45,5 +54,14 @@ public class ModulePropertyElement {
 		this.value = value;
 		this.object = obj;
 		this.editor = editor;
+	}
+	
+	public ModulePropertyElement(String attr, String value, Object obj, CellEditor editor, boolean canEdit) {
+		this(attr, value, obj, editor);
+		this.canEdit = canEdit;
+	}
+	
+	public void update(Object obj) {
+		
 	}
 }

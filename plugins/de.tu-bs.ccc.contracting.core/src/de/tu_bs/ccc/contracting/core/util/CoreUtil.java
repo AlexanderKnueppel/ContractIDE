@@ -72,7 +72,7 @@ public class CoreUtil {
 		return moduleList;
 	}
 
-	private static List<IFile> getModelFiles(IContainer folder) {
+	public static List<IFile> getModelFiles(IContainer folder) {
 		final List<IFile> ret = new ArrayList<IFile>();
 		try {
 			final IResource[] members = folder.members();
@@ -92,7 +92,7 @@ public class CoreUtil {
 		return ret;
 	}
 
-	private static Module getRootModuleFromFile(IFile file, ResourceSet resourceSet) {
+	public static Module getRootModuleFromFile(IFile file, ResourceSet resourceSet) {
 		// Get the URI of the model file.
 		final URI resourceURI = getFileURI(file, resourceSet);
 		// Demand load the resource for this file.
@@ -145,7 +145,7 @@ public class CoreUtil {
 		return ret;
 	}
 
-	private static Diagram getDiagramFromFile(IFile file, ResourceSet resourceSet) {
+	public static Diagram getDiagramFromFile(IFile file, ResourceSet resourceSet) {
 		// Get the URI of the model file.
 		final URI resourceURI = getFileURI(file, resourceSet);
 		// Demand load the resource for this file.
