@@ -25,7 +25,7 @@ public class ValueEditingSupport extends EditingSupport {
 	@Override
 	protected boolean canEdit(Object element) {
 		// TODO Auto-generated method stub
-		return false;//element instanceof ModulePropertyElement;
+		return element instanceof ModulePropertyElement && ((ModulePropertyElement)element).canEdit();
 	}
 
 	@Override
@@ -38,14 +38,16 @@ public class ValueEditingSupport extends EditingSupport {
 	protected void setValue(Object element, Object value) {
 		// TODO Auto-generated method stub
 		ModulePropertyElement p = ((ModulePropertyElement) element);
+		p.setValue((String)value);
+		
 		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain((Module)p.getObject());
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				Module m = (Module)p.getObject();
-				//TODO implement editing functionality
+				p.update(value);
 			}
 		});
+		System.out.println(value);
 		getViewer().update(element, null);
 	}
 

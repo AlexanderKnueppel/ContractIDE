@@ -2,7 +2,7 @@
 // Diese Datei wurde mit der JavaTM Architecture for XML Binding(JAXB) Reference Implementation, v2.2.8-b130911.1802 generiert 
 // Siehe <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Änderungen an dieser Datei gehen bei einer Neukompilierung des Quellschemas verloren. 
-// Generiert: 2018.10.01 um 01:36:06 PM CEST 
+// Generiert: 2018.10.04 um 12:30:04 PM CEST 
 //
 
 
@@ -31,9 +31,9 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _RequiresTypeRte_QNAME = new QName("", "rte");
+    private final static QName _SubsystemTypeProvidesRte_QNAME = new QName("", "rte");
+    private final static QName _SubsystemTypeProvidesSpec_QNAME = new QName("", "spec");
     private final static QName _RequiresTypeService_QNAME = new QName("", "service");
-    private final static QName _RequiresTypeSpec_QNAME = new QName("", "spec");
     private final static QName _RequiresTypeRam_QNAME = new QName("", "ram");
     private final static QName _RequiresTypeCaps_QNAME = new QName("", "caps");
 
@@ -141,6 +141,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link SubsystemType }
+     * 
+     */
+    public SubsystemType createSubsystemType() {
+        return new SubsystemType();
+    }
+
+    /**
      * Create an instance of {@link SystemType }
      * 
      */
@@ -189,6 +197,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link PlatformType }
+     * 
+     */
+    public PlatformType createPlatformType() {
+        return new PlatformType();
+    }
+
+    /**
      * Create an instance of {@link ComponentType }
      * 
      */
@@ -218,6 +234,14 @@ public class ObjectFactory {
      */
     public QuantumType createQuantumType() {
         return new QuantumType();
+    }
+
+    /**
+     * Create an instance of {@link CommType }
+     * 
+     */
+    public CommType createCommType() {
+        return new CommType();
     }
 
     /**
@@ -373,6 +397,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link TimingType.Junction }
+     * 
+     */
+    public TimingType.Junction createTimingTypeJunction() {
+        return new TimingType.Junction();
+    }
+
+    /**
      * Create an instance of {@link BinaryType.Component }
      * 
      */
@@ -389,11 +421,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SystemType.Provides }
+     * Create an instance of {@link SubsystemType.Provides }
      * 
      */
-    public SystemType.Provides createSystemTypeProvides() {
-        return new SystemType.Provides();
+    public SubsystemType.Provides createSubsystemTypeProvides() {
+        return new SubsystemType.Provides();
+    }
+
+    /**
+     * Create an instance of {@link SubsystemType.Requires }
+     * 
+     */
+    public SubsystemType.Requires createSubsystemTypeRequires() {
+        return new SubsystemType.Requires();
     }
 
     /**
@@ -416,9 +456,27 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link NameType }{@code >}}
      * 
      */
+    @XmlElementDecl(namespace = "", name = "rte", scope = SubsystemType.Provides.class)
+    public JAXBElement<NameType> createSubsystemTypeProvidesRte(NameType value) {
+        return new JAXBElement<NameType>(_SubsystemTypeProvidesRte_QNAME, NameType.class, SubsystemType.Provides.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link NameType }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "spec", scope = SubsystemType.Provides.class)
+    public JAXBElement<NameType> createSubsystemTypeProvidesSpec(NameType value) {
+        return new JAXBElement<NameType>(_SubsystemTypeProvidesSpec_QNAME, NameType.class, SubsystemType.Provides.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link NameType }{@code >}}
+     * 
+     */
     @XmlElementDecl(namespace = "", name = "rte", scope = RequiresType.class)
     public JAXBElement<NameType> createRequiresTypeRte(NameType value) {
-        return new JAXBElement<NameType>(_RequiresTypeRte_QNAME, NameType.class, RequiresType.class, value);
+        return new JAXBElement<NameType>(_SubsystemTypeProvidesRte_QNAME, NameType.class, RequiresType.class, value);
     }
 
     /**
@@ -436,7 +494,7 @@ public class ObjectFactory {
      */
     @XmlElementDecl(namespace = "", name = "spec", scope = RequiresType.class)
     public JAXBElement<NameType> createRequiresTypeSpec(NameType value) {
-        return new JAXBElement<NameType>(_RequiresTypeSpec_QNAME, NameType.class, RequiresType.class, value);
+        return new JAXBElement<NameType>(_SubsystemTypeProvidesSpec_QNAME, NameType.class, RequiresType.class, value);
     }
 
     /**
@@ -455,24 +513,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "", name = "caps", scope = RequiresType.class)
     public JAXBElement<QuantumType> createRequiresTypeCaps(QuantumType value) {
         return new JAXBElement<QuantumType>(_RequiresTypeCaps_QNAME, QuantumType.class, RequiresType.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link NameType }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "", name = "rte", scope = SystemType.Provides.class)
-    public JAXBElement<NameType> createSystemTypeProvidesRte(NameType value) {
-        return new JAXBElement<NameType>(_RequiresTypeRte_QNAME, NameType.class, SystemType.Provides.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link NameType }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "", name = "spec", scope = SystemType.Provides.class)
-    public JAXBElement<NameType> createSystemTypeProvidesSpec(NameType value) {
-        return new JAXBElement<NameType>(_RequiresTypeSpec_QNAME, NameType.class, SystemType.Provides.class, value);
     }
 
 }

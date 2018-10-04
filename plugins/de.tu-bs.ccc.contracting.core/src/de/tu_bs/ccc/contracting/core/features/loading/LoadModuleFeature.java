@@ -48,7 +48,7 @@ public class LoadModuleFeature extends AbstractCreateFeature {
 			PictogramElement pict = context.getTargetContainer();
 			Module x = (Module) getBusinessObjectForPictogramElement(pict);
 
-			return x.eResource().getURI().toString().equals(m.eResource().getURI().toString());
+			return !x.eResource().getURI().toString().equals(m.eResource().getURI().toString());
 		});
 
 		final LoadModuleDialog dialog = new LoadModuleDialog(null, new LoadModuleLabelProvider(),

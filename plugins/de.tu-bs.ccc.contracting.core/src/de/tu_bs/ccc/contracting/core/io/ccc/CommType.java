@@ -15,15 +15,15 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java-Klasse für ProxyType complex type.
+ * <p>Java-Klasse für CommType complex type.
  * 
  * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
  * 
  * <pre>
- * &lt;complexType name="ProxyType">
+ * &lt;complexType name="CommType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;attribute name="carrier" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -32,34 +32,34 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ProxyType")
-public class ProxyType {
+@XmlType(name = "CommType")
+public class CommType {
 
-    @XmlAttribute(name = "carrier", required = true)
-    protected String carrier;
+    @XmlAttribute(name = "name", required = true)
+    protected String name;
 
     /**
-     * Ruft den Wert der carrier-Eigenschaft ab.
+     * Ruft den Wert der name-Eigenschaft ab.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getCarrier() {
-        return carrier;
+    public String getName() {
+        return name;
     }
 
     /**
-     * Legt den Wert der carrier-Eigenschaft fest.
+     * Legt den Wert der name-Eigenschaft fest.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setCarrier(String value) {
-        this.carrier = value;
+    public void setName(String value) {
+        this.name = value;
     }
 
 }

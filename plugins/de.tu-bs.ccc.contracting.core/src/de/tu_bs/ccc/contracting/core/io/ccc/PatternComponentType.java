@@ -2,7 +2,7 @@
 // Diese Datei wurde mit der JavaTM Architecture for XML Binding(JAXB) Reference Implementation, v2.2.8-b130911.1802 generiert 
 // Siehe <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Änderungen an dieser Datei gehen bei einer Neukompilierung des Quellschemas verloren. 
-// Generiert: 2018.10.01 um 01:36:06 PM CEST 
+// Generiert: 2018.10.04 um 12:30:04 PM CEST 
 //
 
 
@@ -13,6 +13,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -25,7 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType name="PatternComponentType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;all>
+ *       &lt;sequence>
  *         &lt;element name="requires" type="{}CompositeRequiresType" minOccurs="0"/>
  *         &lt;element name="route" minOccurs="0">
  *           &lt;complexType>
@@ -49,20 +50,20 @@ import javax.xml.bind.annotation.XmlType;
  *             &lt;/complexContent>
  *           &lt;/complexType>
  *         &lt;/element>
- *         &lt;element name="expose" minOccurs="0">
+ *         &lt;element name="expose" maxOccurs="unbounded" minOccurs="0">
  *           &lt;complexType>
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;choice maxOccurs="unbounded">
+ *                 &lt;all>
  *                   &lt;element name="service" type="{}ServiceType"/>
- *                 &lt;/choice>
+ *                 &lt;/all>
  *                 &lt;attribute name="ref" type="{http://www.w3.org/2001/XMLSchema}string" />
  *               &lt;/restriction>
  *             &lt;/complexContent>
  *           &lt;/complexType>
  *         &lt;/element>
  *         &lt;element name="config" type="{http://www.w3.org/2001/XMLSchema}anyType" minOccurs="0"/>
- *       &lt;/all>
+ *       &lt;/sequence>
  *       &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -73,13 +74,16 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "PatternComponentType", propOrder = {
-
+    "requires",
+    "route",
+    "expose",
+    "config"
 })
 public class PatternComponentType {
 
     protected CompositeRequiresType requires;
     protected PatternComponentType.Route route;
-    protected PatternComponentType.Expose expose;
+    protected List<PatternComponentType.Expose> expose;
     protected Object config;
     @XmlAttribute(name = "name", required = true)
     protected String name;
@@ -133,27 +137,32 @@ public class PatternComponentType {
     }
 
     /**
-     * Ruft den Wert der expose-Eigenschaft ab.
+     * Gets the value of the expose property.
      * 
-     * @return
-     *     possible object is
-     *     {@link PatternComponentType.Expose }
-     *     
-     */
-    public PatternComponentType.Expose getExpose() {
-        return expose;
-    }
-
-    /**
-     * Legt den Wert der expose-Eigenschaft fest.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the expose property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link PatternComponentType.Expose }
-     *     
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getExpose().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link PatternComponentType.Expose }
+     * 
+     * 
      */
-    public void setExpose(PatternComponentType.Expose value) {
-        this.expose = value;
+    public List<PatternComponentType.Expose> getExpose() {
+        if (expose == null) {
+            expose = new ArrayList<PatternComponentType.Expose>();
+        }
+        return this.expose;
     }
 
     /**
@@ -214,9 +223,9 @@ public class PatternComponentType {
      * &lt;complexType>
      *   &lt;complexContent>
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;choice maxOccurs="unbounded">
+     *       &lt;all>
      *         &lt;element name="service" type="{}ServiceType"/>
-     *       &lt;/choice>
+     *       &lt;/all>
      *       &lt;attribute name="ref" type="{http://www.w3.org/2001/XMLSchema}string" />
      *     &lt;/restriction>
      *   &lt;/complexContent>
@@ -227,41 +236,37 @@ public class PatternComponentType {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "service"
+
     })
     public static class Expose {
 
-        protected List<ServiceType> service;
+        @XmlElement(required = true)
+        protected ServiceType service;
         @XmlAttribute(name = "ref")
         protected String ref;
 
         /**
-         * Gets the value of the service property.
+         * Ruft den Wert der service-Eigenschaft ab.
          * 
-         * <p>
-         * This accessor method returns a reference to the live list,
-         * not a snapshot. Therefore any modification you make to the
-         * returned list will be present inside the JAXB object.
-         * This is why there is not a <CODE>set</CODE> method for the service property.
-         * 
-         * <p>
-         * For example, to add a new item, do as follows:
-         * <pre>
-         *    getService().add(newItem);
-         * </pre>
-         * 
-         * 
-         * <p>
-         * Objects of the following type(s) are allowed in the list
-         * {@link ServiceType }
-         * 
-         * 
+         * @return
+         *     possible object is
+         *     {@link ServiceType }
+         *     
          */
-        public List<ServiceType> getService() {
-            if (service == null) {
-                service = new ArrayList<ServiceType>();
-            }
-            return this.service;
+        public ServiceType getService() {
+            return service;
+        }
+
+        /**
+         * Legt den Wert der service-Eigenschaft fest.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link ServiceType }
+         *     
+         */
+        public void setService(ServiceType value) {
+            this.service = value;
         }
 
         /**

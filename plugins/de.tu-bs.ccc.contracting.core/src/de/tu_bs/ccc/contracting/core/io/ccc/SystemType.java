@@ -2,7 +2,7 @@
 // Diese Datei wurde mit der JavaTM Architecture for XML Binding(JAXB) Reference Implementation, v2.2.8-b130911.1802 generiert 
 // Siehe <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Änderungen an dieser Datei gehen bei einer Neukompilierung des Quellschemas verloren. 
-// Generiert: 2018.10.01 um 01:36:06 PM CEST 
+// Generiert: 2018.10.04 um 12:30:04 PM CEST 
 //
 
 
@@ -10,14 +10,10 @@ package de.tu_bs.ccc.contracting.core.io.ccc;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlElementRefs;
-import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -31,20 +27,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="provides" minOccurs="0">
- *           &lt;complexType>
- *             &lt;complexContent>
- *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;sequence maxOccurs="unbounded">
- *                   &lt;element name="rte" type="{}NameType" minOccurs="0"/>
- *                   &lt;element name="spec" type="{}NameType" minOccurs="0"/>
- *                 &lt;/sequence>
- *               &lt;/restriction>
- *             &lt;/complexContent>
- *           &lt;/complexType>
- *         &lt;/element>
  *         &lt;choice maxOccurs="unbounded">
- *           &lt;element name="subsystem" type="{}SystemType"/>
  *           &lt;element name="child">
  *             &lt;complexType>
  *               &lt;complexContent>
@@ -99,6 +82,7 @@ import javax.xml.bind.annotation.XmlType;
  *                     &lt;element name="config" type="{http://www.w3.org/2001/XMLSchema}anyType" minOccurs="0"/>
  *                   &lt;/sequence>
  *                   &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                   &lt;attribute name="subsystem" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                 &lt;/restriction>
  *               &lt;/complexContent>
  *             &lt;/complexType>
@@ -115,72 +99,41 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "SystemType", propOrder = {
-    "provides",
-    "subsystemOrChild"
+    "child"
 })
 public class SystemType {
 
-    protected SystemType.Provides provides;
-    @XmlElements({
-        @XmlElement(name = "subsystem", type = SystemType.class),
-        @XmlElement(name = "child", type = SystemType.Child.class)
-    })
-    protected List<Object> subsystemOrChild;
+    protected List<SystemType.Child> child;
     @XmlAttribute(name = "name", required = true)
     protected String name;
 
     /**
-     * Ruft den Wert der provides-Eigenschaft ab.
-     * 
-     * @return
-     *     possible object is
-     *     {@link SystemType.Provides }
-     *     
-     */
-    public SystemType.Provides getProvides() {
-        return provides;
-    }
-
-    /**
-     * Legt den Wert der provides-Eigenschaft fest.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SystemType.Provides }
-     *     
-     */
-    public void setProvides(SystemType.Provides value) {
-        this.provides = value;
-    }
-
-    /**
-     * Gets the value of the subsystemOrChild property.
+     * Gets the value of the child property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the subsystemOrChild property.
+     * This is why there is not a <CODE>set</CODE> method for the child property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getSubsystemOrChild().add(newItem);
+     *    getChild().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link SystemType }
      * {@link SystemType.Child }
      * 
      * 
      */
-    public List<Object> getSubsystemOrChild() {
-        if (subsystemOrChild == null) {
-            subsystemOrChild = new ArrayList<Object>();
+    public List<SystemType.Child> getChild() {
+        if (child == null) {
+            child = new ArrayList<SystemType.Child>();
         }
-        return this.subsystemOrChild;
+        return this.child;
     }
 
     /**
@@ -267,6 +220,7 @@ public class SystemType {
      *         &lt;element name="config" type="{http://www.w3.org/2001/XMLSchema}anyType" minOccurs="0"/>
      *       &lt;/sequence>
      *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *       &lt;attribute name="subsystem" type="{http://www.w3.org/2001/XMLSchema}string" />
      *     &lt;/restriction>
      *   &lt;/complexContent>
      * &lt;/complexType>
@@ -291,6 +245,8 @@ public class SystemType {
         protected Object config;
         @XmlAttribute(name = "name")
         protected String name;
+        @XmlAttribute(name = "subsystem")
+        protected String subsystem;
 
         /**
          * Ruft den Wert der function-Eigenschaft ab.
@@ -434,6 +390,30 @@ public class SystemType {
          */
         public void setName(String value) {
             this.name = value;
+        }
+
+        /**
+         * Ruft den Wert der subsystem-Eigenschaft ab.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getSubsystem() {
+            return subsystem;
+        }
+
+        /**
+         * Legt den Wert der subsystem-Eigenschaft fest.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setSubsystem(String value) {
+            this.subsystem = value;
         }
 
 
@@ -732,71 +712,6 @@ public class SystemType {
 
             }
 
-        }
-
-    }
-
-
-    /**
-     * <p>Java-Klasse für anonymous complex type.
-     * 
-     * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
-     * 
-     * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;sequence maxOccurs="unbounded">
-     *         &lt;element name="rte" type="{}NameType" minOccurs="0"/>
-     *         &lt;element name="spec" type="{}NameType" minOccurs="0"/>
-     *       &lt;/sequence>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
-     * </pre>
-     * 
-     * 
-     */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "rteAndSpec"
-    })
-    public static class Provides {
-
-        @XmlElementRefs({
-            @XmlElementRef(name = "rte", type = JAXBElement.class, required = false),
-            @XmlElementRef(name = "spec", type = JAXBElement.class, required = false)
-        })
-        protected List<JAXBElement<NameType>> rteAndSpec;
-
-        /**
-         * Gets the value of the rteAndSpec property.
-         * 
-         * <p>
-         * This accessor method returns a reference to the live list,
-         * not a snapshot. Therefore any modification you make to the
-         * returned list will be present inside the JAXB object.
-         * This is why there is not a <CODE>set</CODE> method for the rteAndSpec property.
-         * 
-         * <p>
-         * For example, to add a new item, do as follows:
-         * <pre>
-         *    getRteAndSpec().add(newItem);
-         * </pre>
-         * 
-         * 
-         * <p>
-         * Objects of the following type(s) are allowed in the list
-         * {@link JAXBElement }{@code <}{@link NameType }{@code >}
-         * {@link JAXBElement }{@code <}{@link NameType }{@code >}
-         * 
-         * 
-         */
-        public List<JAXBElement<NameType>> getRteAndSpec() {
-            if (rteAndSpec == null) {
-                rteAndSpec = new ArrayList<JAXBElement<NameType>>();
-            }
-            return this.rteAndSpec;
         }
 
     }

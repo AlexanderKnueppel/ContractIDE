@@ -2,7 +2,7 @@
 // Diese Datei wurde mit der JavaTM Architecture for XML Binding(JAXB) Reference Implementation, v2.2.8-b130911.1802 generiert 
 // Siehe <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Änderungen an dieser Datei gehen bei einer Neukompilierung des Quellschemas verloren. 
-// Generiert: 2018.10.01 um 01:36:06 PM CEST 
+// Generiert: 2018.10.04 um 12:30:04 PM CEST 
 //
 
 
@@ -36,6 +36,7 @@ import javax.xml.bind.annotation.XmlType;
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;attribute name="wcet" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *                 &lt;attribute name="bcet" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
+ *                 &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" />
  *               &lt;/restriction>
  *             &lt;/complexContent>
  *           &lt;/complexType>
@@ -44,7 +45,8 @@ import javax.xml.bind.annotation.XmlType;
  *           &lt;complexType>
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;attribute name="to_ref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                 &lt;attribute name="to_ref" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                 &lt;attribute name="junction" type="{http://www.w3.org/2001/XMLSchema}string" />
  *               &lt;/restriction>
  *             &lt;/complexContent>
  *           &lt;/complexType>
@@ -74,7 +76,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlSeeAlso({
     de.tu_bs.ccc.contracting.core.io.ccc.TimingType.OnTime.class,
     de.tu_bs.ccc.contracting.core.io.ccc.TimingType.OnSignal.class,
-    de.tu_bs.ccc.contracting.core.io.ccc.TimingType.OnRpc.class
+    de.tu_bs.ccc.contracting.core.io.ccc.TimingType.OnRpc.class,
+    de.tu_bs.ccc.contracting.core.io.ccc.TimingType.Junction.class
 })
 public class TaskType {
 
@@ -204,7 +207,8 @@ public class TaskType {
      * &lt;complexType>
      *   &lt;complexContent>
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;attribute name="to_ref" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *       &lt;attribute name="to_ref" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *       &lt;attribute name="junction" type="{http://www.w3.org/2001/XMLSchema}string" />
      *     &lt;/restriction>
      *   &lt;/complexContent>
      * &lt;/complexType>
@@ -216,8 +220,10 @@ public class TaskType {
     @XmlType(name = "")
     public static class Signal {
 
-        @XmlAttribute(name = "to_ref", required = true)
+        @XmlAttribute(name = "to_ref")
         protected String toRef;
+        @XmlAttribute(name = "junction")
+        protected String junction;
 
         /**
          * Ruft den Wert der toRef-Eigenschaft ab.
@@ -243,6 +249,30 @@ public class TaskType {
             this.toRef = value;
         }
 
+        /**
+         * Ruft den Wert der junction-Eigenschaft ab.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getJunction() {
+            return junction;
+        }
+
+        /**
+         * Legt den Wert der junction-Eigenschaft fest.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setJunction(String value) {
+            this.junction = value;
+        }
+
     }
 
 
@@ -257,6 +287,7 @@ public class TaskType {
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *       &lt;attribute name="wcet" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
      *       &lt;attribute name="bcet" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
+     *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" />
      *     &lt;/restriction>
      *   &lt;/complexContent>
      * &lt;/complexType>
@@ -272,6 +303,8 @@ public class TaskType {
         protected BigInteger wcet;
         @XmlAttribute(name = "bcet", required = true)
         protected BigInteger bcet;
+        @XmlAttribute(name = "name")
+        protected String name;
 
         /**
          * Ruft den Wert der wcet-Eigenschaft ab.
@@ -319,6 +352,30 @@ public class TaskType {
          */
         public void setBcet(BigInteger value) {
             this.bcet = value;
+        }
+
+        /**
+         * Ruft den Wert der name-Eigenschaft ab.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getName() {
+            return name;
+        }
+
+        /**
+         * Legt den Wert der name-Eigenschaft fest.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setName(String value) {
+            this.name = value;
         }
 
     }

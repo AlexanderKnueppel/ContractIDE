@@ -2,7 +2,7 @@
 // Diese Datei wurde mit der JavaTM Architecture for XML Binding(JAXB) Reference Implementation, v2.2.8-b130911.1802 generiert 
 // Siehe <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Änderungen an dieser Datei gehen bei einer Neukompilierung des Quellschemas verloren. 
-// Generiert: 2018.10.01 um 01:36:06 PM CEST 
+// Generiert: 2018.10.04 um 12:30:04 PM CEST 
 //
 
 
@@ -75,11 +75,11 @@ import javax.xml.bind.annotation.XmlType;
 public class RequiresType {
 
     @XmlElementRefs({
+        @XmlElementRef(name = "caps", type = JAXBElement.class, required = false),
         @XmlElementRef(name = "ram", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "rte", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "service", type = JAXBElement.class, required = false),
         @XmlElementRef(name = "spec", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "caps", type = JAXBElement.class, required = false)
+        @XmlElementRef(name = "service", type = JAXBElement.class, required = false),
+        @XmlElementRef(name = "rte", type = JAXBElement.class, required = false)
     })
     protected List<JAXBElement<?>> serviceOrRteOrSpec;
 
@@ -102,10 +102,10 @@ public class RequiresType {
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link JAXBElement }{@code <}{@link QuantumType }{@code >}
+     * {@link JAXBElement }{@code <}{@link QuantumType }{@code >}
      * {@link JAXBElement }{@code <}{@link NameType }{@code >}
      * {@link JAXBElement }{@code <}{@link RequiresType.Service }{@code >}
      * {@link JAXBElement }{@code <}{@link NameType }{@code >}
-     * {@link JAXBElement }{@code <}{@link QuantumType }{@code >}
      * 
      * 
      */
