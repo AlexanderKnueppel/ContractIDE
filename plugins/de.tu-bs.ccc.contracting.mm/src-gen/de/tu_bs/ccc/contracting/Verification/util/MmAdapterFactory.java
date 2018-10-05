@@ -2,6 +2,16 @@
  */
 package de.tu_bs.ccc.contracting.Verification.util;
 
+import de.tu_bs.ccc.contracting.Verification.Abstract;
+import de.tu_bs.ccc.contracting.Verification.Assumption;
+import de.tu_bs.ccc.contracting.Verification.Component;
+import de.tu_bs.ccc.contracting.Verification.Compound;
+import de.tu_bs.ccc.contracting.Verification.Contract;
+import de.tu_bs.ccc.contracting.Verification.ContractProperty;
+import de.tu_bs.ccc.contracting.Verification.Guarantee;
+import de.tu_bs.ccc.contracting.Verification.MmPackage;
+import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.Verification.*;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -109,6 +119,11 @@ public class MmAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseAssumption(Assumption object) {
 			return createAssumptionAdapter();
+		}
+
+		@Override
+		public Adapter caseSystem(de.tu_bs.ccc.contracting.Verification.System object) {
+			return createSystemAdapter();
 		}
 
 		@Override
@@ -253,6 +268,20 @@ public class MmAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAssumptionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.tu_bs.ccc.contracting.Verification.System <em>System</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.tu_bs.ccc.contracting.Verification.System
+	 * @generated
+	 */
+	public Adapter createSystemAdapter() {
 		return null;
 	}
 

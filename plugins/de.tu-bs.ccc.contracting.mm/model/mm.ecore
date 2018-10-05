@@ -100,4 +100,9 @@
     <eLiterals name="INTERNAL" literal="INTERNAL"/>
     <eLiterals name="EXTERNAL" value="1"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="System">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="consistsOf" upperBound="-1"
+        eType="#//Module"/>
+  </eClassifiers>
 </ecore:EPackage>

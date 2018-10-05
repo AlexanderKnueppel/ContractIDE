@@ -2,6 +2,22 @@
  */
 package de.tu_bs.ccc.contracting.Verification.impl;
 
+import de.tu_bs.ccc.contracting.Verification.Abstract;
+import de.tu_bs.ccc.contracting.Verification.Assumption;
+import de.tu_bs.ccc.contracting.Verification.Component;
+import de.tu_bs.ccc.contracting.Verification.Compound;
+import de.tu_bs.ccc.contracting.Verification.Contract;
+import de.tu_bs.ccc.contracting.Verification.ContractProperty;
+import de.tu_bs.ccc.contracting.Verification.ContractType;
+import de.tu_bs.ccc.contracting.Verification.DirectionType;
+import de.tu_bs.ccc.contracting.Verification.Guarantee;
+import de.tu_bs.ccc.contracting.Verification.MmFactory;
+import de.tu_bs.ccc.contracting.Verification.MmPackage;
+import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.PortType;
+import de.tu_bs.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.Verification.PropertyType;
+import de.tu_bs.ccc.contracting.Verification.ViewPoint;
 import de.tu_bs.ccc.contracting.Verification.*;
 
 import org.eclipse.emf.ecore.EClass;
@@ -74,6 +90,8 @@ public class MmFactoryImpl extends EFactoryImpl implements MmFactory {
 			return createGuarantee();
 		case MmPackage.ASSUMPTION:
 			return createAssumption();
+		case MmPackage.SYSTEM:
+			return createSystem();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -213,6 +231,16 @@ public class MmFactoryImpl extends EFactoryImpl implements MmFactory {
 	public Assumption createAssumption() {
 		AssumptionImpl assumption = new AssumptionImpl();
 		return assumption;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public de.tu_bs.ccc.contracting.Verification.System createSystem() {
+		SystemImpl system = new SystemImpl();
+		return system;
 	}
 
 	/**

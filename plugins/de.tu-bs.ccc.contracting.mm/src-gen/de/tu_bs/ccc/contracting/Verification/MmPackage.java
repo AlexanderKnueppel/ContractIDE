@@ -832,6 +832,52 @@ public interface MmPackage extends EPackage {
 	int ASSUMPTION_OPERATION_COUNT = CONTRACT_PROPERTY_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link de.tu_bs.ccc.contracting.Verification.impl.SystemImpl <em>System</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.tu_bs.ccc.contracting.Verification.impl.SystemImpl
+	 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getSystem()
+	 * @generated
+	 */
+	int SYSTEM = 9;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Consists Of</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM__CONSISTS_OF = 1;
+
+	/**
+	 * The number of structural features of the '<em>System</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>System</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link de.tu_bs.ccc.contracting.Verification.PortType <em>Port Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -839,7 +885,7 @@ public interface MmPackage extends EPackage {
 	 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getPortType()
 	 * @generated
 	 */
-	int PORT_TYPE = 9;
+	int PORT_TYPE = 10;
 
 	/**
 	 * The meta object id for the '{@link de.tu_bs.ccc.contracting.Verification.ViewPoint <em>View Point</em>}' enum.
@@ -849,7 +895,7 @@ public interface MmPackage extends EPackage {
 	 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getViewPoint()
 	 * @generated
 	 */
-	int VIEW_POINT = 10;
+	int VIEW_POINT = 11;
 
 	/**
 	 * The meta object id for the '{@link de.tu_bs.ccc.contracting.Verification.PropertyType <em>Property Type</em>}' enum.
@@ -859,7 +905,7 @@ public interface MmPackage extends EPackage {
 	 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getPropertyType()
 	 * @generated
 	 */
-	int PROPERTY_TYPE = 11;
+	int PROPERTY_TYPE = 12;
 
 	/**
 	 * The meta object id for the '{@link de.tu_bs.ccc.contracting.Verification.ContractType <em>Contract Type</em>}' enum.
@@ -869,7 +915,7 @@ public interface MmPackage extends EPackage {
 	 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getContractType()
 	 * @generated
 	 */
-	int CONTRACT_TYPE = 12;
+	int CONTRACT_TYPE = 13;
 
 	/**
 	 * The meta object id for the '{@link de.tu_bs.ccc.contracting.Verification.DirectionType <em>Direction Type</em>}' enum.
@@ -879,7 +925,7 @@ public interface MmPackage extends EPackage {
 	 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getDirectionType()
 	 * @generated
 	 */
-	int DIRECTION_TYPE = 13;
+	int DIRECTION_TYPE = 14;
 
 	/**
 	 * Returns the meta object for class '{@link de.tu_bs.ccc.contracting.Verification.Module <em>Module</em>}'.
@@ -1302,6 +1348,38 @@ public interface MmPackage extends EPackage {
 	EReference getAssumption_Contract();
 
 	/**
+	 * Returns the meta object for class '{@link de.tu_bs.ccc.contracting.Verification.System <em>System</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>System</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.System
+	 * @generated
+	 */
+	EClass getSystem();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.ccc.contracting.Verification.System#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.System#getName()
+	 * @see #getSystem()
+	 * @generated
+	 */
+	EAttribute getSystem_Name();
+
+	/**
+	 * Returns the meta object for the reference list '{@link de.tu_bs.ccc.contracting.Verification.System#getConsistsOf <em>Consists Of</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Consists Of</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.System#getConsistsOf()
+	 * @see #getSystem()
+	 * @generated
+	 */
+	EReference getSystem_ConsistsOf();
+
+	/**
 	 * Returns the meta object for enum '{@link de.tu_bs.ccc.contracting.Verification.PortType <em>Port Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1703,6 +1781,32 @@ public interface MmPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ASSUMPTION__CONTRACT = eINSTANCE.getAssumption_Contract();
+
+		/**
+		 * The meta object literal for the '{@link de.tu_bs.ccc.contracting.Verification.impl.SystemImpl <em>System</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.tu_bs.ccc.contracting.Verification.impl.SystemImpl
+		 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getSystem()
+		 * @generated
+		 */
+		EClass SYSTEM = eINSTANCE.getSystem();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SYSTEM__NAME = eINSTANCE.getSystem_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Consists Of</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SYSTEM__CONSISTS_OF = eINSTANCE.getSystem_ConsistsOf();
 
 		/**
 		 * The meta object literal for the '{@link de.tu_bs.ccc.contracting.Verification.PortType <em>Port Type</em>}' enum.

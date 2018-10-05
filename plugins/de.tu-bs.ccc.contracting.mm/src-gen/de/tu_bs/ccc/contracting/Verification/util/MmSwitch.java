@@ -2,6 +2,16 @@
  */
 package de.tu_bs.ccc.contracting.Verification.util;
 
+import de.tu_bs.ccc.contracting.Verification.Abstract;
+import de.tu_bs.ccc.contracting.Verification.Assumption;
+import de.tu_bs.ccc.contracting.Verification.Component;
+import de.tu_bs.ccc.contracting.Verification.Compound;
+import de.tu_bs.ccc.contracting.Verification.Contract;
+import de.tu_bs.ccc.contracting.Verification.ContractProperty;
+import de.tu_bs.ccc.contracting.Verification.Guarantee;
+import de.tu_bs.ccc.contracting.Verification.MmPackage;
+import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.Verification.*;
 
 import org.eclipse.emf.ecore.EObject;
@@ -135,6 +145,13 @@ public class MmSwitch<T> extends Switch<T> {
 			T result = caseAssumption(assumption);
 			if (result == null)
 				result = caseContractProperty(assumption);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case MmPackage.SYSTEM: {
+			de.tu_bs.ccc.contracting.Verification.System system = (de.tu_bs.ccc.contracting.Verification.System) theEObject;
+			T result = caseSystem(system);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -276,6 +293,21 @@ public class MmSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAssumption(Assumption object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>System</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>System</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSystem(de.tu_bs.ccc.contracting.Verification.System object) {
 		return null;
 	}
 
