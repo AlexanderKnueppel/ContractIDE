@@ -81,8 +81,8 @@ public class CCCProjectNewWizard extends Wizard implements INewWizard {
 				if (!systemFolder.exists()) {
 					systemFolder.create(false, true, null);
 					try {
-						Files.copy(new File(_pluginPath + "/system.diagram").toPath(),
-								new File(_folderPath + "system/system.diagram").toPath());
+						Files.copy(new File(_pluginPath + "/system.cide").toPath(),
+								new File(_folderPath + "system/system.cide").toPath());
 					} catch (IOException e) {
 						e.printStackTrace();
 					}

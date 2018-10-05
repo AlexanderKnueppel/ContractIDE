@@ -60,8 +60,9 @@
       <editor
             class="de.tu_bs.ccc.contracting.core.diagram.ContractModellingDiagramEditor"
             default="true"
-            extensions=".diagram"
-            id="de.tu-bs.ccc.contracting.diagram"
+            extensions="cide"
+            icon="icons/cide2_16.png"
+            id="de.tu-bs.ccc.contracting.diagram.editor"
             name="ContractIDE Editor">
       </editor>
    </extension>

@@ -108,7 +108,7 @@ public class CompoundWizardPage extends WizardPage {
 				containerText.setText(container.getFullPath().toString());
 			}
 		}
-		fileText.setText("new_file.diagram");
+		fileText.setText("compound.cide");
 	}
 
 	/**
@@ -161,8 +161,8 @@ public class CompoundWizardPage extends WizardPage {
 		int dotLoc = fileName.lastIndexOf('.');
 		if (dotLoc != -1) {
 			String ext = fileName.substring(dotLoc + 1);
-			if (ext.equalsIgnoreCase("diagram") == false) {
-				updateStatus("File extension must be \"diagram\"");
+			if (ext.equalsIgnoreCase("cide") == false) {
+				updateStatus("File extension must be \"cide\"");
 				return;
 			}
 		}

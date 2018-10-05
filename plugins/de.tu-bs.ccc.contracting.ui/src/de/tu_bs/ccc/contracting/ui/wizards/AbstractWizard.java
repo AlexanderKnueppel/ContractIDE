@@ -147,7 +147,7 @@ public class AbstractWizard extends Wizard implements INewWizard {
 	 */
 
 	private InputStream openContentStream() {
-		String contents = "This is the initial file contents for *.diagram file that should be word-sorted in the Preview page of the multi-page editor";
+		String contents = "This is the initial file contents for *.cide file that should be word-sorted in the Preview page of the multi-page editor";
 		return new ByteArrayInputStream(contents.getBytes());
 	}
 
