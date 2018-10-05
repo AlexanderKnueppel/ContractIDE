@@ -12,7 +12,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
-import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.System;
 import de.tu_bs.ccc.contracting.core.io.ccc.CCCExporter;
 import de.tu_bs.ccc.contracting.core.util.CoreUtil;
 
@@ -29,10 +29,9 @@ public class ExportHandler extends AbstractHandler {
 	        if (firstElement instanceof IAdaptable && firstElement instanceof IFile)
 	        {
 	            IFile file = (IFile)((IAdaptable)firstElement).getAdapter(IFile.class);
-	    		Module m = CoreUtil.getRootModuleFromFile(file, new ResourceSetImpl());
-	           //Module m = CoreUtil.getRootModuleFromFile(file, new ResourceSetImpl());
-	    		if(m != null)
-	    			new CCCExporter(m).writeToFile(new File("./export.xml"));
+	    		System sys = CoreUtil.getRootSystemFromFile(file, new ResourceSetImpl());
+	    		if(sys != null)
+	    			new CCCExporter(sys).writeToFile(new File("./export.xml"));
 	        }
 	    }
 		return null;

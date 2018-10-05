@@ -8,11 +8,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.stream.Collectors;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import de.tu_bs.ccc.contracting.Verification.Component;
 import de.tu_bs.ccc.contracting.Verification.Compound;
@@ -20,14 +21,25 @@ import de.tu_bs.ccc.contracting.Verification.DirectionType;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.PortType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.Verification.System;
 import de.tu_bs.ccc.contracting.core.io.AbstractObjectWriter;
 
-public class CCCExporter extends AbstractObjectWriter<Module> {
+public class CCCExporter extends AbstractObjectWriter<System> {
 
 	private ObjectFactory factory = new ObjectFactory();
 
-	public CCCExporter(Module m) {
+	public CCCExporter(System m) {
 		setObject(m);
+	}
+
+	public List<Module> getModules(System sys) {
+		List<Module> result = new ArrayList<Module>();
+
+		for (Module m : sys.getConsistsOf()) {
+			result.addAll(getModules(m));
+		}
+
+		return result;
 	}
 
 	public List<Module> getModules(Module m) {
@@ -35,7 +47,9 @@ public class CCCExporter extends AbstractObjectWriter<Module> {
 		result.add(m);
 
 		if (m instanceof Compound) {
-			for (Module child : ((Compound) m).getConsistsOf()) {
+			Module ref = (Module) EcoreUtil.resolve(m.getModule(), m);
+
+			for (Module child : ((Compound) ref).getConsistsOf()) {
 				result.addAll(getModules(child));
 			}
 		}
@@ -205,7 +219,7 @@ public class CCCExporter extends AbstractObjectWriter<Module> {
 						RefType ref = new RefType();
 						ref.setRef(port.getInsidePortseOpposite().getName());
 						service.setExternal(ref);
-					} else {
+					} else if (port.getPortseOpposite() != null) {
 						NameType n = new NameType();
 						n.setName(port.getPortseOpposite().getModule().getName());
 						service.setChild(n);
@@ -273,10 +287,10 @@ public class CCCExporter extends AbstractObjectWriter<Module> {
 	@Override
 	protected String writeToString() {
 
-		if (!(getObject() instanceof Compound))
+		if (!(getObject() instanceof System))
 			return "";
 
-		Compound c = (Compound) getObject();
+		System sys = (System) getObject();
 
 		try {
 
@@ -293,7 +307,8 @@ public class CCCExporter extends AbstractObjectWriter<Module> {
 
 			// Add binaries
 			Map<String, List<Module>> modules = new HashMap<String, List<Module>>();
-			getModules(c).forEach(m -> {
+
+			getModules(sys).forEach(m -> {
 				if (m instanceof Component) {
 					if (modules.get(((Component) m).getBinary()) == null)
 						modules.put(((Component) m).getBinary(), new ArrayList<Module>());
@@ -323,7 +338,7 @@ public class CCCExporter extends AbstractObjectWriter<Module> {
 			}
 
 			// Add components
-			for (Module m : getModules(c)) {
+			for (Module m : getModules(sys)) {
 
 				if (m instanceof Component) {
 					ComponentType component = new ComponentType();
@@ -338,17 +353,20 @@ public class CCCExporter extends AbstractObjectWriter<Module> {
 
 					repo.getBinaryOrComponentOrComposite().add(component);
 				} else if (m instanceof Compound) {
-					CompositeType composite = new CompositeType();
-					composite.setName(m.getName());
 
-					composite.setRequires(getCompositeRequiresType(m));
-					composite.setProvides(getCompositeProvidesType(m));
+					Module ref = (Module) EcoreUtil.resolve(m.getModule(), m);
+
+					CompositeType composite = new CompositeType();
+					composite.setName(ref.getName());
+
+					composite.setRequires(getCompositeRequiresType(ref));
+					composite.setProvides(getCompositeProvidesType(ref));
 					// composite.setTiming(getCompositeTimingType(m));
 
 					CompositeType.Pattern pattern = new CompositeType.Pattern(); // TODO only a single pattern at the
 																					// moment...
 
-					pattern.getComponent().addAll(getPatternComponentType((Compound) m));
+					pattern.getComponent().addAll(getPatternComponentType((Compound) ref));
 
 					composite.getPattern().add(pattern);
 
@@ -356,14 +374,38 @@ public class CCCExporter extends AbstractObjectWriter<Module> {
 				}
 			}
 
-			system.setName("");
+			system.setName(sys.getName());
+
+			for (Module m : sys.getConsistsOf()) {
+				SystemType.Child child = new SystemType.Child();
+				child.setName(m.getName());
+
+				for (Ports port : m.getPorts()) {
+					if (port.getOuterDirection() == DirectionType.INTERNAL) {
+						if (port.getPortseOpposite() != null) {
+							SystemType.Child.Dependency dep = new SystemType.Child.Dependency();
+
+							SystemType.Child.Dependency.Child2 c2 = new SystemType.Child.Dependency.Child2();
+							c2.setName(port.getPortseOpposite().getModule().getName());
+							dep.getChild().add(c2);
+							child.setDependency(dep);
+						}
+					}
+				}
+
+				NameType function = new NameType();
+				function.setName("");
+				child.setFunction(function);
+				
+				system.getChild().add(child);
+			}
 
 			xml.setRepository(repo);
 			xml.setSystem(system);
 			xml.setPlatform(getPlatformType()); // TODO only zync for now
 
 			jaxbMarshaller.marshal(xml, file);
-			jaxbMarshaller.marshal(xml, System.out);
+			jaxbMarshaller.marshal(xml, java.lang.System.out);
 
 			ByteArrayOutputStream stream = new ByteArrayOutputStream();
 			jaxbMarshaller.marshal(xml, stream);
@@ -375,9 +417,4 @@ public class CCCExporter extends AbstractObjectWriter<Module> {
 		return null;
 
 	}
-
-	// public static void main(String[] str) {
-	// new CCCExporter(null).writeToFile(new File("./export.xml"));
-	// }
-
 }

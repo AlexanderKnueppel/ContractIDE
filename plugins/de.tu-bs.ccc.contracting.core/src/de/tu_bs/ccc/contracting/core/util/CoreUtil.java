@@ -24,6 +24,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.System;
 import de.tu_bs.ccc.contracting.core.localization.StringTable;
 
 public class CoreUtil {
@@ -105,6 +106,26 @@ public class CoreUtil {
 				final EObject root = resource.getContents().get(0);
 				if (root instanceof Module) {
 					return (Module) root;
+				}
+			}
+		} catch (final WrappedException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static System getRootSystemFromFile(IFile file, ResourceSet resourceSet) {
+		// Get the URI of the model file.
+		final URI resourceURI = getFileURI(file, resourceSet);
+		// Demand load the resource for this file.
+		Resource resource;
+		try {
+			resource = resourceSet.getResource(resourceURI, true);
+			if (resource != null) {
+				// does resource contain a diagram as root object?
+				final EObject root = resource.getContents().get(0);
+				if (root instanceof System) {
+					return (System) root;
 				}
 			}
 		} catch (final WrappedException e) {
