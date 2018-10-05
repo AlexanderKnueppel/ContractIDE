@@ -20,6 +20,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 
 import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.core.localization.StringTable;
 
 public class OpenEditorFeature extends AbstractCustomFeature {
 
@@ -72,7 +73,7 @@ public class OpenEditorFeature extends AbstractCustomFeature {
 			Module m = ((Module) pes[0].getLink().getBusinessObjects().get(0));
 			m = (Module) EcoreUtil.resolve(m.getModule(), m);
 			URI uri = m.eResource().getURI();
-			String str = uri.path().replace(".model", ".diagram").replace("/resource", "");
+			String str = uri.path().replace(StringTable.MODEL_FILE_EXTENSION, StringTable.DIAGRAM_FILE_EXTENSION).replace("/resource", "");
 
 			final IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(str));
 			try {

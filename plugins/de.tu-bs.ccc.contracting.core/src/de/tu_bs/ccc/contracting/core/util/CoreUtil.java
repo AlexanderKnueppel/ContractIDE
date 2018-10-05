@@ -24,6 +24,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.core.localization.StringTable;
 
 public class CoreUtil {
 
@@ -81,7 +82,7 @@ public class CoreUtil {
 					ret.addAll(getModelFiles((IContainer) resource));
 				} else if (resource instanceof IFile) {
 					final IFile file = (IFile) resource;
-					if (file.getName().endsWith(".model")) {
+					if (file.getName().endsWith(StringTable.MODEL_FILE_EXTENSION)) {
 						ret.add(file);
 					}
 				}
@@ -134,7 +135,7 @@ public class CoreUtil {
 					ret.addAll(getDiagramFiles((IContainer) resource));
 				} else if (resource instanceof IFile) {
 					final IFile file = (IFile) resource;
-					if (file.getName().endsWith(".diagram")) {
+					if (file.getName().endsWith(StringTable.DIAGRAM_FILE_EXTENSION)) {
 						ret.add(file);
 					}
 				}

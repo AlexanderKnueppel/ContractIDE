@@ -36,6 +36,7 @@ import general.SaveDomainModel;
 import de.tu_bs.ccc.contracting.Verification.Component;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.core.localization.StringTable;
 import de.tu_bs.ccc.contracting.Verification.MmFactory;
 import de.tu_bs.ccc.contracting.Verification.MmPackage;
 import windows.Dialog;
@@ -72,7 +73,7 @@ public class LoadComponentFeature extends AbstractCreateFeature {
 		dialog.setFilenameFilter(new FilenameFilter() {
 			public boolean accept(File dir, String name) {
 				String lowercaseName = name.toLowerCase();
-				if (lowercaseName.endsWith(".model")) {
+				if (lowercaseName.endsWith(StringTable.MODEL_FILE_EXTENSION)) {
 					return true;
 				} else {
 					return false;
