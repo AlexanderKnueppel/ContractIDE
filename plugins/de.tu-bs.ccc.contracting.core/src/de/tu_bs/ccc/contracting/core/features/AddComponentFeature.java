@@ -22,6 +22,7 @@ import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
 
 import de.tu_bs.ccc.contracting.Verification.Component;
+import de.tu_bs.ccc.contracting.Verification.System;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Contract;
 import de.tu_bs.ccc.contracting.Verification.Ports;
@@ -49,7 +50,7 @@ public class AddComponentFeature extends AbstractAddFeature implements IAddFeatu
 			if (context.getTargetContainer() instanceof ContainerShape) {
 				PictogramElement pict = context.getTargetContainer();
 				EList<EObject> businessObjects = pict.getLink().getBusinessObjects();
-				return businessObjects.size() == 1 && businessObjects.get(0) instanceof Compound;
+				return businessObjects.size() == 1 && (businessObjects.get(0) instanceof Compound || businessObjects.get(0) instanceof System);
 			}
 		}
 		return false;
@@ -137,7 +138,6 @@ public class AddComponentFeature extends AbstractAddFeature implements IAddFeatu
 			a.setY(((containerShape.getGraphicsAlgorithm().getY()) * i) / j);
 			a.setSize(40, 40);
 			i--;
-			System.out.println("addedPort");
 			addGraphicalRepresentation(a, element);
 		}
 		return containerShape;

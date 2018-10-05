@@ -18,8 +18,6 @@ import de.tu_bs.ccc.contracting.Verification.PortType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.Verification.PropertyType;
 import de.tu_bs.ccc.contracting.Verification.ViewPoint;
-import de.tu_bs.ccc.contracting.Verification.*;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;

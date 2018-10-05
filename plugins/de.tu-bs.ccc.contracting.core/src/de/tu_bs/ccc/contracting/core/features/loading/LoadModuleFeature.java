@@ -12,11 +12,10 @@ import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 
-import de.tu_bs.ccc.contracting.Verification.Abstract;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.System;
 import de.tu_bs.ccc.contracting.core.util.CoreUtil;
-import de.tu_bs.ccc.contracting.core.util.ModuleFilter;
 import de.tu_bs.ccc.contracting.ui.dialogs.LoadModuleDialog;
 import de.tu_bs.ccc.contracting.ui.provider.LoadModuleLabelProvider;
 
@@ -35,7 +34,7 @@ public class LoadModuleFeature extends AbstractCreateFeature {
 			}
 
 			EList<EObject> businessObjects = pict.getLink().getBusinessObjects();
-			return businessObjects.size() == 1 && businessObjects.get(0) instanceof Compound;
+			return businessObjects.size() == 1 && (businessObjects.get(0) instanceof Compound || businessObjects.get(0) instanceof System);
 		} else {
 			return false;
 		}
@@ -46,13 +45,13 @@ public class LoadModuleFeature extends AbstractCreateFeature {
 
 		List<Module> modules = (List<Module>) CoreUtil.getRootModules(CoreUtil.getCurrentProject(), m -> {
 			PictogramElement pict = context.getTargetContainer();
-			Module x = (Module) getBusinessObjectForPictogramElement(pict);
+			EObject x = (EObject) getBusinessObjectForPictogramElement(pict);
 
 			return !x.eResource().getURI().toString().equals(m.eResource().getURI().toString());
 		});
 
 		final LoadModuleDialog dialog = new LoadModuleDialog(null, new LoadModuleLabelProvider(),
-				"Add Module to this Compound", "Add Module", modules);
+				"Add Module to this Container", "Add Module", modules);
 
 		if (dialog.open() == LoadModuleDialog.CANCEL) {
 			return null;
@@ -68,12 +67,22 @@ public class LoadModuleFeature extends AbstractCreateFeature {
 
 			addGraphicalRepresentation(context, copy);
 			PictogramElement pict = context.getTargetContainer();
-			Compound x = (Compound) getBusinessObjectForPictogramElement(pict);
-			copy.setIsPartOf(x);
-			copy.getRealizedBy().addAll(c.getRealizedBy());
-			copy.setModule(c);
-			x.getConsistsOf().add(copy);
-
+			
+			Object container = getBusinessObjectForPictogramElement(pict);
+			if(container instanceof Compound) {
+				Compound x = (Compound) getBusinessObjectForPictogramElement(pict);
+				copy.setIsPartOf(x);
+				copy.getRealizedBy().addAll(c.getRealizedBy());
+				copy.setModule(c);
+				x.getConsistsOf().add(copy);
+			} else if(container instanceof System) {
+				System x = (System) getBusinessObjectForPictogramElement(pict);
+				copy.setModule(c);
+				copy.getRealizedBy().addAll(c.getRealizedBy());
+				copy.setIsPartOf(null);
+				x.getConsistsOf().add(copy);
+			}
+			
 			return new Object[] { copy };
 		}
 

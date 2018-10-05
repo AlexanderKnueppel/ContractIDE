@@ -51,7 +51,7 @@ public interface System extends EObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Consists Of</b></em>' reference list.
+	 * Returns the value of the '<em><b>Consists Of</b></em>' containment reference list.
 	 * The list contents are of type {@link de.tu_bs.ccc.contracting.Verification.Module}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -59,9 +59,9 @@ public interface System extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Consists Of</em>' reference list.
+	 * @return the value of the '<em>Consists Of</em>' containment reference list.
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getSystem_ConsistsOf()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Module> getConsistsOf();

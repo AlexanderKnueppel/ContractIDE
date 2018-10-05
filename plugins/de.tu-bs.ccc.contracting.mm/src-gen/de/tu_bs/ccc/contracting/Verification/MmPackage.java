@@ -851,7 +851,7 @@ public interface MmPackage extends EPackage {
 	int SYSTEM__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Consists Of</b></em>' reference list.
+	 * The feature id for the '<em><b>Consists Of</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1369,10 +1369,10 @@ public interface MmPackage extends EPackage {
 	EAttribute getSystem_Name();
 
 	/**
-	 * Returns the meta object for the reference list '{@link de.tu_bs.ccc.contracting.Verification.System#getConsistsOf <em>Consists Of</em>}'.
+	 * Returns the meta object for the containment reference list '{@link de.tu_bs.ccc.contracting.Verification.System#getConsistsOf <em>Consists Of</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Consists Of</em>'.
+	 * @return the meta object for the containment reference list '<em>Consists Of</em>'.
 	 * @see de.tu_bs.ccc.contracting.Verification.System#getConsistsOf()
 	 * @see #getSystem()
 	 * @generated
@@ -1801,7 +1801,7 @@ public interface MmPackage extends EPackage {
 		EAttribute SYSTEM__NAME = eINSTANCE.getSystem_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Consists Of</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Consists Of</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

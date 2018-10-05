@@ -136,6 +136,19 @@ public class CreateModule extends RecordingCommand {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}		
+		} else if (this.type == CreationType.SYSTEM) {
+			de.tu_bs.ccc.contracting.Verification.System s = MmFactory.eINSTANCE.createSystem();
+			creat.setNewObject(s);
+			s.setName(file.getName().substring(0, dot));
+
+			final Resource resourceDomain = rSet.getResource(uri, true);
+			resourceDomain.getContents().add(s);
+			try {
+				resourceDomain.save(null);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}		
 		}
 		creat.setTargetContainer(diagram);
 

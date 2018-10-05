@@ -9,14 +9,17 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -54,7 +57,7 @@ public class SystemImpl extends MinimalEObjectImpl.Container implements de.tu_bs
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getConsistsOf() <em>Consists Of</em>}' reference list.
+	 * The cached value of the '{@link #getConsistsOf() <em>Consists Of</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getConsistsOf()
@@ -110,9 +113,23 @@ public class SystemImpl extends MinimalEObjectImpl.Container implements de.tu_bs
 	 */
 	public EList<Module> getConsistsOf() {
 		if (consistsOf == null) {
-			consistsOf = new EObjectResolvingEList<Module>(Module.class, this, MmPackage.SYSTEM__CONSISTS_OF);
+			consistsOf = new EObjectContainmentEList<Module>(Module.class, this, MmPackage.SYSTEM__CONSISTS_OF);
 		}
 		return consistsOf;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case MmPackage.SYSTEM__CONSISTS_OF:
+			return ((InternalEList<?>) getConsistsOf()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

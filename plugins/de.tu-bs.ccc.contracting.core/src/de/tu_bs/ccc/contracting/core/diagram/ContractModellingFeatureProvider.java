@@ -20,14 +20,13 @@ import org.eclipse.graphiti.features.context.IReconnectionContext;
 import org.eclipse.graphiti.features.context.IResizeShapeContext;
 import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.features.custom.ICustomFeature;
-import org.eclipse.graphiti.features.impl.DefaultMoveShapeFeature;
-import org.eclipse.graphiti.features.impl.DefaultResizeShapeFeature;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
 import de.tu_bs.ccc.contracting.Verification.Abstract;
+import de.tu_bs.ccc.contracting.Verification.System;
 import de.tu_bs.ccc.contracting.Verification.Component;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Contract;
@@ -39,8 +38,7 @@ import de.tu_bs.ccc.contracting.core.features.AddCompoundFeature;
 import de.tu_bs.ccc.contracting.core.features.AddContractFeature;
 import de.tu_bs.ccc.contracting.core.features.AddPortConnetion;
 import de.tu_bs.ccc.contracting.core.features.AddPortFeature;
-import de.tu_bs.ccc.contracting.core.features.CreateAbstractFeature;
-import de.tu_bs.ccc.contracting.core.features.CreateComponentFeature;
+import de.tu_bs.ccc.contracting.core.features.AddSystemFeature;
 import de.tu_bs.ccc.contracting.core.features.CreateContractFeature;
 import de.tu_bs.ccc.contracting.core.features.CreatePortConnection;
 import de.tu_bs.ccc.contracting.core.features.CreatePortFeature;
@@ -121,6 +119,8 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 			return new AddAbstractFeature(this);
 		} else if (obj instanceof Compound) {
 			return new AddCompoundFeature(this);
+		} else if (obj instanceof System) {
+			return new AddSystemFeature(this);
 		} else if (obj instanceof Ports) {
 			return new AddPortFeature(this);
 		} else if (context instanceof IAddConnectionContext && (getBusinessObjectForPictogramElement(

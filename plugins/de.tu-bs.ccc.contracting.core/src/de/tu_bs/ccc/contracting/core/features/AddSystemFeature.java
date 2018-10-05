@@ -1,10 +1,8 @@
 package de.tu_bs.ccc.contracting.core.features;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.graphiti.features.IAddFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
-import org.eclipse.graphiti.features.context.impl.AddContext;
 import org.eclipse.graphiti.features.impl.AbstractAddFeature;
 import org.eclipse.graphiti.mm.algorithms.Polyline;
 import org.eclipse.graphiti.mm.algorithms.RoundedRectangle;
@@ -20,42 +18,34 @@ import org.eclipse.graphiti.services.IPeCreateService;
 import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
 
-import de.tu_bs.ccc.contracting.Verification.Compound;
-import de.tu_bs.ccc.contracting.Verification.Contract;
-import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.Verification.System;
 
-public class AddCompoundFeature extends AbstractAddFeature {
-	private static final IColorConstant E_CLASS_TEXT_FOREGROUND = IColorConstant.BLACK;
+public class AddSystemFeature extends AbstractAddFeature implements IAddFeature {
 
-	private static final IColorConstant E_CLASS_FOREGROUND = new ColorConstant(100, 131, 167);
-
-	private static final IColorConstant E_CLASS_BACKGROUND = new ColorConstant(200, 240, 247);
-
-	public AddCompoundFeature(IFeatureProvider fp) {
+	public AddSystemFeature(IFeatureProvider fp) {
 		super(fp);
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
+	private static final IColorConstant E_CLASS_TEXT_FOREGROUND = IColorConstant.BLACK;
+
+	private static final IColorConstant E_CLASS_FOREGROUND = new ColorConstant(70, 113, 47);
+
+	private static final IColorConstant E_CLASS_BACKGROUND = new ColorConstant(210, 236, 201);
+
 	public boolean canAdd(IAddContext context) {
-		if (context.getNewObject() instanceof Compound) {
+		// check if user wants to add a EClass
+		if (context.getNewObject() instanceof System) {
 			// check if user wants to add to a diagram
 			if (context.getTargetContainer() instanceof Diagram) {
 				return true;
-			}
-			if (context.getTargetContainer() instanceof ContainerShape) {
-				 PictogramElement pict = context.getTargetContainer();
-				 EList<EObject> businessObjects = pict.getLink().getBusinessObjects();
-				 return businessObjects.size() == 1 && (businessObjects.get(0) instanceof Compound || businessObjects.get(0) instanceof System);
 			}
 		}
 		return false;
 	}
 
-	@Override
 	public PictogramElement add(IAddContext context) {
-		Compound addedClass = (Compound) context.getNewObject();
+		System addedClass = (System) context.getNewObject();
 		ContainerShape targetDiagram = context.getTargetContainer();
 
 		// CONTAINER SHAPE WITH ROUNDED RECTANGLE
@@ -63,8 +53,8 @@ public class AddCompoundFeature extends AbstractAddFeature {
 		ContainerShape containerShape = peCreateService.createContainerShape(targetDiagram, true);
 
 		// define a default size for the shape
-        final int width = context.getWidth() <= 50 ? 100 : context.getWidth();
-        final int height = context.getHeight() <= 50 ? 50 : context.getHeight();
+		final int width = context.getWidth() <= 50 ? 100 : context.getWidth();
+		final int height = context.getHeight() <= 50 ? 50 : context.getHeight();
 		IGaService gaService = Graphiti.getGaService();
 		RoundedRectangle roundedRectangle; // need to access it later
 
@@ -103,7 +93,7 @@ public class AddCompoundFeature extends AbstractAddFeature {
 			Shape shape = peCreateService.createShape(containerShape, false);
 
 			// create and set text graphics algorithm
-			Text text = gaService.createText(shape, addedClass.getName()+"   "+addedClass.getVersion());
+			Text text = gaService.createText(shape, addedClass.getName());
 			text.setForeground(manageColor(E_CLASS_TEXT_FOREGROUND));
 			text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 			// vertical alignment has as default value "center"
@@ -113,32 +103,6 @@ public class AddCompoundFeature extends AbstractAddFeature {
 			// create link and wire it
 			link(shape, addedClass);
 		}
-		peCreateService.createChopboxAnchor(containerShape);
-		int i=addedClass.getPorts().size();
-		int j = addedClass.getPorts().size();
-		for (Ports element : addedClass.getPorts()) {
-		    AddContext a= new AddContext();
-		    	a.setTargetContainer(containerShape);
-
-			a.setX(containerShape.getGraphicsAlgorithm().getWidth()/2);
-			a.setY((containerShape.getGraphicsAlgorithm().getHeight()*i)/j);
-			a.setSize(40,40 );
-			i--;
-			addGraphicalRepresentation(a, element);
-		}
-		i=addedClass.getContract().size();
-		j = addedClass.getContract().size();
-		for (Contract element : addedClass.getContract()) {
-		    AddContext a= new AddContext();
-		    	a.setTargetContainer(containerShape);
-
-			a.setX(((containerShape.getGraphicsAlgorithm().getX())*i)/j);
-			a.setY(((containerShape.getGraphicsAlgorithm().getY())*i)/j);
-			a.setSize(40,40 );
-			i--;
-			addGraphicalRepresentation(a, element);
-		}
-
 		return containerShape;
 	}
 
