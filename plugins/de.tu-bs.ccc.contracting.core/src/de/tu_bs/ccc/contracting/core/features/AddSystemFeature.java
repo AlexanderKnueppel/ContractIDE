@@ -53,8 +53,9 @@ public class AddSystemFeature extends AbstractAddFeature implements IAddFeature 
 		ContainerShape containerShape = peCreateService.createContainerShape(targetDiagram, true);
 
 		// define a default size for the shape
-		final int width = context.getWidth() <= 50 ? 100 : context.getWidth();
-		final int height = context.getHeight() <= 50 ? 50 : context.getHeight();
+		final int width = context.getWidth() <= 50 ? 300 : context.getWidth();
+		final int height = context.getHeight() <= 50 ? 150 : context.getHeight();
+		
 		IGaService gaService = Graphiti.getGaService();
 		RoundedRectangle roundedRectangle; // need to access it later
 
