@@ -7,10 +7,13 @@ import java.io.File;
 
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IProjectDescription;
+import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -80,12 +83,29 @@ public class CCCProjectNewWizard extends Wizard implements INewWizard {
 				}
 				if (!systemFolder.exists()) {
 					systemFolder.create(false, true, null);
-					try {
-						Files.copy(new File(_pluginPath + "/system.cide").toPath(),
-								new File(_folderPath + "system/system.cide").toPath());
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
+//					try {
+//						Files.copy(new File(_pluginPath + "/system.cide").toPath(),
+//								new File(_folderPath + "system/system.cide").toPath());
+//					} catch (IOException e) {
+//						e.printStackTrace();
+//					}
+				}
+				
+				// Add xtext nature
+				IProjectDescription description = project.getDescription();
+				String[] natures = description.getNatureIds();
+				String[] newNatures = new String[natures.length + 1];
+				System.arraycopy(natures, 0, newNatures, 0, natures.length);
+				newNatures[natures.length] = "org.eclipse.xtext.ui.shared.xtextNature";
+
+				// validate the natures
+				IWorkspace workspace = ResourcesPlugin.getWorkspace();
+				IStatus status = workspace.validateNatureSet(newNatures);
+
+				// only apply new nature, if the status is ok
+				if (status.getCode() == IStatus.OK) {
+				    description.setNatureIds(newNatures);
+				    project.setDescription(description, null);
 				}
 
 				systemFolder.refreshLocal(1, null);

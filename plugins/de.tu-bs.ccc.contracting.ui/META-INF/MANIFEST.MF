@@ -21,7 +21,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.transaction,
  org.eclipse.graphiti.examples.common,
  org.eclipse.emf.common,
- de.tu-bs.ccc.contracting.mm;bundle-version="0.1.0"
+ de.tu-bs.ccc.contracting.mm;bundle-version="0.1.0",
+ org.eclipse.equinox.registry
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: ContractModellingWizard
 Bundle-ActivationPolicy: lazy
