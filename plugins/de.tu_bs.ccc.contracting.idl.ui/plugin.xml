@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<?eclipse version="3.0"?>
+<plugin>
+	<extension
+		point="org.eclipse.ui.editors">
+		<editor
+			class="de.tu_bs.ccc.contracting.idl.ui.CidlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+			contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
+			default="true"
+			extensions="cidl"
+			id="de.tu_bs.ccc.contracting.idl.Cidl"
+			name="Cidl Editor">
+		</editor>
+	</extension>
+	<extension
+		point="org.eclipse.ui.handlers">
+		<handler
+			class="de.tu_bs.ccc.contracting.idl.ui.CidlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
+			commandId="org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclaration">
+			<activeWhen>
+				<reference
+					definitionId="de.tu_bs.ccc.contracting.idl.Cidl.Editor.opened">
+				</reference>
+			</activeWhen>
+		</handler>
+		<handler
+			class="de.tu_bs.ccc.contracting.idl.ui.CidlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
+			commandId="de.tu_bs.ccc.contracting.idl.Cidl.validate">
+		<activeWhen>
+			<reference
+					definitionId="de.tu_bs.ccc.contracting.idl.Cidl.Editor.opened">
+			</reference>
+		</activeWhen>
+		</handler>
+		<!-- copy qualified name -->
+		<handler
+			class="de.tu_bs.ccc.contracting.idl.ui.CidlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
+			commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName">
+			<activeWhen>
+				<reference definitionId="de.tu_bs.ccc.contracting.idl.Cidl.Editor.opened" />
+			</activeWhen>
+		</handler>
+		<handler
+			class="de.tu_bs.ccc.contracting.idl.ui.CidlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
+			commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName">
+			<activeWhen>
+				<and>
+					<reference definitionId="de.tu_bs.ccc.contracting.idl.Cidl.XtextEditor.opened" />
+					<iterate>
+						<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
+					</iterate>
+				</and>
+			</activeWhen>
+		</handler>
+	</extension>
+	<extension point="org.eclipse.core.expressions.definitions">
+		<definition id="de.tu_bs.ccc.contracting.idl.Cidl.Editor.opened">
+			<and>
+				<reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
+				<with variable="activeEditor">
+					<test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName"
+						value="de.tu_bs.ccc.contracting.idl.Cidl"
+						forcePluginActivation="true"/>
+				</with>
+			</and>
+		</definition>
+		<definition id="de.tu_bs.ccc.contracting.idl.Cidl.XtextEditor.opened">
+			<and>
+				<reference definitionId="isXtextEditorActive"/>
+				<with variable="activeEditor">
+					<test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName"
+						value="de.tu_bs.ccc.contracting.idl.Cidl"
+						forcePluginActivation="true"/>
+				</with>
+			</and>
+		</definition>
+	</extension>
+	<extension
+			point="org.eclipse.ui.preferencePages">
+		<page
+			class="de.tu_bs.ccc.contracting.idl.ui.CidlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+			id="de.tu_bs.ccc.contracting.idl.Cidl"
+			name="Cidl">
+			<keywordReference id="de.tu_bs.ccc.contracting.idl.ui.keyword_Cidl"/>
+		</page>
+		<page
+			category="de.tu_bs.ccc.contracting.idl.Cidl"
+			class="de.tu_bs.ccc.contracting.idl.ui.CidlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
+			id="de.tu_bs.ccc.contracting.idl.Cidl.coloring"
+			name="Syntax Coloring">
+			<keywordReference id="de.tu_bs.ccc.contracting.idl.ui.keyword_Cidl"/>
+		</page>
+		<page
+			category="de.tu_bs.ccc.contracting.idl.Cidl"
+			class="de.tu_bs.ccc.contracting.idl.ui.CidlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
+			id="de.tu_bs.ccc.contracting.idl.Cidl.templates"
+			name="Templates">
+			<keywordReference id="de.tu_bs.ccc.contracting.idl.ui.keyword_Cidl"/>
+		</page>
+	</extension>
+	<extension
+			point="org.eclipse.ui.propertyPages">
+		<page
+			class="de.tu_bs.ccc.contracting.idl.ui.CidlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+			id="de.tu_bs.ccc.contracting.idl.Cidl"
+			name="Cidl">
+			<keywordReference id="de.tu_bs.ccc.contracting.idl.ui.keyword_Cidl"/>
+			<enabledWhen>
+				<adapt type="org.eclipse.core.resources.IProject"/>
+			</enabledWhen>
+			<filter name="projectNature" value="org.eclipse.xtext.ui.shared.xtextNature"/>
+		</page>
+	</extension>
+	<extension
+		point="org.eclipse.ui.keywords">
+		<keyword
+			id="de.tu_bs.ccc.contracting.idl.ui.keyword_Cidl"
+			label="Cidl"/>
+	</extension>
+	<extension
+		point="org.eclipse.ui.commands">
+	<command
+			description="Trigger expensive validation"
+			id="de.tu_bs.ccc.contracting.idl.Cidl.validate"
+			name="Validate">
+	</command>
+	<!-- copy qualified name -->
+	<command
+			id="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
+			categoryId="org.eclipse.ui.category.edit"
+			description="Copy the qualified name for the selected element"
+			name="Copy Qualified Name">
+	</command>
+	<command
+			id="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName"
+			categoryId="org.eclipse.ui.category.edit"
+			description="Copy the qualified name for the selected element"
+			name="Copy Qualified Name">
+	</command>
+	</extension>
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution
+			locationURI="popup:#TextEditorContext?after=group.edit">
+			 <command
+				 commandId="de.tu_bs.ccc.contracting.idl.Cidl.validate"
+				 style="push"
+				 tooltip="Trigger expensive validation">
+			<visibleWhen checkEnabled="false">
+				<reference
+					definitionId="de.tu_bs.ccc.contracting.idl.Cidl.Editor.opened">
+				</reference>
+			</visibleWhen>
+		</command>
+		</menuContribution>
+		<!-- copy qualified name -->
+		<menuContribution locationURI="popup:#TextEditorContext?after=copy">
+			<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
+				style="push" tooltip="Copy Qualified Name">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="de.tu_bs.ccc.contracting.idl.Cidl.Editor.opened" />
+				</visibleWhen>
+			</command>
+		</menuContribution>
+		<menuContribution locationURI="menu:edit?after=copy">
+			<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
+				style="push" tooltip="Copy Qualified Name">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="de.tu_bs.ccc.contracting.idl.Cidl.Editor.opened" />
+				</visibleWhen>
+			</command>
+		</menuContribution>
+		<menuContribution locationURI="popup:org.eclipse.xtext.ui.outline?after=additions">
+			<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName"
+				style="push" tooltip="Copy Qualified Name">
+				<visibleWhen checkEnabled="false">
+					<and>
+						<reference definitionId="de.tu_bs.ccc.contracting.idl.Cidl.XtextEditor.opened" />
+						<iterate>
+							<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
+						</iterate>
+					</and>
+				</visibleWhen>
+			</command>
+		</menuContribution>
+	</extension>
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution locationURI="popup:#TextEditorContext?endof=group.find">
+			<command commandId="org.eclipse.xtext.ui.editor.FindReferences">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="de.tu_bs.ccc.contracting.idl.Cidl.Editor.opened">
+					</reference>
+				</visibleWhen>
+			</command>
+		</menuContribution>
+	</extension>
+	<extension point="org.eclipse.ui.handlers">
+		<handler
+			class="de.tu_bs.ccc.contracting.idl.ui.CidlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
+			commandId="org.eclipse.xtext.ui.editor.FindReferences">
+			<activeWhen>
+				<reference
+					definitionId="de.tu_bs.ccc.contracting.idl.Cidl.Editor.opened">
+				</reference>
+			</activeWhen>
+		</handler>
+	</extension>
+	<extension point="org.eclipse.core.contenttype.contentTypes">
+		<content-type
+			base-type="org.eclipse.core.runtime.text"
+			file-extensions="cidl"
+			id="de.tu_bs.ccc.contracting.idl.Cidl.contenttype"
+			name="Cidl File"
+			priority="normal">
+		</content-type>
+	</extension>
+	<!-- adding resource factories -->
+	<extension
+		point="org.eclipse.emf.ecore.extension_parser">
+		<parser
+			class="de.tu_bs.ccc.contracting.idl.ui.CidlExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
+			type="cidl">
+		</parser>
+	</extension>
+	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
+		<resourceServiceProvider
+			class="de.tu_bs.ccc.contracting.idl.ui.CidlExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
+			uriExtension="cidl">
+		</resourceServiceProvider>
+	</extension>
+	<!-- marker definitions for de.tu_bs.ccc.contracting.idl.Cidl -->
+	<extension
+			id="cidl.check.fast"
+			name="Cidl Problem"
+			point="org.eclipse.core.resources.markers">
+		<super type="org.eclipse.xtext.ui.check.fast"/>
+		<persistent value="true"/>
+	</extension>
+	<extension
+			id="cidl.check.normal"
+			name="Cidl Problem"
+			point="org.eclipse.core.resources.markers">
+		<super type="org.eclipse.xtext.ui.check.normal"/>
+		<persistent value="true"/>
+	</extension>
+	<extension
+			id="cidl.check.expensive"
+			name="Cidl Problem"
+			point="org.eclipse.core.resources.markers">
+		<super type="org.eclipse.xtext.ui.check.expensive"/>
+		<persistent value="true"/>
+	</extension>
+	<extension point="org.eclipse.ui.preferencePages">
+		<page
+			category="de.tu_bs.ccc.contracting.idl.Cidl"
+			class="de.tu_bs.ccc.contracting.idl.ui.CidlExecutableExtensionFactory:org.eclipse.xtext.ui.validation.ValidatorPreferencePage"
+			id="de.tu_bs.ccc.contracting.idl.Cidl.validator.preferencePage"
+			name="Errors/Warnings">
+			<keywordReference id="de.tu_bs.ccc.contracting.idl.ui.keyword_Cidl"/>
+		</page>
+	</extension>
+	<extension point="org.eclipse.xtext.builder.participant">
+		<participant
+			class="de.tu_bs.ccc.contracting.idl.ui.CidlExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
+			fileExtensions="cidl"/>
+	</extension>
+	<extension point="org.eclipse.ui.preferencePages">
+		<page
+			category="de.tu_bs.ccc.contracting.idl.Cidl"
+			class="de.tu_bs.ccc.contracting.idl.ui.CidlExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+			id="de.tu_bs.ccc.contracting.idl.Cidl.compiler.preferencePage"
+			name="Compiler">
+			<keywordReference id="de.tu_bs.ccc.contracting.idl.ui.keyword_Cidl"/>
+		</page>
+	</extension>
+	<extension point="org.eclipse.ui.propertyPages">
+		<page
+			category="de.tu_bs.ccc.contracting.idl.Cidl"
+			class="de.tu_bs.ccc.contracting.idl.ui.CidlExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+			id="de.tu_bs.ccc.contracting.idl.Cidl.compiler.propertyPage"
+			name="Compiler">
+			<keywordReference id="de.tu_bs.ccc.contracting.idl.ui.keyword_Cidl"/>
+			<enabledWhen>
+				<adapt type="org.eclipse.core.resources.IProject"/>
+			</enabledWhen>
+			<filter name="projectNature" value="org.eclipse.xtext.ui.shared.xtextNature"/>
+		</page>
+	</extension>
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution locationURI="popup:#TextEditorContext?after=xtext.ui.openDeclaration">
+			<command
+				commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand"
+				id="de.tu_bs.ccc.contracting.idl.Cidl.OpenGeneratedCode"
+				style="push">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="de.tu_bs.ccc.contracting.idl.Cidl.Editor.opened" />
+				</visibleWhen>
+			</command>
+		</menuContribution>
+	</extension>
+	<extension point="org.eclipse.ui.handlers">
+		<handler
+			class="de.tu_bs.ccc.contracting.idl.ui.CidlExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
+			commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand">
+			<activeWhen>
+				<reference definitionId="de.tu_bs.ccc.contracting.idl.Cidl.Editor.opened" />
+			</activeWhen>
+		</handler>
+	</extension>
+	<!-- Quick Outline -->
+	<extension
+		point="org.eclipse.ui.handlers">
+		<handler 
+			class="de.tu_bs.ccc.contracting.idl.ui.CidlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
+			commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline">
+			<activeWhen>
+				<reference
+					definitionId="de.tu_bs.ccc.contracting.idl.Cidl.Editor.opened">
+				</reference>
+			</activeWhen>
+		</handler>
+	</extension>
+	<extension
+		point="org.eclipse.ui.commands">
+		<command
+			description="Open the quick outline."
+			id="org.eclipse.xtext.ui.editor.outline.QuickOutline"
+			name="Quick Outline">
+		</command>
+	</extension>
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution
+			locationURI="popup:#TextEditorContext?after=group.open">
+			<command commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline"
+				style="push"
+				tooltip="Open Quick Outline">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="de.tu_bs.ccc.contracting.idl.Cidl.Editor.opened"/>
+				</visibleWhen>
+			</command>
+		</menuContribution>
+	</extension>
+	<!-- quickfix marker resolution generator for de.tu_bs.ccc.contracting.idl.Cidl -->
+	<extension
+			point="org.eclipse.ui.ide.markerResolution">
+		<markerResolutionGenerator
+			class="de.tu_bs.ccc.contracting.idl.ui.CidlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="de.tu_bs.ccc.contracting.idl.ui.cidl.check.fast">
+			<attribute
+				name="FIXABLE_KEY"
+				value="true">
+			</attribute>
+		</markerResolutionGenerator>
+		<markerResolutionGenerator
+			class="de.tu_bs.ccc.contracting.idl.ui.CidlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="de.tu_bs.ccc.contracting.idl.ui.cidl.check.normal">
+			<attribute
+				name="FIXABLE_KEY"
+				value="true">
+			</attribute>
+		</markerResolutionGenerator>
+		<markerResolutionGenerator
+			class="de.tu_bs.ccc.contracting.idl.ui.CidlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="de.tu_bs.ccc.contracting.idl.ui.cidl.check.expensive">
+			<attribute
+				name="FIXABLE_KEY"
+				value="true">
+			</attribute>
+		</markerResolutionGenerator>
+	</extension>
+	<!-- Rename Refactoring -->
+	<extension point="org.eclipse.ui.handlers">
+		<handler 
+			class="de.tu_bs.ccc.contracting.idl.ui.CidlExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
+			commandId="org.eclipse.xtext.ui.refactoring.RenameElement">
+			<activeWhen>
+				<reference
+					definitionId="de.tu_bs.ccc.contracting.idl.Cidl.Editor.opened">
+				</reference>
+			</activeWhen>
+		</handler>
+	</extension>
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution
+			locationURI="popup:#TextEditorContext?after=group.edit">
+			<command commandId="org.eclipse.xtext.ui.refactoring.RenameElement"
+				style="push">
+				<visibleWhen checkEnabled="false">
+					<reference
+						definitionId="de.tu_bs.ccc.contracting.idl.Cidl.Editor.opened">
+					</reference>
+				</visibleWhen>
+			</command>
+		</menuContribution>
+	</extension>
+	<extension point="org.eclipse.ui.preferencePages">
+		<page
+			category="de.tu_bs.ccc.contracting.idl.Cidl"
+			class="de.tu_bs.ccc.contracting.idl.ui.CidlExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
+			id="de.tu_bs.ccc.contracting.idl.Cidl.refactoring"
+			name="Refactoring">
+			<keywordReference id="de.tu_bs.ccc.contracting.idl.ui.keyword_Cidl"/>
+		</page>
+	</extension>
+	<extension point="org.eclipse.compare.contentViewers">
+		<viewer id="de.tu_bs.ccc.contracting.idl.Cidl.compare.contentViewers"
+			class="de.tu_bs.ccc.contracting.idl.ui.CidlExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+			extensions="cidl">
+		</viewer>
+		<contentTypeBinding
+			contentTypeId="de.tu_bs.ccc.contracting.idl.Cidl.contenttype"
+			contentViewerId="de.tu_bs.ccc.contracting.idl.Cidl.compare.contentViewers" />
+	</extension>
+	<extension point="org.eclipse.compare.contentMergeViewers">
+		<viewer id="de.tu_bs.ccc.contracting.idl.Cidl.compare.contentMergeViewers"
+			class="de.tu_bs.ccc.contracting.idl.ui.CidlExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+			extensions="cidl" label="Cidl Compare">
+		</viewer>
+		<contentTypeBinding
+			contentTypeId="de.tu_bs.ccc.contracting.idl.Cidl.contenttype"
+			contentMergeViewerId="de.tu_bs.ccc.contracting.idl.Cidl.compare.contentMergeViewers" />
+	</extension>
+	<extension point="org.eclipse.ui.editors.documentProviders">
+		<provider id="de.tu_bs.ccc.contracting.idl.Cidl.editors.documentProviders"
+			class="de.tu_bs.ccc.contracting.idl.ui.CidlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
+			extensions="cidl">
+		</provider>
+	</extension>
+	<extension point="org.eclipse.team.core.fileTypes">
+		<fileTypes
+			extension="cidl"
+			type="text">
+		</fileTypes>
+	</extension>
+ <extension
+       point="org.eclipse.ui.newWizards">
+    <wizard
+          category="de.tu-bs.ccc.contracting.ui.wizards"
+          class="de.tu_bs.ccc.contracting.idl.ui.wizards.CidlWizard"
+          id="de.tu_bs.ccc.contracting.idl.ui.file"
+          name="Service Description">
+    </wizard>
+ </extension>
+</plugin>

@@ -1,0 +1,30 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: de.tu_bs.ccc.contracting.idl
+Bundle-ManifestVersion: 2
+Bundle-Name: de.tu_bs.ccc.contracting.idl
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: de.tu_bs.ccc.contracting.idl; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.common,
+ org.eclipse.xtend.lib;bundle-version="2.14.0",
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: de.tu_bs.ccc.contracting.idl.parser.antlr.internal,
+ de.tu_bs.ccc.contracting.idl.validation,
+ de.tu_bs.ccc.contracting.idl.serializer,
+ de.tu_bs.ccc.contracting.idl.scoping,
+ de.tu_bs.ccc.contracting.idl.cidl,
+ de.tu_bs.ccc.contracting.idl.cidl.impl,
+ de.tu_bs.ccc.contracting.idl.parser.antlr,
+ de.tu_bs.ccc.contracting.idl.generator,
+ de.tu_bs.ccc.contracting.idl.cidl.util,
+ de.tu_bs.ccc.contracting.idl,
+ de.tu_bs.ccc.contracting.idl.services
+Import-Package: org.apache.log4j

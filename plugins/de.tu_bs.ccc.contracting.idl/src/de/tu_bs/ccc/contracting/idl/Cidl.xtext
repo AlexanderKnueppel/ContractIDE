@@ -1,0 +1,502 @@
+grammar de.tu_bs.ccc.contracting.idl.Cidl with org.eclipse.xtext.common.Terminals
+
+generate cidl "http://www.tu_bs.de/ccc/contracting/idl/Cidl"
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+
+// **************************************************************
+// model root
+
+Model returns Model:
+	{Model}
+	'package' name=FQN
+	(imports+=Import)*
+	( typeCollections+=TypeCollection | interfaces+=Interface	)*;
+
+// **************************************************************
+// type collection and interface
+
+TypeCollection returns TypeCollection:
+	{TypeCollection}
+	(comment=AnnotationBlock)?
+	'typeCollection' (name=ID)?
+	'{'
+		('version' version=Version)?
+		(
+			constants+=ConstantDef |
+			types+=Type
+		)*
+	'}';
+
+Interface returns Interface:
+	{Interface}
+	(comment=AnnotationBlock)?
+	'interface' name=ID
+		('extends' base=[Interface|FQN])?
+		('manages'
+			managedInterfaces+=[Interface|FQN]
+			(',' managedInterfaces+=[Interface|FQN])*
+		)?
+	'{'
+		('version' version=Version)?
+		(
+			attributes+=Attribute |
+			methods+=Method |
+//			broadcasts+=Broadcast |
+			constants+=ConstantDef |
+			types+=Type
+		)*
+//		(
+//			contract=Contract
+//			
+//			// we allow constant and type definitions after the contract.
+//			// this is for backward compatibility (0.9.0 or earlier)
+//			// this will be marked as deprecated in 0.9.1 or later 
+//			(constants+=ConstantDef | types+=Type)*
+//		)?
+    '}';
+
+Version returns Version:
+	{Version}
+	'{'
+		'major' major=INT
+		'minor' minor=INT
+    '}';
+
+
+// **************************************************************
+// attributes
+
+Attribute:
+	(comment=AnnotationBlock)?
+	'attribute'	type=TypeRef (array?='[' ']')? name=ID
+		(
+			(readonly?='readonly')? &
+			(noRead?='noRead')? &
+			(noSubscriptions?='noSubscriptions')?
+		)
+	;
+
+
+// **************************************************************
+// methods / broadcasts
+
+Method returns Method:
+	{Method}
+	(comment=AnnotationBlock)?
+	'method' name=ID (':' selector=ID)? (fireAndForget?='fireAndForget')?
+	'{'
+		('in' '{' (inArgs+=Argument)* '}' )?
+		('out' '{' (outArgs+=Argument)* '}' )?
+		(
+			(errorComment=AnnotationBlock)?
+			'error'
+				( errorEnum=[EnumerationType|FQN] |
+			  	errors=EnumerationTypeBody )
+		)?
+    '}';
+
+
+//FBroadcast returns FBroadcast:
+//	{FBroadcast}
+//	(comment=FAnnotationBlock)?
+//	'broadcast' name=ID (':' selector=ID)? (selective?='selective')?
+//	'{'
+//		('out' '{' (outArgs+=FArgument)* '}' )?
+//    '}';
+
+Argument:
+	(comment=AnnotationBlock)?
+	type=TypeRef (array?='[' ']')? name=ID;
+
+
+// **************************************************************
+// type system
+
+TypeRef returns TypeRef:
+	predefined=BasicTypeId | derived=[Type|FQN] | interval=IntegerInterval;
+
+enum BasicTypeId returns BasicTypeId:
+	undefined = 'undefined' |
+	Int8 = 'Int8' |
+	UInt8 = 'UInt8' |
+	Int16 = 'Int16' |
+	UInt16 = 'UInt16' |
+	Int32 = 'Int32' |
+	UInt32 = 'UInt32' |
+	Int64 = 'Int64' |
+	UInt64 = 'UInt64' |
+	Boolean = 'Boolean' |
+	String = 'String' |
+	Float = 'Float' |
+	Double = 'Double' |
+	ByteBuffer = 'ByteBuffer' ;
+	
+IntegerInterval returns IntegerInterval:
+	{IntegerInterval}
+	'Integer' ('(' (lowerBound=INTERVAL_BOUND | 'minInt') ',' (upperBound=INTERVAL_BOUND | 'maxInt') ')')?
+;
+
+INTERVAL_BOUND returns ecore::EBigInteger:
+	'-'? INT;
+
+
+Type returns Type:
+	ArrayType |
+	EnumerationType |
+	StructType |
+	UnionType |
+	MapType |
+	TypeDef;
+
+ArrayType returns ArrayType:
+	{ArrayType}
+	(comment=AnnotationBlock)?
+	(public?='public')? 'array' name=ID 'of' elementType=TypeRef;
+
+TypeDef returns TypeDef:
+	{TypeDef}
+	(comment=AnnotationBlock)?
+	(public?='public')? 'typedef' name=ID 'is' actualType=TypeRef
+	; 
+
+StructType returns StructType:
+	{StructType
+	}
+	(comment=AnnotationBlock)?
+	(public?='public')? 'struct' name=ID
+		(
+			('extends' base=[StructType|FQN]) |
+			(polymorphic?='polymorphic')
+		)?
+	'{'
+		(elements+=Field)*
+    '}';
+
+UnionType returns UnionType:
+	{UnionType}
+	(comment=AnnotationBlock)?
+	(public?='public')? 'union' name=ID ('extends' base=[UnionType|FQN])?
+	'{'
+		(elements+=Field)*
+    '}';
+
+EnumerationType returns EnumerationType:
+	{EnumerationType}
+	(comment=AnnotationBlock)?
+	(public?='public')? 'enumeration' name=ID
+	('extends' base=[EnumerationType|FQN])?
+	'{'
+		(enumerators+=Enumerator (','? enumerators+=Enumerator)*)?
+    '}';
+
+EnumerationTypeBody returns EnumerationType:
+	{EnumerationType}
+	('extends' base=[EnumerationType|FQN])?
+	'{'
+		(enumerators+=Enumerator (','? enumerators+=Enumerator)*)?
+    '}';
+
+Enumerator returns Enumerator:
+	{Enumerator}
+	(comment=AnnotationBlock)?
+	name=ID ('=' value=AdditiveExpression)?
+    ;
+    
+MapType returns MapType:
+	{MapType}
+	(comment=AnnotationBlock)?
+	(public?='public')? 'map' name=ID '{'
+		keyType=TypeRef 'to' valueType=TypeRef
+	'}';
+
+Field:
+	(comment=AnnotationBlock)?
+	type=TypeRef (array?='[' ']')? name=ID;
+
+
+Declaration:
+	type=TypeRef (array?='[' ']')? name=ID
+		('=' rhs=InitializerExpression)?;
+
+TypedElement:
+	Field |
+	Attribute |
+	Argument |
+	Declaration |
+	ConstantDef;
+
+
+// **************************************************************
+// constant definitions and initializers
+
+ConstantDef:
+	(comment=AnnotationBlock)?
+	'const' type=TypeRef (array?='[' ']')? name=ID '='
+		rhs=InitializerExpression
+	;
+
+InitializerExpression:
+	LogicalOrExpression |
+	Initializer;
+
+Initializer:
+	CompoundInitializer |
+	BracketInitializer;
+
+// this is used for struct and union types
+CompoundInitializer:
+	{CompoundInitializer}
+	'{' (
+		elements+=FieldInitializer
+		(',' elements+=FieldInitializer)*
+	)? '}';
+
+FieldInitializer:
+	element=[Field|ID] ':' value=InitializerExpression;
+
+// this is used for array and map types
+BracketInitializer:
+	{BracketInitializer}
+	'[' (
+		elements+=ElementInitializer
+		(',' elements+=ElementInitializer)*
+	)? ']';
+
+// for array type initializers, the second element is omitted
+ElementInitializer:
+	{ElementInitializer}
+	first=InitializerExpression ('=>' second=InitializerExpression)?;
+
+
+// **************************************************************
+// interface contract
+
+//FContract:
+//	{FContract}
+//	'contract' '{'
+//		('vars' '{' (variables+=FDeclaration (';')?)* '}')?
+//		'PSM' stateGraph=FStateGraph
+//	'}';
+//
+//FStateGraph:
+//	{FStateGraph} '{'
+//		'initial' initial=[FState|ID]
+//		states+=FState*
+//	'}';
+//
+//FState:
+//	{FState}
+//	(comment=FAnnotationBlock)?
+//	'state' name=ID '{'
+//		transitions+=FTransition*
+//	'}';
+//
+//FTransition:
+//	'on' trigger=FTrigger
+//		(guard=FGuard)?
+//		'->' to=[FState|ID]
+//		(action=FBlock)?
+//	;
+//
+//FTrigger:
+//	event=FEventOnIf;
+//
+//FEventOnIf:
+//	('call'    call=[FMethod|ID_WITH_SELECTOR]      ) |
+//	('respond' respond=[FMethod|ID_WITH_SELECTOR]   ) |
+//	('error'   error=[FMethod|ID_WITH_SELECTOR]     ) |
+//	('signal'  signal=[FBroadcast|ID_WITH_SELECTOR] ) |
+//	('set'     set=[FAttribute|ID]    ) |
+//	('update'  update=[FAttribute|ID] )
+//;
+//
+//FGuard:
+//	'[' condition=LogicalOrExpression ']';
+//
+//FStatement returns FStatement:
+//	FAssignment | FIfStatement | FBlock
+//;
+//
+//FIfStatement returns FIfStatement:
+//	'if' '(' condition=LogicalOrExpression ')'
+//		then=FStatement
+//	(=>'else' else=FStatement)?
+//;
+//	
+//FAssignment returns FAssignment:
+//	lhs=FQualifiedElementRef '=' rhs=LogicalOrExpression;
+//
+//FBlock returns FBlock:
+//	{FBlock}
+//	'{'
+//		(statements+=FStatement)*
+//	'}';
+
+LogicalOrExpression returns Expression:
+  LogicalAndExpression
+  ({BinaryOperation.left=current} op=OperatorOr right=LogicalAndExpression)*;
+
+LogicalAndExpression returns Expression:
+  EqualityExpression
+  ({BinaryOperation.left=current} op=OperatorAnd right=EqualityExpression)*;
+
+EqualityExpression returns Expression:
+  RelationalExpression
+  ({BinaryOperation.left=current} op=OperatorEquality right=RelationalExpression)*;
+
+RelationalExpression returns Expression:
+  AdditiveExpression
+  ({BinaryOperation.left=current} op=OperatorRelational right=AdditiveExpression)*;
+
+AdditiveExpression returns Expression:
+  MultiplicativeExpression
+  ({BinaryOperation.left=current} op=OperatorAdditive right=MultiplicativeExpression)*;
+
+MultiplicativeExpression returns Expression:
+  PrimaryExpression
+  ({BinaryOperation.left=current} op=OperatorMultiplicative right=PrimaryExpression)*;
+
+PrimaryExpression returns Expression:
+  UnaryOperation | SimplePrimaryExpression;
+  
+SimplePrimaryExpression returns Expression:
+  QualifiedElementRef |
+  CurrentError |
+  MethodErrorEnumRef |
+  Constant |
+  '(' LogicalOrExpression ')';
+  
+UnaryOperation returns Expression:
+	{UnaryOperation}
+	op=OperatorUnary operand=SimplePrimaryExpression;
+
+CurrentError returns CurrentError:
+	{CurrentError}
+	ErrorReferenceTerminal;
+
+ErrorReferenceTerminal:
+	'errorval';
+
+MethodErrorEnumRef:
+	'errordef' '.' enumerator=[Enumerator|ID];
+
+
+QualifiedElementRef:
+	{QualifiedElementRef}
+//	element=[FEvaluableElement|FQN]
+	element=FQN
+	({QualifiedElementRef.qualifier=current} '->' field=[Field|ID])*;
+
+Constant returns Expression:
+	FloatConstant |
+	DoubleConstant |
+	IntegerConstant |
+	BooleanConstant |
+	StringConstant;
+
+DoubleConstant:
+	val=E_DOUBLE_OBJECT
+;
+
+FloatConstant:
+	val=E_FLOAT_OBJECT
+;
+
+IntegerConstant:
+	val=E_BigInteger;
+
+BooleanConstant:
+	val=Boolean;
+
+StringConstant:
+	val=STRING;
+
+enum OperatorOr returns Operator:
+	Or="||"
+;
+enum OperatorAnd returns Operator:
+	And="&&"
+;
+enum OperatorEquality returns Operator:
+	Equal="==" | Unequal="!="
+;
+enum OperatorRelational returns Operator:
+	Smaller="<" | SmallerOrEqual="<=" | GreaterOrEqual=">=" | Greater=">"
+;
+enum OperatorAdditive returns Operator:
+	addition="+" | subtraction="-"
+;
+enum OperatorMultiplicative returns Operator:
+	multiplication="*" | division="/"
+;
+enum OperatorUnary returns Operator:
+	negation="!" | subtraction="-"
+;
+
+// **************************************************************
+// annotations
+
+AnnotationBlock returns AnnotationBlock:
+	'/*' (elements+=Annotation)+ '*/';
+
+Annotation returns Annotation:
+	rawText=ANNOTATION_STRING;
+
+
+// **************************************************************
+// basic types
+
+Boolean returns ecore::EBoolean:
+	'false' | 'true';
+
+E_BigInteger returns ecore::EBigInteger:
+	INT | HEX | BINARY
+;
+
+terminal E_DOUBLE_OBJECT returns ecore::EDoubleObject :
+	 INT '.' INT ('e' '-'? INT)? 'd'
+;
+terminal E_FLOAT_OBJECT returns ecore::EFloatObject :
+	 INT '.' INT ('e' '-'? INT)? 'f'
+;
+
+terminal HEX :
+	 ('0x'|'0X')(('0'..'9')|('a'..'f')|('A'..'F'))+;
+	
+terminal BINARY :
+	 ('0b'|'0B')('0'|'1')+;
+	
+terminal ANNOTATION_STRING returns ecore::EString:
+	'@' (('a'..'z')|'-')+ (' '|'\t')* ':'
+	( ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\')) | ('\\*'|'\\@') | !('\\'|'*'|'@') )*
+;
+
+
+// **************************************************************
+// general
+
+// HOWTO: use a combination of URI global scopes and namespace aware local scope provider
+// this is configured in the work flow by
+//			fragment = scoping.ImportURIScopingFragment {}
+// and by overriding configureIScopeProviderDelegate in the runtime module with 
+//			ImportedNamespaceAwareLocalScopeProvider
+// the attribute 'importedNamespace' is picked up by the ImportedNamespaceAwareLocalScopeProvider
+// the attribute 'importURI' is picked up by the ImportUriGlobalScopeProvider
+// THANKS to www.eclipse.org/etrice for this solution!
+Import :
+	'import' (importedNamespace=ImportedFQN 'from' | 'model') importURI=STRING;
+
+ImportedFQN:
+	FQN ('.' '*')?;
+
+FQN:
+	ID ('.' ID)*;
+
+// this is used for overloaded FMethod and FBroadcast
+ID_WITH_SELECTOR:
+	ID (':' ID)?;
+
+
+// **************************************************************
