@@ -27,4 +27,5 @@ Export-Package: de.tu_bs.ccc.contracting.idl.parser.antlr.internal,
  de.tu_bs.ccc.contracting.idl.cidl.util,
  de.tu_bs.ccc.contracting.idl,
  de.tu_bs.ccc.contracting.idl.services
-Import-Package: org.apache.log4j
+Import-Package: org.apache.log4j,
+ org.eclipse.core.resources

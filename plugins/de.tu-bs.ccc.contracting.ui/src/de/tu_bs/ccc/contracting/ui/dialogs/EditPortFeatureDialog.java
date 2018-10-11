@@ -1,10 +1,16 @@
 package de.tu_bs.ccc.contracting.ui.dialogs;
 
+import java.util.List;
+
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
@@ -17,31 +23,33 @@ import org.eclipse.swt.widgets.Text;
 import de.tu_bs.ccc.contracting.Verification.DirectionType;
 import de.tu_bs.ccc.contracting.Verification.PortType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.idl.cidl.Interface;
+import de.tu_bs.ccc.contracting.ui.provider.ListServiceLabelProvider;
 
 public class EditPortFeatureDialog extends TitleAreaDialog implements IEditFeatureDialog {
 
 	private Text portName;
-	private Combo comboDirection;
 	private Combo comboType;
 	private Text portServicename;
 
-	String currentName;
-	int currentDirection;
-	int currentType;
-	String currentServicename;
-	boolean serviceEditable;
+	private String currentName;
+	private int currentDirection;
+	private int currentType;
+	private String currentServicename;
+	private Label lbService;
+	private List<Interface> interfaces;
+	private Object object;
 
-	Object object;
-
-	public EditPortFeatureDialog(Shell parentShell) {
+	public EditPortFeatureDialog(Shell parentShell, List<Interface> interfaces) {
 		super(parentShell);
+		this.interfaces = interfaces;
 	}
 
 	@Override
 	public void create() {
 		super.create();
 		setTitle("Edit Port");
-		setMessage("Edit the name, direction, type and servicename (if type = Service) of the port.", IMessageProvider.INFORMATION);
+		setMessage("Edit the name and service interface of the port.", IMessageProvider.INFORMATION);
 	}
 
 	@Override
@@ -51,14 +59,12 @@ public class EditPortFeatureDialog extends TitleAreaDialog implements IEditFeatu
 		container.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		GridLayout layout = new GridLayout(2, false);
 		container.setLayout(layout);
-		
+
 		createDirection(container);
 		createName(container);
 		createType(container);
 		createServicename(container);
-		if (currentType != PortType.get("SERVICE").getValue()) {
-			portServicename.setVisible(false);
-		}
+
 		return area;
 	}
 
@@ -79,14 +85,9 @@ public class EditPortFeatureDialog extends TitleAreaDialog implements IEditFeatu
 	private void createDirection(Composite container) {
 		Label lbDescription = new Label(container, SWT.NONE);
 		lbDescription.setText("Direction");
-		
+
 		Label lbProperty = new Label(container, SWT.NONE);
 		lbProperty.setText(DirectionType.get(currentDirection).getName());
-
-//		comboDirection = new Combo(container, SWT.DROP_DOWN);
-//		String[] items = new String[] { DirectionType.get(0).getName(), DirectionType.get(1).getName() };
-//		comboDirection.setItems(items);
-//		comboDirection.select(currentDirection);
 	}
 
 	private void createType(Composite container) {
@@ -103,15 +104,17 @@ public class EditPortFeatureDialog extends TitleAreaDialog implements IEditFeatu
 			public void widgetSelected(SelectionEvent e) {
 				if (comboType.getText().equals("SERVICE")) {
 					portServicename.setVisible(true);
+					lbService.setVisible(true);
 				} else {
 					portServicename.setVisible(false);
+					lbService.setVisible(false);
 				}
 			}
 		});
 	}
 
 	private void createServicename(Composite container) {
-		Label lbService = new Label(container, SWT.NONE);
+		lbService = new Label(container, SWT.NONE);
 		lbService.setText("Servicename");
 
 		GridData dataService = new GridData();
@@ -120,7 +123,25 @@ public class EditPortFeatureDialog extends TitleAreaDialog implements IEditFeatu
 		portServicename = new Text(container, SWT.BORDER);
 		portServicename.setLayoutData(dataService);
 		portServicename.setText(currentServicename);
+		portServicename.setEditable(false);
+		portServicename.setBackground(new Color(container.getDisplay(), new RGB(255, 255, 255)));
+		portServicename.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(final MouseEvent e) {
+				final ListServicesDialog dialog = new ListServicesDialog(null, new ListServiceLabelProvider(),
+						"Choose a Service", "Choose a service from the following list", interfaces);
 
+				if (dialog.open() != ListServicesDialog.CANCEL) {
+					if (dialog.getResult().length > 0)
+						portServicename.setText(((Interface) dialog.getResult()[0]).getName());
+				}
+			}
+		});
+
+		if (currentType != PortType.get("SERVICE").getValue()) {
+			portServicename.setVisible(false);
+			lbService.setVisible(false);
+		}
 	}
 
 	@Override
@@ -137,20 +158,18 @@ public class EditPortFeatureDialog extends TitleAreaDialog implements IEditFeatu
 		currentDirection = port.getOuterDirection().getValue();
 		currentType = port.getType().getValue();
 		currentServicename = port.getService();
-
 	}
 
 	@Override
 	public void setNewProperties() {
 		Ports port = (Ports) object;
 		port.setName(portName.getText());
-//		port.setOuterDirection(DirectionType.get(comboDirection.getText()));
-		port.setType(PortType.get(comboType.getText()));
 		if (comboType.getText().equals("SERVICE")) {
 			port.setService(portServicename.getText());
 		} else {
 			port.setService("");
 		}
-
+		port.setType(PortType.get(comboType.getText()));
+		port.setService(portServicename.getText());
 	}
 }

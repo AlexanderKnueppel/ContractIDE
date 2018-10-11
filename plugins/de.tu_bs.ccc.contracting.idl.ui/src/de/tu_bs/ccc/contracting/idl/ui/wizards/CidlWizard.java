@@ -107,7 +107,7 @@ public class CidlWizard extends Wizard implements INewWizard {
 
 		String interfaceName = fileName.replace(".cidl", "").toLowerCase();
 		interfaceName = Character.toUpperCase(interfaceName.charAt(0)) + interfaceName.substring(1);
-		String content = "package services;\n\ninterface " + interfaceName + " {\n\n}";
+		String content = "package services\n\ninterface " + interfaceName + " {\n\n}";
 		file.create(new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8)), 0, monitor);
 
 		monitor.worked(1);

@@ -30,3 +30,5 @@ Export-Package:
  de.tu_bs.ccc.contracting.ui.dialogs,
  de.tu_bs.ccc.contracting.ui.provider,
  de.tu_bs.ccc.contracting.ui.views
+Import-Package: de.tu_bs.ccc.contracting.idl,
+ de.tu_bs.ccc.contracting.idl.cidl
