@@ -87,7 +87,7 @@ public class EditPortFeatureDialog extends TitleAreaDialog implements IEditFeatu
 		lbDescription.setText("Direction");
 
 		Label lbProperty = new Label(container, SWT.NONE);
-		lbProperty.setText(DirectionType.get(currentDirection).getName());
+		lbProperty.setText(DirectionType.get(currentDirection).getName().equals("INTERNAL") ? "Consumer" : "Provider");
 	}
 
 	private void createType(Composite container) {
