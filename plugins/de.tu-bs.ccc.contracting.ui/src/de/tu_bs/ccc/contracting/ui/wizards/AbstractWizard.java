@@ -1,30 +1,36 @@
 package de.tu_bs.ccc.contracting.ui.wizards;
 
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.ui.INewWizard;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.core.runtime.*;
-import org.eclipse.jface.operation.*;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 
-
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.core.resources.*;
+import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
-import org.eclipse.graphiti.mm.pictograms.Diagram;
-import org.eclipse.graphiti.services.Graphiti;
-
-import java.io.*;
-import org.eclipse.ui.*;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.ui.INewWizard;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWizard;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
-
 
 /**
  * This is a sample new wizard. Its role is to create a new file resource in the
@@ -93,7 +99,6 @@ public class AbstractWizard extends Wizard implements INewWizard {
 	 */
 
 	private void doFinish(String containerName, String fileName, IProgressMonitor monitor) throws CoreException {
-		// create a sample file
 		monitor.beginTask("Creating " + fileName, 2);
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 		IResource resource = root.findMember(new Path(containerName));
@@ -103,10 +108,7 @@ public class AbstractWizard extends Wizard implements INewWizard {
 		IContainer container = (IContainer) resource;
 		final IFile file = container.getFile(new Path(fileName));
 
-		String diagramTypeId = "ContractModelling";
-		Diagram diagram = Graphiti.getPeCreateService().createDiagram(diagramTypeId, fileName, true);
 		ResourceSet rSet = new ResourceSetImpl();
-
 		URI uri = URI.createFileURI(file.getFullPath().toString());
 
 		TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(rSet);
@@ -116,17 +118,15 @@ public class AbstractWizard extends Wizard implements INewWizard {
 		}
 
 		// Create the data within a command and save (must not happen inside
-		// the command since finishing the command will trigger setting the 
+		// the command since finishing the command will trigger setting the
 		// modification flag on the resource which will be used by the save
 		// operation to determine which resources need to be saved)
 		CreateModule operation = new CreateModule(editingDomain, containerName, fileName, uri, CreationType.ABSTRACT);
 		editingDomain.getCommandStack().execute(operation);
-		
 
 		// Dispose the editing domain to eliminate memory leak
 		editingDomain.dispose();
-	
-		
+
 		monitor.worked(1);
 		monitor.setTaskName("Opening file for editing...");
 

@@ -24,6 +24,7 @@ import de.tu_bs.ccc.contracting.Verification.DirectionType;
 import de.tu_bs.ccc.contracting.Verification.PortType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.idl.cidl.Interface;
+import de.tu_bs.ccc.contracting.ui.localization.StringTable;
 import de.tu_bs.ccc.contracting.ui.provider.ListServiceLabelProvider;
 
 public class EditPortFeatureDialog extends TitleAreaDialog implements IEditFeatureDialog {
@@ -48,8 +49,8 @@ public class EditPortFeatureDialog extends TitleAreaDialog implements IEditFeatu
 	@Override
 	public void create() {
 		super.create();
-		setTitle("Edit Port");
-		setMessage("Edit the name and service interface of the port.", IMessageProvider.INFORMATION);
+		setTitle(StringTable.EDIT_PORT_DIALOG_TITLE);
+		setMessage("StringTable.EDIT_PORT_DIALOG_MSG", IMessageProvider.INFORMATION);
 	}
 
 	@Override
@@ -70,7 +71,7 @@ public class EditPortFeatureDialog extends TitleAreaDialog implements IEditFeatu
 
 	private void createName(Composite container) {
 		Label lbName = new Label(container, SWT.NONE);
-		lbName.setText("Name");
+		lbName.setText(StringTable.EDIT_PORT_DIALOG_NAME);
 
 		GridData dataName = new GridData();
 		dataName.grabExcessHorizontalSpace = true;
@@ -84,15 +85,17 @@ public class EditPortFeatureDialog extends TitleAreaDialog implements IEditFeatu
 
 	private void createDirection(Composite container) {
 		Label lbDescription = new Label(container, SWT.NONE);
-		lbDescription.setText("Direction");
+		lbDescription.setText(StringTable.EDIT_PORT_DIALOG_DIRECTION);
 
 		Label lbProperty = new Label(container, SWT.NONE);
-		lbProperty.setText(DirectionType.get(currentDirection).getName().equals("INTERNAL") ? "Consumer" : "Provider");
+		lbProperty.setText(DirectionType.get(currentDirection).getName().equals("INTERNAL")
+				? StringTable.EDIT_PORT_DIALOG_PORT_CONSUMER
+				: StringTable.EDIT_PORT_DIALOG_PORT_PROVIDER);
 	}
 
 	private void createType(Composite container) {
 		Label lbType = new Label(container, SWT.NONE);
-		lbType.setText("Type");
+		lbType.setText(StringTable.EDIT_PORT_DIALOG_TYPE);
 
 		comboType = new Combo(container, SWT.DROP_DOWN);
 
@@ -115,7 +118,7 @@ public class EditPortFeatureDialog extends TitleAreaDialog implements IEditFeatu
 
 	private void createServicename(Composite container) {
 		lbService = new Label(container, SWT.NONE);
-		lbService.setText("Servicename");
+		lbService.setText("Service name");
 
 		GridData dataService = new GridData();
 		dataService.grabExcessHorizontalSpace = true;
@@ -129,7 +132,8 @@ public class EditPortFeatureDialog extends TitleAreaDialog implements IEditFeatu
 			@Override
 			public void mouseUp(final MouseEvent e) {
 				final ListServicesDialog dialog = new ListServicesDialog(null, new ListServiceLabelProvider(),
-						"Choose a Service", "Choose a service from the following list", interfaces);
+						StringTable.EDIT_PORT_DIALOG_LIST_SERVICES_TITLE,
+						StringTable.EDIT_PORT_DIALOG_LIST_SERVICES_MSG, interfaces);
 
 				if (dialog.open() != ListServicesDialog.CANCEL) {
 					if (dialog.getResult().length > 0)

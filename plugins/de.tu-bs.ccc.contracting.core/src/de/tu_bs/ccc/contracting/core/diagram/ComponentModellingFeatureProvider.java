@@ -42,7 +42,6 @@ public class ComponentModellingFeatureProvider extends DefaultFeatureProvider {
 	public ICreateFeature[] getCreateFeatures() {
 		return new ICreateFeature[] { new CreateDomainObjectFeature(this), new CreateComponentFeature(this),
 				new CreateContractFeature(this), new CreateAbstractFeature(this), new CreatePortFeature(this) };
-
 	}
 
 	@Override
@@ -57,9 +56,7 @@ public class ComponentModellingFeatureProvider extends DefaultFeatureProvider {
 
 		if (test instanceof Component) {
 			return new AddComponentFeature(this);
-		}
-
-		else if (context instanceof IAddContext && context.getNewObject() instanceof Contract) {
+		} else if (context instanceof IAddContext && context.getNewObject() instanceof Contract) {
 			return new AddContractFeature(this);
 
 		}

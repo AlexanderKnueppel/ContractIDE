@@ -1,7 +1,6 @@
 package de.tu_bs.ccc.contracting.ui.views;
 
 import org.eclipse.jface.layout.GridLayoutFactory;
-import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.swt.SWT;

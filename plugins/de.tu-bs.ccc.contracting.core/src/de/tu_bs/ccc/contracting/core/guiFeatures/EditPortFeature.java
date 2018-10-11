@@ -43,6 +43,7 @@ public class EditPortFeature extends AbstractCustomFeature {
 		Object object = getBusinessObjectForPictogramElement(pes[0]);
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 
+		// get all interfaces from all models
 		List<Interface> interfaces = CidlPersistenceManager.getIdlModels(CoreUtil.getCurrentProject()).stream()
 				.map(m -> ((Model) m).getInterfaces()).flatMap(i -> i.stream()).collect(Collectors.toList());
 

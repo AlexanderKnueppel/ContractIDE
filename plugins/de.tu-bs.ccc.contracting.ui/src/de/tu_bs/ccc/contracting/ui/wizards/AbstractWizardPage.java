@@ -28,9 +28,7 @@ import org.eclipse.ui.dialogs.ContainerSelectionDialog;
 
 public class AbstractWizardPage extends WizardPage {
 	private Text containerText;
-
 	private Text fileText;
-
 	private ISelection selection;
 
 	/**

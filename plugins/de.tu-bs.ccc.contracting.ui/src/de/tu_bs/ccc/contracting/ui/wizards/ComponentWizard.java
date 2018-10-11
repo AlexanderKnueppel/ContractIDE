@@ -103,8 +103,6 @@ public class ComponentWizard extends Wizard implements INewWizard {
 		IContainer container = (IContainer) resource;
 		final IFile file = container.getFile(new Path(fileName));
 
-		String diagramTypeId = "ContractModelling";
-		Diagram diagram = Graphiti.getPeCreateService().createDiagram(diagramTypeId, fileName, true);
 		ResourceSet rSet = new ResourceSetImpl();
 
 		URI uri = URI.createFileURI(file.getFullPath().toString());

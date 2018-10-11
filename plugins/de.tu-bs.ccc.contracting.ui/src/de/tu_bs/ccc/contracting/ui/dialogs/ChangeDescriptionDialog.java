@@ -16,17 +16,11 @@ import org.eclipse.swt.widgets.Text;
 public class ChangeDescriptionDialog extends Dialog {
 
 	private final String title;
-
 	private String message;
-
-	private String value = "";
-
+	private String value;
 	private Button okButton;
-
 	private Text text;
-
 	private CLabel label;
-
 	private final String initmessage;
 
 	public ChangeDescriptionDialog(Shell parentShell, String dialogTitle, String dialogMessage, String initialValue) {

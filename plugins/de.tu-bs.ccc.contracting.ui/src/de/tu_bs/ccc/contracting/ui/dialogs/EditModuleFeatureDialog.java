@@ -18,6 +18,7 @@ import org.eclipse.swt.widgets.Text;
 
 import de.tu_bs.ccc.contracting.Verification.Abstract;
 import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.ui.localization.StringTable;
 
 public class EditModuleFeatureDialog extends TitleAreaDialog implements IEditFeatureDialog {
 
@@ -37,8 +38,8 @@ public class EditModuleFeatureDialog extends TitleAreaDialog implements IEditFea
 	@Override
 	public void create() {
 		super.create();
-		setTitle("Edit Module");
-		setMessage("Edit the name and version of the module.", IMessageProvider.INFORMATION);
+		setTitle(StringTable.EDIT_MODULE_DIALOG_TITLE);
+		setMessage(StringTable.EDIT_MODULE_DIALOG_MSG, IMessageProvider.INFORMATION);
 	}
 
 	@Override
@@ -58,7 +59,7 @@ public class EditModuleFeatureDialog extends TitleAreaDialog implements IEditFea
 
 	private void createName(Composite container) {
 		Label lbName = new Label(container, SWT.NONE);
-		lbName.setText("Name");
+		lbName.setText(StringTable.EDIT_MODULE_DIALOG_NAME);
 
 		GridData dataName = new GridData();
 		dataName.grabExcessHorizontalSpace = true;
@@ -71,7 +72,7 @@ public class EditModuleFeatureDialog extends TitleAreaDialog implements IEditFea
 
 	private void createVersion(Composite container) {
 		Label lbDescription = new Label(container, SWT.NONE);
-		lbDescription.setText("Version");
+		lbDescription.setText(StringTable.EDIT_MODULE_DIALOG_VERSION);
 
 		GridData dataVersion = new GridData();
 		dataVersion.grabExcessHorizontalSpace = true;
@@ -88,7 +89,7 @@ public class EditModuleFeatureDialog extends TitleAreaDialog implements IEditFea
 		dataVersion.horizontalAlignment = GridData.FILL;
 
 		Label label = new Label(container, SWT.WRAP);
-		label.setText("Realizes");
+		label.setText(StringTable.EDIT_MODULE_DIALOG_REALIZES);
 
 		list = new List(container, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		list.setLayoutData(dataVersion);

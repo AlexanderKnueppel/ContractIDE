@@ -6,7 +6,6 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 
-import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.idl.cidl.Interface;
 
 public class ListServicesDialog extends ElementListSelectionDialog {

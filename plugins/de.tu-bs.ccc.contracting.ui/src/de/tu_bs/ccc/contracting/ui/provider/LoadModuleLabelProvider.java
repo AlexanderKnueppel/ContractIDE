@@ -16,6 +16,7 @@ import org.osgi.framework.FrameworkUtil;
 import de.tu_bs.ccc.contracting.Verification.Component;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.ui.ImageProvider;
 
 public class LoadModuleLabelProvider extends LabelProvider {
 
@@ -36,15 +37,15 @@ public class LoadModuleLabelProvider extends LabelProvider {
 		String filename = "";
 
 		if (m instanceof Compound) {
-			filename = "compound_64.png";
+			filename = ImageProvider.IMG_ICON_COMPOUND_COMPONENT;
 		} else if (m instanceof Component) {
-			filename = "atomic_component_64.png";
+			filename = ImageProvider.IMG_ICON_ATOMIC_COMPONENT;
 		} else {
 			return null;
 		}
 
 		Bundle bundle = FrameworkUtil.getBundle(this.getClass());
-		URL url = FileLocator.find(bundle, new Path("icons/" + filename), null);
+		URL url = FileLocator.find(bundle, new Path(filename), null);
 
 		return resize(ImageDescriptor.createFromURL(url).createImage(), 16, 16);
 	}
