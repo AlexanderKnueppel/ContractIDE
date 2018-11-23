@@ -16,6 +16,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
@@ -27,19 +28,21 @@ import de.tu_bs.ccc.contracting.idl.cidl.Interface;
 import de.tu_bs.ccc.contracting.ui.localization.StringTable;
 import de.tu_bs.ccc.contracting.ui.provider.ListServiceLabelProvider;
 
-public class EditPortFeatureDialog extends TitleAreaDialog implements IEditFeatureDialog {
+public abstract class EditPortFeatureDialog extends TitleAreaDialog implements IEditFeatureDialog {
 
 	private Text portName;
 	private Combo comboType;
 	private Text portServicename;
-
+	private Label labelFilter;
+	private Text portFilter;
 	private String currentName;
 	private int currentDirection;
 	private int currentType;
 	private String currentServicename;
+	private String currentFilter;
 	private Label lbService;
 	private List<Interface> interfaces;
-	private Object object;
+	protected Object object;
 
 	public EditPortFeatureDialog(Shell parentShell, List<Interface> interfaces) {
 		super(parentShell);
@@ -50,7 +53,7 @@ public class EditPortFeatureDialog extends TitleAreaDialog implements IEditFeatu
 	public void create() {
 		super.create();
 		setTitle(StringTable.EDIT_PORT_DIALOG_TITLE);
-		setMessage("StringTable.EDIT_PORT_DIALOG_MSG", IMessageProvider.INFORMATION);
+		setMessage(StringTable.EDIT_PORT_DIALOG_MSG, IMessageProvider.INFORMATION);
 	}
 
 	@Override
@@ -63,10 +66,23 @@ public class EditPortFeatureDialog extends TitleAreaDialog implements IEditFeatu
 
 		createDirection(container);
 		createName(container);
+
 		createType(container);
 		createServicename(container);
 
+		//Group group = new Group(parent, SWT.SHADOW_ETCHED_IN);
+		//group.setText("Parameter");
+
+		//Composite container2 = new Composite(group, SWT.NONE);
+		//container2.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		//container2.setLayout(new GridLayout(2, false));
+		createFilter(container);
+		createAdditionalControls(container);
+
 		return area;
+	}
+
+	protected void createAdditionalControls(Composite container) {
 	}
 
 	private void createName(Composite container) {
@@ -81,6 +97,19 @@ public class EditPortFeatureDialog extends TitleAreaDialog implements IEditFeatu
 		portName.setLayoutData(dataName);
 		portName.setText(currentName);
 
+	}
+
+	private void createFilter(Composite container) {
+		labelFilter = new Label(container, SWT.NONE);
+		labelFilter.setText(StringTable.EDIT_PORT_DIALOG_FILTER);
+
+		GridData dataName = new GridData();
+		dataName.grabExcessHorizontalSpace = true;
+		dataName.horizontalAlignment = GridData.FILL;
+
+		portFilter = new Text(container, SWT.BORDER);
+		portFilter.setLayoutData(dataName);
+		portFilter.setText(currentFilter);
 	}
 
 	private void createDirection(Composite container) {
@@ -106,11 +135,9 @@ public class EditPortFeatureDialog extends TitleAreaDialog implements IEditFeatu
 		comboType.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 				if (comboType.getText().equals("SERVICE")) {
-					portServicename.setVisible(true);
-					lbService.setVisible(true);
+					portServicename.setEnabled(true);
 				} else {
-					portServicename.setVisible(false);
-					lbService.setVisible(false);
+					portServicename.setEnabled(false);
 				}
 			}
 		});
@@ -143,8 +170,7 @@ public class EditPortFeatureDialog extends TitleAreaDialog implements IEditFeatu
 		});
 
 		if (currentType != PortType.get("SERVICE").getValue()) {
-			portServicename.setVisible(false);
-			lbService.setVisible(false);
+			portServicename.setEnabled(false);
 		}
 	}
 
@@ -162,6 +188,7 @@ public class EditPortFeatureDialog extends TitleAreaDialog implements IEditFeatu
 		currentDirection = port.getOuterDirection().getValue();
 		currentType = port.getType().getValue();
 		currentServicename = port.getService();
+		currentFilter = port.getFilter();
 	}
 
 	@Override
@@ -175,5 +202,6 @@ public class EditPortFeatureDialog extends TitleAreaDialog implements IEditFeatu
 		}
 		port.setType(PortType.get(comboType.getText()));
 		port.setService(portServicename.getText());
+		port.setFilter(portFilter.getText());
 	}
 }

@@ -15,6 +15,7 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.PortType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.Verification.ProviderType;
 import de.tu_bs.ccc.contracting.Verification.MmFactory;
 
 
@@ -52,6 +53,12 @@ public class CreatePortFeature extends AbstractCreateFeature implements ICreateF
 		Module expandWithPort = ((Module) businessObjects.get(0));
 		String classname = "port"+expandWithPort.getPorts().size();
 		addedObject.setName(classname);
+		
+		addedObject.setLabel("");
+		addedObject.setFunction("");
+		addedObject.setFilter("");
+		addedObject.setProviderType(ProviderType.NATIVE);
+		addedObject.setMaxClients(-1);
 		
 		expandWithPort.getPorts().add(addedObject);
 		AddContext contextAdd = new AddContext(context, addedObject);

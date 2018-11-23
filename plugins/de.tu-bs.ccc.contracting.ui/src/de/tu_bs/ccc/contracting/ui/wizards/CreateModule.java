@@ -101,6 +101,7 @@ public class CreateModule extends RecordingCommand {
 			Component c = MmFactory.eINSTANCE.createComponent();
 			c.setName(file.getName().substring(0, dot));
 			c.setModule(null);
+			c.setModuleType(MmFactory.eINSTANCE.createFunction());
 			creat.setNewObject(c);
 			final Resource resourceDomain = rSet.getResource(uri, true);
 			resourceDomain.getContents().add(c);
@@ -115,6 +116,7 @@ public class CreateModule extends RecordingCommand {
 			creat.setNewObject(c);
 			c.setName(file.getName().substring(0, dot));
 			c.setModule(null);
+			c.setModuleType(MmFactory.eINSTANCE.createFunction());
 			final Resource resourceDomain = rSet.getResource(uri, true);
 			resourceDomain.getContents().add(c);
 			try {
@@ -128,6 +130,7 @@ public class CreateModule extends RecordingCommand {
 			creat.setNewObject(c);
 			c.setName(file.getName().substring(0, dot));
 			c.setModule(null);
+			c.setModuleType(MmFactory.eINSTANCE.createFunction());
 			final Resource resourceDomain = rSet.getResource(uri, true);
 			resourceDomain.getContents().add(c);
 			try {

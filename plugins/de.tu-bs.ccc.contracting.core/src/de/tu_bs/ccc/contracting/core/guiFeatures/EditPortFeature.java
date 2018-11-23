@@ -10,12 +10,15 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
+import de.tu_bs.ccc.contracting.Verification.DirectionType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.core.util.CoreUtil;
 import de.tu_bs.ccc.contracting.idl.CidlPersistenceManager;
 import de.tu_bs.ccc.contracting.idl.cidl.Interface;
 import de.tu_bs.ccc.contracting.idl.cidl.Model;
+import de.tu_bs.ccc.contracting.ui.dialogs.EditConsumerPortFeatureDialog;
 import de.tu_bs.ccc.contracting.ui.dialogs.EditPortFeatureDialog;
+import de.tu_bs.ccc.contracting.ui.dialogs.EditProviderPortFeatureDialog;
 
 public class EditPortFeature extends AbstractCustomFeature {
 
@@ -47,7 +50,12 @@ public class EditPortFeature extends AbstractCustomFeature {
 		List<Interface> interfaces = CidlPersistenceManager.getIdlModels(CoreUtil.getCurrentProject()).stream()
 				.map(m -> ((Model) m).getInterfaces()).flatMap(i -> i.stream()).collect(Collectors.toList());
 
-		EditPortFeatureDialog dialog = new EditPortFeatureDialog(shell, interfaces);
+		EditPortFeatureDialog dialog;
+		if(((Ports)object).getOuterDirection() == DirectionType.EXTERNAL)
+			dialog = new EditConsumerPortFeatureDialog(shell, interfaces);
+		else
+			dialog = new EditProviderPortFeatureDialog(shell, interfaces);
+		
 		dialog.setOldProperties(object);
 		dialog.create();
 		dialog.open();

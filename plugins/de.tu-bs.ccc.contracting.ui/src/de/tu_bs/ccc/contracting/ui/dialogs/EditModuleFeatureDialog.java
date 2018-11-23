@@ -7,8 +7,11 @@ import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
@@ -18,18 +21,22 @@ import org.eclipse.swt.widgets.Text;
 
 import de.tu_bs.ccc.contracting.Verification.Abstract;
 import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.PortType;
 import de.tu_bs.ccc.contracting.ui.localization.StringTable;
 
 public class EditModuleFeatureDialog extends TitleAreaDialog implements IEditFeatureDialog {
 
 	private Text moduleName;
 	private Text moduleVersion;
+	private Combo moduleType;
 	private List list;
 
-	String currentName;
-	String currentVersion;
-	ArrayList<Abstract> realizes = new ArrayList<Abstract>();
-	Object object;
+	private String currentName;
+	private String currentVersion;
+	private ArrayList<Abstract> realizes = new ArrayList<Abstract>();
+	private Object object;
+	private int currentModuleType = 0;
+	
 
 	public EditModuleFeatureDialog(Shell parentShell) {
 		super(parentShell);
@@ -123,6 +130,28 @@ public class EditModuleFeatureDialog extends TitleAreaDialog implements IEditFea
 
 			}
 
+		});
+	}
+	
+	private void createModuleType(Composite container) {
+		Label lbType = new Label(container, SWT.NONE);
+		lbType.setText(StringTable.EDIT_PORT_DIALOG_TYPE);
+
+		moduleType = new Combo(container, SWT.DROP_DOWN);
+
+		String[] items = new String[] { "Function", "Proxy", "Mux", "Protocol", "Filter" };
+		moduleType.setItems(items);
+		moduleType.select(currentModuleType);
+		moduleType.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent e) {
+//				if (comboType.getText().equals("SERVICE")) {
+//					portServicename.setVisible(true);
+//					lbService.setVisible(true);
+//				} else {
+//					portServicename.setVisible(false);
+//					lbService.setVisible(false);
+//				}
+			}
 		});
 	}
 
