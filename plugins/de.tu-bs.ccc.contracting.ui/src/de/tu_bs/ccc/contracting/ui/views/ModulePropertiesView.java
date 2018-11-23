@@ -32,6 +32,7 @@ public class ModulePropertiesView extends ViewPart {
 		columnTerm.setEditingSupport(new ValueEditingSupport(viewer));
 
 		viewer.setContentProvider(new ModulePropertiesContentProvider(viewer));
+		
 		viewer.setLabelProvider(new ModulePropertiesLabelProvider());
 
 		GridLayoutFactory.fillDefaults().generateLayout(parent);

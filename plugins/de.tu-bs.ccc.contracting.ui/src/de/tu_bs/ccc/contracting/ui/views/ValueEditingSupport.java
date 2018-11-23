@@ -47,7 +47,7 @@ public class ValueEditingSupport extends EditingSupport {
 				p.update(value);
 			}
 		});
-		System.out.println(value);
+		//System.out.println(value);
 		getViewer().update(element, null);
 	}
 

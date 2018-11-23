@@ -8,6 +8,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbenchPart;
 
 import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.ui.views.ViewUtil;
 
 public class ContractModellingDiagramEditor extends DiagramEditor {
@@ -23,9 +24,10 @@ public class ContractModellingDiagramEditor extends DiagramEditor {
 					PictogramElement pe = ep.getPictogramElement();
 					if (pe.getLink() != null) {
 						if (pe.getLink().getBusinessObjects().size() == 1)
-							if (pe.getLink().getBusinessObjects().get(0) instanceof Module)
+							if (pe.getLink().getBusinessObjects().get(0) instanceof Module
+									|| pe.getLink().getBusinessObjects().get(0) instanceof Ports)
 								ViewUtil.updateViews(pe.getLink().getBusinessObjects().get(0));
-							else 
+							else
 								ViewUtil.updateViews(null);
 					} else {
 						ViewUtil.updateViews(null);
