@@ -39,7 +39,8 @@ public class AssignAbstractFeature extends AbstractCreateFeature {
 
 			EList<EObject> businessObjects = pict.getLink().getBusinessObjects();
 			return businessObjects.size() == 1
-					&& (businessObjects.get(0) instanceof Component || businessObjects.get(0) instanceof Compound);
+					&& //(businessObjects.get(0) instanceof Component || //TODO also allowing components to dereive from abstract components
+							businessObjects.get(0) instanceof Compound;
 		} else {
 			return false;
 		}
