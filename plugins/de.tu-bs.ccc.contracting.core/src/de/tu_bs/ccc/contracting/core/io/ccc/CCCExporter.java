@@ -15,17 +15,24 @@ import javax.xml.bind.Marshaller;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import de.tu_bs.ccc.contracting.Verification.Abstract;
 import de.tu_bs.ccc.contracting.Verification.Component;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.DirectionType;
+import de.tu_bs.ccc.contracting.Verification.Filter;
+import de.tu_bs.ccc.contracting.Verification.Function;
+import de.tu_bs.ccc.contracting.Verification.MmFactory;
 import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.ModuleType;
+import de.tu_bs.ccc.contracting.Verification.Mux;
 import de.tu_bs.ccc.contracting.Verification.PortType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.Verification.Protocol;
+import de.tu_bs.ccc.contracting.Verification.Proxy;
 import de.tu_bs.ccc.contracting.Verification.System;
 import de.tu_bs.ccc.contracting.core.io.AbstractObjectWriter;
 
 public class CCCExporter extends AbstractObjectWriter<System> {
-
 	private ObjectFactory factory = new ObjectFactory();
 
 	public CCCExporter(System m) {
@@ -68,9 +75,9 @@ public class CCCExporter extends AbstractObjectWriter<System> {
 					service.setName(p.getService());
 				else
 					service.setName(p.getType().getLiteral());
-				// service.setMaxClients(BigInteger.ONE);
-				// service.setFilter("");
-				// service.setType("native");
+				service.setMaxClients(BigInteger.valueOf(p.getMaxClients()));
+				service.setFilter(p.getFilter());
+				service.setType(p.getProviderType().getName().toLowerCase());
 				service.setRef(p.getName());
 				provides.getService().add(service);
 			}
@@ -89,9 +96,9 @@ public class CCCExporter extends AbstractObjectWriter<System> {
 					service.setName(p.getService());
 				else
 					service.setName(p.getType().getLiteral());
-				// service.setLabel("");
-				// service.setFilter("");
-				// service.setFunction("");
+				service.setLabel(p.getLabel());
+				service.setFilter(p.getFilter());
+				service.setFunction(p.getFunction());
 				service.setRef(p.getName());
 
 				requires.getServiceOrRteOrSpec().add(factory.createRequiresTypeService(service));
@@ -99,20 +106,18 @@ public class CCCExporter extends AbstractObjectWriter<System> {
 		}
 
 		NameType rte = new NameType();
-		rte.setName("");
+		rte.setName(m.getRte());
 		NameType spec = new NameType();
-		spec.setName("");
+		spec.setName(m.getSpec());
 		QuantumType ram = new QuantumType();
-		ram.setQuantum(BigInteger.ZERO);
+		ram.setQuantum(m.getRam());
 		QuantumType caps = new QuantumType();
-		caps.setQuantum(BigInteger.ZERO);
+		caps.setQuantum(m.getCaps());
 
-		/*
-		 * requires.getServiceOrRteOrSpec().add(factory.createRequiresTypeRte(rte));
-		 * requires.getServiceOrRteOrSpec().add(factory.createRequiresTypeSpec(rte));
-		 * requires.getServiceOrRteOrSpec().add(factory.createRequiresTypeRam(ram));
-		 * requires.getServiceOrRteOrSpec().add(factory.createRequiresTypeCaps(caps));
-		 */
+		requires.getServiceOrRteOrSpec().add(factory.createRequiresTypeRte(rte));
+		requires.getServiceOrRteOrSpec().add(factory.createRequiresTypeSpec(rte));
+		requires.getServiceOrRteOrSpec().add(factory.createRequiresTypeRam(ram));
+		requires.getServiceOrRteOrSpec().add(factory.createRequiresTypeCaps(caps));
 
 		return requires;
 	}
@@ -127,9 +132,9 @@ public class CCCExporter extends AbstractObjectWriter<System> {
 					service.setName(p.getService());
 				else
 					service.setName(p.getType().getLiteral());
-				// service.setLabel("");
-				// service.setFilter("");
-				// service.setFunction("");
+				service.setLabel(p.getLabel());
+				service.setFilter(p.getFilter());
+				service.setFunction(p.getFunction());
 				service.setRef(p.getName());
 
 				requires.getService().add(service);
@@ -149,8 +154,8 @@ public class CCCExporter extends AbstractObjectWriter<System> {
 					service.setName(p.getService());
 				else
 					service.setName(p.getType().getLiteral());
-				// service.setMaxClients("1"); // TODO should be integer
-				// service.setFilter("");
+				service.setMaxClients(p.getMaxClients() + ""); // TODO should be integer
+				service.setFilter(p.getFilter());
 				service.setRef(p.getName());
 				provides.getService().add(service);
 			}
@@ -206,7 +211,7 @@ public class CCCExporter extends AbstractObjectWriter<System> {
 		for (Module child : m.getConsistsOf()) {
 			PatternComponentType pattern = new PatternComponentType();
 			pattern.setName(child.getName());
-			pattern.setConfig(null);
+			pattern.setConfig(null); //TODO
 
 			for (Ports port : child.getPorts()) {
 				if (port.getOuterDirection() == DirectionType.INTERNAL) {
@@ -234,8 +239,8 @@ public class CCCExporter extends AbstractObjectWriter<System> {
 						expose.setRef(outside.getName());
 
 						ServiceType st = new ServiceType();
-						st.setName(outside.getService());
-						st.setRef(outside.getName());
+						st.setName(port.getService());
+						st.setRef(port.getName());
 						expose.setService(st);
 						pattern.getExpose().add(expose);
 					}
@@ -282,6 +287,114 @@ public class CCCExporter extends AbstractObjectWriter<System> {
 		pt.getComm().add(ct);
 
 		return pt;
+	}
+
+	protected void setModuleTypeComponent(ComponentType component, Module m) {
+		if (m.getModuleType() instanceof Function) {
+			NameType value = new NameType();
+			value.setName(((Function) m.getModuleType()).getFunction());
+			component.setFunction(value);
+		} else if (m.getModuleType() instanceof Proxy) {
+			ProxyType value = new ProxyType();
+			value.setCarrier(((Proxy) m.getModuleType()).getCarrier());
+			component.setProxy(value);
+		} else if (m.getModuleType() instanceof Mux) {
+			MuxType value = new MuxType();
+			value.setService(((Mux) m.getModuleType()).getService());
+			component.setMux(value);
+		} else if (m.getModuleType() instanceof Filter) {
+			FilterType value = new FilterType();
+			value.setAlias(((Filter) m.getModuleType()).getAlias());
+			value.getAddOrRemoveOrReset().add(((Filter) m.getModuleType()).getAdd());
+			value.getAddOrRemoveOrReset().add(((Filter) m.getModuleType()).getRemove());
+			value.getAddOrRemoveOrReset().add(((Filter) m.getModuleType()).getReset());
+			component.setFilter(value);
+		} else if (m.getModuleType() instanceof Protocol) {
+			ProtocolType value = new ProtocolType();
+			value.setFrom(((Protocol) m.getModuleType()).getFrom());
+			value.setTo(((Protocol) m.getModuleType()).getTo());
+			component.getProtocol().add(value); // TODO only one protocol right now...
+		}
+	}
+
+	// TODO code clone...
+	protected void setModuleTypeComposite(CompositeType component, Module m) {
+		if (m.getModuleType() instanceof Function) {
+			NameType value = new NameType();
+			value.setName(((Function) m.getModuleType()).getFunction());
+			component.setFunction(value);
+		} else if (m.getModuleType() instanceof Proxy) {
+			ProxyType value = new ProxyType();
+			value.setCarrier(((Proxy) m.getModuleType()).getCarrier());
+			component.setProxy(value);
+		} else if (m.getModuleType() instanceof Mux) {
+			MuxType value = new MuxType();
+			value.setService(((Mux) m.getModuleType()).getService());
+			component.setMux(value);
+		} else if (m.getModuleType() instanceof Filter) {
+			FilterType value = new FilterType();
+			value.setAlias(((Filter) m.getModuleType()).getAlias());
+			value.getAddOrRemoveOrReset().add(((Filter) m.getModuleType()).getAdd());
+			value.getAddOrRemoveOrReset().add(((Filter) m.getModuleType()).getRemove());
+			value.getAddOrRemoveOrReset().add(((Filter) m.getModuleType()).getReset());
+			component.setFilter(value);
+		} else if (m.getModuleType() instanceof Protocol) {
+			ProtocolType value = new ProtocolType();
+			value.setFrom(((Protocol) m.getModuleType()).getFrom());
+			value.setTo(((Protocol) m.getModuleType()).getTo());
+			component.getProtocol().add(value); // TODO only one protocol right now...
+		}
+	}
+	
+	private void addComponentToRepository(RepositoryType repo, Module m) {
+		if (m instanceof Component) {
+			ComponentType component = new ComponentType();
+			component.setName(m.getName());
+			component.setSingleton(((Component) m).isSingleton());
+			component.setVersion(m.getVersion());
+
+			setModuleTypeComponent(component, m);
+
+			component.setRequires(getRequiresType(m));
+			component.setProvides(getProvidesType(m));
+
+			repo.getBinaryOrComponentOrComposite().add(component);
+		} else if (m instanceof Compound) {
+
+			Module ref = (Module) EcoreUtil.resolve(m.getModule(), m);
+
+			CompositeType composite = new CompositeType();
+			composite.setName(ref.getName());
+
+			setModuleTypeComposite(composite, m);
+
+			composite.setRequires(getCompositeRequiresType(ref));
+			composite.setProvides(getCompositeProvidesType(ref));
+			// composite.setTiming(getCompositeTimingType(m)); //TODO
+
+			CompositeType.Pattern pattern = new CompositeType.Pattern(); // TODO only a single pattern at the
+																			// moment...
+
+			pattern.getComponent().addAll(getPatternComponentType((Compound) ref));
+
+			composite.getPattern().add(pattern);
+
+			repo.getBinaryOrComponentOrComposite().add(composite);
+		} else if(m instanceof Abstract) {
+			Abstract ref = (Abstract) EcoreUtil.resolve(m.getModule(), m);
+			for(Module realizer : ref.getRealizes()) {
+//				if(realizer instanceof Component) {
+//					Compound compound = MmFactory.eINSTANCE.createCompound();
+//					compound.setName(ref.getName());
+//					compound.setDescription(ref.getDescription());
+//					compound.getPorts().addAll(ref.getPorts());
+//					compound.setModuleType(ref.getModuleType());
+//				}
+				if(realizer instanceof Compound) {
+					addComponentToRepository(repo, realizer);//TODO currently, realizations are only allowed for compound components
+				}
+			}
+		}
 	}
 
 	@Override
@@ -339,39 +452,7 @@ public class CCCExporter extends AbstractObjectWriter<System> {
 
 			// Add components
 			for (Module m : getModules(sys)) {
-
-				if (m instanceof Component) {
-					ComponentType component = new ComponentType();
-					component.setName(m.getName());
-					component.setSingleton(((Component) m).isSingleton());
-					component.setVersion(m.getVersion());
-
-					// TODO function, filter and stuff
-
-					component.setRequires(getRequiresType(m));
-					component.setProvides(getProvidesType(m));
-
-					repo.getBinaryOrComponentOrComposite().add(component);
-				} else if (m instanceof Compound) {
-
-					Module ref = (Module) EcoreUtil.resolve(m.getModule(), m);
-
-					CompositeType composite = new CompositeType();
-					composite.setName(ref.getName());
-
-					composite.setRequires(getCompositeRequiresType(ref));
-					composite.setProvides(getCompositeProvidesType(ref));
-					// composite.setTiming(getCompositeTimingType(m));
-
-					CompositeType.Pattern pattern = new CompositeType.Pattern(); // TODO only a single pattern at the
-																					// moment...
-
-					pattern.getComponent().addAll(getPatternComponentType((Compound) ref));
-
-					composite.getPattern().add(pattern);
-
-					repo.getBinaryOrComponentOrComposite().add(composite);
-				}
+				addComponentToRepository(repo, m);
 			}
 
 			system.setName(sys.getName());
@@ -396,13 +477,13 @@ public class CCCExporter extends AbstractObjectWriter<System> {
 				NameType function = new NameType();
 				function.setName("");
 				child.setFunction(function);
-				
+
 				system.getChild().add(child);
 			}
 
 			xml.setRepository(repo);
 			xml.setSystem(system);
-			xml.setPlatform(getPlatformType()); // TODO only zync for now
+			xml.setPlatform(getPlatformType()); // TODO only zynq for now
 
 			jaxbMarshaller.marshal(xml, file);
 			jaxbMarshaller.marshal(xml, java.lang.System.out);
