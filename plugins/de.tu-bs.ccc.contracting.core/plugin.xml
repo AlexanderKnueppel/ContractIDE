@@ -37,6 +37,11 @@
                   label="Export to CCC config. (.xml)"
                   style="push">
             </command>
+            <command
+                  commandId="de.tu-bs.ccc.contracting.io.importer_command"
+                  label="Import CCC config. (.xml)"
+                  style="push">
+            </command>
          </menu>
 	  </menuContribution>
 	</extension>
@@ -46,6 +51,11 @@
           defaultHandler="de.tu_bs.ccc.contracting.core.io.handler.ExportHandler"
           id="de.tu-bs.ccc.contracting.io.exporter_command"
           name="ExportToXML">
+    </command>
+    <command
+          defaultHandler="de.tu_bs.ccc.contracting.core.io.handler.ImportHandler"
+          id="de.tu-bs.ccc.contracting.io.importer_command"
+          name="ImportXML">
     </command>
  </extension>
    <extension

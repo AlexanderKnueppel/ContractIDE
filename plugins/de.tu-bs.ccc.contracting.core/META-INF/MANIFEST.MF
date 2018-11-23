@@ -25,6 +25,7 @@ Import-Package: com.microsoft.z3,
  de.tu_bs.ccc.contracting.ui.dialogs,
  de.tu_bs.ccc.contracting.ui.provider,
  de.tu_bs.ccc.contracting.ui.views,
+ de.tu_bs.ccc.contracting.ui.wizards,
  org.antlr.v4,
  org.eclipse.core.resources,
  org.eclipse.core.runtime
