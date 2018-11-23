@@ -8,10 +8,16 @@ import de.tu_bs.ccc.contracting.Verification.Component;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Contract;
 import de.tu_bs.ccc.contracting.Verification.ContractProperty;
+import de.tu_bs.ccc.contracting.Verification.Filter;
+import de.tu_bs.ccc.contracting.Verification.Function;
 import de.tu_bs.ccc.contracting.Verification.Guarantee;
 import de.tu_bs.ccc.contracting.Verification.MmPackage;
 import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.ModuleType;
+import de.tu_bs.ccc.contracting.Verification.Mux;
 import de.tu_bs.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.Verification.Protocol;
+import de.tu_bs.ccc.contracting.Verification.Proxy;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 
@@ -122,6 +128,36 @@ public class MmAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseSystem(de.tu_bs.ccc.contracting.Verification.System object) {
 			return createSystemAdapter();
+		}
+
+		@Override
+		public Adapter caseModuleType(ModuleType object) {
+			return createModuleTypeAdapter();
+		}
+
+		@Override
+		public Adapter caseProxy(Proxy object) {
+			return createProxyAdapter();
+		}
+
+		@Override
+		public Adapter caseFilter(Filter object) {
+			return createFilterAdapter();
+		}
+
+		@Override
+		public Adapter caseMux(Mux object) {
+			return createMuxAdapter();
+		}
+
+		@Override
+		public Adapter caseProtocol(Protocol object) {
+			return createProtocolAdapter();
+		}
+
+		@Override
+		public Adapter caseFunction(Function object) {
+			return createFunctionAdapter();
 		}
 
 		@Override
@@ -280,6 +316,90 @@ public class MmAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSystemAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.tu_bs.ccc.contracting.Verification.ModuleType <em>Module Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.tu_bs.ccc.contracting.Verification.ModuleType
+	 * @generated
+	 */
+	public Adapter createModuleTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.tu_bs.ccc.contracting.Verification.Proxy <em>Proxy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.tu_bs.ccc.contracting.Verification.Proxy
+	 * @generated
+	 */
+	public Adapter createProxyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.tu_bs.ccc.contracting.Verification.Filter <em>Filter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.tu_bs.ccc.contracting.Verification.Filter
+	 * @generated
+	 */
+	public Adapter createFilterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.tu_bs.ccc.contracting.Verification.Mux <em>Mux</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.tu_bs.ccc.contracting.Verification.Mux
+	 * @generated
+	 */
+	public Adapter createMuxAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.tu_bs.ccc.contracting.Verification.Protocol <em>Protocol</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.tu_bs.ccc.contracting.Verification.Protocol
+	 * @generated
+	 */
+	public Adapter createProtocolAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.tu_bs.ccc.contracting.Verification.Function <em>Function</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.tu_bs.ccc.contracting.Verification.Function
+	 * @generated
+	 */
+	public Adapter createFunctionAdapter() {
 		return null;
 	}
 

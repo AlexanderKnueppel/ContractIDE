@@ -2,6 +2,7 @@
  */
 package de.tu_bs.ccc.contracting.Verification;
 
+import java.math.BigInteger;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
@@ -23,6 +24,11 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.Module#getContract <em>Contract</em>}</li>
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.Module#getModule <em>Module</em>}</li>
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.Module#getVersion <em>Version</em>}</li>
+ *   <li>{@link de.tu_bs.ccc.contracting.Verification.Module#getRte <em>Rte</em>}</li>
+ *   <li>{@link de.tu_bs.ccc.contracting.Verification.Module#getSpec <em>Spec</em>}</li>
+ *   <li>{@link de.tu_bs.ccc.contracting.Verification.Module#getRam <em>Ram</em>}</li>
+ *   <li>{@link de.tu_bs.ccc.contracting.Verification.Module#getCaps <em>Caps</em>}</li>
+ *   <li>{@link de.tu_bs.ccc.contracting.Verification.Module#getModuleType <em>Module Type</em>}</li>
  * </ul>
  *
  * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getModule()
@@ -216,5 +222,136 @@ public interface Module extends EObject {
 	 * @generated
 	 */
 	void setVersion(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Rte</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Rte</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Rte</em>' attribute.
+	 * @see #setRte(String)
+	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getModule_Rte()
+	 * @model
+	 * @generated
+	 */
+	String getRte();
+
+	/**
+	 * Sets the value of the '{@link de.tu_bs.ccc.contracting.Verification.Module#getRte <em>Rte</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Rte</em>' attribute.
+	 * @see #getRte()
+	 * @generated
+	 */
+	void setRte(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Spec</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Spec</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Spec</em>' attribute.
+	 * @see #setSpec(String)
+	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getModule_Spec()
+	 * @model
+	 * @generated
+	 */
+	String getSpec();
+
+	/**
+	 * Sets the value of the '{@link de.tu_bs.ccc.contracting.Verification.Module#getSpec <em>Spec</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Spec</em>' attribute.
+	 * @see #getSpec()
+	 * @generated
+	 */
+	void setSpec(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Ram</b></em>' attribute.
+	 * The default value is <code>"-1"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Ram</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Ram</em>' attribute.
+	 * @see #setRam(BigInteger)
+	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getModule_Ram()
+	 * @model default="-1"
+	 * @generated
+	 */
+	BigInteger getRam();
+
+	/**
+	 * Sets the value of the '{@link de.tu_bs.ccc.contracting.Verification.Module#getRam <em>Ram</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Ram</em>' attribute.
+	 * @see #getRam()
+	 * @generated
+	 */
+	void setRam(BigInteger value);
+
+	/**
+	 * Returns the value of the '<em><b>Caps</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Caps</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Caps</em>' attribute.
+	 * @see #setCaps(BigInteger)
+	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getModule_Caps()
+	 * @model
+	 * @generated
+	 */
+	BigInteger getCaps();
+
+	/**
+	 * Sets the value of the '{@link de.tu_bs.ccc.contracting.Verification.Module#getCaps <em>Caps</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Caps</em>' attribute.
+	 * @see #getCaps()
+	 * @generated
+	 */
+	void setCaps(BigInteger value);
+
+	/**
+	 * Returns the value of the '<em><b>Module Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Module Type</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Module Type</em>' containment reference.
+	 * @see #setModuleType(ModuleType)
+	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getModule_ModuleType()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	ModuleType getModuleType();
+
+	/**
+	 * Sets the value of the '{@link de.tu_bs.ccc.contracting.Verification.Module#getModuleType <em>Module Type</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Module Type</em>' containment reference.
+	 * @see #getModuleType()
+	 * @generated
+	 */
+	void setModuleType(ModuleType value);
 
 } // Module

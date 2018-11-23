@@ -24,6 +24,11 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.Ports#getInsidePortseOpposite <em>Inside Portse Opposite</em>}</li>
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.Ports#getService <em>Service</em>}</li>
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.Ports#getOuterDirection <em>Outer Direction</em>}</li>
+ *   <li>{@link de.tu_bs.ccc.contracting.Verification.Ports#getMaxClients <em>Max Clients</em>}</li>
+ *   <li>{@link de.tu_bs.ccc.contracting.Verification.Ports#getFilter <em>Filter</em>}</li>
+ *   <li>{@link de.tu_bs.ccc.contracting.Verification.Ports#getLabel <em>Label</em>}</li>
+ *   <li>{@link de.tu_bs.ccc.contracting.Verification.Ports#getFunction <em>Function</em>}</li>
+ *   <li>{@link de.tu_bs.ccc.contracting.Verification.Ports#getProviderType <em>Provider Type</em>}</li>
  * </ul>
  *
  * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getPorts()
@@ -261,5 +266,140 @@ public interface Ports extends EObject {
 	 * @generated
 	 */
 	void setOuterDirection(DirectionType value);
+
+	/**
+	 * Returns the value of the '<em><b>Max Clients</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Max Clients</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Max Clients</em>' attribute.
+	 * @see #setMaxClients(int)
+	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getPorts_MaxClients()
+	 * @model default="0"
+	 * @generated
+	 */
+	int getMaxClients();
+
+	/**
+	 * Sets the value of the '{@link de.tu_bs.ccc.contracting.Verification.Ports#getMaxClients <em>Max Clients</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Max Clients</em>' attribute.
+	 * @see #getMaxClients()
+	 * @generated
+	 */
+	void setMaxClients(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Filter</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Filter</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Filter</em>' attribute.
+	 * @see #setFilter(String)
+	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getPorts_Filter()
+	 * @model
+	 * @generated
+	 */
+	String getFilter();
+
+	/**
+	 * Sets the value of the '{@link de.tu_bs.ccc.contracting.Verification.Ports#getFilter <em>Filter</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Filter</em>' attribute.
+	 * @see #getFilter()
+	 * @generated
+	 */
+	void setFilter(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Label</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Label</em>' attribute.
+	 * @see #setLabel(String)
+	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getPorts_Label()
+	 * @model
+	 * @generated
+	 */
+	String getLabel();
+
+	/**
+	 * Sets the value of the '{@link de.tu_bs.ccc.contracting.Verification.Ports#getLabel <em>Label</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Label</em>' attribute.
+	 * @see #getLabel()
+	 * @generated
+	 */
+	void setLabel(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Function</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Function</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Function</em>' attribute.
+	 * @see #setFunction(String)
+	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getPorts_Function()
+	 * @model
+	 * @generated
+	 */
+	String getFunction();
+
+	/**
+	 * Sets the value of the '{@link de.tu_bs.ccc.contracting.Verification.Ports#getFunction <em>Function</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Function</em>' attribute.
+	 * @see #getFunction()
+	 * @generated
+	 */
+	void setFunction(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Provider Type</b></em>' attribute.
+	 * The default value is <code>"NATIVE"</code>.
+	 * The literals are from the enumeration {@link de.tu_bs.ccc.contracting.Verification.ProviderType}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Provider Type</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Provider Type</em>' attribute.
+	 * @see de.tu_bs.ccc.contracting.Verification.ProviderType
+	 * @see #setProviderType(ProviderType)
+	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getPorts_ProviderType()
+	 * @model default="NATIVE"
+	 * @generated
+	 */
+	ProviderType getProviderType();
+
+	/**
+	 * Sets the value of the '{@link de.tu_bs.ccc.contracting.Verification.Ports#getProviderType <em>Provider Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Provider Type</em>' attribute.
+	 * @see de.tu_bs.ccc.contracting.Verification.ProviderType
+	 * @see #getProviderType()
+	 * @generated
+	 */
+	void setProviderType(ProviderType value);
 
 } // Ports

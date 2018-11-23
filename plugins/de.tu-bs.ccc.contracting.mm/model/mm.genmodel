@@ -44,6 +44,11 @@
       <genEnumLiterals ecoreEnumLiteral="mm.ecore#//DirectionType/INTERNAL"/>
       <genEnumLiterals ecoreEnumLiteral="mm.ecore#//DirectionType/EXTERNAL"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="mm.ecore#//ProviderType">
+      <genEnumLiterals ecoreEnumLiteral="mm.ecore#//ProviderType/NATIVE"/>
+      <genEnumLiterals ecoreEnumLiteral="mm.ecore#//ProviderType/LEGACY"/>
+      <genEnumLiterals ecoreEnumLiteral="mm.ecore#//ProviderType/NETWORK"/>
+    </genEnums>
     <genClasses ecoreClass="mm.ecore#//Module">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Module/name"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference mm.ecore#//Module/isPartOf"/>
@@ -53,6 +58,11 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mm.ecore#//Module/contract"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//Module/module"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Module/version"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Module/rte"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Module/spec"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Module/ram"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Module/caps"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mm.ecore#//Module/moduleType"/>
     </genClasses>
     <genClasses ecoreClass="mm.ecore#//Abstract">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//Abstract/realizes"/>
@@ -81,6 +91,11 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//Ports/insidePortseOpposite"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Ports/service"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Ports/OuterDirection"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Ports/maxClients"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Ports/filter"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Ports/label"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Ports/function"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Ports/providerType"/>
     </genClasses>
     <genClasses ecoreClass="mm.ecore#//ContractProperty">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//ContractProperty/propertyTipe"/>
@@ -95,6 +110,26 @@
     <genClasses ecoreClass="mm.ecore#//System">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//System/name"/>
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//System/consistsOf"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="mm.ecore#//ModuleType"/>
+    <genClasses ecoreClass="mm.ecore#//Proxy">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Proxy/carrier"/>
+    </genClasses>
+    <genClasses ecoreClass="mm.ecore#//Filter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Filter/add"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Filter/remove"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Filter/reset"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Filter/alias"/>
+    </genClasses>
+    <genClasses ecoreClass="mm.ecore#//Mux">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Mux/service"/>
+    </genClasses>
+    <genClasses ecoreClass="mm.ecore#//Protocol">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Protocol/from"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Protocol/to"/>
+    </genClasses>
+    <genClasses ecoreClass="mm.ecore#//Function">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Function/function"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

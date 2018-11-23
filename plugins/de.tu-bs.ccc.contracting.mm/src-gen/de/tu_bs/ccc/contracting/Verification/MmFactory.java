@@ -112,6 +112,51 @@ public interface MmFactory extends EFactory {
 	System createSystem();
 
 	/**
+	 * Returns a new object of class '<em>Proxy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Proxy</em>'.
+	 * @generated
+	 */
+	Proxy createProxy();
+
+	/**
+	 * Returns a new object of class '<em>Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Filter</em>'.
+	 * @generated
+	 */
+	Filter createFilter();
+
+	/**
+	 * Returns a new object of class '<em>Mux</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Mux</em>'.
+	 * @generated
+	 */
+	Mux createMux();
+
+	/**
+	 * Returns a new object of class '<em>Protocol</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Protocol</em>'.
+	 * @generated
+	 */
+	Protocol createProtocol();
+
+	/**
+	 * Returns a new object of class '<em>Function</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Function</em>'.
+	 * @generated
+	 */
+	Function createFunction();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

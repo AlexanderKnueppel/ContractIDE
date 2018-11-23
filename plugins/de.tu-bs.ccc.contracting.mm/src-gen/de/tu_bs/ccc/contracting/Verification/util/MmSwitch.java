@@ -8,10 +8,16 @@ import de.tu_bs.ccc.contracting.Verification.Component;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Contract;
 import de.tu_bs.ccc.contracting.Verification.ContractProperty;
+import de.tu_bs.ccc.contracting.Verification.Filter;
+import de.tu_bs.ccc.contracting.Verification.Function;
 import de.tu_bs.ccc.contracting.Verification.Guarantee;
 import de.tu_bs.ccc.contracting.Verification.MmPackage;
 import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.ModuleType;
+import de.tu_bs.ccc.contracting.Verification.Mux;
 import de.tu_bs.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.Verification.Protocol;
+import de.tu_bs.ccc.contracting.Verification.Proxy;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -150,6 +156,58 @@ public class MmSwitch<T> extends Switch<T> {
 		case MmPackage.SYSTEM: {
 			de.tu_bs.ccc.contracting.Verification.System system = (de.tu_bs.ccc.contracting.Verification.System) theEObject;
 			T result = caseSystem(system);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case MmPackage.MODULE_TYPE: {
+			ModuleType moduleType = (ModuleType) theEObject;
+			T result = caseModuleType(moduleType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case MmPackage.PROXY: {
+			Proxy proxy = (Proxy) theEObject;
+			T result = caseProxy(proxy);
+			if (result == null)
+				result = caseModuleType(proxy);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case MmPackage.FILTER: {
+			Filter filter = (Filter) theEObject;
+			T result = caseFilter(filter);
+			if (result == null)
+				result = caseModuleType(filter);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case MmPackage.MUX: {
+			Mux mux = (Mux) theEObject;
+			T result = caseMux(mux);
+			if (result == null)
+				result = caseModuleType(mux);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case MmPackage.PROTOCOL: {
+			Protocol protocol = (Protocol) theEObject;
+			T result = caseProtocol(protocol);
+			if (result == null)
+				result = caseModuleType(protocol);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case MmPackage.FUNCTION: {
+			Function function = (Function) theEObject;
+			T result = caseFunction(function);
+			if (result == null)
+				result = caseModuleType(function);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -306,6 +364,96 @@ public class MmSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSystem(de.tu_bs.ccc.contracting.Verification.System object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Module Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Module Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModuleType(ModuleType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Proxy</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Proxy</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseProxy(Proxy object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Filter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFilter(Filter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Mux</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Mux</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMux(Mux object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Protocol</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Protocol</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseProtocol(Protocol object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Function</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Function</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFunction(Function object) {
 		return null;
 	}
 

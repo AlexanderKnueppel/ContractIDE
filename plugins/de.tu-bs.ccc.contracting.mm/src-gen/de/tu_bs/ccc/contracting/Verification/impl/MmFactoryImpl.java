@@ -10,13 +10,19 @@ import de.tu_bs.ccc.contracting.Verification.Contract;
 import de.tu_bs.ccc.contracting.Verification.ContractProperty;
 import de.tu_bs.ccc.contracting.Verification.ContractType;
 import de.tu_bs.ccc.contracting.Verification.DirectionType;
+import de.tu_bs.ccc.contracting.Verification.Filter;
+import de.tu_bs.ccc.contracting.Verification.Function;
 import de.tu_bs.ccc.contracting.Verification.Guarantee;
 import de.tu_bs.ccc.contracting.Verification.MmFactory;
 import de.tu_bs.ccc.contracting.Verification.MmPackage;
 import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.Mux;
 import de.tu_bs.ccc.contracting.Verification.PortType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.Verification.PropertyType;
+import de.tu_bs.ccc.contracting.Verification.Protocol;
+import de.tu_bs.ccc.contracting.Verification.ProviderType;
+import de.tu_bs.ccc.contracting.Verification.Proxy;
 import de.tu_bs.ccc.contracting.Verification.ViewPoint;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -90,6 +96,16 @@ public class MmFactoryImpl extends EFactoryImpl implements MmFactory {
 			return createAssumption();
 		case MmPackage.SYSTEM:
 			return createSystem();
+		case MmPackage.PROXY:
+			return createProxy();
+		case MmPackage.FILTER:
+			return createFilter();
+		case MmPackage.MUX:
+			return createMux();
+		case MmPackage.PROTOCOL:
+			return createProtocol();
+		case MmPackage.FUNCTION:
+			return createFunction();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -113,6 +129,8 @@ public class MmFactoryImpl extends EFactoryImpl implements MmFactory {
 			return createContractTypeFromString(eDataType, initialValue);
 		case MmPackage.DIRECTION_TYPE:
 			return createDirectionTypeFromString(eDataType, initialValue);
+		case MmPackage.PROVIDER_TYPE:
+			return createProviderTypeFromString(eDataType, initialValue);
 		default:
 			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -136,6 +154,8 @@ public class MmFactoryImpl extends EFactoryImpl implements MmFactory {
 			return convertContractTypeToString(eDataType, instanceValue);
 		case MmPackage.DIRECTION_TYPE:
 			return convertDirectionTypeToString(eDataType, instanceValue);
+		case MmPackage.PROVIDER_TYPE:
+			return convertProviderTypeToString(eDataType, instanceValue);
 		default:
 			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -246,6 +266,56 @@ public class MmFactoryImpl extends EFactoryImpl implements MmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Proxy createProxy() {
+		ProxyImpl proxy = new ProxyImpl();
+		return proxy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Filter createFilter() {
+		FilterImpl filter = new FilterImpl();
+		return filter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Mux createMux() {
+		MuxImpl mux = new MuxImpl();
+		return mux;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Protocol createProtocol() {
+		ProtocolImpl protocol = new ProtocolImpl();
+		return protocol;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Function createFunction() {
+		FunctionImpl function = new FunctionImpl();
+		return function;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public PortType createPortTypeFromString(EDataType eDataType, String initialValue) {
 		PortType result = PortType.get(initialValue);
 		if (result == null)
@@ -348,6 +418,28 @@ public class MmFactoryImpl extends EFactoryImpl implements MmFactory {
 	 * @generated
 	 */
 	public String convertDirectionTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ProviderType createProviderTypeFromString(EDataType eDataType, String initialValue) {
+		ProviderType result = ProviderType.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException(
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertProviderTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

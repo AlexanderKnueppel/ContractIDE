@@ -8,6 +8,7 @@ import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.PortType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 
+import de.tu_bs.ccc.contracting.Verification.ProviderType;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -42,6 +43,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.PortsImpl#getInsidePortseOpposite <em>Inside Portse Opposite</em>}</li>
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.PortsImpl#getService <em>Service</em>}</li>
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.PortsImpl#getOuterDirection <em>Outer Direction</em>}</li>
+ *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.PortsImpl#getMaxClients <em>Max Clients</em>}</li>
+ *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.PortsImpl#getFilter <em>Filter</em>}</li>
+ *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.PortsImpl#getLabel <em>Label</em>}</li>
+ *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.PortsImpl#getFunction <em>Function</em>}</li>
+ *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.PortsImpl#getProviderType <em>Provider Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -166,6 +172,106 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * @ordered
 	 */
 	protected DirectionType outerDirection = OUTER_DIRECTION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getMaxClients() <em>Max Clients</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaxClients()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int MAX_CLIENTS_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getMaxClients() <em>Max Clients</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaxClients()
+	 * @generated
+	 * @ordered
+	 */
+	protected int maxClients = MAX_CLIENTS_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getFilter() <em>Filter</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFilter()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String FILTER_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getFilter() <em>Filter</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFilter()
+	 * @generated
+	 * @ordered
+	 */
+	protected String filter = FILTER_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLabel()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String LABEL_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLabel()
+	 * @generated
+	 * @ordered
+	 */
+	protected String label = LABEL_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getFunction() <em>Function</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFunction()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String FUNCTION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getFunction() <em>Function</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFunction()
+	 * @generated
+	 * @ordered
+	 */
+	protected String function = FUNCTION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getProviderType() <em>Provider Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProviderType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final ProviderType PROVIDER_TYPE_EDEFAULT = ProviderType.NATIVE;
+
+	/**
+	 * The cached value of the '{@link #getProviderType() <em>Provider Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProviderType()
+	 * @generated
+	 * @ordered
+	 */
+	protected ProviderType providerType = PROVIDER_TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -481,6 +587,113 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getMaxClients() {
+		return maxClients;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMaxClients(int newMaxClients) {
+		int oldMaxClients = maxClients;
+		maxClients = newMaxClients;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MmPackage.PORTS__MAX_CLIENTS, oldMaxClients,
+					maxClients));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getFilter() {
+		return filter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFilter(String newFilter) {
+		String oldFilter = filter;
+		filter = newFilter;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MmPackage.PORTS__FILTER, oldFilter, filter));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getLabel() {
+		return label;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLabel(String newLabel) {
+		String oldLabel = label;
+		label = newLabel;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MmPackage.PORTS__LABEL, oldLabel, label));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getFunction() {
+		return function;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFunction(String newFunction) {
+		String oldFunction = function;
+		function = newFunction;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MmPackage.PORTS__FUNCTION, oldFunction, function));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ProviderType getProviderType() {
+		return providerType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProviderType(ProviderType newProviderType) {
+		ProviderType oldProviderType = providerType;
+		providerType = newProviderType == null ? PROVIDER_TYPE_EDEFAULT : newProviderType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MmPackage.PORTS__PROVIDER_TYPE, oldProviderType,
+					providerType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -573,6 +786,16 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 			return getService();
 		case MmPackage.PORTS__OUTER_DIRECTION:
 			return getOuterDirection();
+		case MmPackage.PORTS__MAX_CLIENTS:
+			return getMaxClients();
+		case MmPackage.PORTS__FILTER:
+			return getFilter();
+		case MmPackage.PORTS__LABEL:
+			return getLabel();
+		case MmPackage.PORTS__FUNCTION:
+			return getFunction();
+		case MmPackage.PORTS__PROVIDER_TYPE:
+			return getProviderType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -615,6 +838,21 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 		case MmPackage.PORTS__OUTER_DIRECTION:
 			setOuterDirection((DirectionType) newValue);
 			return;
+		case MmPackage.PORTS__MAX_CLIENTS:
+			setMaxClients((Integer) newValue);
+			return;
+		case MmPackage.PORTS__FILTER:
+			setFilter((String) newValue);
+			return;
+		case MmPackage.PORTS__LABEL:
+			setLabel((String) newValue);
+			return;
+		case MmPackage.PORTS__FUNCTION:
+			setFunction((String) newValue);
+			return;
+		case MmPackage.PORTS__PROVIDER_TYPE:
+			setProviderType((ProviderType) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -654,6 +892,21 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 		case MmPackage.PORTS__OUTER_DIRECTION:
 			setOuterDirection(OUTER_DIRECTION_EDEFAULT);
 			return;
+		case MmPackage.PORTS__MAX_CLIENTS:
+			setMaxClients(MAX_CLIENTS_EDEFAULT);
+			return;
+		case MmPackage.PORTS__FILTER:
+			setFilter(FILTER_EDEFAULT);
+			return;
+		case MmPackage.PORTS__LABEL:
+			setLabel(LABEL_EDEFAULT);
+			return;
+		case MmPackage.PORTS__FUNCTION:
+			setFunction(FUNCTION_EDEFAULT);
+			return;
+		case MmPackage.PORTS__PROVIDER_TYPE:
+			setProviderType(PROVIDER_TYPE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -684,6 +937,16 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 			return SERVICE_EDEFAULT == null ? service != null : !SERVICE_EDEFAULT.equals(service);
 		case MmPackage.PORTS__OUTER_DIRECTION:
 			return outerDirection != OUTER_DIRECTION_EDEFAULT;
+		case MmPackage.PORTS__MAX_CLIENTS:
+			return maxClients != MAX_CLIENTS_EDEFAULT;
+		case MmPackage.PORTS__FILTER:
+			return FILTER_EDEFAULT == null ? filter != null : !FILTER_EDEFAULT.equals(filter);
+		case MmPackage.PORTS__LABEL:
+			return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+		case MmPackage.PORTS__FUNCTION:
+			return FUNCTION_EDEFAULT == null ? function != null : !FUNCTION_EDEFAULT.equals(function);
+		case MmPackage.PORTS__PROVIDER_TYPE:
+			return providerType != PROVIDER_TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -707,6 +970,16 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 		result.append(service);
 		result.append(", OuterDirection: ");
 		result.append(outerDirection);
+		result.append(", maxClients: ");
+		result.append(maxClients);
+		result.append(", filter: ");
+		result.append(filter);
+		result.append(", label: ");
+		result.append(label);
+		result.append(", function: ");
+		result.append(function);
+		result.append(", providerType: ");
+		result.append(providerType);
 		result.append(')');
 		return result.toString();
 	}

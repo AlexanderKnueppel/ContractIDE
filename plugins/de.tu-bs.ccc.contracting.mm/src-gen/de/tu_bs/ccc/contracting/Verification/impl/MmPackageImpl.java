@@ -10,13 +10,20 @@ import de.tu_bs.ccc.contracting.Verification.Contract;
 import de.tu_bs.ccc.contracting.Verification.ContractProperty;
 import de.tu_bs.ccc.contracting.Verification.ContractType;
 import de.tu_bs.ccc.contracting.Verification.DirectionType;
+import de.tu_bs.ccc.contracting.Verification.Filter;
+import de.tu_bs.ccc.contracting.Verification.Function;
 import de.tu_bs.ccc.contracting.Verification.Guarantee;
 import de.tu_bs.ccc.contracting.Verification.MmFactory;
 import de.tu_bs.ccc.contracting.Verification.MmPackage;
 import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.ModuleType;
+import de.tu_bs.ccc.contracting.Verification.Mux;
 import de.tu_bs.ccc.contracting.Verification.PortType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.Verification.PropertyType;
+import de.tu_bs.ccc.contracting.Verification.Protocol;
+import de.tu_bs.ccc.contracting.Verification.ProviderType;
+import de.tu_bs.ccc.contracting.Verification.Proxy;
 import de.tu_bs.ccc.contracting.Verification.ViewPoint;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -111,6 +118,48 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass moduleTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass proxyEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass filterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass muxEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass protocolEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass functionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum portTypeEEnum = null;
 
 	/**
@@ -140,6 +189,13 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 	 * @generated
 	 */
 	private EEnum directionTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum providerTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -286,6 +342,51 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 	 */
 	public EAttribute getModule_Version() {
 		return (EAttribute) moduleEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getModule_Rte() {
+		return (EAttribute) moduleEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getModule_Spec() {
+		return (EAttribute) moduleEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getModule_Ram() {
+		return (EAttribute) moduleEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getModule_Caps() {
+		return (EAttribute) moduleEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getModule_ModuleType() {
+		return (EReference) moduleEClass.getEStructuralFeatures().get(12);
 	}
 
 	/**
@@ -500,6 +601,51 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getPorts_MaxClients() {
+		return (EAttribute) portsEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPorts_Filter() {
+		return (EAttribute) portsEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPorts_Label() {
+		return (EAttribute) portsEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPorts_Function() {
+		return (EAttribute) portsEClass.getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPorts_ProviderType() {
+		return (EAttribute) portsEClass.getEStructuralFeatures().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getContractProperty() {
 		return contractPropertyEClass;
 	}
@@ -590,6 +736,141 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getModuleType() {
+		return moduleTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getProxy() {
+		return proxyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProxy_Carrier() {
+		return (EAttribute) proxyEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getFilter() {
+		return filterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFilter_Add() {
+		return (EAttribute) filterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFilter_Remove() {
+		return (EAttribute) filterEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFilter_Reset() {
+		return (EAttribute) filterEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFilter_Alias() {
+		return (EAttribute) filterEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMux() {
+		return muxEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMux_Service() {
+		return (EAttribute) muxEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getProtocol() {
+		return protocolEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProtocol_From() {
+		return (EAttribute) protocolEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProtocol_To() {
+		return (EAttribute) protocolEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getFunction() {
+		return functionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFunction_Function() {
+		return (EAttribute) functionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getPortType() {
 		return portTypeEEnum;
 	}
@@ -635,6 +916,15 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getProviderType() {
+		return providerTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public MmFactory getMmFactory() {
 		return (MmFactory) getEFactoryInstance();
 	}
@@ -668,6 +958,11 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 		createEReference(moduleEClass, MODULE__CONTRACT);
 		createEReference(moduleEClass, MODULE__MODULE);
 		createEAttribute(moduleEClass, MODULE__VERSION);
+		createEAttribute(moduleEClass, MODULE__RTE);
+		createEAttribute(moduleEClass, MODULE__SPEC);
+		createEAttribute(moduleEClass, MODULE__RAM);
+		createEAttribute(moduleEClass, MODULE__CAPS);
+		createEReference(moduleEClass, MODULE__MODULE_TYPE);
 
 		abstractEClass = createEClass(ABSTRACT);
 		createEReference(abstractEClass, ABSTRACT__REALIZES);
@@ -696,6 +991,11 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 		createEReference(portsEClass, PORTS__INSIDE_PORTSE_OPPOSITE);
 		createEAttribute(portsEClass, PORTS__SERVICE);
 		createEAttribute(portsEClass, PORTS__OUTER_DIRECTION);
+		createEAttribute(portsEClass, PORTS__MAX_CLIENTS);
+		createEAttribute(portsEClass, PORTS__FILTER);
+		createEAttribute(portsEClass, PORTS__LABEL);
+		createEAttribute(portsEClass, PORTS__FUNCTION);
+		createEAttribute(portsEClass, PORTS__PROVIDER_TYPE);
 
 		contractPropertyEClass = createEClass(CONTRACT_PROPERTY);
 		createEAttribute(contractPropertyEClass, CONTRACT_PROPERTY__PROPERTY_TIPE);
@@ -711,12 +1011,34 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 		createEAttribute(systemEClass, SYSTEM__NAME);
 		createEReference(systemEClass, SYSTEM__CONSISTS_OF);
 
+		moduleTypeEClass = createEClass(MODULE_TYPE);
+
+		proxyEClass = createEClass(PROXY);
+		createEAttribute(proxyEClass, PROXY__CARRIER);
+
+		filterEClass = createEClass(FILTER);
+		createEAttribute(filterEClass, FILTER__ADD);
+		createEAttribute(filterEClass, FILTER__REMOVE);
+		createEAttribute(filterEClass, FILTER__RESET);
+		createEAttribute(filterEClass, FILTER__ALIAS);
+
+		muxEClass = createEClass(MUX);
+		createEAttribute(muxEClass, MUX__SERVICE);
+
+		protocolEClass = createEClass(PROTOCOL);
+		createEAttribute(protocolEClass, PROTOCOL__FROM);
+		createEAttribute(protocolEClass, PROTOCOL__TO);
+
+		functionEClass = createEClass(FUNCTION);
+		createEAttribute(functionEClass, FUNCTION__FUNCTION);
+
 		// Create enums
 		portTypeEEnum = createEEnum(PORT_TYPE);
 		viewPointEEnum = createEEnum(VIEW_POINT);
 		propertyTypeEEnum = createEEnum(PROPERTY_TYPE);
 		contractTypeEEnum = createEEnum(CONTRACT_TYPE);
 		directionTypeEEnum = createEEnum(DIRECTION_TYPE);
+		providerTypeEEnum = createEEnum(PROVIDER_TYPE);
 	}
 
 	/**
@@ -757,6 +1079,11 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 		compoundEClass.getESuperTypes().add(this.getModule());
 		guaranteeEClass.getESuperTypes().add(this.getContractProperty());
 		assumptionEClass.getESuperTypes().add(this.getContractProperty());
+		proxyEClass.getESuperTypes().add(this.getModuleType());
+		filterEClass.getESuperTypes().add(this.getModuleType());
+		muxEClass.getESuperTypes().add(this.getModuleType());
+		protocolEClass.getESuperTypes().add(this.getModuleType());
+		functionEClass.getESuperTypes().add(this.getModuleType());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(moduleEClass, Module.class, "Module", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -781,6 +1108,17 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 				IS_ORDERED);
 		initEAttribute(getModule_Version(), ecorePackage.getEString(), "version", "1.0", 0, 1, Module.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModule_Rte(), ecorePackage.getEString(), "rte", null, 0, 1, Module.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModule_Spec(), ecorePackage.getEString(), "spec", null, 0, 1, Module.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModule_Ram(), ecorePackage.getEBigInteger(), "ram", "-1", 0, 1, Module.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModule_Caps(), ecorePackage.getEBigInteger(), "caps", null, 0, 1, Module.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModule_ModuleType(), this.getModuleType(), null, "moduleType", null, 1, 1, Module.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(abstractEClass, Abstract.class, "Abstract", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -842,6 +1180,16 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPorts_OuterDirection(), this.getDirectionType(), "OuterDirection", null, 0, 1, Ports.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPorts_MaxClients(), ecorePackage.getEInt(), "maxClients", "0", 0, 1, Ports.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPorts_Filter(), ecorePackage.getEString(), "filter", null, 0, 1, Ports.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPorts_Label(), ecorePackage.getEString(), "label", null, 0, 1, Ports.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPorts_Function(), ecorePackage.getEString(), "function", null, 0, 1, Ports.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPorts_ProviderType(), this.getProviderType(), "providerType", "NATIVE", 0, 1, Ports.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(contractPropertyEClass, ContractProperty.class, "ContractProperty", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -873,6 +1221,39 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 				de.tu_bs.ccc.contracting.Verification.System.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(moduleTypeEClass, ModuleType.class, "ModuleType", IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(proxyEClass, Proxy.class, "Proxy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getProxy_Carrier(), ecorePackage.getEString(), "carrier", null, 0, 1, Proxy.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(filterEClass, Filter.class, "Filter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFilter_Add(), ecorePackage.getEString(), "add", null, 0, 1, Filter.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFilter_Remove(), ecorePackage.getEString(), "remove", null, 0, 1, Filter.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFilter_Reset(), ecorePackage.getEString(), "reset", null, 0, 1, Filter.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFilter_Alias(), ecorePackage.getEString(), "alias", null, 0, 1, Filter.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(muxEClass, Mux.class, "Mux", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getMux_Service(), ecorePackage.getEString(), "service", null, 0, 1, Mux.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(protocolEClass, Protocol.class, "Protocol", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getProtocol_From(), ecorePackage.getEString(), "from", null, 0, 1, Protocol.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProtocol_To(), ecorePackage.getEString(), "to", null, 0, 1, Protocol.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(functionEClass, Function.class, "Function", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFunction_Function(), ecorePackage.getEString(), "function", null, 0, 1, Function.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		// Initialize enums and add enum literals
 		initEEnum(portTypeEEnum, PortType.class, "PortType");
 		addEEnumLiteral(portTypeEEnum, PortType.INT);
@@ -903,6 +1284,11 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 		initEEnum(directionTypeEEnum, DirectionType.class, "DirectionType");
 		addEEnumLiteral(directionTypeEEnum, DirectionType.INTERNAL);
 		addEEnumLiteral(directionTypeEEnum, DirectionType.EXTERNAL);
+
+		initEEnum(providerTypeEEnum, ProviderType.class, "ProviderType");
+		addEEnumLiteral(providerTypeEEnum, ProviderType.NATIVE);
+		addEEnumLiteral(providerTypeEEnum, ProviderType.LEGACY);
+		addEEnumLiteral(providerTypeEEnum, ProviderType.NETWORK);
 
 		// Create resource
 		createResource(eNS_URI);

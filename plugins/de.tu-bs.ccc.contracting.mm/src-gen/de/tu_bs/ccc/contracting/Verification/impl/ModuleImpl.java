@@ -7,8 +7,10 @@ import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Contract;
 import de.tu_bs.ccc.contracting.Verification.MmPackage;
 import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.ModuleType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 
+import java.math.BigInteger;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -43,6 +45,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.ModuleImpl#getContract <em>Contract</em>}</li>
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.ModuleImpl#getModule <em>Module</em>}</li>
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.ModuleImpl#getVersion <em>Version</em>}</li>
+ *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.ModuleImpl#getRte <em>Rte</em>}</li>
+ *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.ModuleImpl#getSpec <em>Spec</em>}</li>
+ *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.ModuleImpl#getRam <em>Ram</em>}</li>
+ *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.ModuleImpl#getCaps <em>Caps</em>}</li>
+ *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.ModuleImpl#getModuleType <em>Module Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -147,6 +154,96 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * @ordered
 	 */
 	protected String version = VERSION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getRte() <em>Rte</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRte()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String RTE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getRte() <em>Rte</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRte()
+	 * @generated
+	 * @ordered
+	 */
+	protected String rte = RTE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getSpec() <em>Spec</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSpec()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SPEC_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getSpec() <em>Spec</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSpec()
+	 * @generated
+	 * @ordered
+	 */
+	protected String spec = SPEC_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getRam() <em>Ram</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRam()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final BigInteger RAM_EDEFAULT = new BigInteger("-1");
+
+	/**
+	 * The cached value of the '{@link #getRam() <em>Ram</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRam()
+	 * @generated
+	 * @ordered
+	 */
+	protected BigInteger ram = RAM_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getCaps() <em>Caps</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCaps()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final BigInteger CAPS_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getCaps() <em>Caps</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCaps()
+	 * @generated
+	 * @ordered
+	 */
+	protected BigInteger caps = CAPS_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getModuleType() <em>Module Type</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getModuleType()
+	 * @generated
+	 * @ordered
+	 */
+	protected ModuleType moduleType;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -359,6 +456,140 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getRte() {
+		return rte;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRte(String newRte) {
+		String oldRte = rte;
+		rte = newRte;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MmPackage.MODULE__RTE, oldRte, rte));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getSpec() {
+		return spec;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSpec(String newSpec) {
+		String oldSpec = spec;
+		spec = newSpec;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MmPackage.MODULE__SPEC, oldSpec, spec));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BigInteger getRam() {
+		return ram;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRam(BigInteger newRam) {
+		BigInteger oldRam = ram;
+		ram = newRam;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MmPackage.MODULE__RAM, oldRam, ram));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BigInteger getCaps() {
+		return caps;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCaps(BigInteger newCaps) {
+		BigInteger oldCaps = caps;
+		caps = newCaps;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MmPackage.MODULE__CAPS, oldCaps, caps));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModuleType getModuleType() {
+		return moduleType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetModuleType(ModuleType newModuleType, NotificationChain msgs) {
+		ModuleType oldModuleType = moduleType;
+		moduleType = newModuleType;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					MmPackage.MODULE__MODULE_TYPE, oldModuleType, newModuleType);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setModuleType(ModuleType newModuleType) {
+		if (newModuleType != moduleType) {
+			NotificationChain msgs = null;
+			if (moduleType != null)
+				msgs = ((InternalEObject) moduleType).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - MmPackage.MODULE__MODULE_TYPE, null, msgs);
+			if (newModuleType != null)
+				msgs = ((InternalEObject) newModuleType).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - MmPackage.MODULE__MODULE_TYPE, null, msgs);
+			msgs = basicSetModuleType(newModuleType, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MmPackage.MODULE__MODULE_TYPE, newModuleType,
+					newModuleType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -393,6 +624,8 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 			return ((InternalEList<?>) getPorts()).basicRemove(otherEnd, msgs);
 		case MmPackage.MODULE__CONTRACT:
 			return ((InternalEList<?>) getContract()).basicRemove(otherEnd, msgs);
+		case MmPackage.MODULE__MODULE_TYPE:
+			return basicSetModuleType(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -437,6 +670,16 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 			return basicGetModule();
 		case MmPackage.MODULE__VERSION:
 			return getVersion();
+		case MmPackage.MODULE__RTE:
+			return getRte();
+		case MmPackage.MODULE__SPEC:
+			return getSpec();
+		case MmPackage.MODULE__RAM:
+			return getRam();
+		case MmPackage.MODULE__CAPS:
+			return getCaps();
+		case MmPackage.MODULE__MODULE_TYPE:
+			return getModuleType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -477,6 +720,21 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 		case MmPackage.MODULE__VERSION:
 			setVersion((String) newValue);
 			return;
+		case MmPackage.MODULE__RTE:
+			setRte((String) newValue);
+			return;
+		case MmPackage.MODULE__SPEC:
+			setSpec((String) newValue);
+			return;
+		case MmPackage.MODULE__RAM:
+			setRam((BigInteger) newValue);
+			return;
+		case MmPackage.MODULE__CAPS:
+			setCaps((BigInteger) newValue);
+			return;
+		case MmPackage.MODULE__MODULE_TYPE:
+			setModuleType((ModuleType) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -513,6 +771,21 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 		case MmPackage.MODULE__VERSION:
 			setVersion(VERSION_EDEFAULT);
 			return;
+		case MmPackage.MODULE__RTE:
+			setRte(RTE_EDEFAULT);
+			return;
+		case MmPackage.MODULE__SPEC:
+			setSpec(SPEC_EDEFAULT);
+			return;
+		case MmPackage.MODULE__RAM:
+			setRam(RAM_EDEFAULT);
+			return;
+		case MmPackage.MODULE__CAPS:
+			setCaps(CAPS_EDEFAULT);
+			return;
+		case MmPackage.MODULE__MODULE_TYPE:
+			setModuleType((ModuleType) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -541,6 +814,16 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 			return module != null;
 		case MmPackage.MODULE__VERSION:
 			return VERSION_EDEFAULT == null ? version != null : !VERSION_EDEFAULT.equals(version);
+		case MmPackage.MODULE__RTE:
+			return RTE_EDEFAULT == null ? rte != null : !RTE_EDEFAULT.equals(rte);
+		case MmPackage.MODULE__SPEC:
+			return SPEC_EDEFAULT == null ? spec != null : !SPEC_EDEFAULT.equals(spec);
+		case MmPackage.MODULE__RAM:
+			return RAM_EDEFAULT == null ? ram != null : !RAM_EDEFAULT.equals(ram);
+		case MmPackage.MODULE__CAPS:
+			return CAPS_EDEFAULT == null ? caps != null : !CAPS_EDEFAULT.equals(caps);
+		case MmPackage.MODULE__MODULE_TYPE:
+			return moduleType != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -562,6 +845,14 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 		result.append(description);
 		result.append(", version: ");
 		result.append(version);
+		result.append(", rte: ");
+		result.append(rte);
+		result.append(", spec: ");
+		result.append(spec);
+		result.append(", ram: ");
+		result.append(ram);
+		result.append(", caps: ");
+		result.append(caps);
 		result.append(')');
 		return result.toString();
 	}

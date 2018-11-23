@@ -140,13 +140,58 @@ public interface MmPackage extends EPackage {
 	int MODULE__VERSION = 7;
 
 	/**
+	 * The feature id for the '<em><b>Rte</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODULE__RTE = 8;
+
+	/**
+	 * The feature id for the '<em><b>Spec</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODULE__SPEC = 9;
+
+	/**
+	 * The feature id for the '<em><b>Ram</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODULE__RAM = 10;
+
+	/**
+	 * The feature id for the '<em><b>Caps</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODULE__CAPS = 11;
+
+	/**
+	 * The feature id for the '<em><b>Module Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODULE__MODULE_TYPE = 12;
+
+	/**
 	 * The number of structural features of the '<em>Module</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODULE_FEATURE_COUNT = 8;
+	int MODULE_FEATURE_COUNT = 13;
 
 	/**
 	 * The number of operations of the '<em>Module</em>' class.
@@ -238,6 +283,51 @@ public interface MmPackage extends EPackage {
 	 * @ordered
 	 */
 	int ABSTRACT__VERSION = MODULE__VERSION;
+
+	/**
+	 * The feature id for the '<em><b>Rte</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT__RTE = MODULE__RTE;
+
+	/**
+	 * The feature id for the '<em><b>Spec</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT__SPEC = MODULE__SPEC;
+
+	/**
+	 * The feature id for the '<em><b>Ram</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT__RAM = MODULE__RAM;
+
+	/**
+	 * The feature id for the '<em><b>Caps</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT__CAPS = MODULE__CAPS;
+
+	/**
+	 * The feature id for the '<em><b>Module Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT__MODULE_TYPE = MODULE__MODULE_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Realizes</b></em>' reference list.
@@ -347,6 +437,51 @@ public interface MmPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT__VERSION = MODULE__VERSION;
+
+	/**
+	 * The feature id for the '<em><b>Rte</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT__RTE = MODULE__RTE;
+
+	/**
+	 * The feature id for the '<em><b>Spec</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT__SPEC = MODULE__SPEC;
+
+	/**
+	 * The feature id for the '<em><b>Ram</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT__RAM = MODULE__RAM;
+
+	/**
+	 * The feature id for the '<em><b>Caps</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT__CAPS = MODULE__CAPS;
+
+	/**
+	 * The feature id for the '<em><b>Module Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT__MODULE_TYPE = MODULE__MODULE_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Singleton</b></em>' attribute.
@@ -465,6 +600,51 @@ public interface MmPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPOUND__VERSION = MODULE__VERSION;
+
+	/**
+	 * The feature id for the '<em><b>Rte</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND__RTE = MODULE__RTE;
+
+	/**
+	 * The feature id for the '<em><b>Spec</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND__SPEC = MODULE__SPEC;
+
+	/**
+	 * The feature id for the '<em><b>Ram</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND__RAM = MODULE__RAM;
+
+	/**
+	 * The feature id for the '<em><b>Caps</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND__CAPS = MODULE__CAPS;
+
+	/**
+	 * The feature id for the '<em><b>Module Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND__MODULE_TYPE = MODULE__MODULE_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Consists Of</b></em>' containment reference list.
@@ -658,13 +838,58 @@ public interface MmPackage extends EPackage {
 	int PORTS__OUTER_DIRECTION = 8;
 
 	/**
+	 * The feature id for the '<em><b>Max Clients</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PORTS__MAX_CLIENTS = 9;
+
+	/**
+	 * The feature id for the '<em><b>Filter</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PORTS__FILTER = 10;
+
+	/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PORTS__LABEL = 11;
+
+	/**
+	 * The feature id for the '<em><b>Function</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PORTS__FUNCTION = 12;
+
+	/**
+	 * The feature id for the '<em><b>Provider Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PORTS__PROVIDER_TYPE = 13;
+
+	/**
 	 * The number of structural features of the '<em>Ports</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PORTS_FEATURE_COUNT = 9;
+	int PORTS_FEATURE_COUNT = 14;
 
 	/**
 	 * The number of operations of the '<em>Ports</em>' class.
@@ -878,6 +1103,255 @@ public interface MmPackage extends EPackage {
 	int SYSTEM_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link de.tu_bs.ccc.contracting.Verification.impl.ModuleTypeImpl <em>Module Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.tu_bs.ccc.contracting.Verification.impl.ModuleTypeImpl
+	 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getModuleType()
+	 * @generated
+	 */
+	int MODULE_TYPE = 10;
+
+	/**
+	 * The number of structural features of the '<em>Module Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODULE_TYPE_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Module Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODULE_TYPE_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link de.tu_bs.ccc.contracting.Verification.impl.ProxyImpl <em>Proxy</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.tu_bs.ccc.contracting.Verification.impl.ProxyImpl
+	 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getProxy()
+	 * @generated
+	 */
+	int PROXY = 11;
+
+	/**
+	 * The feature id for the '<em><b>Carrier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROXY__CARRIER = MODULE_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Proxy</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROXY_FEATURE_COUNT = MODULE_TYPE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Proxy</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROXY_OPERATION_COUNT = MODULE_TYPE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link de.tu_bs.ccc.contracting.Verification.impl.FilterImpl <em>Filter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.tu_bs.ccc.contracting.Verification.impl.FilterImpl
+	 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getFilter()
+	 * @generated
+	 */
+	int FILTER = 12;
+
+	/**
+	 * The feature id for the '<em><b>Add</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTER__ADD = MODULE_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Remove</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTER__REMOVE = MODULE_TYPE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Reset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTER__RESET = MODULE_TYPE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTER__ALIAS = MODULE_TYPE_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Filter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTER_FEATURE_COUNT = MODULE_TYPE_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of operations of the '<em>Filter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTER_OPERATION_COUNT = MODULE_TYPE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link de.tu_bs.ccc.contracting.Verification.impl.MuxImpl <em>Mux</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.tu_bs.ccc.contracting.Verification.impl.MuxImpl
+	 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getMux()
+	 * @generated
+	 */
+	int MUX = 13;
+
+	/**
+	 * The feature id for the '<em><b>Service</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MUX__SERVICE = MODULE_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Mux</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MUX_FEATURE_COUNT = MODULE_TYPE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Mux</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MUX_OPERATION_COUNT = MODULE_TYPE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link de.tu_bs.ccc.contracting.Verification.impl.ProtocolImpl <em>Protocol</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.tu_bs.ccc.contracting.Verification.impl.ProtocolImpl
+	 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getProtocol()
+	 * @generated
+	 */
+	int PROTOCOL = 14;
+
+	/**
+	 * The feature id for the '<em><b>From</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROTOCOL__FROM = MODULE_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>To</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROTOCOL__TO = MODULE_TYPE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Protocol</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROTOCOL_FEATURE_COUNT = MODULE_TYPE_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Protocol</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROTOCOL_OPERATION_COUNT = MODULE_TYPE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link de.tu_bs.ccc.contracting.Verification.impl.FunctionImpl <em>Function</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.tu_bs.ccc.contracting.Verification.impl.FunctionImpl
+	 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getFunction()
+	 * @generated
+	 */
+	int FUNCTION = 15;
+
+	/**
+	 * The feature id for the '<em><b>Function</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION__FUNCTION = MODULE_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Function</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_FEATURE_COUNT = MODULE_TYPE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Function</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_OPERATION_COUNT = MODULE_TYPE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link de.tu_bs.ccc.contracting.Verification.PortType <em>Port Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -885,7 +1359,7 @@ public interface MmPackage extends EPackage {
 	 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getPortType()
 	 * @generated
 	 */
-	int PORT_TYPE = 10;
+	int PORT_TYPE = 16;
 
 	/**
 	 * The meta object id for the '{@link de.tu_bs.ccc.contracting.Verification.ViewPoint <em>View Point</em>}' enum.
@@ -895,7 +1369,7 @@ public interface MmPackage extends EPackage {
 	 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getViewPoint()
 	 * @generated
 	 */
-	int VIEW_POINT = 11;
+	int VIEW_POINT = 17;
 
 	/**
 	 * The meta object id for the '{@link de.tu_bs.ccc.contracting.Verification.PropertyType <em>Property Type</em>}' enum.
@@ -905,7 +1379,7 @@ public interface MmPackage extends EPackage {
 	 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getPropertyType()
 	 * @generated
 	 */
-	int PROPERTY_TYPE = 12;
+	int PROPERTY_TYPE = 18;
 
 	/**
 	 * The meta object id for the '{@link de.tu_bs.ccc.contracting.Verification.ContractType <em>Contract Type</em>}' enum.
@@ -915,7 +1389,7 @@ public interface MmPackage extends EPackage {
 	 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getContractType()
 	 * @generated
 	 */
-	int CONTRACT_TYPE = 13;
+	int CONTRACT_TYPE = 19;
 
 	/**
 	 * The meta object id for the '{@link de.tu_bs.ccc.contracting.Verification.DirectionType <em>Direction Type</em>}' enum.
@@ -925,7 +1399,17 @@ public interface MmPackage extends EPackage {
 	 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getDirectionType()
 	 * @generated
 	 */
-	int DIRECTION_TYPE = 14;
+	int DIRECTION_TYPE = 20;
+
+	/**
+	 * The meta object id for the '{@link de.tu_bs.ccc.contracting.Verification.ProviderType <em>Provider Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.tu_bs.ccc.contracting.Verification.ProviderType
+	 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getProviderType()
+	 * @generated
+	 */
+	int PROVIDER_TYPE = 21;
 
 	/**
 	 * Returns the meta object for class '{@link de.tu_bs.ccc.contracting.Verification.Module <em>Module</em>}'.
@@ -1024,6 +1508,61 @@ public interface MmPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getModule_Version();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.ccc.contracting.Verification.Module#getRte <em>Rte</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Rte</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Module#getRte()
+	 * @see #getModule()
+	 * @generated
+	 */
+	EAttribute getModule_Rte();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.ccc.contracting.Verification.Module#getSpec <em>Spec</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Spec</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Module#getSpec()
+	 * @see #getModule()
+	 * @generated
+	 */
+	EAttribute getModule_Spec();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.ccc.contracting.Verification.Module#getRam <em>Ram</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Ram</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Module#getRam()
+	 * @see #getModule()
+	 * @generated
+	 */
+	EAttribute getModule_Ram();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.ccc.contracting.Verification.Module#getCaps <em>Caps</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Caps</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Module#getCaps()
+	 * @see #getModule()
+	 * @generated
+	 */
+	EAttribute getModule_Caps();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link de.tu_bs.ccc.contracting.Verification.Module#getModuleType <em>Module Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Module Type</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Module#getModuleType()
+	 * @see #getModule()
+	 * @generated
+	 */
+	EReference getModule_ModuleType();
 
 	/**
 	 * Returns the meta object for class '{@link de.tu_bs.ccc.contracting.Verification.Abstract <em>Abstract</em>}'.
@@ -1274,6 +1813,61 @@ public interface MmPackage extends EPackage {
 	EAttribute getPorts_OuterDirection();
 
 	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.ccc.contracting.Verification.Ports#getMaxClients <em>Max Clients</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Max Clients</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Ports#getMaxClients()
+	 * @see #getPorts()
+	 * @generated
+	 */
+	EAttribute getPorts_MaxClients();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.ccc.contracting.Verification.Ports#getFilter <em>Filter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Filter</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Ports#getFilter()
+	 * @see #getPorts()
+	 * @generated
+	 */
+	EAttribute getPorts_Filter();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.ccc.contracting.Verification.Ports#getLabel <em>Label</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Label</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Ports#getLabel()
+	 * @see #getPorts()
+	 * @generated
+	 */
+	EAttribute getPorts_Label();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.ccc.contracting.Verification.Ports#getFunction <em>Function</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Function</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Ports#getFunction()
+	 * @see #getPorts()
+	 * @generated
+	 */
+	EAttribute getPorts_Function();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.ccc.contracting.Verification.Ports#getProviderType <em>Provider Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Provider Type</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Ports#getProviderType()
+	 * @see #getPorts()
+	 * @generated
+	 */
+	EAttribute getPorts_ProviderType();
+
+	/**
 	 * Returns the meta object for class '{@link de.tu_bs.ccc.contracting.Verification.ContractProperty <em>Contract Property</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1380,6 +1974,165 @@ public interface MmPackage extends EPackage {
 	EReference getSystem_ConsistsOf();
 
 	/**
+	 * Returns the meta object for class '{@link de.tu_bs.ccc.contracting.Verification.ModuleType <em>Module Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Module Type</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.ModuleType
+	 * @generated
+	 */
+	EClass getModuleType();
+
+	/**
+	 * Returns the meta object for class '{@link de.tu_bs.ccc.contracting.Verification.Proxy <em>Proxy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Proxy</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Proxy
+	 * @generated
+	 */
+	EClass getProxy();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.ccc.contracting.Verification.Proxy#getCarrier <em>Carrier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Carrier</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Proxy#getCarrier()
+	 * @see #getProxy()
+	 * @generated
+	 */
+	EAttribute getProxy_Carrier();
+
+	/**
+	 * Returns the meta object for class '{@link de.tu_bs.ccc.contracting.Verification.Filter <em>Filter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Filter</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Filter
+	 * @generated
+	 */
+	EClass getFilter();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.ccc.contracting.Verification.Filter#getAdd <em>Add</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Add</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Filter#getAdd()
+	 * @see #getFilter()
+	 * @generated
+	 */
+	EAttribute getFilter_Add();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.ccc.contracting.Verification.Filter#getRemove <em>Remove</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Remove</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Filter#getRemove()
+	 * @see #getFilter()
+	 * @generated
+	 */
+	EAttribute getFilter_Remove();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.ccc.contracting.Verification.Filter#getReset <em>Reset</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Reset</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Filter#getReset()
+	 * @see #getFilter()
+	 * @generated
+	 */
+	EAttribute getFilter_Reset();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.ccc.contracting.Verification.Filter#getAlias <em>Alias</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Alias</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Filter#getAlias()
+	 * @see #getFilter()
+	 * @generated
+	 */
+	EAttribute getFilter_Alias();
+
+	/**
+	 * Returns the meta object for class '{@link de.tu_bs.ccc.contracting.Verification.Mux <em>Mux</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Mux</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Mux
+	 * @generated
+	 */
+	EClass getMux();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.ccc.contracting.Verification.Mux#getService <em>Service</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Service</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Mux#getService()
+	 * @see #getMux()
+	 * @generated
+	 */
+	EAttribute getMux_Service();
+
+	/**
+	 * Returns the meta object for class '{@link de.tu_bs.ccc.contracting.Verification.Protocol <em>Protocol</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Protocol</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Protocol
+	 * @generated
+	 */
+	EClass getProtocol();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.ccc.contracting.Verification.Protocol#getFrom <em>From</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>From</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Protocol#getFrom()
+	 * @see #getProtocol()
+	 * @generated
+	 */
+	EAttribute getProtocol_From();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.ccc.contracting.Verification.Protocol#getTo <em>To</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>To</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Protocol#getTo()
+	 * @see #getProtocol()
+	 * @generated
+	 */
+	EAttribute getProtocol_To();
+
+	/**
+	 * Returns the meta object for class '{@link de.tu_bs.ccc.contracting.Verification.Function <em>Function</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Function</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Function
+	 * @generated
+	 */
+	EClass getFunction();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.ccc.contracting.Verification.Function#getFunction <em>Function</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Function</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Function#getFunction()
+	 * @see #getFunction()
+	 * @generated
+	 */
+	EAttribute getFunction_Function();
+
+	/**
 	 * Returns the meta object for enum '{@link de.tu_bs.ccc.contracting.Verification.PortType <em>Port Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1428,6 +2181,16 @@ public interface MmPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getDirectionType();
+
+	/**
+	 * Returns the meta object for enum '{@link de.tu_bs.ccc.contracting.Verification.ProviderType <em>Provider Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Provider Type</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.ProviderType
+	 * @generated
+	 */
+	EEnum getProviderType();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1525,6 +2288,46 @@ public interface MmPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MODULE__VERSION = eINSTANCE.getModule_Version();
+
+		/**
+		 * The meta object literal for the '<em><b>Rte</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MODULE__RTE = eINSTANCE.getModule_Rte();
+
+		/**
+		 * The meta object literal for the '<em><b>Spec</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MODULE__SPEC = eINSTANCE.getModule_Spec();
+
+		/**
+		 * The meta object literal for the '<em><b>Ram</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MODULE__RAM = eINSTANCE.getModule_Ram();
+
+		/**
+		 * The meta object literal for the '<em><b>Caps</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MODULE__CAPS = eINSTANCE.getModule_Caps();
+
+		/**
+		 * The meta object literal for the '<em><b>Module Type</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODULE__MODULE_TYPE = eINSTANCE.getModule_ModuleType();
 
 		/**
 		 * The meta object literal for the '{@link de.tu_bs.ccc.contracting.Verification.impl.AbstractImpl <em>Abstract</em>}' class.
@@ -1721,6 +2524,46 @@ public interface MmPackage extends EPackage {
 		EAttribute PORTS__OUTER_DIRECTION = eINSTANCE.getPorts_OuterDirection();
 
 		/**
+		 * The meta object literal for the '<em><b>Max Clients</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PORTS__MAX_CLIENTS = eINSTANCE.getPorts_MaxClients();
+
+		/**
+		 * The meta object literal for the '<em><b>Filter</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PORTS__FILTER = eINSTANCE.getPorts_Filter();
+
+		/**
+		 * The meta object literal for the '<em><b>Label</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PORTS__LABEL = eINSTANCE.getPorts_Label();
+
+		/**
+		 * The meta object literal for the '<em><b>Function</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PORTS__FUNCTION = eINSTANCE.getPorts_Function();
+
+		/**
+		 * The meta object literal for the '<em><b>Provider Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PORTS__PROVIDER_TYPE = eINSTANCE.getPorts_ProviderType();
+
+		/**
 		 * The meta object literal for the '{@link de.tu_bs.ccc.contracting.Verification.impl.ContractPropertyImpl <em>Contract Property</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1809,6 +2652,138 @@ public interface MmPackage extends EPackage {
 		EReference SYSTEM__CONSISTS_OF = eINSTANCE.getSystem_ConsistsOf();
 
 		/**
+		 * The meta object literal for the '{@link de.tu_bs.ccc.contracting.Verification.impl.ModuleTypeImpl <em>Module Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.tu_bs.ccc.contracting.Verification.impl.ModuleTypeImpl
+		 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getModuleType()
+		 * @generated
+		 */
+		EClass MODULE_TYPE = eINSTANCE.getModuleType();
+
+		/**
+		 * The meta object literal for the '{@link de.tu_bs.ccc.contracting.Verification.impl.ProxyImpl <em>Proxy</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.tu_bs.ccc.contracting.Verification.impl.ProxyImpl
+		 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getProxy()
+		 * @generated
+		 */
+		EClass PROXY = eINSTANCE.getProxy();
+
+		/**
+		 * The meta object literal for the '<em><b>Carrier</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROXY__CARRIER = eINSTANCE.getProxy_Carrier();
+
+		/**
+		 * The meta object literal for the '{@link de.tu_bs.ccc.contracting.Verification.impl.FilterImpl <em>Filter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.tu_bs.ccc.contracting.Verification.impl.FilterImpl
+		 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getFilter()
+		 * @generated
+		 */
+		EClass FILTER = eINSTANCE.getFilter();
+
+		/**
+		 * The meta object literal for the '<em><b>Add</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FILTER__ADD = eINSTANCE.getFilter_Add();
+
+		/**
+		 * The meta object literal for the '<em><b>Remove</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FILTER__REMOVE = eINSTANCE.getFilter_Remove();
+
+		/**
+		 * The meta object literal for the '<em><b>Reset</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FILTER__RESET = eINSTANCE.getFilter_Reset();
+
+		/**
+		 * The meta object literal for the '<em><b>Alias</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FILTER__ALIAS = eINSTANCE.getFilter_Alias();
+
+		/**
+		 * The meta object literal for the '{@link de.tu_bs.ccc.contracting.Verification.impl.MuxImpl <em>Mux</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.tu_bs.ccc.contracting.Verification.impl.MuxImpl
+		 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getMux()
+		 * @generated
+		 */
+		EClass MUX = eINSTANCE.getMux();
+
+		/**
+		 * The meta object literal for the '<em><b>Service</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MUX__SERVICE = eINSTANCE.getMux_Service();
+
+		/**
+		 * The meta object literal for the '{@link de.tu_bs.ccc.contracting.Verification.impl.ProtocolImpl <em>Protocol</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.tu_bs.ccc.contracting.Verification.impl.ProtocolImpl
+		 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getProtocol()
+		 * @generated
+		 */
+		EClass PROTOCOL = eINSTANCE.getProtocol();
+
+		/**
+		 * The meta object literal for the '<em><b>From</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROTOCOL__FROM = eINSTANCE.getProtocol_From();
+
+		/**
+		 * The meta object literal for the '<em><b>To</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROTOCOL__TO = eINSTANCE.getProtocol_To();
+
+		/**
+		 * The meta object literal for the '{@link de.tu_bs.ccc.contracting.Verification.impl.FunctionImpl <em>Function</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.tu_bs.ccc.contracting.Verification.impl.FunctionImpl
+		 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getFunction()
+		 * @generated
+		 */
+		EClass FUNCTION = eINSTANCE.getFunction();
+
+		/**
+		 * The meta object literal for the '<em><b>Function</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FUNCTION__FUNCTION = eINSTANCE.getFunction_Function();
+
+		/**
 		 * The meta object literal for the '{@link de.tu_bs.ccc.contracting.Verification.PortType <em>Port Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1857,6 +2832,16 @@ public interface MmPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum DIRECTION_TYPE = eINSTANCE.getDirectionType();
+
+		/**
+		 * The meta object literal for the '{@link de.tu_bs.ccc.contracting.Verification.ProviderType <em>Provider Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.tu_bs.ccc.contracting.Verification.ProviderType
+		 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getProviderType()
+		 * @generated
+		 */
+		EEnum PROVIDER_TYPE = eINSTANCE.getProviderType();
 
 	}
 
