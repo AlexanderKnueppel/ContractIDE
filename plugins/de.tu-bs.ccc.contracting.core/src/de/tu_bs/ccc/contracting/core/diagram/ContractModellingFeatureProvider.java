@@ -138,7 +138,7 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 		// TODO: check for right domain object instances below
 		PictogramElement pictogramElement = context.getPictogramElement();
 		Object bo = getBusinessObjectForPictogramElement(pictogramElement);
-		if (bo instanceof Ports || bo instanceof Module || bo instanceof Contract) {
+		if (bo instanceof Ports || bo instanceof Module || bo instanceof Contract || bo instanceof System) {
 			return new LayoutFeature(this);
 		}
 
@@ -188,8 +188,6 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 			}
 		}
 		return super.getResizeShapeFeature(context);
-//		IResizeShapeFeature ret = new DefaultResizeShapeFeature(this);
-//		return ret;
 	}
 	
 	
