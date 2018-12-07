@@ -141,7 +141,6 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 		if (bo instanceof Ports || bo instanceof Module || bo instanceof Contract || bo instanceof System) {
 			return new LayoutFeature(this);
 		}
-
 		return super.getLayoutFeature(context);
 	}
 
