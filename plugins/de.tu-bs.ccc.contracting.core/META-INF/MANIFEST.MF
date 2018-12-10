@@ -55,7 +55,6 @@ Export-Package: com.microsoft.z3,
  org.antlr.v4.tool.ast,
  org.antlr.v4.unicode
 Bundle-ClassPath: .,
- library.jar,
  libs/z3/bin/,
  libs/z3/bin/com.microsoft.z3.jar,
  libs/antlr-4.7.1-complete.jar
