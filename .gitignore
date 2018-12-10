@@ -28,6 +28,10 @@ workspace/
 runtime-EclipseApplication/
 ContractIDE-eclipse-update-site/
 
+bin/
+test-bin/
+.settings/
+
 # Plugin stuff
 plugins/de.tu-bs.ccc.contracting.core/libs/z3
 plugins/de.tu-bs.ccc.contracting.core/libs/*.jar
