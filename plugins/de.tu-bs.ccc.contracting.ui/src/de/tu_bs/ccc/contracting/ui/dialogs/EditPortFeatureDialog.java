@@ -188,7 +188,7 @@ public abstract class EditPortFeatureDialog extends TitleAreaDialog implements I
 		currentDirection = port.getOuterDirection().getValue();
 		currentType = port.getType().getValue();
 		currentServicename = port.getService();
-		currentFilter = port.getFilter();
+		currentFilter = port.getFilter() == null ? "" : port.getFilter();
 	}
 
 	@Override

@@ -51,7 +51,7 @@ public class EditConsumerPortFeatureDialog extends EditPortFeatureDialog {
 
 		portFunction = new Text(container, SWT.BORDER);
 		portFunction.setLayoutData(dataName);
-		portFunction.setText(currentFunction);
+		portFunction.setText(currentFunction != null ? currentFunction : "");
 	}
 
 	private void createLabel(Composite container) {
