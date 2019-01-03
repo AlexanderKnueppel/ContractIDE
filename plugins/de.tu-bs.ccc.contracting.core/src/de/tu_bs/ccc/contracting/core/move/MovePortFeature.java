@@ -14,6 +14,7 @@ import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.util.ColorConstant;
+import org.eclipse.graphiti.util.IColorConstant;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.graphiti.mm.algorithms.Text;
@@ -93,14 +94,12 @@ public class MovePortFeature extends DefaultMoveShapeFeature {
 		IGaService gaService = Graphiti.getGaService();
 		if (direction.equals("internal")) {
 			getPort(context).setOuterDirection(DirectionType.INTERNAL);
-			((Text) cs.getChildren().get(2).getGraphicsAlgorithm()).setValue("i");
-			((Text) cs.getChildren().get(2).getGraphicsAlgorithm())
-					.setForeground(gaService.manageColor(getDiagram(), new ColorConstant(0, 100, 0)));
+			((Text) cs.getChildren().get(2).getGraphicsAlgorithm().eContents().get(0)).setValue("I");
+			cs.getChildren().get(2).getGraphicsAlgorithm().setBackground(manageColor(IColorConstant.DARK_GREEN));
 		} else {
 			getPort(context).setOuterDirection(DirectionType.EXTERNAL);
-			((Text) cs.getChildren().get(2).getGraphicsAlgorithm()).setValue("e");
-			((Text) cs.getChildren().get(2).getGraphicsAlgorithm())
-					.setForeground(gaService.manageColor(getDiagram(), new ColorConstant(150, 0, 0)));
+			((Text) cs.getChildren().get(2).getGraphicsAlgorithm().eContents().get(0)).setValue("O");
+			cs.getChildren().get(2).getGraphicsAlgorithm().setBackground(manageColor(new ColorConstant(178,34,34)));
 		}
 	}
 

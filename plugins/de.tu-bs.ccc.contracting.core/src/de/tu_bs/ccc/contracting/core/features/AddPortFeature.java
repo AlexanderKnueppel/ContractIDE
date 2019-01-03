@@ -6,6 +6,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.impl.AbstractAddFeature;
+import org.eclipse.graphiti.mm.algorithms.Ellipse;
+import org.eclipse.graphiti.mm.algorithms.Image;
 import org.eclipse.graphiti.mm.algorithms.Rectangle;
 
 import org.eclipse.graphiti.mm.algorithms.Text;
@@ -22,6 +24,7 @@ import org.eclipse.graphiti.util.IColorConstant;
 import de.tu_bs.ccc.contracting.Verification.DirectionType;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.core.diagram.ContractModellingImageProvider;
 
 public class AddPortFeature extends AbstractAddFeature {
 	private static final IColorConstant E_CLASS_FOREGROUND = new ColorConstant(98, 131, 167);
@@ -89,26 +92,53 @@ public class AddPortFeature extends AbstractAddFeature {
 			Shape shape = peCreateService.createShape(containerShape, false);
 			String portName = addedClass.getName();
 			Text text = gaService.createText(shape, portName);
-			text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
+			text.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
 			// vertical alignment has as default value "center"
 			text.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
-			gaService.setLocationAndSize(text, 0, 0, portWidth, (portHeight) / 2);
+			gaService.setLocationAndSize(text, 25, 0, portWidth - 20, (portHeight) / 2);
 			
 			Shape shape2 = peCreateService.createShape(containerShape, false);
 			Text text2 = gaService.createText(shape2, addedClass.getType().toString());
-			text2.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
+			text2.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
 			// vertical alignment has as default value "center"
 			text2.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
-			gaService.setLocationAndSize(text2, 0, portHeight / 2, portWidth, (portHeight) / 2);
+			gaService.setLocationAndSize(text2, 25, portHeight / 2, portWidth, (portHeight) / 2);
 
 			
 			Shape shape3 = peCreateService.createShape(containerShape, false);
-			Text text3 = gaService.createText(shape3, signifier);
+			
+			if(signifier == "i") {
+				Ellipse ellipse = gaService.createEllipse(shape3);
+				ellipse.setForeground(manageColor(IColorConstant.WHITE));
+				ellipse.setBackground(manageColor(IColorConstant.DARK_GREEN));
+				gaService.setLocationAndSize(ellipse, 2, portHeight / 2 - 9, 18, 18);
+				Text text3 = gaService.createText(ellipse, "I");
+				text3.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
+				text3.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
+				text3.setForeground(gaService.manageColor(getDiagram(), new ColorConstant(0, 0, 0)));
+				gaService.setLocationAndSize(text3, 0, 0, 18, 18);				
+			} else if(signifier == "o") {
+				Ellipse ellipse = gaService.createEllipse(shape3);
+				ellipse.setForeground(manageColor(IColorConstant.WHITE));
+				ellipse.setBackground(manageColor(new ColorConstant(178,34,34)));
+				gaService.setLocationAndSize(ellipse, 2, portHeight / 2 - 9, 18, 18);
+				Text text3 = gaService.createText(ellipse, "O");
+				text3.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
+				text3.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
+				text3.setForeground(gaService.manageColor(getDiagram(), new ColorConstant(0, 0, 0)));
+				gaService.setLocationAndSize(text3, 0, 0, 18, 18);
+			}
+			
+			
+			
+			
+			/*Text text3 = gaService.createText(shape3, signifier);
 			text3.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
 			// vertical alignment has as default value "center"
 			text3.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
 			text3.setForeground(gaService.manageColor(getDiagram(), signifierColor));
-			gaService.setLocationAndSize(text3, 5, 0, 20, 20);
+			gaService.setLocationAndSize(text3, 5, 0, 20, 20);*/
+			
 			
 			// if added Class has no resource we add it to the resource
 			// of the diagram
@@ -146,7 +176,7 @@ public class AddPortFeature extends AbstractAddFeature {
 				coordinaten[0] = widthContainer - portWidth;
 				coordinaten[1] = context.getY();
 				((Ports) context.getNewObject()).setOuterDirection(DirectionType.EXTERNAL);
-				signifier = "e";
+				signifier = "o";
 				signifierColor = new ColorConstant(150, 0, 0);
 			}
 		return coordinaten;
