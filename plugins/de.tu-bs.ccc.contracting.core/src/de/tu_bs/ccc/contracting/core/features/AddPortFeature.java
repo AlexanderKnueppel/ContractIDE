@@ -24,7 +24,6 @@ import org.eclipse.graphiti.util.IColorConstant;
 import de.tu_bs.ccc.contracting.Verification.DirectionType;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.Ports;
-import de.tu_bs.ccc.contracting.core.diagram.ContractModellingImageProvider;
 
 public class AddPortFeature extends AbstractAddFeature {
 	private static final IColorConstant E_CLASS_FOREGROUND = new ColorConstant(98, 131, 167);
@@ -128,16 +127,6 @@ public class AddPortFeature extends AbstractAddFeature {
 				text3.setForeground(gaService.manageColor(getDiagram(), new ColorConstant(0, 0, 0)));
 				gaService.setLocationAndSize(text3, 0, 0, 18, 18);
 			}
-			
-			
-			
-			
-			/*Text text3 = gaService.createText(shape3, signifier);
-			text3.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
-			// vertical alignment has as default value "center"
-			text3.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
-			text3.setForeground(gaService.manageColor(getDiagram(), signifierColor));
-			gaService.setLocationAndSize(text3, 5, 0, 20, 20);*/
 			
 			
 			// if added Class has no resource we add it to the resource

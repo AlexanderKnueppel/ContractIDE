@@ -91,7 +91,6 @@ public class MovePortFeature extends DefaultMoveShapeFeature {
 	private void updateDirection(IMoveShapeContext context, String direction) {
 		PictogramElement pictogramElement = context.getPictogramElement();
 		ContainerShape cs = (ContainerShape) pictogramElement;
-		IGaService gaService = Graphiti.getGaService();
 		if (direction.equals("internal")) {
 			getPort(context).setOuterDirection(DirectionType.INTERNAL);
 			((Text) cs.getChildren().get(2).getGraphicsAlgorithm().eContents().get(0)).setValue("I");
