@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Verification:Component xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:Verification="http://www.example.org/contractVerificationMM" name="sd_card_drv">
+  <ports name="out" type="SERVICE" service="Block" OuterDirection="EXTERNAL"/>
+</Verification:Component>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Verification:Component xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:Verification="http://www.example.org/contractVerificationMM" name="fatfs_fs">
+  <ports name="in" type="SERVICE" service="Block"/>
+  <ports name="out" type="SERVICE" service="File_system" OuterDirection="EXTERNAL"/>
+</Verification:Component>

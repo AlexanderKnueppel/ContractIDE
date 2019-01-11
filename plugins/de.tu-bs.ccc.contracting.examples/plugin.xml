@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="de.tu-bs.ccc.contracting.examples"
+            name="ContractIDE"
+            parentCategory="org.eclipse.ui.Examples">
+      </category>
+      <wizard
+            category="org.eclipse.ui.Examples/de.tu-bs.ccc.contracting.examples"
+            class="de.tu_bs.ccc.contracting.examples.wizards.ExampleNewWizard"
+            id="de.tu-bs.ccc.contracting.examples.SampleNewWizard"
+            name="ContractIDE Examples">
+      </wizard>
+   </extension>
+
+</plugin>

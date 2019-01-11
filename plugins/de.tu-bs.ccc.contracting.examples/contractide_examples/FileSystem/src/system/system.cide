@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Verification="http://www.example.org/contractVerificationMM" xmlns:al="http://eclipse.org/graphiti/mm/algorithms" xmlns:pi="http://eclipse.org/graphiti/mm/pictograms">
+  <pi:Diagram visible="true" gridUnit="10" diagramTypeId="ContractModelling" name="system.cide" snapToGrid="true" pictogramLinks="/0/@children.0/@link /0/@children.0/@children.1/@link /0/@children.0/@children.2/@link /0/@children.0/@children.2/@children.1/@link /0/@children.0/@children.2/@children.2/@link /0/@children.0/@children.2/@children.3/@link /0/@children.0/@children.2/@children.4/@link /0/@children.0/@children.3/@link /0/@children.0/@children.3/@children.1/@link /0/@children.0/@children.3/@children.2/@link" version="0.14.0">
+    <graphicsAlgorithm xsi:type="al:Rectangle" background="/0/@colors.1" foreground="/0/@colors.0" lineWidth="1" transparency="0.0" width="1000" height="1000"/>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="/0/@colors.3" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="851" height="421" x="100" y="100" cornerHeight="5" cornerWidth="5"/>
+      <link>
+        <businessObjects href="/FileSystem/src/system/system.model#/"/>
+      </link>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="2" filled="false" transparency="0.0">
+          <points y="20"/>
+          <points x="200" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="200" height="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="system"/>
+        <link>
+          <businessObjects href="/FileSystem/src/system/system.model#/"/>
+        </link>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="/0/@colors.6" foreground="/0/@colors.5" lineWidth="2" transparency="0.0" width="381" height="191" x="360" y="190" cornerHeight="5" cornerWidth="5"/>
+        <link>
+          <businessObjects href="/FileSystem/src/system/system.model#//@consistsOf.0"/>
+        </link>
+        <anchors xsi:type="pi:ChopboxAnchor"/>
+        <children visible="true">
+          <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.5" lineWidth="2" filled="false" transparency="0.0">
+            <points y="20"/>
+            <points x="381" y="20"/>
+          </graphicsAlgorithm>
+        </children>
+        <children visible="true">
+          <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="381" height="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="FILE_SYSTEM   1.0"/>
+          <link>
+            <businessObjects href="/FileSystem/src/system/system.model#//@consistsOf.0"/>
+          </link>
+        </children>
+        <children xsi:type="pi:ContainerShape" visible="true" active="true">
+          <graphicsAlgorithm xsi:type="al:Rectangle" background="/0/@colors.1" foreground="/0/@colors.7" lineWidth="2" transparency="0.0" width="80" height="40" y="90"/>
+          <link>
+            <businessObjects href="/FileSystem/src/system/system.model#//@consistsOf.0/@ports.0"/>
+          </link>
+          <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="/0/@connections.0"/>
+          <children visible="true">
+            <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="80" height="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="in : Block"/>
+          </children>
+          <children visible="true">
+            <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="80" height="20" y="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="SERVICE"/>
+          </children>
+          <children visible="true">
+            <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.9" lineWidth="1" filled="false" transparency="0.0" width="80" height="20" x="5" font="/0/@fonts.0" value="i"/>
+          </children>
+        </children>
+        <children xsi:type="pi:ContainerShape" visible="true" active="true">
+          <graphicsAlgorithm xsi:type="al:Rectangle" background="/0/@colors.1" foreground="/0/@colors.7" lineWidth="2" transparency="0.0" width="80" height="40" x="301" y="110"/>
+          <link>
+            <businessObjects href="/FileSystem/src/system/system.model#//@consistsOf.0/@ports.1"/>
+          </link>
+          <anchors xsi:type="pi:ChopboxAnchor"/>
+          <children visible="true">
+            <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="80" height="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="file_1 : Rom"/>
+          </children>
+          <children visible="true">
+            <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="80" height="20" y="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="SERVICE"/>
+          </children>
+          <children visible="true">
+            <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.8" lineWidth="1" filled="false" transparency="0.0" width="80" height="20" x="5" font="/0/@fonts.0" value="e"/>
+          </children>
+        </children>
+        <children xsi:type="pi:ContainerShape" visible="true" active="true">
+          <graphicsAlgorithm xsi:type="al:Rectangle" background="/0/@colors.1" foreground="/0/@colors.7" lineWidth="2" transparency="0.0" width="80" height="40" x="301" y="51"/>
+          <link>
+            <businessObjects href="/FileSystem/src/system/system.model#//@consistsOf.0/@ports.2"/>
+          </link>
+          <anchors xsi:type="pi:ChopboxAnchor"/>
+          <children visible="true">
+            <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="80" height="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="file_2 : Rom"/>
+          </children>
+          <children visible="true">
+            <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="80" height="20" y="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="SERVICE"/>
+          </children>
+          <children visible="true">
+            <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.8" lineWidth="1" filled="false" transparency="0.0" width="80" height="20" x="5" font="/0/@fonts.0" value="e"/>
+          </children>
+        </children>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="/0/@colors.10" foreground="/0/@colors.7" lineWidth="2" transparency="0.0" width="261" height="151" x="20" y="230" cornerHeight="5" cornerWidth="5"/>
+        <link>
+          <businessObjects href="/FileSystem/src/system/system.model#//@consistsOf.1"/>
+        </link>
+        <anchors xsi:type="pi:ChopboxAnchor"/>
+        <children visible="true">
+          <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.7" lineWidth="2" filled="false" transparency="0.0">
+            <points y="20"/>
+            <points x="261" y="20"/>
+          </graphicsAlgorithm>
+        </children>
+        <children visible="true">
+          <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="261" height="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="sd_card_drv   1.0"/>
+          <link>
+            <businessObjects href="/FileSystem/src/system/system.model#//@consistsOf.1"/>
+          </link>
+        </children>
+        <children xsi:type="pi:ContainerShape" visible="true" active="true">
+          <graphicsAlgorithm xsi:type="al:Rectangle" background="/0/@colors.1" foreground="/0/@colors.7" lineWidth="2" transparency="0.0" width="80" height="40" x="181" y="50"/>
+          <link>
+            <businessObjects href="/FileSystem/src/system/system.model#//@consistsOf.1/@ports.0"/>
+          </link>
+          <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.0"/>
+          <children visible="true">
+            <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="80" height="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="out : Block"/>
+          </children>
+          <children visible="true">
+            <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="80" height="20" y="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="SERVICE"/>
+          </children>
+          <children visible="true">
+            <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.8" lineWidth="1" filled="false" transparency="0.0" width="80" height="20" x="5" font="/0/@fonts.0" value="e"/>
+          </children>
+        </children>
+      </children>
+    </children>
+    <connections xsi:type="pi:ManhattanConnection" visible="true" active="true" start="/0/@children.0/@children.3/@children.2/@anchors.0" end="/0/@children.0/@children.2/@children.2/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.4" lineWidth="3" lineStyle="UNSPECIFIED"/>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0">
+        <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.4" lineWidth="2" filled="false" transparency="0.0">
+          <points x="-15" y="10"/>
+          <points/>
+          <points x="-15" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <colors red="227" green="238" blue="249"/>
+    <colors red="255" green="255" blue="255"/>
+    <colors red="70" green="113" blue="47"/>
+    <colors red="210" green="236" blue="201"/>
+    <colors/>
+    <colors red="100" green="131" blue="167"/>
+    <colors red="200" green="240" blue="247"/>
+    <colors red="98" green="131" blue="167"/>
+    <colors red="150"/>
+    <colors green="100"/>
+    <colors red="187" green="218" blue="247"/>
+    <fonts name="Arial" size="8" bold="true"/>
+  </pi:Diagram>
+  <Verification:Component/>
+</xmi:XMI>

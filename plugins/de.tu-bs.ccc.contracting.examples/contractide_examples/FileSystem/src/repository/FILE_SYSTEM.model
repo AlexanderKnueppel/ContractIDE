@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Verification:Compound xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Verification="http://www.example.org/contractVerificationMM" name="FILE_SYSTEM">
+  <ports name="in" type="SERVICE" insidePorts="//@consistsOf.0/@ports.0" service="Block"/>
+  <ports name="file_1" type="SERVICE" insidePortseOpposite="//@consistsOf.1/@ports.1" service="Rom" OuterDirection="EXTERNAL"/>
+  <ports name="file_2" type="SERVICE" insidePortseOpposite="//@consistsOf.1/@ports.1" service="Rom" OuterDirection="EXTERNAL"/>
+  <consistsOf xsi:type="Verification:Component" name="fatfs_fs" binary="Binary">
+    <ports name="in" type="SERVICE" insidePortseOpposite="//@ports.0" service="Block"/>
+    <ports name="out" type="SERVICE" ports="//@consistsOf.1/@ports.0" service="File_system" OuterDirection="EXTERNAL"/>
+    <module href="platform:/resource/FileSystem/src/repository/fatfs_fs.model#/"/>
+  </consistsOf>
+  <consistsOf xsi:type="Verification:Component" name="fs_rom" binary="sdf">
+    <ports name="in" type="SERVICE" portseOpposite="//@consistsOf.0/@ports.1" service="File_system"/>
+    <ports name="rom" type="SERVICE" insidePorts="//@ports.1 //@ports.2" service="Rom" OuterDirection="EXTERNAL"/>
+    <module href="platform:/resource/FileSystem/src/repository/fs_rom.model#/"/>
+  </consistsOf>
+</Verification:Compound>

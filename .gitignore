@@ -26,7 +26,8 @@ hs_err_pid*
 eclipse/
 workspace/
 runtime-EclipseApplication/
-/ContractIDE-eclipse-update-site/
+runtime-EclipseXtext/
+ContractIDE-eclipse-update-site/
 
 bin/
 test-bin/

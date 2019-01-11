@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<exampleWizard>
+	<contentProvider name="General">
+		<path>CCC</path>
+	</contentProvider>
+	<description>
+		Example implements a simple file system.
+	</description>
+</exampleWizard>

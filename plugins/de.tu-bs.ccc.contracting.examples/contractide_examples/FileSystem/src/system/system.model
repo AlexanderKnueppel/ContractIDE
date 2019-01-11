@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Verification:System xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Verification="http://www.example.org/contractVerificationMM" name="system">
+  <consistsOf xsi:type="Verification:Compound" name="FILE_SYSTEM">
+    <ports name="in" type="SERVICE" portseOpposite="//@consistsOf.1/@ports.0" service="Block"/>
+    <ports name="file_1" type="SERVICE" service="Rom" OuterDirection="EXTERNAL"/>
+    <ports name="file_2" type="SERVICE" service="Rom" OuterDirection="EXTERNAL"/>
+    <module href="platform:/resource/FileSystem/src/repository/FILE_SYSTEM.model#/"/>
+  </consistsOf>
+  <consistsOf xsi:type="Verification:Component" name="sd_card_drv">
+    <ports name="out" type="SERVICE" ports="//@consistsOf.0/@ports.0" service="Block" OuterDirection="EXTERNAL"/>
+    <module href="platform:/resource/FileSystem/src/repository/sd_card_drv.model#/"/>
+  </consistsOf>
+</Verification:System>
