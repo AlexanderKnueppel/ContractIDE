@@ -88,43 +88,46 @@ public class AddPortFeature extends AbstractAddFeature {
 			// gaService.setLocationAndSize(image, 0, 0, portWidth
 			// ,image.getHeight());
 
+			//shape for port name
 			Shape shape = peCreateService.createShape(containerShape, false);
 			String portName = addedClass.getName();
 			Text text = gaService.createText(shape, portName);
 			text.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
 			// vertical alignment has as default value "center"
 			text.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
-			gaService.setLocationAndSize(text, 25, 0, portWidth - 20, (portHeight) / 2);
 			
+			//shape for type
 			Shape shape2 = peCreateService.createShape(containerShape, false);
 			Text text2 = gaService.createText(shape2, addedClass.getType().toString());
 			text2.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
 			// vertical alignment has as default value "center"
 			text2.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
-			gaService.setLocationAndSize(text2, 25, portHeight / 2, portWidth, (portHeight) / 2);
-
 			
+			//shape for signifier for input or output
 			Shape shape3 = peCreateService.createShape(containerShape, false);
+			Ellipse ellipse = gaService.createEllipse(shape3);
 			
 			if(signifier == "i") {
-				Ellipse ellipse = gaService.createEllipse(shape3);
+				gaService.setLocationAndSize(text, 25, 0, portWidth - 25, portHeight / 2);
+				gaService.setLocationAndSize(text2, 25, portHeight / 2, portWidth, portHeight / 2);
 				ellipse.setForeground(manageColor(IColorConstant.WHITE));
-				ellipse.setBackground(manageColor(IColorConstant.DARK_GREEN));
+				ellipse.setBackground(manageColor(IColorConstant.GREEN));
 				gaService.setLocationAndSize(ellipse, 2, portHeight / 2 - 9, 18, 18);
 				Text text3 = gaService.createText(ellipse, "I");
 				text3.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 				text3.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
-				text3.setForeground(gaService.manageColor(getDiagram(), new ColorConstant(0, 0, 0)));
+				text3.setForeground(gaService.manageColor(getDiagram(), ColorConstant.BLACK));
 				gaService.setLocationAndSize(text3, 0, 0, 18, 18);				
 			} else if(signifier == "o") {
-				Ellipse ellipse = gaService.createEllipse(shape3);
+				gaService.setLocationAndSize(text, 10, 0, portWidth - 25, portHeight / 2);
+				gaService.setLocationAndSize(text2, 10, portHeight / 2, portWidth, portHeight / 2);
 				ellipse.setForeground(manageColor(IColorConstant.WHITE));
-				ellipse.setBackground(manageColor(new ColorConstant(178,34,34)));
-				gaService.setLocationAndSize(ellipse, 2, portHeight / 2 - 9, 18, 18);
+				ellipse.setBackground(manageColor(IColorConstant.RED));
+				gaService.setLocationAndSize(ellipse, portWidth - 20, portHeight / 2 - 9, 18, 18);
 				Text text3 = gaService.createText(ellipse, "O");
 				text3.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 				text3.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
-				text3.setForeground(gaService.manageColor(getDiagram(), new ColorConstant(0, 0, 0)));
+				text3.setForeground(gaService.manageColor(getDiagram(), ColorConstant.BLACK));
 				gaService.setLocationAndSize(text3, 0, 0, 18, 18);
 			}
 			
