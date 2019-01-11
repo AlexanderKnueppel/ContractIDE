@@ -1,0 +1,12 @@
+.project
+src/repository/fatfs_fs.cide
+src/repository/fatfs_fs.model
+src/repository/FILE_SYSTEM.cide
+src/repository/FILE_SYSTEM.model
+src/repository/fs_rom.cide
+src/repository/fs_roms.model
+src/repository/sd_card_drv.cide
+src/repository/sd_card_drv.model
+src/services/service.cidl
+src/system/system.cide
+src/system/system.model

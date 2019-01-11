@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Verification="http://www.example.org/contractVerificationMM" xmlns:al="http://eclipse.org/graphiti/mm/algorithms" xmlns:pi="http://eclipse.org/graphiti/mm/pictograms">
+  <pi:Diagram visible="true" gridUnit="10" diagramTypeId="ContractModelling" name="sd_card_drv.diagram" snapToGrid="true" pictogramLinks="/0/@children.0/@link /0/@children.0/@children.1/@link /0/@children.0/@children.2/@link" version="0.14.0">
+    <graphicsAlgorithm xsi:type="al:Rectangle" background="/0/@colors.1" foreground="/0/@colors.0" lineWidth="1" transparency="0.0" width="1000" height="1000"/>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="/0/@colors.3" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="361" height="241" x="100" y="100" cornerHeight="5" cornerWidth="5"/>
+      <link>
+        <businessObjects href="/FileSystem/src/repository/sd_card_drv.model#/"/>
+      </link>
+      <anchors xsi:type="pi:ChopboxAnchor"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="2" filled="false" transparency="0.0">
+          <points y="20"/>
+          <points x="361" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="361" height="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="sd_card_drv   1.0"/>
+        <link>
+          <businessObjects href="/FileSystem/src/repository/sd_card_drv.model#/"/>
+        </link>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Rectangle" background="/0/@colors.1" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="80" height="40" x="281" y="110"/>
+        <link>
+          <businessObjects href="/FileSystem/src/repository/sd_card_drv.model#//@ports.0"/>
+        </link>
+        <anchors xsi:type="pi:ChopboxAnchor"/>
+        <children visible="true">
+          <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="80" height="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="out : Block"/>
+        </children>
+        <children visible="true">
+          <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="80" height="20" y="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="SERVICE"/>
+        </children>
+      </children>
+    </children>
+    <colors red="227" green="238" blue="249"/>
+    <colors red="255" green="255" blue="255"/>
+    <colors red="98" green="131" blue="167"/>
+    <colors red="187" green="218" blue="247"/>
+    <colors/>
+    <fonts name="Arial" size="8" bold="true"/>
+  </pi:Diagram>
+  <Verification:Component/>
+</xmi:XMI>
