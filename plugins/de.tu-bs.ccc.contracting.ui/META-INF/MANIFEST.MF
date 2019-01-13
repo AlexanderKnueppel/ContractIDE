@@ -34,3 +34,6 @@ Export-Package:
  de.tu_bs.ccc.contracting.ui.wizards
 Import-Package: de.tu_bs.ccc.contracting.idl,
  de.tu_bs.ccc.contracting.idl.cidl
+Bundle-ClassPath: .,
+ jgoodies-forms-1.8.0.jar,
+ miglayout15-swing.jar

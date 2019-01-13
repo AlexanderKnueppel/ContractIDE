@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.Iterator;
 
+import org.antlr.v4.parse.ANTLRParser.element_return;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -53,8 +54,14 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 			Text nameText = (Text) s2.getGraphicsAlgorithm();
 			if (!nameText.getValue().equals(m.getName() + "   " + m.getVersion())) {
 				return Reason.createTrueReason("Name or version is out of date!");
-			} else
-				return Reason.createFalseReason("Other Reason");
+			} else {
+				if (recursiveCompSearch(m)) {
+					return Reason.createTrueReason("Component is out of date");
+				} else {
+					return Reason.createFalseReason();
+				}
+
+			}
 
 		} else
 			return Reason.createFalseReason();
@@ -101,4 +108,25 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 		return false;
 	}
 
+	boolean recursiveCompSearch(Module search) {
+		boolean change = false;
+
+		if (search instanceof Compound) {
+			Compound searchCompound = (Compound) search;
+			for (Module m : searchCompound.getConsistsOf()) {
+
+				if (recursiveCompSearch(m)) {
+					change = true;
+
+				}
+				;
+
+			}
+		}
+
+		change= true;
+
+		return change;
+
+	}
 }
