@@ -135,6 +135,23 @@ public class AddPortFeature extends AbstractAddFeature {
 		int calcPosY = context.getY();
 		calcPosX = calcPosX - (widthContainer / 2);
 		calcPosY = calcPosY - (heightContainer / 2);
+		
+		if(((Ports) context.getNewObject()).getOuterDirection() != DirectionType.DEFAULT) {
+			if(((Ports) context.getNewObject()).getOuterDirection() == DirectionType.INTERNAL) {
+				coordinaten[0] = 0;
+				coordinaten[1] = context.getY();
+				((Ports) context.getNewObject()).setOuterDirection(DirectionType.INTERNAL);
+				signifier = "i";
+				signifierColor = new ColorConstant(0, 100, 0);
+			} else {
+				coordinaten[0] = widthContainer - portWidth;
+				coordinaten[1] = context.getY();
+				((Ports) context.getNewObject()).setOuterDirection(DirectionType.EXTERNAL);
+				signifier = "e";
+				signifierColor = new ColorConstant(150, 0, 0);
+			}
+			return coordinaten;
+		}
 
 			if (calcPosX < 0) {
 				coordinaten[0] = 0;
