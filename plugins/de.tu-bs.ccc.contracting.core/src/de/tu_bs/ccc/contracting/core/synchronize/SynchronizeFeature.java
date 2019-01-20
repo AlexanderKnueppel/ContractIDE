@@ -1,4 +1,4 @@
-package de.tu_bs.ccc.contracting.core.Synchronize;
+package de.tu_bs.ccc.contracting.core.synchronize;
 
 import java.awt.TrayIcon.MessageType;
 import java.util.Iterator;
