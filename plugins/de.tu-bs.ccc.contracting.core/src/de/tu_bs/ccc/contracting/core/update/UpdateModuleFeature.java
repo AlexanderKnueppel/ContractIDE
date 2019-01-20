@@ -54,17 +54,26 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 			Text nameText = (Text) s2.getGraphicsAlgorithm();
 			if (!nameText.getValue().equals(m.getName() + "   " + m.getVersion())) {
 				return Reason.createTrueReason("Name or version is out of date!");
-			} else {
-				if (recursiveCompSearch(m)) {
-					return Reason.createTrueReason("Component is out of date");
+			} else if (m.getModule() != null) {
+				try {
+					
+				
+				if (!m.getName().equals(m.getModule().getName()) || !m.getName().equals(m.getModule().getName())
+						|| !m.getDescription().equals(m.getModule().getDescription())
+						|| !m.getCaps().equals(m.getModule().getCaps()) || !m.getRam().equals(m.getModule().getRam())
+						|| !m.getRte().equals(m.getModule().getRte()) || !m.getSpec().equals(m.getModule().getSpec())) {
+					return Reason.createTrueReason("Instance is not synchromized with its Original");
 				} else {
 					return Reason.createFalseReason();
 				}
-
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
 			}
 
 		} else
 			return Reason.createFalseReason();
+		return Reason.createFalseReason();
 	}
 
 	@Override
@@ -108,25 +117,4 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 		return false;
 	}
 
-	boolean recursiveCompSearch(Module search) {
-		boolean change = false;
-
-		if (search instanceof Compound) {
-			Compound searchCompound = (Compound) search;
-			for (Module m : searchCompound.getConsistsOf()) {
-
-				if (recursiveCompSearch(m)) {
-					change = true;
-
-				}
-				;
-
-			}
-		}
-
-		change= true;
-
-		return change;
-
-	}
 }

@@ -71,6 +71,7 @@ public class SynchronizeFeature extends AbstractCustomFeature {
 
 			}
 		}
+		updatePictogramElement(pes);
 	}
 
 	@Override
