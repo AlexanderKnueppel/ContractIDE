@@ -32,6 +32,7 @@ import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Contract;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.core.Synchronize.SynchronizeFeature;
 import de.tu_bs.ccc.contracting.core.features.AddAbstractFeature;
 import de.tu_bs.ccc.contracting.core.features.AddComponentFeature;
 import de.tu_bs.ccc.contracting.core.features.AddCompoundFeature;
@@ -69,7 +70,7 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 	@Override
 	public ICustomFeature[] getCustomFeatures(ICustomContext context) {
 		return new ICustomFeature[] { new VerifyCustomFeature(this), new CollapseFeature(this),
-				new EditAbstractFeature(this), new ReloadImportFeature(this) };
+				new EditAbstractFeature(this), new ReloadImportFeature(this),new SynchronizeFeature(this) };
 	}
 
 	@Override

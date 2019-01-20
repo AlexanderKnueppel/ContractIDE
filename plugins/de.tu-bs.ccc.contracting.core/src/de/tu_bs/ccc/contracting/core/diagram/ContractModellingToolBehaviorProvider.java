@@ -25,6 +25,7 @@ import org.eclipse.graphiti.tb.ImageDecorator;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Component;
 import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.core.Synchronize.SynchronizeFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.CollapseFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.EditAbstractFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.EditDescriptionFeature;
@@ -45,7 +46,7 @@ public class ContractModellingToolBehaviorProvider extends DefaultToolBehaviorPr
 
 		// 1. set the generic context buttons
 		// note, that we do not add 'remove' (just as an example)
-		setGenericContextButtons(data, pe, CONTEXT_BUTTON_DELETE | CONTEXT_BUTTON_UPDATE);
+		setGenericContextButtons(data, pe, CONTEXT_BUTTON_DELETE);
 		ICustomFeature[] cf = getFeatureProvider().getCustomFeatures(cc);
 		ICustomFeature[] cf2 = getFeatureProvider().getCustomFeatures(cc);
 		for (int i = 0; i < cf2.length; i++) {
@@ -73,6 +74,17 @@ public class ContractModellingToolBehaviorProvider extends DefaultToolBehaviorPr
 			if (iCustomFeature instanceof EditAbstractFeature) {
 				ContextButtonEntry button = new ContextButtonEntry((EditAbstractFeature) iCustomFeature, cc);
 				button.setText("Edit Interface relation");
+				button.setDescription("Allows to edit the interface or refinements");
+				data.getDomainSpecificContextButtons().add(button);
+
+				break;
+			}
+		}
+		for (int i = 0; i < cf.length; i++) {
+			ICustomFeature iCustomFeature = cf[i];
+			if (iCustomFeature instanceof SynchronizeFeature) {
+				ContextButtonEntry button = new ContextButtonEntry((SynchronizeFeature) iCustomFeature, cc);
+				button.setText("Synchronize Component");
 				button.setDescription("Allows to edit the interface or refinements");
 				data.getDomainSpecificContextButtons().add(button);
 
