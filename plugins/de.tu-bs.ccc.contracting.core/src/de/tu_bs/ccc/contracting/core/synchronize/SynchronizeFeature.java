@@ -22,6 +22,7 @@ import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.internal.decorators.DecoratorManager;
@@ -29,7 +30,6 @@ import org.eclipse.ui.internal.decorators.DecoratorManager;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.core.diagram.ContractModellingImageProvider;
-import de.tu_bs.ccc.contracting.ui.dialogs.SynchronizeModuleDialog;
 
 public class SynchronizeFeature extends AbstractCustomFeature {
 
@@ -46,10 +46,10 @@ public class SynchronizeFeature extends AbstractCustomFeature {
 		if (m.getModule() != null) {
 			syncComponent(m);
 		} else {
-			Object[] options = { "Auto Synch", "Manuel Sync", "Cancel" };
-			int n = JOptionPane.showOptionDialog(null,
-					"Du you want the implementations to be updated manually or automatic?", "Synchronization mode",
-					JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[2]);
+			
+			MessageDialog dialog = new MessageDialog(null, "Synchronization mode", null,
+				    "Do you want the implementations to be updated manually or automatic?" , MessageDialog.QUESTION, new String[] { "Auto Synch", "Manuel Sync", "Cancel" }, 0);
+				int n = dialog.open();
 			if (n == 1) {
 				IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
 
