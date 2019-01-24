@@ -11,11 +11,13 @@ import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.graphiti.util.ColorConstant;
 
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.PortType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.Verification.ProviderType;
+import de.tu_bs.ccc.contracting.Verification.DirectionType;
 import de.tu_bs.ccc.contracting.Verification.MmFactory;
 
 
@@ -63,6 +65,17 @@ public class CreatePortFeature extends AbstractCreateFeature implements ICreateF
 		expandWithPort.getPorts().add(addedObject);
 		AddContext contextAdd = new AddContext(context, addedObject);
 		contextAdd.setTargetContainer(context.getTargetContainer());
+		
+		int widthContainer = (context.getTargetContainer().getGraphicsAlgorithm().getWidth());
+		int calcPosX = context.getX();
+		calcPosX = calcPosX - (widthContainer / 2);
+		
+		if (calcPosX < 0) {
+			addedObject.setOuterDirection(DirectionType.INTERNAL);
+		} else {
+			addedObject.setOuterDirection(DirectionType.EXTERNAL);
+		}
+
 		addGraphicalRepresentation(contextAdd, addedObject);
 
 //		 try {
