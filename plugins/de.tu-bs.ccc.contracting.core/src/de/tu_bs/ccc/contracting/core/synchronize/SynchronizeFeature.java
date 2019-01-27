@@ -43,15 +43,17 @@ public class SynchronizeFeature extends AbstractCustomFeature {
 		PictogramElement pes = context.getPictogramElements()[0];
 		Object bo = getBusinessObjectForPictogramElement(pes);
 		Module m = (Module) bo;
+		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
 		if (m.getModule() != null) {
 			syncComponent(m);
+			
+			decoratorManager.update("de.tubs.ccc.contracting.core.decorators.SynchronizeDecorator");
 		} else {
 			
 			MessageDialog dialog = new MessageDialog(null, "Synchronization mode", null,
 				    "Do you want the implementations to be updated manually or automatic?" , MessageDialog.QUESTION, new String[] { "Auto Synch", "Manuel Sync", "Cancel" }, 0);
 				int n = dialog.open();
 			if (n == 1) {
-				IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
 
 				decoratorManager.update("de.tubs.ccc.contracting.core.decorators.SynchronizeDecorator");
 			} else if (n == 0) {
@@ -68,7 +70,7 @@ public class SynchronizeFeature extends AbstractCustomFeature {
 						e.printStackTrace();
 					}
 				}
-
+				decoratorManager.update("de.tubs.ccc.contracting.core.decorators.SynchronizeDecorator");
 			}
 		}
 		updatePictogramElement(pes);
@@ -136,8 +138,10 @@ public class SynchronizeFeature extends AbstractCustomFeature {
 		URI fileURI = URI.createFileURI(resource.getLocation().toFile().getAbsolutePath().toString());
 		if (resource.getName().contains(".model")) {
 			try {
+				
 
-				Resource impResource = resourceSet.getResource(fileURI, true);
+
+				Resource impResource = resourceSet.getResource(fileURI, true);			
 
 				if (impResource.getContents().get(0) instanceof Compound) {
 					Compound container = (Compound) impResource.getContents().get(0);
@@ -146,6 +150,7 @@ public class SynchronizeFeature extends AbstractCustomFeature {
 							
 							syncComponent(copy);
 							impResource.save(null);
+							impResource.setModified(true);	
 
 						}
 					}
