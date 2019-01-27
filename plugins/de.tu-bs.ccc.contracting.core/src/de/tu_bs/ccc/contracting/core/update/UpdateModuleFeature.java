@@ -53,6 +53,7 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 			Shape s2 = cs.getChildren().get(1);
 			Text nameText = (Text) s2.getGraphicsAlgorithm();
 			if (!nameText.getValue().equals(m.getName() + "   " + m.getVersion())) {
+				updatePictogramElement(pictogramElement);
 				return Reason.createTrueReason("Name or version is out of date!");
 			} else if (m.getModule() != null) {
 				try {
@@ -80,6 +81,7 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 	public boolean update(IUpdateContext context) {
 		Module m = (Module) getBusinessObjectForPictogramElement(context.getPictogramElement());
 		PictogramElement pictogramElement = context.getPictogramElement();
+		System.out.println(m.getName()+" Updated");
 		if (pictogramElement instanceof ContainerShape) {
 
 			ContainerShape cs = (ContainerShape) pictogramElement;
@@ -94,7 +96,7 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 			Point newSecondPoint = gaService
 					.createPoint(context.getPictogramElement().getGraphicsAlgorithm().getWidth(), secondPoint.getY());
 			line.getPoints().set(1, newSecondPoint);
-			// getDiagramBehavior().refreshContent();
+			getDiagramBehavior().refreshContent();
 
 			for (Contract c : m.getContract()) {
 				for (PictogramLink p : getDiagram().getPictogramLinks()) {
@@ -110,7 +112,16 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 					}
 				}
 			}
-
+			if(m instanceof Compound) {
+				Compound co = (Compound) m;
+			for (Module mo : co.getConsistsOf()) {
+				for (PictogramLink p : getDiagram().getPictogramLinks()) {
+					if (p.getBusinessObjects().get(0) == mo) {
+						updatePictogramElement(p.getPictogramElement());
+					}
+				}
+			}
+			}
 			return true;
 		}
 
