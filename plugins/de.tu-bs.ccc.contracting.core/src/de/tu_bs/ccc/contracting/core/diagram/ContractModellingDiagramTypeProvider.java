@@ -17,4 +17,25 @@ public class ContractModellingDiagramTypeProvider extends AbstractDiagramTypePro
 		}
 		return toolBehaviorProviders;
 	}
+	@Override
+	public boolean isAutoUpdateAtRuntime() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAutoUpdateAtStartup() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isAutoUpdateAtRuntimeWhenEditorIsSaved() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isAutoUpdateAtReset() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 }
