@@ -70,9 +70,10 @@ public class SynchronizeDecorator implements ILightweightLabelDecorator {
 		ResourceSet resourceSet = new ResourceSetImpl();
 
 		URI fileURI = URI.createFileURI(resource.getLocation().toFile().getAbsolutePath().toString());
-		if (resource.getName().contains(".model")) {
+		if (resource.getName().contains(".cide")) {
 			try {
-
+				fileURI= fileURI.trimFileExtension();
+				fileURI = fileURI.appendFileExtension("model");
 				Resource impResource = resourceSet.getResource(fileURI, true);
 
 				if (impResource.getContents().get(0) instanceof Compound) {
