@@ -57,16 +57,15 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 				return Reason.createTrueReason("Name or version is out of date!");
 			} else if (m.getModule() != null) {
 				try {
-					
-				
-				if (!m.getName().equals(m.getModule().getName()) || !m.getName().equals(m.getModule().getName())
-						|| !m.getDescription().equals(m.getModule().getDescription())
-						|| !m.getCaps().equals(m.getModule().getCaps()) || !m.getRam().equals(m.getModule().getRam())
-						|| !m.getRte().equals(m.getModule().getRte()) || !m.getSpec().equals(m.getModule().getSpec())) {
-					return Reason.createTrueReason("Instance is not synchromized with its Original");
-				} else {
-					return Reason.createFalseReason();
-				}
+					if (!m.getName().equals(m.getModule().getName()) || !m.getName().equals(m.getModule().getName())
+							|| !m.getDescription().equals(m.getModule().getDescription())
+							|| !m.getCaps().equals(m.getModule().getCaps())
+							|| !m.getRam().equals(m.getModule().getRam()) || !m.getRte().equals(m.getModule().getRte())
+							|| !m.getSpec().equals(m.getModule().getSpec())) {
+						return Reason.createTrueReason("Instance is not synchromized with its Original");
+					} else {
+						return Reason.createFalseReason();
+					}
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
@@ -81,7 +80,6 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 	public boolean update(IUpdateContext context) {
 		Module m = (Module) getBusinessObjectForPictogramElement(context.getPictogramElement());
 		PictogramElement pictogramElement = context.getPictogramElement();
-		System.out.println(m.getName()+" Updated");
 		if (pictogramElement instanceof ContainerShape) {
 
 			ContainerShape cs = (ContainerShape) pictogramElement;
@@ -112,15 +110,15 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 					}
 				}
 			}
-			if(m instanceof Compound) {
+			if (m instanceof Compound) {
 				Compound co = (Compound) m;
-			for (Module mo : co.getConsistsOf()) {
-				for (PictogramLink p : getDiagram().getPictogramLinks()) {
-					if (p.getBusinessObjects().get(0) == mo) {
-						updatePictogramElement(p.getPictogramElement());
+				for (Module mo : co.getConsistsOf()) {
+					for (PictogramLink p : getDiagram().getPictogramLinks()) {
+						if (p.getBusinessObjects().get(0) == mo) {
+							updatePictogramElement(p.getPictogramElement());
+						}
 					}
 				}
-			}
 			}
 			return true;
 		}
