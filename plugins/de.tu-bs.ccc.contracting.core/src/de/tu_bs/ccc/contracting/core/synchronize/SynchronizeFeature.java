@@ -29,6 +29,7 @@ import org.eclipse.ui.internal.decorators.DecoratorManager;
 
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.core.diagram.ContractModellingImageProvider;
 
 public class SynchronizeFeature extends AbstractCustomFeature {
@@ -46,13 +47,14 @@ public class SynchronizeFeature extends AbstractCustomFeature {
 		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
 		if (m.getModule() != null) {
 			syncComponent(m);
-			
-			decoratorManager.update("de.tubs.ccc.contracting.core.decorators.SynchronizeDecorator");
+
+			refresh();
 		} else {
-			
+
 			MessageDialog dialog = new MessageDialog(null, "Synchronization mode", null,
-				    "Do you want the implementations to be updated manually or automatic?" , MessageDialog.QUESTION, new String[] { "Auto Synch", "Manuel Sync", "Cancel" }, 0);
-				int n = dialog.open();
+					"Do you want the implementations to be updated manually or automatic?", MessageDialog.QUESTION,
+					new String[] { "Auto Synch", "Manuel Sync", "Cancel" }, 0);
+			int n = dialog.open();
 			if (n == 1) {
 
 				decoratorManager.update("de.tubs.ccc.contracting.core.decorators.SynchronizeDecorator");
@@ -70,7 +72,7 @@ public class SynchronizeFeature extends AbstractCustomFeature {
 						e.printStackTrace();
 					}
 				}
-				decoratorManager.update("de.tubs.ccc.contracting.core.decorators.SynchronizeDecorator");
+				refresh();
 			}
 		}
 		updatePictogramElement(pes);
@@ -108,7 +110,7 @@ public class SynchronizeFeature extends AbstractCustomFeature {
 
 	public void syncComponent(Module instance) {
 		Module original = instance.getModule();
-	
+
 		instance.setName(original.getName());
 
 		instance.setDescription(original.getDescription());
@@ -117,7 +119,13 @@ public class SynchronizeFeature extends AbstractCustomFeature {
 		instance.setSpec(original.getSpec());
 		instance.setRam(original.getRam());
 		instance.setCaps(original.getCaps());
-	
+		for (int i = 0; i < instance.getPorts().size(); i++) {
+			instance.getPorts().get(i).setName(original.getPorts().get(i).getName());
+			instance.getPorts().get(i).setMaxClients(original.getPorts().get(i).getMaxClients());
+			instance.getPorts().get(i).setService(original.getPorts().get(i).getService());
+
+		}
+
 	}
 
 	void processContainer(IContainer container, Module original) throws CoreException {
@@ -138,23 +146,20 @@ public class SynchronizeFeature extends AbstractCustomFeature {
 		URI fileURI = URI.createFileURI(resource.getLocation().toFile().getAbsolutePath().toString());
 		if (resource.getName().contains(".model")) {
 			try {
-				
 
-
-				Resource impResource = resourceSet.getResource(fileURI, true);			
+				Resource impResource = resourceSet.getResource(fileURI, true);
 
 				if (impResource.getContents().get(0) instanceof Compound) {
 					Compound container = (Compound) impResource.getContents().get(0);
 					for (Module copy : container.getConsistsOf()) {
 						if (copy.getModule().getName().equals(original.getName())) {
-							
+
 							syncComponent(copy);
 							impResource.save(null);
-							impResource.setModified(true);	
+							impResource.setModified(true);
 
 						}
 					}
-
 
 				}
 			} catch (Exception e) {
@@ -163,4 +168,15 @@ public class SynchronizeFeature extends AbstractCustomFeature {
 
 		}
 	}
+
+	public static void refresh() {
+		PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
+			@Override
+			public void run() {
+				IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
+				decoratorManager.update("de.tubs.ccc.contracting.core.decorators.SynchronizeDecorator");
+			}
+		});
+	}
+
 }
