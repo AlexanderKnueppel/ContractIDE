@@ -42,7 +42,9 @@ import de.tu_bs.ccc.contracting.core.features.AddSystemFeature;
 import de.tu_bs.ccc.contracting.core.features.CreateContractFeature;
 import de.tu_bs.ccc.contracting.core.features.CreatePortConnection;
 import de.tu_bs.ccc.contracting.core.features.CreatePortFeature;
+import de.tu_bs.ccc.contracting.core.features.DeleteModuleFeature;
 import de.tu_bs.ccc.contracting.core.features.DeletePortConnectionFeature;
+import de.tu_bs.ccc.contracting.core.features.DeletePortFeature;
 import de.tu_bs.ccc.contracting.core.features.connections.AddContractConnectionFeature;
 import de.tu_bs.ccc.contracting.core.features.connections.ReconnectionFeature;
 import de.tu_bs.ccc.contracting.core.features.loading.AssignAbstractFeature;
@@ -52,6 +54,7 @@ import de.tu_bs.ccc.contracting.core.guiFeatures.EditAbstractFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.LayoutFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.ReloadImportFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.VerifyCustomFeature;
+import de.tu_bs.ccc.contracting.core.mapping.ImportMapping;
 import de.tu_bs.ccc.contracting.core.move.MovePortFeature;
 import de.tu_bs.ccc.contracting.core.propertyFeature.CreateProperty;
 import de.tu_bs.ccc.contracting.core.resize.ResizeModuleFeature;
@@ -70,11 +73,13 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 	@Override
 	public ICustomFeature[] getCustomFeatures(ICustomContext context) {
 		return new ICustomFeature[] { new VerifyCustomFeature(this), new CollapseFeature(this),
-				new EditAbstractFeature(this), new ReloadImportFeature(this),new SynchronizeFeature(this) };
+				new EditAbstractFeature(this), new ReloadImportFeature(this), new SynchronizeFeature(this) };
 	}
 
 	@Override
 	public IDeleteFeature getDeleteFeature(IDeleteContext context) {
+		PictogramElement pes = context.getPictogramElement();
+		Object bo = getBusinessObjectForPictogramElement(pes);
 
 		if (context.getPictogramElement() instanceof Connection) {
 			Connection con = (Connection) context.getPictogramElement();
@@ -85,6 +90,19 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 			}
 
 		}
+
+		else if (bo instanceof Module) {
+			Module m = (Module) bo;
+			if (m.getModule() != null) {
+				return new DeleteModuleFeature(this);
+			}
+		}
+		else if (bo instanceof Ports) {
+			
+				return new DeletePortFeature(this);
+			
+		}
+
 		return super.getDeleteFeature(context);
 	}
 
@@ -95,12 +113,12 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 	@Override
 	public ICreateFeature[] getCreateFeatures() {
 
-		return new ICreateFeature[] { 
-				//new CreateComponentFeature(this), 
+		return new ICreateFeature[] {
+				// new CreateComponentFeature(this),
 				new CreateContractFeature(this),
-				//new CreateAbstractFeature(this), 
-				new CreatePortFeature(this), new LoadModuleFeature(this),
-				new CreateProperty(this), new AssignAbstractFeature(this) };
+				// new CreateAbstractFeature(this),
+				new CreatePortFeature(this), new LoadModuleFeature(this), new CreateProperty(this),
+				new AssignAbstractFeature(this) };
 	}
 
 	@Override
@@ -177,20 +195,17 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 		return super.getMoveShapeFeature(context);
 
 	}
-	
+
 	@Override
 	public IResizeShapeFeature getResizeShapeFeature(IResizeShapeContext context) {
 		PictogramElement pictogramElement = context.getPictogramElement();
 		if (pictogramElement instanceof ContainerShape) {
 			Object bo = getBusinessObjectForPictogramElement(pictogramElement);
-			 if (bo instanceof Module) {
+			if (bo instanceof Module) {
 				return new ResizeModuleFeature(this);
 			}
 		}
 		return super.getResizeShapeFeature(context);
 	}
-	
-	
-	
 
 }
