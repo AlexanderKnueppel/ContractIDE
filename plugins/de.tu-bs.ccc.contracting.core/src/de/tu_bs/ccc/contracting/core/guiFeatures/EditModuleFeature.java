@@ -21,7 +21,8 @@ public class EditModuleFeature extends AbstractCustomFeature {
 		if (pes != null) {
 			Object bo = getBusinessObjectForPictogramElement(pes);
 			if (bo instanceof Module) {
-				ret = true;
+				Module m = (Module)bo;
+				ret = (m.getModule()==null);
 			}
 		}
 		return ret;
