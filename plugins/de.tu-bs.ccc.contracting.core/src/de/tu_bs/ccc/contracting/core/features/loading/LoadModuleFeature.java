@@ -15,6 +15,7 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.System;
+import de.tu_bs.ccc.contracting.core.mapping.ImportMapping;
 import de.tu_bs.ccc.contracting.core.util.CoreUtil;
 import de.tu_bs.ccc.contracting.ui.dialogs.LoadModuleDialog;
 import de.tu_bs.ccc.contracting.ui.provider.LoadModuleLabelProvider;
@@ -75,12 +76,14 @@ public class LoadModuleFeature extends AbstractCreateFeature {
 				copy.getRealizedBy().addAll(c.getRealizedBy());
 				copy.setModule(c);
 				x.getConsistsOf().add(copy);
+				ImportMapping.addMappingEntry(c, copy);
 			} else if(container instanceof System) {
 				System x = (System) getBusinessObjectForPictogramElement(pict);
 				copy.setModule(c);
 				copy.getRealizedBy().addAll(c.getRealizedBy());
 				copy.setIsPartOf(null);
 				x.getConsistsOf().add(copy);
+				ImportMapping.addMappingEntry(c, copy);
 			}
 			
 			return new Object[] { copy };

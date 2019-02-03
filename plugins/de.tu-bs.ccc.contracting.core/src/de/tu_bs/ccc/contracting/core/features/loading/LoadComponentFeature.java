@@ -37,6 +37,7 @@ import de.tu_bs.ccc.contracting.Verification.Component;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.core.localization.StringTable;
+import de.tu_bs.ccc.contracting.core.mapping.ImportMapping;
 import de.tu_bs.ccc.contracting.Verification.MmFactory;
 import de.tu_bs.ccc.contracting.Verification.MmPackage;
 import windows.Dialog;
@@ -121,6 +122,7 @@ public class LoadComponentFeature extends AbstractCreateFeature {
 			copy.setIsPartOf(x);
 			copy.setModule(c);
 			x.getConsistsOf().add(copy);
+			ImportMapping.addMappingEntry(c, copy);
 
 			return new Object[] { copy };
 
