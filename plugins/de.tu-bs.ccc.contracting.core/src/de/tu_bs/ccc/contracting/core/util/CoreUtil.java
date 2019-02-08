@@ -30,8 +30,6 @@ import org.eclipse.graphiti.features.IAddFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.impl.AddContext;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
-import org.eclipse.graphiti.mm.pictograms.PictogramLink;
-import org.eclipse.graphiti.mm.pictograms.PictogramsFactory;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.services.GraphitiUi;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -44,7 +42,6 @@ import org.eclipse.ui.PlatformUI;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.System;
 import de.tu_bs.ccc.contracting.core.localization.StringTable;
-import de.tu_bs.ccc.contracting.ui.wizards.CreationType;
 
 public class CoreUtil {
 
