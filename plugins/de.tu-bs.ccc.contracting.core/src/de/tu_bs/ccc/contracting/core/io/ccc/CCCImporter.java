@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
@@ -47,10 +48,12 @@ import de.tu_bs.ccc.contracting.core.io.ccc.CompositeType.Pattern;
 import de.tu_bs.ccc.contracting.core.io.ccc.ProvidesType.Service;
 import de.tu_bs.ccc.contracting.core.util.CoreUtil;
 import de.tu_bs.ccc.contracting.core.util.SaveModuleToFile;
+import de.tu_bs.ccc.contracting.core.util.SaveSystemToFile;
+import de.tu_bs.ccc.contracting.Verification.System;
 
 public class CCCImporter {
 	private Map<String, Object> _services = new HashMap<String, Object>();
-	private Map<String, Component> _components = new HashMap<String, Component>();
+	private Map<String, Module> _modules = new HashMap<String, Module>();
 
 	private ObjectFactory factory = new ObjectFactory();
 
@@ -122,6 +125,20 @@ public class CCCImporter {
 		}
 
 		SaveModuleToFile operation = new SaveModuleToFile(editingDomain, folder, m);
+		editingDomain.getCommandStack().execute(operation);
+
+		editingDomain.dispose();
+	}
+
+	private void saveSystem(System sys, IFolder folder) throws Exception {
+		ResourceSet rSet = new ResourceSetImpl();
+		TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(rSet);
+		if (editingDomain == null) {
+			// Not yet existing, create one
+			editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(rSet);
+		}
+
+		SaveSystemToFile operation = new SaveSystemToFile(editingDomain, folder, sys);
 		editingDomain.getCommandStack().execute(operation);
 
 		editingDomain.dispose();
@@ -225,16 +242,73 @@ public class CCCImporter {
 
 		///// Add modules (interfaces?)
 		for (Pattern pt : ct.getPattern()) {
-			for (PatternComponentType pct : pt.getComponent()) {
-				Component sub = _components.get(pct.getName());
-				sub.setModule(c);
-				c.getConsistsOf().add(sub);
+			Map<String, Component> copies = new HashMap<String, Component>();
+			Map<Ports, String> connections = new HashMap<Ports, String>();
 
-				// pct.get
+			for (PatternComponentType pct : pt.getComponent()) {
+				Component copy = EcoreUtil.copy((Component) _modules.get(pct.getName()));
+				copy.setModule(_modules.get(pct.getName()));
+				copy.setIsPartOf(c);
+				c.getConsistsOf().add(copy);
+				copies.put(copy.getName(), copy);
+
+				for (PatternComponentType.Route.Service service : pct.getRoute().getService()) {
+					if (service.getExternal() != null) {
+						Ports fromPort = c.getPorts().stream()
+								.filter(p -> p.getName().equals(service.getExternal().getRef())
+										&& p.getOuterDirection() == DirectionType.INTERNAL)
+								.findFirst().get();
+						Ports toPort = copy.getPorts().stream().filter(p -> p.getService().equals(service.getName())
+								&& p.getOuterDirection() == DirectionType.INTERNAL).findFirst().get();
+
+						toPort.setInsidePortseOpposite(fromPort);
+						fromPort.getInsidePorts().add(toPort);
+					}
+					// set connection from component to component (child)
+					if (service.getChild() != null) {
+						Ports toPort = copy.getPorts().stream().filter(p -> p.getService().equals(service.getName())
+								&& p.getOuterDirection() == DirectionType.INTERNAL).findFirst().get();
+						connections.put(toPort, service.getChild().getName());
+					}
+				}
+
+				// set connection from component to compound (expose)
+				for (PatternComponentType.Expose expose : pct.getExpose()) {
+					if (expose.getService() != null) {
+
+						Ports fromPort = copy.getPorts().stream()
+								.filter(p -> p.getName().equals(expose.getService().getRef())
+										&& p.getService().equals(expose.getService().getName())
+										&& p.getOuterDirection() == DirectionType.EXTERNAL)
+								.findFirst().get();
+						Ports toPort = c.getPorts().stream().filter(p -> p.getName().equals(expose.getRef())
+								&& p.getOuterDirection() == DirectionType.EXTERNAL).findFirst().get();
+
+						toPort.setInsidePortseOpposite(fromPort);
+						fromPort.getInsidePorts().add(toPort);
+					}
+				}
 			}
+
+			// Connection from component to component
+			connections.forEach((k, v) -> {
+				Ports fromPort = copies.get(v).getPorts().stream().filter(
+						p -> p.getService().equals(k.getService()) && p.getOuterDirection() == DirectionType.EXTERNAL)
+						.findFirst().get();
+				k.setPortseOpposite(fromPort);
+			});
 		}
 
 		c.setVersion("1.0");
+
+		try {
+			saveModule(c, repositoryFolder);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		_modules.put(c.getName(), c);
 	}
 
 	public void createComponent(ComponentType ct) {
@@ -365,7 +439,7 @@ public class CCCImporter {
 			e.printStackTrace();
 		}
 
-		_components.put(c.getName(), c);
+		_modules.put(c.getName(), c);
 	}
 
 	public void handleRepository(RepositoryType repo) {
@@ -378,16 +452,42 @@ public class CCCImporter {
 				.filter(x -> x instanceof CompositeType).map(x -> (CompositeType) x).collect(Collectors.toList());
 
 		for (BinaryType bt : binaries) {
-			System.out.println(bt.getName());
+			java.lang.System.out.println(bt.getName());
 		}
 
 		components.forEach(this::createComponent);
+		compounds.forEach(this::createCompound);
 	}
 
-	public void handleSystem(SystemType sys) {
-		// for(List<List<Object>> elements : repo.getBinaryOrComponentOrComposite()) {
-		//
-		// }
+	public void handleSystem(SystemType sysType) {
+		de.tu_bs.ccc.contracting.Verification.System system = MmFactory.eINSTANCE.createSystem();
+		system.setName(sysType.getName());
+
+		for (SystemType.Child child : sysType.getChild()) {
+			List<Module> candidates = _modules.values().stream()
+					.filter(m -> m.getModuleType() instanceof Function
+							&& ((Function) m.getModuleType()).getFunction().equals(child.getFunction().getName()))
+					.collect(Collectors.toList());
+
+			if (candidates.size() == 1) {
+				Module copy = EcoreUtil.copy(candidates.get(0));
+				copy.setName(child.getName());
+				copy.setModule(candidates.get(0));
+				if (copy instanceof Compound) {
+					EcoreUtil.deleteAll(((Compound) copy).getConsistsOf(), true);
+				}
+				copy.setIsPartOf(null);
+
+				system.getConsistsOf().add(copy);
+			}
+		}
+
+		try {
+			saveSystem(system, systemFolder);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void createFiles(IProject p) {
@@ -411,7 +511,7 @@ public class CCCImporter {
 			handleRepository(xml.getRepository());
 			// Handle the system
 			handleSystem(xml.getSystem());
-
+			// Handle services
 			createServiceStubs();
 		} catch (JAXBException e) {
 			e.printStackTrace();

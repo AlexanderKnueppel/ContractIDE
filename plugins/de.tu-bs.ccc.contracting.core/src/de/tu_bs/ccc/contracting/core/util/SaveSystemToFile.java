@@ -19,7 +19,6 @@ import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IAddFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.IUpdateFeature;
-import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
 import org.eclipse.graphiti.features.context.impl.AddContext;
 import org.eclipse.graphiti.features.context.impl.UpdateContext;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
@@ -27,26 +26,25 @@ import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.services.GraphitiUi;
 
-import de.tu_bs.ccc.contracting.Verification.DirectionType;
 import de.tu_bs.ccc.contracting.Verification.Module;
-import de.tu_bs.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.Verification.System;
 import de.tu_bs.ccc.contracting.core.localization.StringTable;
 
-public class SaveModuleToFile extends RecordingCommand {
+public class SaveSystemToFile extends RecordingCommand {
 	private TransactionalEditingDomain editingDomain;
-	private Module module;
+	private System system;
 	private IFolder folder;
 
-	public SaveModuleToFile(TransactionalEditingDomain domain, IFolder folder, Module module) {
+	public SaveSystemToFile(TransactionalEditingDomain domain, IFolder folder, System system) {
 		super(domain);
 		this.editingDomain = domain;
-		this.module = module;
+		this.system = system;
 		this.folder = folder;
 	}
 
 	@Override
 	protected void doExecute() {
-		String fileName = module.getName() + "." + StringTable.DIAGRAM_FILE_EXTENSION;
+		String fileName = system.getName() + "." + StringTable.DIAGRAM_FILE_EXTENSION;
 
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 		IResource resource = root.findMember(folder.getFullPath());
@@ -56,17 +54,14 @@ public class SaveModuleToFile extends RecordingCommand {
 				throw new Exception("Folder \"" + folder.getName() + "\" does not exist.");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				System.out.println(e.getMessage());
 				e.printStackTrace();
 			}
 		}
 		IContainer container = (IContainer) resource;
 		final IFile file = container.getFile(new Path(fileName));
 
-		System.out.println(file.getName());
-
 		String diagramTypeId = "ContractModelling";
-		Diagram diagram = Graphiti.getPeCreateService().createDiagram(diagramTypeId, module.getName(), true);
+		Diagram diagram = Graphiti.getPeCreateService().createDiagram(diagramTypeId, system.getName(), true);
 		ResourceSet rSet = editingDomain.getResourceSet();
 
 		URI uri = URI.createFileURI(file.getFullPath().toString());
@@ -85,7 +80,6 @@ public class SaveModuleToFile extends RecordingCommand {
 		final Resource resource2 = rSet.getResource(uri, true);
 
 		resource2.getContents().add(diagram);
-		// resource2.getContents().add(MmFactory.eINSTANCE.createComponent());
 
 		IDiagramTypeProvider dtp = GraphitiUi.getExtensionManager().createDiagramTypeProvider(diagram,
 				"ContractModelling.ContractModellingDiagramTypeProvider"); //$NON-NLS-1$
@@ -110,7 +104,7 @@ public class SaveModuleToFile extends RecordingCommand {
 
 		// Save .model-file
 		final Resource resourceDomain = rSet.getResource(uri, true);
-		resourceDomain.getContents().add(module);
+		resourceDomain.getContents().add(system);
 		try {
 			resourceDomain.save(null);
 		} catch (IOException e1) {
@@ -120,95 +114,49 @@ public class SaveModuleToFile extends RecordingCommand {
 
 		// Build graphical representation
 		AddContext create = new AddContext();
-		create.setNewObject(module);
+		create.setNewObject(system);
 		create.setTargetContainer(diagram);
 		create.setX(100);
 		create.setY(100);
 		create.setSize(200, 200);
 
 		IAddFeature add = featureProvider.getAddFeature(create);
-
 		if (add.canAdd(create)) {
 			add.add(create);
 		}
 
-		if (module instanceof de.tu_bs.ccc.contracting.Verification.Compound) {
-			de.tu_bs.ccc.contracting.Verification.Compound comp = (de.tu_bs.ccc.contracting.Verification.Compound) module;
+		for (Module child : system.getConsistsOf()) {
+			create.setNewObject(child);
+			create.setTargetContainer((ContainerShape) featureProvider.getPictogramElementForBusinessObject(system));
+			create.setX(50);
+			create.setY(50);
+			create.setSize(100, 100);
+			add = featureProvider.getAddFeature(create);
 
-			// Create all components
-			for (Module m : comp.getConsistsOf()) {
-				create.setNewObject(m);
-				create.setTargetContainer(
-						(ContainerShape) featureProvider.getPictogramElementForBusinessObject(module));
-				create.setX(50);
-				create.setY(50);
-				create.setSize(100, 100);
-				add = featureProvider.getAddFeature(create);
-
-				if (add.canAdd(create)) {
-					add.add(create);
-				}
-			}
-
-			// Connect all components
-			for (Module m : comp.getConsistsOf()) {
-				for (Ports p : m.getPorts()) {
-					// Connection from compound to component
-					if (p.getOuterDirection() == DirectionType.INTERNAL && p.getInsidePortseOpposite() != null) {
-						Ports from = p.getInsidePortseOpposite();
-						ContainerShape fromContainer = (ContainerShape) featureProvider
-								.getPictogramElementForBusinessObject(from);
-						ContainerShape toContainer = (ContainerShape) featureProvider
-								.getPictogramElementForBusinessObject(p);
-						AddContext createConnection = new AddConnectionContext(fromContainer.getAnchors().get(0),
-								toContainer.getAnchors().get(0));
-
-						add = featureProvider.getAddFeature(createConnection);
-						if (add.canAdd(createConnection)) {
-							add.add(createConnection);
-						}
-					}
-
-					// //Connection from component to component
-					if (p.getOuterDirection() == DirectionType.INTERNAL && p.getPortseOpposite() != null) {
-						Ports from = p.getPortseOpposite();
-						ContainerShape fromContainer = (ContainerShape) featureProvider
-								.getPictogramElementForBusinessObject(from);
-						ContainerShape toContainer = (ContainerShape) featureProvider
-								.getPictogramElementForBusinessObject(p);
-						AddContext createConnection = new AddConnectionContext(fromContainer.getAnchors().get(0),
-								toContainer.getAnchors().get(0));
-
-						add = featureProvider.getAddFeature(createConnection);
-						if (add.canAdd(createConnection)) {
-							add.add(createConnection);
-						}
-					}
-				}
-			}
-
-			for (Ports p : module.getPorts()) {
-				// Connection from component to compound
-				if (p.getOuterDirection() == DirectionType.EXTERNAL && p.getInsidePortseOpposite() != null) {
-					Ports from = p.getInsidePortseOpposite();
-					ContainerShape fromContainer = (ContainerShape) featureProvider
-							.getPictogramElementForBusinessObject(from);
-					ContainerShape toContainer = (ContainerShape) featureProvider
-							.getPictogramElementForBusinessObject(p);
-					AddContext createConnection = new AddConnectionContext(fromContainer.getAnchors().get(0),
-							toContainer.getAnchors().get(0));
-
-					add = featureProvider.getAddFeature(createConnection);
-					if (add.canAdd(createConnection)) {
-						add.add(createConnection);
-					}
-				}
+			if (add.canAdd(create)) {
+				add.add(create);
 			}
 		}
 
-		UpdateContext updateContext = new UpdateContext(diagram.getChildren().get(0));
-		IUpdateFeature updateFeature = dtp.getFeatureProvider().getUpdateFeature(updateContext);
-		updateFeature.update(updateContext);
+		// Connections
+//		for (Module child : system.getConsistsOf()) {
+//			for (Ports port : child.getPorts()) {
+//				if (port.getOuterDirection() == DirectionType.INTERNAL && port.getPortseOpposite() != null) {
+//					Ports from = port.getPortseOpposite();
+//					ContainerShape fromContainer = (ContainerShape) featureProvider
+//							.getPictogramElementForBusinessObject(from);
+//					ContainerShape toContainer = (ContainerShape) featureProvider
+//							.getPictogramElementForBusinessObject(port);
+//					AddContext createConnection = new AddConnectionContext(fromContainer.getAnchors().get(0),
+//							toContainer.getAnchors().get(0));
+//
+//					add = featureProvider.getAddFeature(createConnection);
+//					if (add.canAdd(createConnection)) {
+//						add.add(createConnection);
+//					}
+//				}
+//			}
+//		}
 
 		try {
 			resource2.save(null);
