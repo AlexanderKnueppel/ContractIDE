@@ -29,7 +29,7 @@ import de.tu_bs.ccc.contracting.core.features.CreateDomainObjectConnectionConnec
 import de.tu_bs.ccc.contracting.core.features.CreateDomainObjectFeature;
 import de.tu_bs.ccc.contracting.core.features.CreatePortConnection;
 import de.tu_bs.ccc.contracting.core.features.CreatePortFeature;
-import de.tu_bs.ccc.contracting.core.features.LayoutDomainObjectFeature;
+import de.tu_bs.ccc.contracting.core.features.layout.LayoutDomainObjectFeature;
 
 public class ComponentModellingFeatureProvider extends DefaultFeatureProvider {
 
