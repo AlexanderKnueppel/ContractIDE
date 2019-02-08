@@ -73,6 +73,7 @@
             extensions="cide"
             icon="icons/cide2_16.png"
             id="de.tu-bs.ccc.contracting.diagram.editor"
+            matchingStrategy="org.eclipse.graphiti.ui.editor.DiagramEditorMatchingStrategy"
             name="ContractIDE Editor">
       </editor>
    </extension>
