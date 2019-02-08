@@ -3,6 +3,7 @@ package de.tu_bs.ccc.contracting.core.features;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.impl.AbstractAddFeature;
@@ -16,11 +17,13 @@ import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
+import org.eclipse.graphiti.ui.services.GraphitiUi;
 import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
 
 import de.tu_bs.ccc.contracting.Verification.DirectionType;
 import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.PortType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 
 public class AddPortFeature extends AbstractAddFeature {
@@ -79,20 +82,20 @@ public class AddPortFeature extends AbstractAddFeature {
 
 			gaService.setLocationAndSize(roundedRectangle, xCoordinate, yCoordinate, portWidth, portHeight);
 
-			// Shape portShape = peCreateService.createShape(containerShape, false);
-			// Image image = gaService.createImage(portShape,
-			// ContractModellingImageProvider.IMG_PORT_INPUT);
-			//
-			// gaService.setLocationAndSize(image, 0, 0, portWidth
-			// ,image.getHeight());
-
 			Shape shape = peCreateService.createShape(containerShape, false);
 			String portName = addedClass.getName();
-			Text text = gaService.createText(shape, portName);
+			
+			String suffix = "";
+		 	if(addedClass.getType().getValue() == PortType.SERVICE_VALUE) {
+		 		suffix +=  " : " + addedClass.getService();
+		 	} 
+		 	
+			Text text = gaService.createText(shape, portName+suffix);
 			text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 			// vertical alignment has as default value "center"
 			text.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
 			gaService.setLocationAndSize(text, 0, 0, portWidth, (portHeight) / 2);
+
 			
 			Shape shape2 = peCreateService.createShape(containerShape, false);
 			Text text2 = gaService.createText(shape2, addedClass.getType().toString());
@@ -109,13 +112,6 @@ public class AddPortFeature extends AbstractAddFeature {
 			text3.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
 			text3.setForeground(gaService.manageColor(getDiagram(), signifierColor));
 			gaService.setLocationAndSize(text3, 5, 0, 20, 20);
-			
-			// if added Class has no resource we add it to the resource
-			// of the diagram
-			// in a real scenario the business model would have its own resource
-			// if (addedClass.eResource() == null) {
-			// getDiagram().eResource().getContents().add(addedClass);
-			// }
 
 			// create link and wire it
 			link(containerShape, addedClass);
