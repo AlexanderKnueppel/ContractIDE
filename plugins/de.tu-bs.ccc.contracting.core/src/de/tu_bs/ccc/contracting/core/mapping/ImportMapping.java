@@ -116,7 +116,10 @@ public class ImportMapping {
 				if (impResource.getContents().get(0) instanceof Compound) {
 					Compound container = (Compound) impResource.getContents().get(0);
 					for (Module copy : container.getConsistsOf()) {
-						addMappingEntry(copy.getModule(), copy);
+						if (copy.getModule()!=null&&copy!=null) {
+							addMappingEntry(copy.getModule(), copy);
+						}
+						
 					}
 
 				}
