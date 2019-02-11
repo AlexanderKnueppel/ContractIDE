@@ -20,6 +20,8 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.IDecoratorManager;
+import org.eclipse.ui.PlatformUI;
 
 import de.tu_bs.ccc.contracting.Verification.DirectionType;
 import de.tu_bs.ccc.contracting.Verification.PortType;
@@ -203,5 +205,13 @@ public abstract class EditPortFeatureDialog extends TitleAreaDialog implements I
 		port.setType(PortType.get(comboType.getText()));
 		port.setService(portServicename.getText());
 		port.setFilter(portFilter.getText());
+		PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
+			@Override
+			public void run() {
+				IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
+				decoratorManager.update("de.tubs.ccc.contracting.core.decorators.SynchronizeDecorator");
+			}
+		});
 	}
+	
 }
