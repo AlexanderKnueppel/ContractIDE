@@ -20,6 +20,8 @@ import org.eclipse.jface.viewers.ILightweightLabelDecorator;
 
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.core.util.CoreUtil;
 
 /**
  * An example showing how to control when an element is decorated. This example
@@ -79,13 +81,7 @@ public class SynchronizeDecorator implements ILightweightLabelDecorator {
 				if (impResource.getContents().get(0) instanceof Compound) {
 					Compound container = (Compound) impResource.getContents().get(0);
 					for (Module copy : container.getConsistsOf()) {
-						if (!copy.getName().equals(copy.getModule().getName())
-								|| !copy.getName().equals(copy.getModule().getName())
-								|| !copy.getDescription().equals(copy.getModule().getDescription())
-								|| !copy.getCaps().equals(copy.getModule().getCaps())
-								|| !copy.getRam().equals(copy.getModule().getRam())
-								|| !copy.getRte().equals(copy.getModule().getRte())
-								|| !copy.getSpec().equals(copy.getModule().getSpec())) {
+						if (CoreUtil.isComponentNotSynched(copy)) {
 							URL url = FileLocator.find(Platform.getBundle("de.tu-bs.ccc.contracting.core"),
 									new Path(iconPath), null); // NON-NLS-1
 
@@ -142,4 +138,5 @@ public class SynchronizeDecorator implements ILightweightLabelDecorator {
 	 */
 	public void removeListener(ILabelProviderListener listener) {
 	}
+	
 }

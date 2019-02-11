@@ -28,6 +28,7 @@ import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Contract;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.core.util.CoreUtil;
 import de.tu_bs.ccc.contracting.Verification.MmFactory;
 
 public class UpdateModuleFeature extends AbstractUpdateFeature {
@@ -57,11 +58,7 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 				return Reason.createTrueReason("Name or version is out of date!");
 			} else if (m.getModule() != null) {
 				try {
-					if (!m.getName().equals(m.getModule().getName()) || !m.getName().equals(m.getModule().getName())
-							|| !m.getDescription().equals(m.getModule().getDescription())
-							|| !m.getCaps().equals(m.getModule().getCaps())
-							|| !m.getRam().equals(m.getModule().getRam()) || !m.getRte().equals(m.getModule().getRte())
-							|| !m.getSpec().equals(m.getModule().getSpec())) {
+					if (CoreUtil.isComponentNotSynched(m)) {
 						return Reason.createTrueReason("Instance is not synchromized with its Original");
 					} else {
 						return Reason.createFalseReason();
