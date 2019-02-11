@@ -35,7 +35,7 @@ public class EditPortFeature extends AbstractCustomFeature {
 			Object bo = getBusinessObjectForPictogramElement(pes[0]);
 			if (bo instanceof Ports) {
 				Module m = ((Ports) bo).getModule();
-				ret = (m.getModule()==null);
+				ret = (m.getModule() == null);
 			}
 		}
 		return ret;
@@ -61,16 +61,16 @@ public class EditPortFeature extends AbstractCustomFeature {
 			dialog = new EditConsumerPortFeatureDialog(shell, interfaces);
 		else
 			dialog = new EditProviderPortFeatureDialog(shell, interfaces);
-		
-		if (ImportMapping.getMappingEntry(((Ports) object).getModule()).size()>0) {
-			
+
+		if (ImportMapping.getMappingEntry(((Ports) object).getModule()).size() > 0) {
+
 			MessageBox dialog2 = new MessageBox(shell, SWT.ICON_QUESTION | SWT.OK | SWT.CANCEL);
 			dialog2.setText("Component already used");
-			dialog2.setMessage("This compoent already has instances, do you really want to change it?");
+			dialog2.setMessage("This compoent already has instances, do you really want to change its ports?");
 
 			// open dialog and await user selection
 			int returnCode = dialog2.open();
-			if (returnCode == SWT.OK ) {
+			if (returnCode == SWT.OK) {
 				dialog.setOldProperties(object);
 				dialog.create();
 				dialog.open();
