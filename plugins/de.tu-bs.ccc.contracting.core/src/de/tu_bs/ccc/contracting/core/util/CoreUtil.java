@@ -289,4 +289,78 @@ public class CoreUtil {
 			e1.printStackTrace();
 		}
 	}
+
+	/**
+	 * States whether a Component(Instance) needs to be synched with its original
+	 * 
+	 * @param copy the instance/copy component
+	 * @return whether copy is not synched
+	 */
+	public static boolean isComponentNotSynched(Module copy) {
+		boolean synch = false;
+		try {
+			if (!copy.getName().equals(copy.getModule().getName())) {
+				synch = true;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		try {
+			if (!copy.getDescription().equals(copy.getModule().getDescription())) {
+				synch = true;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		try {
+			if (!copy.getCaps().equals(copy.getModule().getCaps())) {
+				synch = true;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		try {
+			if (!copy.getRam().equals(copy.getModule().getRam())) {
+				synch = true;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		try {
+			if (!copy.getSpec().equals(copy.getModule().getSpec())) {
+				synch = true;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		try {
+			if (!copy.getRte().equals(copy.getModule().getRte())) {
+				synch = true;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		for (int i = 0; (i < copy.getPorts().size() && i < copy.getModule().getPorts().size()); i++) {
+
+
+			if (!copy.getPorts().get(i).getName().equals(copy.getModule().getPorts().get(i).getName())) {
+
+				synch = true;
+			}
+			if (copy.getPorts().get(i).getMaxClients() != copy.getModule().getPorts().get(i).getMaxClients()) {
+
+				synch = true;
+			}
+			if (!copy.getPorts().get(i).getLabel().equals(copy.getModule().getPorts().get(i).getLabel())) {
+
+				synch = true;
+			}
+			if (!copy.getPorts().get(i).getService().equals(copy.getModule().getPorts().get(i).getService())) {
+
+				synch = true;
+			}
+		}
+		return synch;
+
+	}
 }
