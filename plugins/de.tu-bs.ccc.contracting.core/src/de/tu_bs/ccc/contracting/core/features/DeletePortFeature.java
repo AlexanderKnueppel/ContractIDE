@@ -29,7 +29,11 @@ public class DeletePortFeature extends DefaultDeleteFeature {
 
 			MessageBox dialog2 = new MessageBox(shell, SWT.ICON_QUESTION | SWT.OK | SWT.CANCEL);
 			dialog2.setText("Component already used");
-			dialog2.setMessage("This compoent already has instances, do you really want to change it?");
+			dialog2.setMessage("This component already has instances, do you really want to change it?");
+			if(((Ports) object).getModule().getModule()!=null) {
+				dialog2.setText("Component is an Instance");
+				dialog2.setMessage("This component is an instance, you shouldn't delete Ports as it this could cause synch problems?");			
+			}
 
 			// open dialog and await user selection
 			
