@@ -2,7 +2,7 @@
 // Diese Datei wurde mit der JavaTM Architecture for XML Binding(JAXB) Reference Implementation, v2.2.8-b130911.1802 generiert 
 // Siehe <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Änderungen an dieser Datei gehen bei einer Neukompilierung des Quellschemas verloren. 
-// Generiert: 2018.10.04 um 12:30:04 PM CEST 
+// Generiert: 2019.02.11 um 10:27:32 AM CET 
 //
 
 
@@ -42,12 +42,12 @@ import javax.xml.bind.annotation.XmlType;
  *                   &lt;element name="service" maxOccurs="unbounded" minOccurs="0">
  *                     &lt;complexType>
  *                       &lt;complexContent>
- *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                         &lt;extension base="{}ServiceTrafficType">
  *                           &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                           &lt;attribute name="max_clients" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                           &lt;attribute name="filter" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                           &lt;attribute name="ref" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                         &lt;/restriction>
+ *                         &lt;/extension>
  *                       &lt;/complexContent>
  *                     &lt;/complexType>
  *                   &lt;/element>
@@ -428,12 +428,12 @@ public class CompositeType {
      *         &lt;element name="service" maxOccurs="unbounded" minOccurs="0">
      *           &lt;complexType>
      *             &lt;complexContent>
-     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *               &lt;extension base="{}ServiceTrafficType">
      *                 &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
      *                 &lt;attribute name="max_clients" type="{http://www.w3.org/2001/XMLSchema}string" />
      *                 &lt;attribute name="filter" type="{http://www.w3.org/2001/XMLSchema}string" />
      *                 &lt;attribute name="ref" type="{http://www.w3.org/2001/XMLSchema}string" />
-     *               &lt;/restriction>
+     *               &lt;/extension>
      *             &lt;/complexContent>
      *           &lt;/complexType>
      *         &lt;/element>
@@ -491,12 +491,12 @@ public class CompositeType {
          * <pre>
          * &lt;complexType>
          *   &lt;complexContent>
-         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *     &lt;extension base="{}ServiceTrafficType">
          *       &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
          *       &lt;attribute name="max_clients" type="{http://www.w3.org/2001/XMLSchema}string" />
          *       &lt;attribute name="filter" type="{http://www.w3.org/2001/XMLSchema}string" />
          *       &lt;attribute name="ref" type="{http://www.w3.org/2001/XMLSchema}string" />
-         *     &lt;/restriction>
+         *     &lt;/extension>
          *   &lt;/complexContent>
          * &lt;/complexType>
          * </pre>
@@ -505,7 +505,9 @@ public class CompositeType {
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "")
-        public static class Service {
+        public static class Service
+            extends ServiceTrafficType
+        {
 
             @XmlAttribute(name = "name", required = true)
             protected String name;

@@ -2,7 +2,7 @@
 // Diese Datei wurde mit der JavaTM Architecture for XML Binding(JAXB) Reference Implementation, v2.2.8-b130911.1802 generiert 
 // Siehe <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Änderungen an dieser Datei gehen bei einer Neukompilierung des Quellschemas verloren. 
-// Generiert: 2018.10.04 um 12:30:04 PM CEST 
+// Generiert: 2019.02.11 um 10:27:32 AM CET 
 //
 
 
@@ -14,6 +14,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -51,25 +52,11 @@ import javax.xml.bind.annotation.XmlType;
  *                                   &lt;/complexContent>
  *                                 &lt;/complexType>
  *                               &lt;/element>
- *                             &lt;/choice>
- *                           &lt;/restriction>
- *                         &lt;/complexContent>
- *                       &lt;/complexType>
- *                     &lt;/element>
- *                     &lt;element name="route" minOccurs="0">
- *                       &lt;complexType>
- *                         &lt;complexContent>
- *                           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                             &lt;choice maxOccurs="unbounded">
- *                               &lt;element name="service">
+ *                               &lt;element name="function">
  *                                 &lt;complexType>
  *                                   &lt;complexContent>
  *                                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                                       &lt;all>
- *                                         &lt;element name="child" type="{}NameType"/>
- *                                       &lt;/all>
  *                                       &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                                       &lt;attribute name="label" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                                     &lt;/restriction>
  *                                   &lt;/complexContent>
  *                                 &lt;/complexType>
@@ -189,25 +176,11 @@ public class SystemType {
      *                       &lt;/complexContent>
      *                     &lt;/complexType>
      *                   &lt;/element>
-     *                 &lt;/choice>
-     *               &lt;/restriction>
-     *             &lt;/complexContent>
-     *           &lt;/complexType>
-     *         &lt;/element>
-     *         &lt;element name="route" minOccurs="0">
-     *           &lt;complexType>
-     *             &lt;complexContent>
-     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                 &lt;choice maxOccurs="unbounded">
-     *                   &lt;element name="service">
+     *                   &lt;element name="function">
      *                     &lt;complexType>
      *                       &lt;complexContent>
      *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                           &lt;all>
-     *                             &lt;element name="child" type="{}NameType"/>
-     *                           &lt;/all>
      *                           &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
-     *                           &lt;attribute name="label" type="{http://www.w3.org/2001/XMLSchema}string" />
      *                         &lt;/restriction>
      *                       &lt;/complexContent>
      *                     &lt;/complexType>
@@ -233,7 +206,6 @@ public class SystemType {
         "function",
         "component",
         "dependency",
-        "route",
         "config"
     })
     public static class Child {
@@ -241,7 +213,6 @@ public class SystemType {
         protected NameType function;
         protected NameType component;
         protected SystemType.Child.Dependency dependency;
-        protected SystemType.Child.Route route;
         protected Object config;
         @XmlAttribute(name = "name")
         protected String name;
@@ -318,30 +289,6 @@ public class SystemType {
          */
         public void setDependency(SystemType.Child.Dependency value) {
             this.dependency = value;
-        }
-
-        /**
-         * Ruft den Wert der route-Eigenschaft ab.
-         * 
-         * @return
-         *     possible object is
-         *     {@link SystemType.Child.Route }
-         *     
-         */
-        public SystemType.Child.Route getRoute() {
-            return route;
-        }
-
-        /**
-         * Legt den Wert der route-Eigenschaft fest.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link SystemType.Child.Route }
-         *     
-         */
-        public void setRoute(SystemType.Child.Route value) {
-            this.route = value;
         }
 
         /**
@@ -436,6 +383,15 @@ public class SystemType {
          *             &lt;/complexContent>
          *           &lt;/complexType>
          *         &lt;/element>
+         *         &lt;element name="function">
+         *           &lt;complexType>
+         *             &lt;complexContent>
+         *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *                 &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *               &lt;/restriction>
+         *             &lt;/complexContent>
+         *           &lt;/complexType>
+         *         &lt;/element>
          *       &lt;/choice>
          *     &lt;/restriction>
          *   &lt;/complexContent>
@@ -446,39 +402,44 @@ public class SystemType {
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
-            "child"
+            "childOrFunction"
         })
         public static class Dependency {
 
-            protected List<SystemType.Child.Dependency.Child2> child;
+            @XmlElements({
+                @XmlElement(name = "child", type = SystemType.Child.Dependency.Child2.class),
+                @XmlElement(name = "function", type = SystemType.Child.Dependency.Function.class)
+            })
+            protected List<Object> childOrFunction;
 
             /**
-             * Gets the value of the child property.
+             * Gets the value of the childOrFunction property.
              * 
              * <p>
              * This accessor method returns a reference to the live list,
              * not a snapshot. Therefore any modification you make to the
              * returned list will be present inside the JAXB object.
-             * This is why there is not a <CODE>set</CODE> method for the child property.
+             * This is why there is not a <CODE>set</CODE> method for the childOrFunction property.
              * 
              * <p>
              * For example, to add a new item, do as follows:
              * <pre>
-             *    getChild().add(newItem);
+             *    getChildOrFunction().add(newItem);
              * </pre>
              * 
              * 
              * <p>
              * Objects of the following type(s) are allowed in the list
              * {@link SystemType.Child.Dependency.Child }
+             * {@link SystemType.Child.Dependency.Function }
              * 
              * 
              */
-            public List<SystemType.Child.Dependency.Child2> getChild() {
-                if (child == null) {
-                    child = new ArrayList<SystemType.Child.Dependency.Child2>();
+            public List<Object> getChildOrFunction() {
+                if (childOrFunction == null) {
+                    childOrFunction = new ArrayList<Object>();
                 }
-                return this.child;
+                return this.childOrFunction;
             }
 
 
@@ -532,77 +493,6 @@ public class SystemType {
 
             }
 
-        }
-
-
-        /**
-         * <p>Java-Klasse für anonymous complex type.
-         * 
-         * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
-         * 
-         * <pre>
-         * &lt;complexType>
-         *   &lt;complexContent>
-         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *       &lt;choice maxOccurs="unbounded">
-         *         &lt;element name="service">
-         *           &lt;complexType>
-         *             &lt;complexContent>
-         *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *                 &lt;all>
-         *                   &lt;element name="child" type="{}NameType"/>
-         *                 &lt;/all>
-         *                 &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
-         *                 &lt;attribute name="label" type="{http://www.w3.org/2001/XMLSchema}string" />
-         *               &lt;/restriction>
-         *             &lt;/complexContent>
-         *           &lt;/complexType>
-         *         &lt;/element>
-         *       &lt;/choice>
-         *     &lt;/restriction>
-         *   &lt;/complexContent>
-         * &lt;/complexType>
-         * </pre>
-         * 
-         * 
-         */
-        @XmlAccessorType(XmlAccessType.FIELD)
-        @XmlType(name = "", propOrder = {
-            "service"
-        })
-        public static class Route {
-
-            protected List<SystemType.Child.Route.Service> service;
-
-            /**
-             * Gets the value of the service property.
-             * 
-             * <p>
-             * This accessor method returns a reference to the live list,
-             * not a snapshot. Therefore any modification you make to the
-             * returned list will be present inside the JAXB object.
-             * This is why there is not a <CODE>set</CODE> method for the service property.
-             * 
-             * <p>
-             * For example, to add a new item, do as follows:
-             * <pre>
-             *    getService().add(newItem);
-             * </pre>
-             * 
-             * 
-             * <p>
-             * Objects of the following type(s) are allowed in the list
-             * {@link SystemType.Child.Route.Service }
-             * 
-             * 
-             */
-            public List<SystemType.Child.Route.Service> getService() {
-                if (service == null) {
-                    service = new ArrayList<SystemType.Child.Route.Service>();
-                }
-                return this.service;
-            }
-
 
             /**
              * <p>Java-Klasse für anonymous complex type.
@@ -613,11 +503,7 @@ public class SystemType {
              * &lt;complexType>
              *   &lt;complexContent>
              *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-             *       &lt;all>
-             *         &lt;element name="child" type="{}NameType"/>
-             *       &lt;/all>
              *       &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
-             *       &lt;attribute name="label" type="{http://www.w3.org/2001/XMLSchema}string" />
              *     &lt;/restriction>
              *   &lt;/complexContent>
              * &lt;/complexType>
@@ -626,41 +512,11 @@ public class SystemType {
              * 
              */
             @XmlAccessorType(XmlAccessType.FIELD)
-            @XmlType(name = "", propOrder = {
+            @XmlType(name = "")
+            public static class Function {
 
-            })
-            public static class Service {
-
-                @XmlElement(required = true)
-                protected NameType child;
                 @XmlAttribute(name = "name", required = true)
                 protected String name;
-                @XmlAttribute(name = "label")
-                protected String label;
-
-                /**
-                 * Ruft den Wert der child-Eigenschaft ab.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link NameType }
-                 *     
-                 */
-                public NameType getChild() {
-                    return child;
-                }
-
-                /**
-                 * Legt den Wert der child-Eigenschaft fest.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link NameType }
-                 *     
-                 */
-                public void setChild(NameType value) {
-                    this.child = value;
-                }
 
                 /**
                  * Ruft den Wert der name-Eigenschaft ab.
@@ -684,30 +540,6 @@ public class SystemType {
                  */
                 public void setName(String value) {
                     this.name = value;
-                }
-
-                /**
-                 * Ruft den Wert der label-Eigenschaft ab.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
-                 */
-                public String getLabel() {
-                    return label;
-                }
-
-                /**
-                 * Legt den Wert der label-Eigenschaft fest.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
-                 */
-                public void setLabel(String value) {
-                    this.label = value;
                 }
 
             }

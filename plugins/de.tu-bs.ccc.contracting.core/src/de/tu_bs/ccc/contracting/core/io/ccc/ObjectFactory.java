@@ -2,7 +2,7 @@
 // Diese Datei wurde mit der JavaTM Architecture for XML Binding(JAXB) Reference Implementation, v2.2.8-b130911.1802 generiert 
 // Siehe <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Änderungen an dieser Datei gehen bei einer Neukompilierung des Quellschemas verloren. 
-// Generiert: 2018.10.04 um 12:30:04 PM CEST 
+// Generiert: 2019.02.11 um 10:27:32 AM CET 
 //
 
 
@@ -33,9 +33,9 @@ public class ObjectFactory {
 
     private final static QName _SubsystemTypeProvidesRte_QNAME = new QName("", "rte");
     private final static QName _SubsystemTypeProvidesSpec_QNAME = new QName("", "spec");
+    private final static QName _SubsystemTypeProvidesRam_QNAME = new QName("", "ram");
+    private final static QName _SubsystemTypeProvidesCaps_QNAME = new QName("", "caps");
     private final static QName _RequiresTypeService_QNAME = new QName("", "service");
-    private final static QName _RequiresTypeRam_QNAME = new QName("", "ram");
-    private final static QName _RequiresTypeCaps_QNAME = new QName("", "caps");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: de.tu_bs.ccc.contracting.core.io.ccc
@@ -58,30 +58,6 @@ public class ObjectFactory {
      */
     public CompositeType.Provides createCompositeTypeProvides() {
         return new CompositeType.Provides();
-    }
-
-    /**
-     * Create an instance of {@link PatternComponentType }
-     * 
-     */
-    public PatternComponentType createPatternComponentType() {
-        return new PatternComponentType();
-    }
-
-    /**
-     * Create an instance of {@link PatternComponentType.Route }
-     * 
-     */
-    public PatternComponentType.Route createPatternComponentTypeRoute() {
-        return new PatternComponentType.Route();
-    }
-
-    /**
-     * Create an instance of {@link TaskType }
-     * 
-     */
-    public TaskType createTaskType() {
-        return new TaskType();
     }
 
     /**
@@ -109,14 +85,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link TimingType }
-     * 
-     */
-    public TimingType createTimingType() {
-        return new TimingType();
-    }
-
-    /**
      * Create an instance of {@link BinaryType }
      * 
      */
@@ -133,19 +101,43 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link RequiresType.Service }
-     * 
-     */
-    public RequiresType.Service createRequiresTypeService() {
-        return new RequiresType.Service();
-    }
-
-    /**
      * Create an instance of {@link SubsystemType }
      * 
      */
     public SubsystemType createSubsystemType() {
         return new SubsystemType();
+    }
+
+    /**
+     * Create an instance of {@link PatternComponentType }
+     * 
+     */
+    public PatternComponentType createPatternComponentType() {
+        return new PatternComponentType();
+    }
+
+    /**
+     * Create an instance of {@link PatternComponentType.Route }
+     * 
+     */
+    public PatternComponentType.Route createPatternComponentTypeRoute() {
+        return new PatternComponentType.Route();
+    }
+
+    /**
+     * Create an instance of {@link TaskType }
+     * 
+     */
+    public TaskType createTaskType() {
+        return new TaskType();
+    }
+
+    /**
+     * Create an instance of {@link TimingType }
+     * 
+     */
+    public TimingType createTimingType() {
+        return new TimingType();
     }
 
     /**
@@ -162,14 +154,6 @@ public class ObjectFactory {
      */
     public SystemType.Child createSystemTypeChild() {
         return new SystemType.Child();
-    }
-
-    /**
-     * Create an instance of {@link SystemType.Child.Route }
-     * 
-     */
-    public SystemType.Child.Route createSystemTypeChildRoute() {
-        return new SystemType.Child.Route();
     }
 
     /**
@@ -205,6 +189,54 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ServiceTrafficType }
+     * 
+     */
+    public ServiceTrafficType createServiceTrafficType() {
+        return new ServiceTrafficType();
+    }
+
+    /**
+     * Create an instance of {@link NameType }
+     * 
+     */
+    public NameType createNameType() {
+        return new NameType();
+    }
+
+    /**
+     * Create an instance of {@link RefType }
+     * 
+     */
+    public RefType createRefType() {
+        return new RefType();
+    }
+
+    /**
+     * Create an instance of {@link ServiceType }
+     * 
+     */
+    public ServiceType createServiceType() {
+        return new ServiceType();
+    }
+
+    /**
+     * Create an instance of {@link TrafficType }
+     * 
+     */
+    public TrafficType createTrafficType() {
+        return new TrafficType();
+    }
+
+    /**
+     * Create an instance of {@link PlatformComponentType }
+     * 
+     */
+    public PlatformComponentType createPlatformComponentType() {
+        return new PlatformComponentType();
+    }
+
+    /**
      * Create an instance of {@link ComponentType }
      * 
      */
@@ -218,14 +250,6 @@ public class ObjectFactory {
      */
     public MuxType createMuxType() {
         return new MuxType();
-    }
-
-    /**
-     * Create an instance of {@link NameType }
-     * 
-     */
-    public NameType createNameType() {
-        return new NameType();
     }
 
     /**
@@ -245,27 +269,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link RefType }
-     * 
-     */
-    public RefType createRefType() {
-        return new RefType();
-    }
-
-    /**
      * Create an instance of {@link ProtocolType }
      * 
      */
     public ProtocolType createProtocolType() {
         return new ProtocolType();
-    }
-
-    /**
-     * Create an instance of {@link ServiceType }
-     * 
-     */
-    public ServiceType createServiceType() {
-        return new ServiceType();
     }
 
     /**
@@ -290,46 +298,6 @@ public class ObjectFactory {
      */
     public CompositeType.Provides.Service createCompositeTypeProvidesService() {
         return new CompositeType.Provides.Service();
-    }
-
-    /**
-     * Create an instance of {@link PatternComponentType.Expose }
-     * 
-     */
-    public PatternComponentType.Expose createPatternComponentTypeExpose() {
-        return new PatternComponentType.Expose();
-    }
-
-    /**
-     * Create an instance of {@link PatternComponentType.Route.Service }
-     * 
-     */
-    public PatternComponentType.Route.Service createPatternComponentTypeRouteService() {
-        return new PatternComponentType.Route.Service();
-    }
-
-    /**
-     * Create an instance of {@link TaskType.Task }
-     * 
-     */
-    public TaskType.Task createTaskTypeTask() {
-        return new TaskType.Task();
-    }
-
-    /**
-     * Create an instance of {@link TaskType.Signal }
-     * 
-     */
-    public TaskType.Signal createTaskTypeSignal() {
-        return new TaskType.Signal();
-    }
-
-    /**
-     * Create an instance of {@link TaskType.Call }
-     * 
-     */
-    public TaskType.Call createTaskTypeCall() {
-        return new TaskType.Call();
     }
 
     /**
@@ -373,6 +341,78 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link BinaryType.Component }
+     * 
+     */
+    public BinaryType.Component createBinaryTypeComponent() {
+        return new BinaryType.Component();
+    }
+
+    /**
+     * Create an instance of {@link RequiresType.Service }
+     * 
+     */
+    public RequiresType.Service createRequiresTypeService() {
+        return new RequiresType.Service();
+    }
+
+    /**
+     * Create an instance of {@link SubsystemType.Provides }
+     * 
+     */
+    public SubsystemType.Provides createSubsystemTypeProvides() {
+        return new SubsystemType.Provides();
+    }
+
+    /**
+     * Create an instance of {@link SubsystemType.Requires }
+     * 
+     */
+    public SubsystemType.Requires createSubsystemTypeRequires() {
+        return new SubsystemType.Requires();
+    }
+
+    /**
+     * Create an instance of {@link PatternComponentType.Expose }
+     * 
+     */
+    public PatternComponentType.Expose createPatternComponentTypeExpose() {
+        return new PatternComponentType.Expose();
+    }
+
+    /**
+     * Create an instance of {@link PatternComponentType.Route.Service }
+     * 
+     */
+    public PatternComponentType.Route.Service createPatternComponentTypeRouteService() {
+        return new PatternComponentType.Route.Service();
+    }
+
+    /**
+     * Create an instance of {@link TaskType.Task }
+     * 
+     */
+    public TaskType.Task createTaskTypeTask() {
+        return new TaskType.Task();
+    }
+
+    /**
+     * Create an instance of {@link TaskType.Signal }
+     * 
+     */
+    public TaskType.Signal createTaskTypeSignal() {
+        return new TaskType.Signal();
+    }
+
+    /**
+     * Create an instance of {@link TaskType.Call }
+     * 
+     */
+    public TaskType.Call createTaskTypeCall() {
+        return new TaskType.Call();
+    }
+
+    /**
      * Create an instance of {@link TimingType.OnTime }
      * 
      */
@@ -405,51 +445,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link BinaryType.Component }
-     * 
-     */
-    public BinaryType.Component createBinaryTypeComponent() {
-        return new BinaryType.Component();
-    }
-
-    /**
-     * Create an instance of {@link RequiresType.Service.ExcludeComponent }
-     * 
-     */
-    public RequiresType.Service.ExcludeComponent createRequiresTypeServiceExcludeComponent() {
-        return new RequiresType.Service.ExcludeComponent();
-    }
-
-    /**
-     * Create an instance of {@link SubsystemType.Provides }
-     * 
-     */
-    public SubsystemType.Provides createSubsystemTypeProvides() {
-        return new SubsystemType.Provides();
-    }
-
-    /**
-     * Create an instance of {@link SubsystemType.Requires }
-     * 
-     */
-    public SubsystemType.Requires createSubsystemTypeRequires() {
-        return new SubsystemType.Requires();
-    }
-
-    /**
-     * Create an instance of {@link SystemType.Child.Route.Service }
-     * 
-     */
-    public SystemType.Child.Route.Service createSystemTypeChildRouteService() {
-        return new SystemType.Child.Route.Service();
-    }
-
-    /**
      * Create an instance of {@link SystemType.Child.Dependency.Child }
      * 
      */
     public SystemType.Child.Dependency.Child2 createSystemTypeChildDependencyChild() {
         return new SystemType.Child.Dependency.Child2();
+    }
+
+    /**
+     * Create an instance of {@link SystemType.Child.Dependency.Function }
+     * 
+     */
+    public SystemType.Child.Dependency.Function createSystemTypeChildDependencyFunction() {
+        return new SystemType.Child.Dependency.Function();
     }
 
     /**
@@ -468,6 +476,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "", name = "spec", scope = SubsystemType.Provides.class)
     public JAXBElement<NameType> createSubsystemTypeProvidesSpec(NameType value) {
         return new JAXBElement<NameType>(_SubsystemTypeProvidesSpec_QNAME, NameType.class, SubsystemType.Provides.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link QuantumType }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "ram", scope = SubsystemType.Provides.class)
+    public JAXBElement<QuantumType> createSubsystemTypeProvidesRam(QuantumType value) {
+        return new JAXBElement<QuantumType>(_SubsystemTypeProvidesRam_QNAME, QuantumType.class, SubsystemType.Provides.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link QuantumType }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "caps", scope = SubsystemType.Provides.class)
+    public JAXBElement<QuantumType> createSubsystemTypeProvidesCaps(QuantumType value) {
+        return new JAXBElement<QuantumType>(_SubsystemTypeProvidesCaps_QNAME, QuantumType.class, SubsystemType.Provides.class, value);
     }
 
     /**
@@ -503,7 +529,7 @@ public class ObjectFactory {
      */
     @XmlElementDecl(namespace = "", name = "ram", scope = RequiresType.class)
     public JAXBElement<QuantumType> createRequiresTypeRam(QuantumType value) {
-        return new JAXBElement<QuantumType>(_RequiresTypeRam_QNAME, QuantumType.class, RequiresType.class, value);
+        return new JAXBElement<QuantumType>(_SubsystemTypeProvidesRam_QNAME, QuantumType.class, RequiresType.class, value);
     }
 
     /**
@@ -512,7 +538,7 @@ public class ObjectFactory {
      */
     @XmlElementDecl(namespace = "", name = "caps", scope = RequiresType.class)
     public JAXBElement<QuantumType> createRequiresTypeCaps(QuantumType value) {
-        return new JAXBElement<QuantumType>(_RequiresTypeCaps_QNAME, QuantumType.class, RequiresType.class, value);
+        return new JAXBElement<QuantumType>(_SubsystemTypeProvidesCaps_QNAME, QuantumType.class, RequiresType.class, value);
     }
 
 }

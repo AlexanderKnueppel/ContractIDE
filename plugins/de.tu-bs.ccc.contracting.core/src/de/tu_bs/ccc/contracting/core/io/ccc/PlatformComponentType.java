@@ -13,24 +13,21 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java-Klasse für RepositoryType complex type.
+ * <p>Java-Klasse für PlatformComponentType complex type.
  * 
  * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
  * 
  * <pre>
- * &lt;complexType name="RepositoryType">
+ * &lt;complexType name="PlatformComponentType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;choice maxOccurs="unbounded">
- *         &lt;element name="binary" type="{}BinaryType"/>
- *         &lt;element name="component" type="{}ComponentType"/>
- *         &lt;element name="composite" type="{}CompositeType"/>
- *       &lt;/choice>
+ *       &lt;sequence>
+ *         &lt;element name="subsystem" type="{}SubsystemType" maxOccurs="unbounded"/>
+ *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -39,47 +36,41 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "RepositoryType", propOrder = {
-    "binaryOrComponentOrComposite"
+@XmlType(name = "PlatformComponentType", propOrder = {
+    "subsystem"
 })
-public class RepositoryType {
+public class PlatformComponentType {
 
-    @XmlElements({
-        @XmlElement(name = "binary", type = BinaryType.class),
-        @XmlElement(name = "component", type = ComponentType.class),
-        @XmlElement(name = "composite", type = CompositeType.class)
-    })
-    protected List<Object> binaryOrComponentOrComposite;
+    @XmlElement(required = true)
+    protected List<SubsystemType> subsystem;
 
     /**
-     * Gets the value of the binaryOrComponentOrComposite property.
+     * Gets the value of the subsystem property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the binaryOrComponentOrComposite property.
+     * This is why there is not a <CODE>set</CODE> method for the subsystem property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getBinaryOrComponentOrComposite().add(newItem);
+     *    getSubsystem().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link BinaryType }
-     * {@link ComponentType }
-     * {@link CompositeType }
+     * {@link SubsystemType }
      * 
      * 
      */
-    public List<Object> getBinaryOrComponentOrComposite() {
-        if (binaryOrComponentOrComposite == null) {
-            binaryOrComponentOrComposite = new ArrayList<Object>();
+    public List<SubsystemType> getSubsystem() {
+        if (subsystem == null) {
+            subsystem = new ArrayList<SubsystemType>();
         }
-        return this.binaryOrComponentOrComposite;
+        return this.subsystem;
     }
 
 }
