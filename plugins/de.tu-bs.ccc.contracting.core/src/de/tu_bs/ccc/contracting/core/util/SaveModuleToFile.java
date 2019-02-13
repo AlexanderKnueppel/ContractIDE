@@ -21,6 +21,7 @@ import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.IUpdateFeature;
 import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
 import org.eclipse.graphiti.features.context.impl.AddContext;
+import org.eclipse.graphiti.features.context.impl.CustomContext;
 import org.eclipse.graphiti.features.context.impl.UpdateContext;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
@@ -30,6 +31,7 @@ import org.eclipse.graphiti.ui.services.GraphitiUi;
 import de.tu_bs.ccc.contracting.Verification.DirectionType;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.core.features.layout.LayoutDiagramFeature;
 import de.tu_bs.ccc.contracting.core.localization.StringTable;
 
 public class SaveModuleToFile extends RecordingCommand {
@@ -209,6 +211,9 @@ public class SaveModuleToFile extends RecordingCommand {
 		UpdateContext updateContext = new UpdateContext(diagram.getChildren().get(0));
 		IUpdateFeature updateFeature = dtp.getFeatureProvider().getUpdateFeature(updateContext);
 		updateFeature.update(updateContext);
+		
+		// layout module
+		new LayoutDiagramFeature(dtp.getFeatureProvider()).execute(diagram);
 
 		try {
 			resource2.save(null);

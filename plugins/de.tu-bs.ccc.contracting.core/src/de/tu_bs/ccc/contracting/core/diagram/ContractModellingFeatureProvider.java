@@ -45,6 +45,8 @@ import de.tu_bs.ccc.contracting.core.features.CreatePortFeature;
 import de.tu_bs.ccc.contracting.core.features.DeletePortConnectionFeature;
 import de.tu_bs.ccc.contracting.core.features.connections.AddContractConnectionFeature;
 import de.tu_bs.ccc.contracting.core.features.connections.ReconnectionFeature;
+import de.tu_bs.ccc.contracting.core.features.layout.LayoutDiagramFeature;
+import de.tu_bs.ccc.contracting.core.features.layout.LayoutPortFeature;
 import de.tu_bs.ccc.contracting.core.features.loading.AssignAbstractFeature;
 import de.tu_bs.ccc.contracting.core.features.loading.LoadModuleFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.CollapseFeature;
@@ -69,7 +71,7 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 	@Override
 	public ICustomFeature[] getCustomFeatures(ICustomContext context) {
 		return new ICustomFeature[] { new VerifyCustomFeature(this), new CollapseFeature(this),
-				new EditAbstractFeature(this), new ReloadImportFeature(this) };
+				new EditAbstractFeature(this), new ReloadImportFeature(this), new LayoutDiagramFeature(this) };
 	}
 
 	@Override
@@ -94,12 +96,12 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 	@Override
 	public ICreateFeature[] getCreateFeatures() {
 
-		return new ICreateFeature[] { 
-				//new CreateComponentFeature(this), 
+		return new ICreateFeature[] {
+				// new CreateComponentFeature(this),
 				new CreateContractFeature(this),
-				//new CreateAbstractFeature(this), 
-				new CreatePortFeature(this), new LoadModuleFeature(this),
-				new CreateProperty(this), new AssignAbstractFeature(this) };
+				// new CreateAbstractFeature(this),
+				new CreatePortFeature(this), new LoadModuleFeature(this), new CreateProperty(this),
+				new AssignAbstractFeature(this) };
 	}
 
 	@Override
@@ -138,8 +140,10 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 		// TODO: check for right domain object instances below
 		PictogramElement pictogramElement = context.getPictogramElement();
 		Object bo = getBusinessObjectForPictogramElement(pictogramElement);
-		if (bo instanceof Ports || bo instanceof Module || bo instanceof Contract || bo instanceof System) {
+		if (bo instanceof Module || bo instanceof Contract || bo instanceof System) {
 			return new LayoutFeature(this);
+		} else if (bo instanceof Ports) {
+			return super.getLayoutFeature(context);
 		}
 		return super.getLayoutFeature(context);
 	}
@@ -176,20 +180,17 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 		return super.getMoveShapeFeature(context);
 
 	}
-	
+
 	@Override
 	public IResizeShapeFeature getResizeShapeFeature(IResizeShapeContext context) {
 		PictogramElement pictogramElement = context.getPictogramElement();
 		if (pictogramElement instanceof ContainerShape) {
 			Object bo = getBusinessObjectForPictogramElement(pictogramElement);
-			 if (bo instanceof Module) {
+			if (bo instanceof Module) {
 				return new ResizeModuleFeature(this);
 			}
 		}
 		return super.getResizeShapeFeature(context);
 	}
-	
-	
-	
 
 }
