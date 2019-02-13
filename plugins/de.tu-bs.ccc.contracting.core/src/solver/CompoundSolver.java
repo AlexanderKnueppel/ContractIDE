@@ -121,7 +121,7 @@ public class CompoundSolver {
 
 		}
 		for (Module component : this.m.getConsistsOf()) {
-			for (Contract c : component.getContract()) {
+			for (Contract c : component.getModule().getContract()) {
 				if (c.getViewPoint().getValue() == ViewPoint.FUNCTIONAL_VALUE) {
 					try {
 						solver.add(
