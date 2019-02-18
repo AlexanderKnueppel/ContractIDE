@@ -23,6 +23,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
@@ -47,7 +49,6 @@ import de.tu_bs.ccc.contracting.core.localization.StringTable;
 import de.tu_bs.ccc.contracting.ui.wizards.CreationType;
 
 public class CoreUtil {
-
 	public static IProject getCurrentProject() {
 		IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 		IWorkbenchPage activePage = window.getActivePage();
@@ -363,4 +364,35 @@ public class CoreUtil {
 		return synch;
 
 	}
+	static void getDifferences() {
+		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+		IProject[] projects = root.getProjects();
+		
+		for (IProject iProject : projects) {
+			
+		
+		List<IFile> list = CoreUtil.getModelFiles(iProject);
+		for (IFile iFile : list) {
+			ResourceSet resourceSet1 = new ResourceSetImpl();
+			ResourceSet resourceSet2 = new ResourceSetImpl();
+
+			URI fileURI = URI.createFileURI(iFile.getLocation().toFile().getAbsolutePath().toString());
+			if (iFile.getName().contains(".model")) {
+				try {
+
+					Resource impResource = resourceSet2.getResource(fileURI, true);
+
+					if (impResource.getContents().get(0) instanceof Module) {
+						//IComparisonScope scope = new DefaultComparisonScope(resourceSet1, resourceSet2);
+						//Comparison comparison = EMFCompare.builder().build().compare(scope);
+						//List<Diff> differences = comparison.getDifferences();
+					}
+
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+			}
+		}
+		
+	}}
 }
