@@ -80,7 +80,7 @@
          point="org.eclipse.ui.decorators">
       <decorator
             adaptable="true"
-            class="de.tubs.ccc.contracting.core.decorators.SynchronizeDecorator"
+            class="de.tu_bs.ccc.contracting.core.decorators.SynchronizeDecorator"
             id="de.tubs.ccc.contracting.core.decorators.SynchronizeDecorator"
             label="Read-only Decorator"
             lightweight="true"
@@ -101,6 +101,10 @@
             </and>
          </enablement>
       </decorator>
+   </extension>
+   <extension
+         point="org.eclipse.ui.startup">
+         	<startup class="de.tu_bs.ccc.contracting.core.startup.Starter"/>
    </extension>
 
 </plugin>
