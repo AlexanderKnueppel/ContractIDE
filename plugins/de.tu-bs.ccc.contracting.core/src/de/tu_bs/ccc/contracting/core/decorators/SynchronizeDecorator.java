@@ -1,4 +1,4 @@
-package de.tubs.ccc.contracting.core.decorators;
+package de.tu_bs.ccc.contracting.core.decorators;
 
 import java.net.URL;
 import java.util.Iterator;
