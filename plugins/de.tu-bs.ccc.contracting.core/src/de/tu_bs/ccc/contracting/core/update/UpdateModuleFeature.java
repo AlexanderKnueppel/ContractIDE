@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.IReason;
 import org.eclipse.graphiti.features.context.IUpdateContext;
+import org.eclipse.graphiti.features.context.impl.AddContext;
 import org.eclipse.graphiti.features.impl.AbstractUpdateFeature;
 import org.eclipse.graphiti.features.impl.Reason;
 import org.eclipse.graphiti.mm.algorithms.Polyline;
@@ -46,6 +47,7 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 
 	@Override
 	public IReason updateNeeded(IUpdateContext context) {
+
 		PictogramElement pictogramElement = context.getPictogramElement();
 		Module m = (Module) getBusinessObjectForPictogramElement(context.getPictogramElement());
 		if (pictogramElement instanceof ContainerShape) {
@@ -55,6 +57,7 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 			Text nameText = (Text) s2.getGraphicsAlgorithm();
 			if (!nameText.getValue().equals(m.getName() + "   " + m.getVersion())) {
 				updatePictogramElement(pictogramElement);
+				update(context);
 				return Reason.createTrueReason("Name or version is out of date!");
 			} else if (m.getModule() != null) {
 				try {
@@ -68,8 +71,21 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 				}
 			}
 
-		} else
-			return Reason.createFalseReason();
+		}
+
+		for (Ports po : m.getPorts()) {
+			boolean found = false;
+
+			for (PictogramLink p : getDiagram().getPictogramLinks()) {
+
+				if (p.getBusinessObjects().get(0) == po) {
+					found = true;
+				}
+			}
+			if (!found) {
+				update(context);
+			}
+		}
 		return Reason.createFalseReason();
 	}
 
@@ -102,9 +118,15 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 			}
 			for (Ports po : m.getPorts()) {
 				for (PictogramLink p : getDiagram().getPictogramLinks()) {
+					boolean found = false;
 					if (p.getBusinessObjects().get(0) == po) {
 						updatePictogramElement(p.getPictogramElement());
 					}
+					AddContext creat = new AddContext();
+					creat.setNewObject(po);
+					creat.setTargetContainer(cs);
+					creat.setLocation(0, 0);
+					getFeatureProvider().addIfPossible(creat);
 				}
 			}
 			if (m instanceof Compound) {
