@@ -17,13 +17,11 @@ import de.tu_bs.ccc.contracting.Verification.Module;
 
 public class ImportMapping {
 
-	public static LinkedList<MappingEntry> mapping = new LinkedList<MappingEntry>();
-	public static boolean initialized = false;
+	public LinkedList<MappingEntry> mapping = new LinkedList<MappingEntry>();
+	public boolean initialized = false;
 
-	public static LinkedList<Module> getMappingEntry(Module searched) {
-		if (!initialized) {
-			initialize();
-		}
+	public LinkedList<Module> getMappingEntry(Module searched) {
+
 		LinkedList<Module> foundEntries = new LinkedList<Module>();
 		for (MappingEntry mappingEntry : mapping) {
 
@@ -37,10 +35,8 @@ public class ImportMapping {
 
 	}
 
-	public static void deleteMappingEntry(Module component) {
-		if (!initialized) {
-			initialize();
-		}
+	public void deleteMappingEntry(Module component) {
+
 		for (MappingEntry mappingEntry : mapping) {
 			if (mappingEntry.getInstance() == component) {
 				mapping.remove(mappingEntry);
@@ -51,10 +47,8 @@ public class ImportMapping {
 		}
 	}
 
-	public static void addMappingEntry(Module original, Module instance) {
-		if (!initialized) {
-			initialize();
-		}
+	public void addMappingEntry(Module original, Module instance) {
+
 		boolean alreadyExists = false;
 		for (MappingEntry mappingEntry : mapping) {
 
@@ -65,19 +59,19 @@ public class ImportMapping {
 		}
 		if (!alreadyExists) {
 			MappingEntry m = new MappingEntry(instance, original);
-			mapping.add(m);
+			this.mapping.add(m);
 
 		}
 
 	}
 
-	public static void initialize() {
+	public void initialize(IProject p) {
 		if (!initialized) {
 			initialized = true;
-			for (IProject x : org.eclipse.core.resources.ResourcesPlugin.getWorkspace().getRoot().getProjects()) {
+			
 				try {
 
-					processContainer(x);
+					processContainer(p);
 
 				} catch (CoreException e) {
 					// TODO Auto-generated catch block
@@ -85,14 +79,12 @@ public class ImportMapping {
 				}
 			}
 
-		}
-		for (MappingEntry mappingEntry : mapping) {
-
-		}
+		
+		
 
 	}
 
-	private static void processContainer(IContainer container) throws CoreException {
+	private void processContainer(IContainer container) throws CoreException {
 		IResource[] members = container.members();
 		for (IResource member : members) {
 			if (member instanceof IContainer)
@@ -102,7 +94,7 @@ public class ImportMapping {
 		}
 	}
 
-	private static void processFile(IFile member) {
+	private void processFile(IFile member) {
 
 		IFile resource = member;
 		ResourceSet resourceSet = new ResourceSetImpl();

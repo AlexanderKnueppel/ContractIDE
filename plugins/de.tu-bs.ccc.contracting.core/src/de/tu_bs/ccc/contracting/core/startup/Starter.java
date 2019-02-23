@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.internal.resources.Workspace;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -26,6 +27,7 @@ import org.eclipse.ui.IStartup;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.core.mapping.ImportMapping;
+import de.tu_bs.ccc.contracting.core.mapping.ProjectMapping;
 import de.tu_bs.ccc.contracting.core.util.CoreUtil;
 
 public class Starter implements IStartup {
@@ -36,7 +38,12 @@ public class Starter implements IStartup {
 
 	@Override
 	public void earlyStartup() {
-		ImportMapping.initialize();
+		for (IProject x : org.eclipse.core.resources.ResourcesPlugin.getWorkspace().getRoot().getProjects()) {
+			ImportMapping m = new ImportMapping();
+			m.initialize(x);
+			ProjectMapping.getMapPro().put(x, m);
+		}
+		
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 
 		IResourceChangeListener listener = new IResourceChangeListener() {

@@ -3,6 +3,8 @@ package de.tu_bs.ccc.contracting.core.guiFeatures;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
@@ -10,6 +12,10 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 import de.tu_bs.ccc.contracting.Verification.DirectionType;
@@ -17,6 +23,7 @@ import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.core.mapping.ImportMapping;
 import de.tu_bs.ccc.contracting.core.mapping.MappingEntry;
+import de.tu_bs.ccc.contracting.core.mapping.ProjectMapping;
 import de.tu_bs.ccc.contracting.core.util.CoreUtil;
 import de.tu_bs.ccc.contracting.idl.CidlPersistenceManager;
 import de.tu_bs.ccc.contracting.idl.cidl.Interface;
@@ -61,26 +68,45 @@ public class EditPortFeature extends AbstractCustomFeature {
 			dialog = new EditConsumerPortFeatureDialog(shell, interfaces);
 		else
 			dialog = new EditProviderPortFeatureDialog(shell, interfaces);
+		
+		IWorkbenchWindow window = PlatformUI.getWorkbench()
+	            .getActiveWorkbenchWindow();
+		IWorkbenchPage activePage = window.getActivePage();
 
-		if (ImportMapping.getMappingEntry(((Ports) object).getModule()).size() > 0) {
+		IEditorPart activeEditor = activePage.getActiveEditor();
 
-			MessageBox dialog2 = new MessageBox(shell, SWT.ICON_QUESTION | SWT.OK | SWT.CANCEL);
-			dialog2.setText("Component already used");
-			dialog2.setMessage("This compoent already has instances, do you really want to change its ports?");
+		if (activeEditor != null) {
+		   IEditorInput input = activeEditor.getEditorInput();
 
-			// open dialog and await user selection
-			int returnCode = dialog2.open();
-			if (returnCode == SWT.OK) {
-				dialog.setOldProperties(object);
-				dialog.create();
-				dialog.open();
-			}
+		   IProject project = input.getAdapter(IProject.class);
+		   if (project == null) {
+		      IResource resource = input.getAdapter(IResource.class);
+		      if (resource != null) {
+		         project = resource.getProject();
+		      }
+		   }
+		   if(ProjectMapping.getMapPro().get(project).getMappingEntry(((Ports) object).getModule()).size() > 0) {
 
-		} else {
-			dialog.setOldProperties(object);
-			dialog.create();
-			dialog.open();
+					MessageBox dialog2 = new MessageBox(shell, SWT.ICON_QUESTION | SWT.OK | SWT.CANCEL);
+					dialog2.setText("Component already used");
+					dialog2.setMessage("This compoent already has instances, do you really want to change its ports?");
+
+					// open dialog and await user selection
+					int returnCode = dialog2.open();
+					if (returnCode == SWT.OK) {
+						dialog.setOldProperties(object);
+						dialog.create();
+						dialog.open();
+					}
+
+				} else {
+					dialog.setOldProperties(object);
+					dialog.create();
+					dialog.open();
+				}
 		}
+		
+		
 
 	}
 }

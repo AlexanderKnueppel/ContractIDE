@@ -14,6 +14,7 @@ import java.util.Map;
 
 import javax.swing.JOptionPane;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -31,13 +32,20 @@ import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
 
 import general.SaveDomainModel;
 import de.tu_bs.ccc.contracting.Verification.Component;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.core.localization.StringTable;
 import de.tu_bs.ccc.contracting.core.mapping.ImportMapping;
+import de.tu_bs.ccc.contracting.core.mapping.ProjectMapping;
 import de.tu_bs.ccc.contracting.Verification.MmFactory;
 import de.tu_bs.ccc.contracting.Verification.MmPackage;
 import windows.Dialog;
@@ -122,7 +130,23 @@ public class LoadComponentFeature extends AbstractCreateFeature {
 			copy.setIsPartOf(x);
 			copy.setModule(c);
 			x.getConsistsOf().add(copy);
-			ImportMapping.addMappingEntry(c, copy);
+			IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+			IWorkbenchPage activePage = window.getActivePage();
+
+			IEditorPart activeEditor = activePage.getActiveEditor();
+
+			if (activeEditor != null) {
+				IEditorInput input = activeEditor.getEditorInput();
+
+				IProject project = input.getAdapter(IProject.class);
+				if (project == null) {
+					IResource resource2 = input.getAdapter(IResource.class);
+					if (resource2 != null) {
+						project = resource2.getProject();
+						ProjectMapping.getMapPro().get(project).addMappingEntry(c, copy);
+					}
+				}
+			}
 
 			return new Object[] { copy };
 
