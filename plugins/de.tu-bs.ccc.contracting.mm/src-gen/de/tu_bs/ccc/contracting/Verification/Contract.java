@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface Contract extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * The default value is <code>"\"\""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
@@ -38,7 +39,7 @@ public interface Contract extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getContract_Name()
-	 * @model
+	 * @model default="\"\""
 	 * @generated
 	 */
 	String getName();
@@ -63,13 +64,13 @@ public interface Contract extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Module</em>' container reference.
-	 * @see #setModule(Module)
+	 * @see #setModule(de.tu_bs.ccc.contracting.Verification.Module)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getContract_Module()
 	 * @see de.tu_bs.ccc.contracting.Verification.Module#getContract
 	 * @model opposite="contract" required="true" transient="false"
 	 * @generated
 	 */
-	Module getModule();
+	de.tu_bs.ccc.contracting.Verification.Module getModule();
 
 	/**
 	 * Sets the value of the '{@link de.tu_bs.ccc.contracting.Verification.Contract#getModule <em>Module</em>}' container reference.
@@ -79,10 +80,11 @@ public interface Contract extends EObject {
 	 * @see #getModule()
 	 * @generated
 	 */
-	void setModule(Module value);
+	void setModule(de.tu_bs.ccc.contracting.Verification.Module value);
 
 	/**
 	 * Returns the value of the '<em><b>View Point</b></em>' attribute.
+	 * The default value is <code>"FUNCTIONAL"</code>.
 	 * The literals are from the enumeration {@link de.tu_bs.ccc.contracting.Verification.ViewPoint}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -94,7 +96,7 @@ public interface Contract extends EObject {
 	 * @see de.tu_bs.ccc.contracting.Verification.ViewPoint
 	 * @see #setViewPoint(ViewPoint)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getContract_ViewPoint()
-	 * @model
+	 * @model default="FUNCTIONAL"
 	 * @generated
 	 */
 	ViewPoint getViewPoint();

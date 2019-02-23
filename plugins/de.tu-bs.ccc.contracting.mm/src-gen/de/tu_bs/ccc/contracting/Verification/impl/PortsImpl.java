@@ -4,7 +4,6 @@ package de.tu_bs.ccc.contracting.Verification.impl;
 
 import de.tu_bs.ccc.contracting.Verification.DirectionType;
 import de.tu_bs.ccc.contracting.Verification.MmPackage;
-import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.PortType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 
@@ -61,7 +60,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = null;
+	protected static final String NAME_EDEFAULT = "\"\"";
 
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -141,7 +140,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String SERVICE_EDEFAULT = "";
+	protected static final String SERVICE_EDEFAULT = "\"\"";
 
 	/**
 	 * The cached value of the '{@link #getService() <em>Service</em>}' attribute.
@@ -181,7 +180,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int MAX_CLIENTS_EDEFAULT = 0;
+	protected static final int MAX_CLIENTS_EDEFAULT = -1;
 
 	/**
 	 * The cached value of the '{@link #getMaxClients() <em>Max Clients</em>}' attribute.
@@ -201,7 +200,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String FILTER_EDEFAULT = null;
+	protected static final String FILTER_EDEFAULT = "\"\"";
 
 	/**
 	 * The cached value of the '{@link #getFilter() <em>Filter</em>}' attribute.
@@ -221,7 +220,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String LABEL_EDEFAULT = null;
+	protected static final String LABEL_EDEFAULT = "\"\"";
 
 	/**
 	 * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
@@ -241,7 +240,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String FUNCTION_EDEFAULT = null;
+	protected static final String FUNCTION_EDEFAULT = "\"\"";
 
 	/**
 	 * The cached value of the '{@link #getFunction() <em>Function</em>}' attribute.
@@ -297,6 +296,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -306,6 +306,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -318,6 +319,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PortType getType() {
 		return type;
 	}
@@ -327,6 +329,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(PortType newType) {
 		PortType oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
@@ -339,6 +342,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Ports> getPorts() {
 		if (ports == null) {
 			ports = new EObjectWithInverseResolvingEList<Ports>(Ports.class, this, MmPackage.PORTS__PORTS,
@@ -352,6 +356,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Ports getPortseOpposite() {
 		if (portseOpposite != null && portseOpposite.eIsProxy()) {
 			InternalEObject oldPortseOpposite = (InternalEObject) portseOpposite;
@@ -398,6 +403,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPortseOpposite(Ports newPortseOpposite) {
 		if (newPortseOpposite != portseOpposite) {
 			NotificationChain msgs = null;
@@ -420,10 +426,11 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Module getModule() {
+	@Override
+	public de.tu_bs.ccc.contracting.Verification.Module getModule() {
 		if (eContainerFeatureID() != MmPackage.PORTS__MODULE)
 			return null;
-		return (Module) eInternalContainer();
+		return (de.tu_bs.ccc.contracting.Verification.Module) eInternalContainer();
 	}
 
 	/**
@@ -431,7 +438,8 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetModule(Module newModule, NotificationChain msgs) {
+	public NotificationChain basicSetModule(de.tu_bs.ccc.contracting.Verification.Module newModule,
+			NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject) newModule, MmPackage.PORTS__MODULE, msgs);
 		return msgs;
 	}
@@ -441,7 +449,8 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setModule(Module newModule) {
+	@Override
+	public void setModule(de.tu_bs.ccc.contracting.Verification.Module newModule) {
 		if (newModule != eInternalContainer()
 				|| (eContainerFeatureID() != MmPackage.PORTS__MODULE && newModule != null)) {
 			if (EcoreUtil.isAncestor(this, newModule))
@@ -450,7 +459,8 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newModule != null)
-				msgs = ((InternalEObject) newModule).eInverseAdd(this, MmPackage.MODULE__PORTS, Module.class, msgs);
+				msgs = ((InternalEObject) newModule).eInverseAdd(this, MmPackage.MODULE__PORTS,
+						de.tu_bs.ccc.contracting.Verification.Module.class, msgs);
 			msgs = basicSetModule(newModule, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -463,6 +473,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Ports> getInsidePorts() {
 		if (insidePorts == null) {
 			insidePorts = new EObjectWithInverseResolvingEList<Ports>(Ports.class, this, MmPackage.PORTS__INSIDE_PORTS,
@@ -476,6 +487,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Ports getInsidePortseOpposite() {
 		if (insidePortseOpposite != null && insidePortseOpposite.eIsProxy()) {
 			InternalEObject oldInsidePortseOpposite = (InternalEObject) insidePortseOpposite;
@@ -522,6 +534,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInsidePortseOpposite(Ports newInsidePortseOpposite) {
 		if (newInsidePortseOpposite != insidePortseOpposite) {
 			NotificationChain msgs = null;
@@ -544,6 +557,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getService() {
 		return service;
 	}
@@ -553,6 +567,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setService(String newService) {
 		String oldService = service;
 		service = newService;
@@ -565,6 +580,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DirectionType getOuterDirection() {
 		return outerDirection;
 	}
@@ -574,6 +590,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOuterDirection(DirectionType newOuterDirection) {
 		DirectionType oldOuterDirection = outerDirection;
 		outerDirection = newOuterDirection == null ? OUTER_DIRECTION_EDEFAULT : newOuterDirection;
@@ -587,6 +604,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getMaxClients() {
 		return maxClients;
 	}
@@ -596,6 +614,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMaxClients(int newMaxClients) {
 		int oldMaxClients = maxClients;
 		maxClients = newMaxClients;
@@ -609,6 +628,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFilter() {
 		return filter;
 	}
@@ -618,6 +638,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFilter(String newFilter) {
 		String oldFilter = filter;
 		filter = newFilter;
@@ -630,6 +651,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLabel() {
 		return label;
 	}
@@ -639,6 +661,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLabel(String newLabel) {
 		String oldLabel = label;
 		label = newLabel;
@@ -651,6 +674,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFunction() {
 		return function;
 	}
@@ -660,6 +684,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFunction(String newFunction) {
 		String oldFunction = function;
 		function = newFunction;
@@ -672,6 +697,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ProviderType getProviderType() {
 		return providerType;
 	}
@@ -681,6 +707,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProviderType(ProviderType newProviderType) {
 		ProviderType oldProviderType = providerType;
 		providerType = newProviderType == null ? PROVIDER_TYPE_EDEFAULT : newProviderType;
@@ -708,7 +735,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 		case MmPackage.PORTS__MODULE:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetModule((Module) otherEnd, msgs);
+			return basicSetModule((de.tu_bs.ccc.contracting.Verification.Module) otherEnd, msgs);
 		case MmPackage.PORTS__INSIDE_PORTS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getInsidePorts()).basicAdd(otherEnd, msgs);
 		case MmPackage.PORTS__INSIDE_PORTSE_OPPOSITE:
@@ -751,7 +778,8 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 		case MmPackage.PORTS__MODULE:
-			return eInternalContainer().eInverseRemove(this, MmPackage.MODULE__PORTS, Module.class, msgs);
+			return eInternalContainer().eInverseRemove(this, MmPackage.MODULE__PORTS,
+					de.tu_bs.ccc.contracting.Verification.Module.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -823,7 +851,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 			setPortseOpposite((Ports) newValue);
 			return;
 		case MmPackage.PORTS__MODULE:
-			setModule((Module) newValue);
+			setModule((de.tu_bs.ccc.contracting.Verification.Module) newValue);
 			return;
 		case MmPackage.PORTS__INSIDE_PORTS:
 			getInsidePorts().clear();
@@ -878,7 +906,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 			setPortseOpposite((Ports) null);
 			return;
 		case MmPackage.PORTS__MODULE:
-			setModule((Module) null);
+			setModule((de.tu_bs.ccc.contracting.Verification.Module) null);
 			return;
 		case MmPackage.PORTS__INSIDE_PORTS:
 			getInsidePorts().clear();
@@ -961,7 +989,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 		if (eIsProxy())
 			return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
 		result.append(", type: ");

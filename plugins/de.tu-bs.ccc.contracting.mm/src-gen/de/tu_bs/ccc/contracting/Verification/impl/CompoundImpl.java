@@ -4,8 +4,6 @@ package de.tu_bs.ccc.contracting.Verification.impl;
 
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.MmPackage;
-import de.tu_bs.ccc.contracting.Verification.Module;
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -40,7 +38,7 @@ public class CompoundImpl extends ModuleImpl implements Compound {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Module> consistsOf;
+	protected EList<de.tu_bs.ccc.contracting.Verification.Module> consistsOf;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -66,10 +64,12 @@ public class CompoundImpl extends ModuleImpl implements Compound {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Module> getConsistsOf() {
+	@Override
+	public EList<de.tu_bs.ccc.contracting.Verification.Module> getConsistsOf() {
 		if (consistsOf == null) {
-			consistsOf = new EObjectContainmentWithInverseEList<Module>(Module.class, this,
-					MmPackage.COMPOUND__CONSISTS_OF, MmPackage.MODULE__IS_PART_OF);
+			consistsOf = new EObjectContainmentWithInverseEList<de.tu_bs.ccc.contracting.Verification.Module>(
+					de.tu_bs.ccc.contracting.Verification.Module.class, this, MmPackage.COMPOUND__CONSISTS_OF,
+					MmPackage.MODULE__IS_PART_OF);
 		}
 		return consistsOf;
 	}
@@ -128,7 +128,7 @@ public class CompoundImpl extends ModuleImpl implements Compound {
 		switch (featureID) {
 		case MmPackage.COMPOUND__CONSISTS_OF:
 			getConsistsOf().clear();
-			getConsistsOf().addAll((Collection<? extends Module>) newValue);
+			getConsistsOf().addAll((Collection<? extends de.tu_bs.ccc.contracting.Verification.Module>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

@@ -38,6 +38,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface Ports extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * The default value is <code>"\"\""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
@@ -47,7 +48,7 @@ public interface Ports extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getPorts_Name()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+	 * @model default="\"\"" dataType="org.eclipse.emf.ecore.xml.type.String"
 	 * @generated
 	 */
 	String getName();
@@ -64,6 +65,7 @@ public interface Ports extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.
+	 * The default value is <code>"INT"</code>.
 	 * The literals are from the enumeration {@link de.tu_bs.ccc.contracting.Verification.PortType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -75,7 +77,7 @@ public interface Ports extends EObject {
 	 * @see de.tu_bs.ccc.contracting.Verification.PortType
 	 * @see #setType(PortType)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getPorts_Type()
-	 * @model
+	 * @model default="INT"
 	 * @generated
 	 */
 	PortType getType();
@@ -147,13 +149,13 @@ public interface Ports extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Module</em>' container reference.
-	 * @see #setModule(Module)
+	 * @see #setModule(de.tu_bs.ccc.contracting.Verification.Module)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getPorts_Module()
 	 * @see de.tu_bs.ccc.contracting.Verification.Module#getPorts
 	 * @model opposite="ports" required="true" transient="false"
 	 * @generated
 	 */
-	Module getModule();
+	de.tu_bs.ccc.contracting.Verification.Module getModule();
 
 	/**
 	 * Sets the value of the '{@link de.tu_bs.ccc.contracting.Verification.Ports#getModule <em>Module</em>}' container reference.
@@ -163,7 +165,7 @@ public interface Ports extends EObject {
 	 * @see #getModule()
 	 * @generated
 	 */
-	void setModule(Module value);
+	void setModule(de.tu_bs.ccc.contracting.Verification.Module value);
 
 	/**
 	 * Returns the value of the '<em><b>Inside Ports</b></em>' reference list.
@@ -213,7 +215,7 @@ public interface Ports extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Service</b></em>' attribute.
-	 * The default value is <code>""</code>.
+	 * The default value is <code>"\"\""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Service</em>' attribute isn't clear,
@@ -223,7 +225,7 @@ public interface Ports extends EObject {
 	 * @return the value of the '<em>Service</em>' attribute.
 	 * @see #setService(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getPorts_Service()
-	 * @model default="" dataType="org.eclipse.emf.ecore.xml.type.String"
+	 * @model default="\"\"" dataType="org.eclipse.emf.ecore.xml.type.String"
 	 * @generated
 	 */
 	String getService();
@@ -240,6 +242,7 @@ public interface Ports extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Outer Direction</b></em>' attribute.
+	 * The default value is <code>"INTERNAL"</code>.
 	 * The literals are from the enumeration {@link de.tu_bs.ccc.contracting.Verification.DirectionType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -251,7 +254,7 @@ public interface Ports extends EObject {
 	 * @see de.tu_bs.ccc.contracting.Verification.DirectionType
 	 * @see #setOuterDirection(DirectionType)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getPorts_OuterDirection()
-	 * @model
+	 * @model default="INTERNAL"
 	 * @generated
 	 */
 	DirectionType getOuterDirection();
@@ -269,7 +272,7 @@ public interface Ports extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Max Clients</b></em>' attribute.
-	 * The default value is <code>"0"</code>.
+	 * The default value is <code>"-1"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Max Clients</em>' attribute isn't clear,
@@ -279,7 +282,7 @@ public interface Ports extends EObject {
 	 * @return the value of the '<em>Max Clients</em>' attribute.
 	 * @see #setMaxClients(int)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getPorts_MaxClients()
-	 * @model default="0"
+	 * @model default="-1"
 	 * @generated
 	 */
 	int getMaxClients();
@@ -296,6 +299,7 @@ public interface Ports extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Filter</b></em>' attribute.
+	 * The default value is <code>"\"\""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Filter</em>' attribute isn't clear,
@@ -305,7 +309,7 @@ public interface Ports extends EObject {
 	 * @return the value of the '<em>Filter</em>' attribute.
 	 * @see #setFilter(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getPorts_Filter()
-	 * @model
+	 * @model default="\"\""
 	 * @generated
 	 */
 	String getFilter();
@@ -322,6 +326,7 @@ public interface Ports extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Label</b></em>' attribute.
+	 * The default value is <code>"\"\""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Label</em>' attribute isn't clear,
@@ -331,7 +336,7 @@ public interface Ports extends EObject {
 	 * @return the value of the '<em>Label</em>' attribute.
 	 * @see #setLabel(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getPorts_Label()
-	 * @model
+	 * @model default="\"\""
 	 * @generated
 	 */
 	String getLabel();
@@ -348,6 +353,7 @@ public interface Ports extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Function</b></em>' attribute.
+	 * The default value is <code>"\"\""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Function</em>' attribute isn't clear,
@@ -357,7 +363,7 @@ public interface Ports extends EObject {
 	 * @return the value of the '<em>Function</em>' attribute.
 	 * @see #setFunction(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getPorts_Function()
-	 * @model
+	 * @model default="\"\""
 	 * @generated
 	 */
 	String getFunction();
