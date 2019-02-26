@@ -1,10 +1,12 @@
 package de.tu_bs.ccc.contracting.core.diagram;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IAddFeature;
 import org.eclipse.graphiti.features.ICreateConnectionFeature;
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IDeleteFeature;
+import org.eclipse.graphiti.features.IDirectEditingFeature;
 import org.eclipse.graphiti.features.ILayoutFeature;
 import org.eclipse.graphiti.features.IMoveShapeFeature;
 import org.eclipse.graphiti.features.IReconnectionFeature;
@@ -14,6 +16,7 @@ import org.eclipse.graphiti.features.context.IAddConnectionContext;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.context.IDeleteContext;
+import org.eclipse.graphiti.features.context.IDirectEditingContext;
 import org.eclipse.graphiti.features.context.ILayoutContext;
 import org.eclipse.graphiti.features.context.IMoveShapeContext;
 import org.eclipse.graphiti.features.context.IReconnectionContext;
@@ -26,12 +29,12 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
 import de.tu_bs.ccc.contracting.Verification.Abstract;
-import de.tu_bs.ccc.contracting.Verification.System;
 import de.tu_bs.ccc.contracting.Verification.Component;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Contract;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.Verification.System;
 import de.tu_bs.ccc.contracting.core.features.AddAbstractFeature;
 import de.tu_bs.ccc.contracting.core.features.AddComponentFeature;
 import de.tu_bs.ccc.contracting.core.features.AddCompoundFeature;
@@ -45,6 +48,7 @@ import de.tu_bs.ccc.contracting.core.features.CreatePortFeature;
 import de.tu_bs.ccc.contracting.core.features.DeletePortConnectionFeature;
 import de.tu_bs.ccc.contracting.core.features.connections.AddContractConnectionFeature;
 import de.tu_bs.ccc.contracting.core.features.connections.ReconnectionFeature;
+import de.tu_bs.ccc.contracting.core.features.directEditing.DirectEditContractPropertyFeature;
 import de.tu_bs.ccc.contracting.core.features.layout.LayoutDiagramFeature;
 import de.tu_bs.ccc.contracting.core.features.layout.LayoutPortFeature;
 import de.tu_bs.ccc.contracting.core.features.loading.AssignAbstractFeature;
@@ -92,6 +96,15 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 	public ContractModellingFeatureProvider(IDiagramTypeProvider dtp) {
 		super(dtp);
 	}
+	
+//	@Override
+//	public IDirectEditingFeature getDirectEditingFeature(IDirectEditingContext context) {
+//	    PictogramElement pe = context.getPictogramElement();
+//	    if (pe.eContainer() instanceof ContainerShape &&  ((ContainerShape)pe.eContainer()).getLink().getBusinessObjects().get(0) instanceof Contract) {
+//	        return new DirectEditContractPropertyFeature(this);
+//	    }
+//	    return super.getDirectEditingFeature(context);
+//	}
 
 	@Override
 	public ICreateFeature[] getCreateFeatures() {
@@ -100,7 +113,7 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 				// new CreateComponentFeature(this),
 				new CreateContractFeature(this),
 				// new CreateAbstractFeature(this),
-				new CreatePortFeature(this), new LoadModuleFeature(this), new CreateProperty(this),
+				new CreatePortFeature(this), new LoadModuleFeature(this), new CreateProperty(this, true), new CreateProperty(this, false),
 				new AssignAbstractFeature(this) };
 	}
 
@@ -143,7 +156,7 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 		if (bo instanceof Module || bo instanceof Contract || bo instanceof System) {
 			return new LayoutFeature(this);
 		} else if (bo instanceof Ports) {
-			return super.getLayoutFeature(context);
+			return new LayoutPortFeature(this);
 		}
 		return super.getLayoutFeature(context);
 	}

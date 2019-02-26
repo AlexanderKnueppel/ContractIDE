@@ -43,7 +43,6 @@ public class UpdateContractFeature extends AbstractUpdateFeature {
 	public boolean canUpdate(IUpdateContext context) {
 		Object bo = getBusinessObjectForPictogramElement(context.getPictogramElement());
 		return (bo instanceof Contract);
-		
 
 	}
 
@@ -57,11 +56,10 @@ public class UpdateContractFeature extends AbstractUpdateFeature {
 	@Override
 	public boolean update(IUpdateContext context) {
 		PictogramElement pictogramElement = context.getPictogramElement();
-		System.out.println("Test");
+
 		if (pictogramElement instanceof ContainerShape) {
 
 			ContainerShape cs = (ContainerShape) pictogramElement;
-			// cs.getChildren().clear();
 			for (int i = (cs.getChildren().size() - 1); i >= 0; i--) {
 				Shape s = cs.getChildren().get(i);
 				if (s.getLink() != null) {
@@ -69,10 +67,8 @@ public class UpdateContractFeature extends AbstractUpdateFeature {
 				}
 				EcoreUtil.delete(s);
 
-				
-
 			}
-			
+
 			IPeCreateService peCreateService = Graphiti.getPeCreateService();
 			IGaService gaService = Graphiti.getGaService();
 			Contract c = (Contract) getBusinessObjectForPictogramElement(pictogramElement);
@@ -81,7 +77,7 @@ public class UpdateContractFeature extends AbstractUpdateFeature {
 
 				E_CLASS_BACK = new ColorConstant(240, 80, 60);
 
-			} else if (c.getViewPoint().getValue() == ViewPoint.TIMING_VALUE){
+			} else if (c.getViewPoint().getValue() == ViewPoint.TIMING_VALUE) {
 				E_CLASS_FORE = new ColorConstant(40, 192, 30);
 
 				E_CLASS_BACK = new ColorConstant(80, 240, 60);
@@ -90,7 +86,7 @@ public class UpdateContractFeature extends AbstractUpdateFeature {
 				E_CLASS_FORE = new ColorConstant(30, 40, 192);
 
 				E_CLASS_BACK = new ColorConstant(120, 190, 250);
-				
+
 			}
 			pictogramElement.getGraphicsAlgorithm().setForeground(manageColor(E_CLASS_FORE));
 			pictogramElement.getGraphicsAlgorithm().setBackground(manageColor(E_CLASS_BACK));
@@ -118,21 +114,25 @@ public class UpdateContractFeature extends AbstractUpdateFeature {
 				text.setBackground(manageColor(180, 180, 180));
 				text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 				// vertical alignment has as default value "center"
-				text.setFont(gaService.manageDefaultFont(getDiagram(), false, false));
+				text.setFont(gaService.manageDefaultFont(getDiagram(), true, true));
 				gaService.setLocationAndSize(text, 0, 0, pictogramElement.getGraphicsAlgorithm().getWidth(), 20);
 				int position = 0;
-				
+
 				position++;
 				Shape shapeAssuption = peCreateService.createShape(cs, false);
-				Text text4 = gaService.createText(shapeAssuption, "Assumption");
+				Text text4 = gaService.createText(shapeAssuption, "Assumptions");
 				text4.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
+				text4.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
+				
 				gaService.setLocationAndSize(text4, 3, textwidth * position,
 						pictogramElement.getGraphicsAlgorithm().getWidth() - 3, textwidth * (position + 1));
 				text4.setForeground(manageColor(E_CLASS_TEXT_FOREGROUND));
 				for (Assumption a : bo.getAssumption()) {
 					position++;
 					Shape shapeGuarantees = peCreateService.createShape(cs, false);
-					Text text3 = gaService.createText(shapeGuarantees, a.getPropertyTipe() + ":" + a.getProperty());
+					//Text text3 = gaService.createText(shapeGuarantees, a.getPropertyTipe() + ":" + a.getProperty());
+					Text text3 = gaService.createText(shapeGuarantees, a.getProperty());
+					text3.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 					gaService.setLocationAndSize(text3, 0, textwidth * position,
 							pictogramElement.getGraphicsAlgorithm().getWidth(), textwidth * (position + 1));
 					text3.setForeground(manageColor(E_CLASS_TEXT_FOREGROUND));
@@ -141,20 +141,24 @@ public class UpdateContractFeature extends AbstractUpdateFeature {
 				Shape shapeGuarantee = peCreateService.createShape(cs, false);
 				Text text2 = gaService.createText(shapeGuarantee, "Guarantees");
 				text2.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
+				text2.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
+				
 				gaService.setLocationAndSize(text2, 0, textwidth * position,
 						pictogramElement.getGraphicsAlgorithm().getWidth(), textwidth * (position + 1));
 				text2.setForeground(manageColor(E_CLASS_TEXT_FOREGROUND));
 				for (Guarantee g : bo.getGuarantee()) {
 					position++;
 					Shape shapeGuarantees = peCreateService.createShape(cs, false);
-					Text text3 = gaService.createText(shapeGuarantees, g.getPropertyTipe() + ":" + g.getProperty());
+//					Text text3 = gaService.createText(shapeGuarantees, g.getPropertyTipe() + ":" + g.getProperty());
+					Text text3 = gaService.createText(shapeGuarantees, g.getProperty());
+					text3.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 					gaService.setLocationAndSize(text3, 3, textwidth * position,
 							pictogramElement.getGraphicsAlgorithm().getWidth() - 3, textwidth * (position + 1));
 					text3.setForeground(manageColor(E_CLASS_TEXT_FOREGROUND));
 				}
 			}
 			getDiagramBehavior().refreshContent();
-		return true;
+			return true;
 		}
 		return false;
 
