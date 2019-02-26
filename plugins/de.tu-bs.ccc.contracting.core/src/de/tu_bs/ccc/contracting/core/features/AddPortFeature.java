@@ -10,6 +10,7 @@ import org.eclipse.graphiti.mm.algorithms.Image;
 import org.eclipse.graphiti.mm.algorithms.Rectangle;
 import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.algorithms.styles.Orientation;
+import org.eclipse.graphiti.mm.pictograms.ChopboxAnchor;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
@@ -28,14 +29,14 @@ import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.core.diagram.ContractModellingImageProvider;
 
 public class AddPortFeature extends AbstractAddFeature {
-	private static final IColorConstant E_CLASS_FOREGROUND = new ColorConstant(98, 131, 167);
-	private static final IColorConstant E_CLASS_BACKGROUND = IColorConstant.WHITE;
-	private static final IColorConstant TYPE_COLOR = IColorConstant.BLUE;
-	private static final int PORT_MIN_WIDTH = 80;
-	private static final int PORT_MIN_HEIGHT = 40;
-	private static final int PORT_PADDING = 10;
-	private static final int PORT_ICON_WIDTH = 15;
-	private static final int PORT_ICON_HEIGHT = 15;
+	public static final IColorConstant E_CLASS_FOREGROUND = new ColorConstant(98, 131, 167);
+	public static final IColorConstant E_CLASS_BACKGROUND = IColorConstant.WHITE;
+	public static final IColorConstant TYPE_COLOR = IColorConstant.BLUE;
+	public static final int PORT_MIN_WIDTH = 80;
+	public static final int PORT_MIN_HEIGHT = 40;
+	public static final int PORT_PADDING = 10;
+	public static final int PORT_ICON_WIDTH = 15;
+	public static final int PORT_ICON_HEIGHT = 15;
 
 	// private IColorConstant signifierColor;
 	private String imageID;
@@ -135,7 +136,8 @@ public class AddPortFeature extends AbstractAddFeature {
 			// create link and wire it
 			link(containerShape, addedClass);
 		}
-		peCreateService.createChopboxAnchor(containerShape);
+		final ChopboxAnchor anchor = peCreateService.createChopboxAnchor(containerShape);
+//		anchor.set
 
 		// call the layout feature
 		layoutPictogramElement(containerShape);

@@ -1,9 +1,11 @@
 package de.tu_bs.ccc.contracting.core.features.layout;
 
+import java.io.ObjectInputStream.GetField;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Insets;
@@ -18,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.graphiti.datatypes.IDimension;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICustomContext;
+import org.eclipse.graphiti.features.context.impl.LayoutContext;
 import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
 import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.algorithms.Polyline;
@@ -27,6 +30,7 @@ import org.eclipse.graphiti.mm.pictograms.AnchorContainer;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
+import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
@@ -35,6 +39,7 @@ import org.eclipse.graphiti.ui.services.IUiLayoutService;
 
 import de.tu_bs.ccc.contracting.Verification.Component;
 import de.tu_bs.ccc.contracting.Verification.Compound;
+import de.tu_bs.ccc.contracting.Verification.Contract;
 import de.tu_bs.ccc.contracting.Verification.DirectionType;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.Ports;
@@ -66,25 +71,54 @@ public class LayoutDiagramFeature extends AbstractCustomFeature {
 		return true;
 	}
 
-
 	@Override
 	public void execute(ICustomContext context) {
 		execute(getDiagram());
 	}
 	
-	public void execute(Diagram d) {
-		if (d.getChildren().size() == 1) {
-			if (d.getChildren().get(0).getLink().getBusinessObjects().get(0) instanceof Compound) {
-				layoutCompound((ContainerShape) d.getChildren().get(0));
-			} else if (d.getChildren().get(0).getLink().getBusinessObjects().get(0) instanceof Component) {
-				layoutAtomic((ContainerShape) d.getChildren().get(0));
-			} else if (d.getChildren().get(0).getLink().getBusinessObjects().get(0) instanceof System) {
-				layoutCompound((ContainerShape) d.getChildren().get(0));
-			}
-		}
+	public void execute(Module m) {
+		PictogramElement pe = getFeatureProvider().getPictogramElementForBusinessObject(m);
+		if (m instanceof Compound) {
+			layoutCompound((ContainerShape) pe);
+		} else if (m instanceof Component) {
+			layoutAtomic((ContainerShape) pe);
+		} 
 	}
 
-	private static void layoutCompound(ContainerShape compound) {
+	public void execute(Diagram d) {
+		ContainerShape cs = null;
+		for (Shape shape : d.getChildren()) {
+			if (shape.getLink().getBusinessObjects().get(0) instanceof Compound) {
+				layoutCompound((ContainerShape) shape);
+				cs = (ContainerShape) shape;
+			} else if (shape.getLink().getBusinessObjects().get(0) instanceof Component) {
+				layoutAtomic((ContainerShape) shape);
+				cs = (ContainerShape) shape;
+			} else if (shape.getLink().getBusinessObjects().get(0) instanceof System) {
+				layoutCompound((ContainerShape) shape);
+				cs = (ContainerShape) shape;
+			}
+		}
+		// Layout contracts
+		if (cs != null) {
+			List<Shape> contracts = d.getChildren().stream()
+					.filter(s -> s.getLink().getBusinessObjects().get(0) instanceof Contract)
+					.collect(Collectors.toList());
+			int padding_x = 30, padding_y = 30;
+			int y = cs.getGraphicsAlgorithm().getHeight() / 2 + cs.getGraphicsAlgorithm().getY() - contracts.stream()
+					.mapToInt(s -> s.getGraphicsAlgorithm().getHeight() + padding_y).reduce(0, Integer::sum) / 2;
+			
+			for (Shape shape : contracts) {
+				shape.getGraphicsAlgorithm().setY(y);
+				shape.getGraphicsAlgorithm()
+						.setX(cs.getGraphicsAlgorithm().getX() + cs.getGraphicsAlgorithm().getWidth() + padding_x);
+				y += shape.getGraphicsAlgorithm().getHeight() + padding_y;
+			}
+		}
+
+	}
+
+	public void layoutCompound(ContainerShape compound) {
 		List<Shape> inputs = new ArrayList<Shape>();
 		List<Shape> outputs = new ArrayList<Shape>();
 		Shape headline = null, polyline = null;
@@ -140,7 +174,7 @@ public class LayoutDiagramFeature extends AbstractCustomFeature {
 		positionPortsAndHeadline(inputs, outputs, headline, polyline, ga_component);
 	}
 
-	private static CompoundDirectedGraph mapCompoundToGraph(ContainerShape c) {
+	private CompoundDirectedGraph mapCompoundToGraph(ContainerShape c) {
 		Map<AnchorContainer, Node> shapeToNode = new HashMap<AnchorContainer, Node>();
 		CompoundDirectedGraph dg = new CompoundDirectedGraph();
 		EdgeList edgeList = new EdgeList();
@@ -161,7 +195,9 @@ public class LayoutDiagramFeature extends AbstractCustomFeature {
 			}
 		}
 		EList<Connection> connections = ((Diagram) c.getContainer()).getConnections();
-		for (Connection connection : connections) {
+		for (Connection connection : connections.stream()
+				.filter(con -> con.getStart().getParent().getLink().getBusinessObjects().get(0) instanceof Ports)
+				.collect(Collectors.toList())) {
 			AnchorContainer source = connection.getStart().getParent();
 			AnchorContainer target = connection.getEnd().getParent();
 
@@ -186,7 +222,7 @@ public class LayoutDiagramFeature extends AbstractCustomFeature {
 		return dg;
 	}
 
-	private static Diagram mapGraphCoordinatesToCompound(CompoundDirectedGraph graph) {
+	private Diagram mapGraphCoordinatesToCompound(CompoundDirectedGraph graph) {
 		NodeList myNodes = new NodeList();
 		myNodes.addAll(graph.nodes);
 		myNodes.addAll(graph.subgraphs);
@@ -196,19 +232,21 @@ public class LayoutDiagramFeature extends AbstractCustomFeature {
 
 			shape.getGraphicsAlgorithm().setX(node.x);
 			shape.getGraphicsAlgorithm().setY(node.y);
-			//shape.getGraphicsAlgorithm().setWidth(node.width);
-			//shape.getGraphicsAlgorithm().setHeight(node.height);
+			// shape.getGraphicsAlgorithm().setWidth(node.width);
+			// shape.getGraphicsAlgorithm().setHeight(node.height);
 			shape.getGraphicsAlgorithm().setWidth(shape.getGraphicsAlgorithm().getWidth());
 			shape.getGraphicsAlgorithm().setHeight(shape.getGraphicsAlgorithm().getHeight());
 		}
 		return null;
 	}
 
-	private static void layoutPort(ContainerShape port) {
+	public void layoutPort(ContainerShape port) {
 		// TODO
+		LayoutContext lfc = new LayoutContext(port.getGraphicsAlgorithm().getPictogramElement());
+		getFeatureProvider().layoutIfPossible(lfc);
 	}
 
-	private static void layoutAtomic(ContainerShape atomic) {
+	public void layoutAtomic(ContainerShape atomic) {
 		List<Shape> inputs = new ArrayList<Shape>();
 		List<Shape> outputs = new ArrayList<Shape>();
 		Shape headline = null, polyline = null;
@@ -244,8 +282,8 @@ public class LayoutDiagramFeature extends AbstractCustomFeature {
 		positionPortsAndHeadline(inputs, outputs, headline, polyline, ga_component);
 	}
 
-	private static void positionPortsAndHeadline(List<Shape> inputs, List<Shape> outputs, Shape headline,
-			Shape polyline, GraphicsAlgorithm ga_component) {
+	private void positionPortsAndHeadline(List<Shape> inputs, List<Shape> outputs, Shape headline, Shape polyline,
+			GraphicsAlgorithm ga_component) {
 
 		// Header??
 		if (headline != null) {
@@ -274,7 +312,7 @@ public class LayoutDiagramFeature extends AbstractCustomFeature {
 			y += ga.getHeight() + PORT_PADDING;
 		}
 
-		//Update Polyline
+		// Update Polyline
 		Polyline p = (Polyline) polyline.getGraphicsAlgorithm();
 		Point secondPoint = p.getPoints().get(1);
 		Point newSecondPoint = Graphiti.getGaService().createPoint(ga_component.getWidth(), secondPoint.getY());

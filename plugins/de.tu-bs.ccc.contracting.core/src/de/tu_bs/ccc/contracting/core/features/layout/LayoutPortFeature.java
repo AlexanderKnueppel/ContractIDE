@@ -3,24 +3,29 @@ package de.tu_bs.ccc.contracting.core.features.layout;
 import org.eclipse.graphiti.datatypes.IDimension;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.ILayoutFeature;
+import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.context.ILayoutContext;
 import org.eclipse.graphiti.features.impl.AbstractLayoutFeature;
 import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
+import org.eclipse.graphiti.mm.algorithms.Image;
+import org.eclipse.graphiti.mm.algorithms.Rectangle;
 import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
+import org.eclipse.graphiti.services.IGaLayoutService;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.ui.services.GraphitiUi;
 import org.eclipse.graphiti.ui.services.IUiLayoutService;
 
+import de.tu_bs.ccc.contracting.Verification.DirectionType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.core.diagram.ContractModellingImageProvider;
+import de.tu_bs.ccc.contracting.core.features.AddPortFeature;
 
 public class LayoutPortFeature extends AbstractLayoutFeature implements ILayoutFeature {
-
-	private static final int MIN_HEIGHT = 20;
-	private static final int MIN_WIDTH = 30;
+	private String imageID;
 
 	public LayoutPortFeature(IFeatureProvider fp) {
 		super(fp);
@@ -36,46 +41,63 @@ public class LayoutPortFeature extends AbstractLayoutFeature implements ILayoutF
 		return getBusinessObjectForPictogramElement(pe) instanceof Ports;
 	}
 
+	int[] getPosition(ContainerShape cs, int portWidth, int portHeight) {
+		int widthContainer = (cs.getContainer().getGraphicsAlgorithm().getWidth());
+		int[] coordinaten = new int[2];
+
+		if (((Ports) getBusinessObjectForPictogramElement(cs)).getOuterDirection() == DirectionType.INTERNAL) {
+			coordinaten[0] = 0;
+			coordinaten[1] = cs.getGraphicsAlgorithm().getY();
+			imageID = ContractModellingImageProvider.IMG_PORT_INPUT;
+		} else {
+			coordinaten[0] = widthContainer - portWidth;
+			coordinaten[1] = cs.getGraphicsAlgorithm().getY();
+			imageID = ContractModellingImageProvider.IMG_PORT_OUTPUT;
+		}
+		return coordinaten;
+	}
+
 	@Override
 	public boolean layout(ILayoutContext context) {
 		boolean anythingChanged = false;
 		ContainerShape containerShape = (ContainerShape) context.getPictogramElement();
-		GraphicsAlgorithm containerGa = containerShape.getGraphicsAlgorithm();
+		IGaService gaService = Graphiti.getGaService();
 
-		// height
-		if (containerGa.getHeight() < MIN_HEIGHT) {
-			containerGa.setHeight(MIN_HEIGHT);
-			anythingChanged = true;
-		}
+		// Get children
+		Rectangle rectangle = (Rectangle) containerShape.getGraphicsAlgorithm();
+		Image icon = (Image) rectangle.getGraphicsAlgorithmChildren().get(0);
+		Text name = (Text) containerShape.getChildren().get(0).getGraphicsAlgorithm();
+		Text type = (Text) containerShape.getChildren().get(1).getGraphicsAlgorithm();
 
-		// width
-		if (containerGa.getWidth() < MIN_WIDTH) {
-			containerGa.setWidth(MIN_WIDTH);
-			anythingChanged = true;
-		}
+		IUiLayoutService uil = GraphitiUi.getUiLayoutService();
+		IDimension size = uil.calculateTextSize(name.getValue(), name.getFont());
+		int newPortWidth = Math.max(AddPortFeature.PORT_MIN_WIDTH,
+				size.getWidth() + AddPortFeature.PORT_PADDING + AddPortFeature.PORT_ICON_WIDTH);
 
-//		int containerWidth = containerGa.getWidth();
-//		int containerHeight = containerGa.getHeight();
-		for (Shape shape : containerShape.getChildren()) {
-			GraphicsAlgorithm graphicsAlgorithm = shape.getGraphicsAlgorithm();
-			IGaService gaService = Graphiti.getGaService();
-			IDimension size = gaService.calculateSize(graphicsAlgorithm);
-			
-			if(graphicsAlgorithm instanceof Text) {
-				IUiLayoutService uil = GraphitiUi.getUiLayoutService();
-				size = uil.calculateTextSize(((Text)graphicsAlgorithm).getValue(), ((Text)graphicsAlgorithm).getFont());
-				graphicsAlgorithm.setWidth(graphicsAlgorithm.getX() + size.getWidth());
-			}
-			
-			
-			if(graphicsAlgorithm.getX() + size.getWidth() > containerGa.getWidth()) 
-				containerGa.setWidth(graphicsAlgorithm.getX() + size.getWidth());
-			if(graphicsAlgorithm.getY() + size.getHeight() > containerGa.getHeight())
-				containerGa.setHeight(graphicsAlgorithm.getY() + size.getHeight());
-			
-			anythingChanged = true;
-			
+		// rectangle
+		int x = getPosition(containerShape, newPortWidth, AddPortFeature.PORT_MIN_HEIGHT)[0],
+				y = getPosition(containerShape, newPortWidth, AddPortFeature.PORT_MIN_HEIGHT)[1];
+		gaService.setLocationAndSize(rectangle, x, y, newPortWidth, AddPortFeature.PORT_MIN_HEIGHT);
+
+		// Port icon
+		x = 0;
+		y = (AddPortFeature.PORT_MIN_HEIGHT / 2) - (AddPortFeature.PORT_ICON_HEIGHT / 2);
+		if (imageID.equals(ContractModellingImageProvider.IMG_PORT_OUTPUT)) {
+			x = rectangle.getWidth() - AddPortFeature.PORT_ICON_WIDTH;
 		}
+		icon.setId(imageID);
+		gaService.setLocationAndSize(icon, x, y, AddPortFeature.PORT_ICON_WIDTH, AddPortFeature.PORT_ICON_HEIGHT);
+
+		// Port name + port type
+		x = 0;
+		if (imageID.equals(ContractModellingImageProvider.IMG_PORT_INPUT))
+			x = AddPortFeature.PORT_ICON_WIDTH;
+		gaService.setLocationAndSize(name, x, 0, rectangle.getWidth() - AddPortFeature.PORT_ICON_WIDTH,
+				(AddPortFeature.PORT_MIN_HEIGHT) / 2);
+		gaService.setLocationAndSize(type, x, AddPortFeature.PORT_MIN_HEIGHT / 2,
+				rectangle.getWidth() - AddPortFeature.PORT_ICON_WIDTH, (AddPortFeature.PORT_MIN_HEIGHT) / 2);
+
+		anythingChanged = true;
 
 		return anythingChanged;
 	}
