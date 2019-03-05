@@ -1,6 +1,5 @@
 package de.tu_bs.ccc.contracting.core.features.layout;
 
-import java.io.ObjectInputStream.GetField;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +15,6 @@ import org.eclipse.draw2d.graph.EdgeList;
 import org.eclipse.draw2d.graph.Node;
 import org.eclipse.draw2d.graph.NodeList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.graphiti.datatypes.IDimension;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICustomContext;
@@ -33,10 +31,10 @@ import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
-import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.ui.services.GraphitiUi;
 import org.eclipse.graphiti.ui.services.IUiLayoutService;
 
+import de.tu_bs.ccc.contracting.Verification.Abstract;
 import de.tu_bs.ccc.contracting.Verification.Component;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Contract;
@@ -80,7 +78,7 @@ public class LayoutDiagramFeature extends AbstractCustomFeature {
 		PictogramElement pe = getFeatureProvider().getPictogramElementForBusinessObject(m);
 		if (m instanceof Compound) {
 			layoutCompound((ContainerShape) pe);
-		} else if (m instanceof Component) {
+		} else if (m instanceof Component || m instanceof Abstract) {
 			layoutAtomic((ContainerShape) pe);
 		} 
 	}
@@ -91,7 +89,8 @@ public class LayoutDiagramFeature extends AbstractCustomFeature {
 			if (shape.getLink().getBusinessObjects().get(0) instanceof Compound) {
 				layoutCompound((ContainerShape) shape);
 				cs = (ContainerShape) shape;
-			} else if (shape.getLink().getBusinessObjects().get(0) instanceof Component) {
+			} else if (shape.getLink().getBusinessObjects().get(0) instanceof Component
+					   || shape.getLink().getBusinessObjects().get(0) instanceof Abstract) {
 				layoutAtomic((ContainerShape) shape);
 				cs = (ContainerShape) shape;
 			} else if (shape.getLink().getBusinessObjects().get(0) instanceof System) {
@@ -128,7 +127,8 @@ public class LayoutDiagramFeature extends AbstractCustomFeature {
 				layoutPort((ContainerShape) shape);
 			} else if (shape instanceof ContainerShape
 					&& (shape.getLink().getBusinessObjects().get(0) instanceof Component
-							|| shape.getLink().getBusinessObjects().get(0) instanceof Compound)) {
+							|| shape.getLink().getBusinessObjects().get(0) instanceof Compound
+							|| shape.getLink().getBusinessObjects().get(0) instanceof Abstract)) {
 				layoutAtomic((ContainerShape) shape);
 			}
 
@@ -182,7 +182,8 @@ public class LayoutDiagramFeature extends AbstractCustomFeature {
 		for (Shape shape : c.getChildren()) {
 			if (shape instanceof ContainerShape && (shape.getLink().getBusinessObjects().get(0) instanceof Ports
 					|| shape.getLink().getBusinessObjects().get(0) instanceof Component
-					|| shape.getLink().getBusinessObjects().get(0) instanceof Compound)) {
+					|| shape.getLink().getBusinessObjects().get(0) instanceof Compound
+					|| shape.getLink().getBusinessObjects().get(0) instanceof Abstract)) {
 				Node node = new Node();
 				GraphicsAlgorithm ga = shape.getGraphicsAlgorithm();
 				node.x = ga.getX();

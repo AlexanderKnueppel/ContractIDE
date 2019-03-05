@@ -58,5 +58,12 @@
           name="ContractIDE Properties"
           restorable="true">
     </view>
+    <view
+          category="contractide.views.category"
+          class="de.tu_bs.ccc.contracting.ui.views.verification.VerificationView"
+          id="contractide.views.verification"
+          name="Verification Results"
+          restorable="true">
+    </view>
  </extension>
 </plugin>

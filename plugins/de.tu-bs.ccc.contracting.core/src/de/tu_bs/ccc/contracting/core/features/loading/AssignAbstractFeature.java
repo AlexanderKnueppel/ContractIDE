@@ -1,6 +1,7 @@
 package de.tu_bs.ccc.contracting.core.features.loading;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -38,9 +39,12 @@ public class AssignAbstractFeature extends AbstractCreateFeature {
 			}
 
 			EList<EObject> businessObjects = pict.getLink().getBusinessObjects();
-			return businessObjects.size() == 1
-					&& //(businessObjects.get(0) instanceof Component || //TODO also allowing components to dereive from abstract components
-							businessObjects.get(0) instanceof Compound;
+			return businessObjects.size() == 1 && (businessObjects.get(0) instanceof Component || // TODO also allowing
+																									// components to
+																									// dereive from
+																									// abstract
+																									// components
+					businessObjects.get(0) instanceof Compound);
 		} else {
 			return false;
 		}
@@ -78,10 +82,15 @@ public class AssignAbstractFeature extends AbstractCreateFeature {
 
 			x.getRealizedBy().add(i);
 
-			for (Ports p : i.getPorts()) {
+			List<Ports> add = i.getPorts().stream()
+					.filter(e1 -> x.getPorts().stream()
+							.anyMatch(e2 -> !e1.getName().equals(e2.getName())))
+					.collect(Collectors.toList());
+
+			for (Ports p : add) {
 				addGraphicalRepresentation(context, p);
 			}
-			x.getPorts().addAll(i.getPorts());
+			x.getPorts().addAll(add);
 		}
 
 		return null;

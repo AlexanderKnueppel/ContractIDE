@@ -68,7 +68,32 @@ public class CreateContractFeature extends AbstractCreateFeature {
 			g.setPropertyTipe(PropertyType.EQUATION);
 			g.setContract(contract);
 			contract.getGuarantee().add(g);
+		} else 	if(contract.getViewPoint() == ViewPoint.MEMORY) {
+			Assumption a = MmFactory.eINSTANCE.createAssumption();
+			a.setProperty("true");
+			a.setPropertyTipe(PropertyType.MEMORY);
+			a.setContract(contract);
+			contract.getAssumption().add(a);
+			
+			Guarantee g = MmFactory.eINSTANCE.createGuarantee();
+			g.setProperty("Memory > 0");
+			g.setPropertyTipe(PropertyType.MEMORY);
+			g.setContract(contract);
+			contract.getGuarantee().add(g);
+		} else 	if(contract.getViewPoint() == ViewPoint.TIMING) {
+			Assumption a = MmFactory.eINSTANCE.createAssumption();
+			a.setProperty("true");
+			a.setPropertyTipe(PropertyType.MINDURATION);
+			a.setContract(contract);
+			contract.getAssumption().add(a);
+			
+			Guarantee g = MmFactory.eINSTANCE.createGuarantee();
+			g.setProperty("Minduration > 0");
+			g.setPropertyTipe(PropertyType.MINDURATION);
+			g.setContract(contract);
+			contract.getGuarantee().add(g);
 		}
+
 
 		// do the add
 		addGraphicalRepresentation(context, contract);

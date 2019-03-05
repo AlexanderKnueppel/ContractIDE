@@ -1,12 +1,10 @@
 package de.tu_bs.ccc.contracting.core.diagram;
 
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IAddFeature;
 import org.eclipse.graphiti.features.ICreateConnectionFeature;
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IDeleteFeature;
-import org.eclipse.graphiti.features.IDirectEditingFeature;
 import org.eclipse.graphiti.features.ILayoutFeature;
 import org.eclipse.graphiti.features.IMoveShapeFeature;
 import org.eclipse.graphiti.features.IReconnectionFeature;
@@ -16,7 +14,6 @@ import org.eclipse.graphiti.features.context.IAddConnectionContext;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.context.IDeleteContext;
-import org.eclipse.graphiti.features.context.IDirectEditingContext;
 import org.eclipse.graphiti.features.context.ILayoutContext;
 import org.eclipse.graphiti.features.context.IMoveShapeContext;
 import org.eclipse.graphiti.features.context.IReconnectionContext;
@@ -48,7 +45,6 @@ import de.tu_bs.ccc.contracting.core.features.CreatePortFeature;
 import de.tu_bs.ccc.contracting.core.features.DeletePortConnectionFeature;
 import de.tu_bs.ccc.contracting.core.features.connections.AddContractConnectionFeature;
 import de.tu_bs.ccc.contracting.core.features.connections.ReconnectionFeature;
-import de.tu_bs.ccc.contracting.core.features.directEditing.DirectEditContractPropertyFeature;
 import de.tu_bs.ccc.contracting.core.features.layout.LayoutDiagramFeature;
 import de.tu_bs.ccc.contracting.core.features.layout.LayoutPortFeature;
 import de.tu_bs.ccc.contracting.core.features.loading.AssignAbstractFeature;
@@ -56,8 +52,7 @@ import de.tu_bs.ccc.contracting.core.features.loading.LoadModuleFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.CollapseFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.EditAbstractFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.LayoutFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.ReloadImportFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.VerifyCustomFeature;
+import de.tu_bs.ccc.contracting.core.guiFeatures.ViewpointVerificationFeature;
 import de.tu_bs.ccc.contracting.core.move.MovePortFeature;
 import de.tu_bs.ccc.contracting.core.propertyFeature.CreateProperty;
 import de.tu_bs.ccc.contracting.core.resize.ResizeModuleFeature;
@@ -74,8 +69,9 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 
 	@Override
 	public ICustomFeature[] getCustomFeatures(ICustomContext context) {
-		return new ICustomFeature[] { new VerifyCustomFeature(this), new CollapseFeature(this),
-				new EditAbstractFeature(this), new ReloadImportFeature(this), new LayoutDiagramFeature(this) };
+		return new ICustomFeature[] { //new VerifyCustomFeature(this), 
+				new ViewpointVerificationFeature(this), new CollapseFeature(this),
+				new EditAbstractFeature(this), new LayoutDiagramFeature(this) };
 	}
 
 	@Override
