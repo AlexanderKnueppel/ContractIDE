@@ -31,6 +31,10 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IDecoratorManager;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.internal.decorators.DecoratorManager;
 
@@ -39,6 +43,7 @@ import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.core.diagram.ContractModellingImageProvider;
 import de.tu_bs.ccc.contracting.core.features.DeleteModuleFeature;
+import de.tu_bs.ccc.contracting.core.mapping.ProjectMapping;
 
 public class SynchronizeFeature extends AbstractCustomFeature {
 
@@ -119,9 +124,10 @@ public class SynchronizeFeature extends AbstractCustomFeature {
 		if (pes != null) {
 			Object bo = getBusinessObjectForPictogramElement(pes);
 			if (bo instanceof Module) {
-				Module m = (Module) bo;
-				return m.getModule()!=null;
+
+				return true;
 			}
+
 		}
 		return ret;
 	}
