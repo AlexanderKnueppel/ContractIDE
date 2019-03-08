@@ -16,6 +16,7 @@ import org.eclipse.graphiti.features.context.impl.AddContext;
 import org.eclipse.graphiti.features.impl.AbstractUpdateFeature;
 import org.eclipse.graphiti.features.impl.Reason;
 import org.eclipse.graphiti.mm.algorithms.Polyline;
+import org.eclipse.graphiti.mm.algorithms.RoundedRectangle;
 import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.algorithms.styles.Point;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
@@ -24,6 +25,8 @@ import org.eclipse.graphiti.mm.pictograms.PictogramLink;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
+import org.eclipse.graphiti.util.ColorConstant;
+import org.eclipse.graphiti.util.IColorConstant;
 
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Contract;
@@ -33,6 +36,11 @@ import de.tu_bs.ccc.contracting.core.util.CoreUtil;
 import de.tu_bs.ccc.contracting.Verification.MmFactory;
 
 public class UpdateModuleFeature extends AbstractUpdateFeature {
+	private static final IColorConstant E_CLASS_TEXT_FOREGROUND = IColorConstant.BLACK;
+
+	private static final IColorConstant E_CLASS_FOREGROUND = new ColorConstant(255, 0, 0);
+
+	private static final IColorConstant E_CLASS_BACKGROUND = new ColorConstant(255, 168, 107);
 
 	public UpdateModuleFeature(IFeatureProvider fp) {
 		super(fp);
@@ -55,10 +63,10 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 			ContainerShape cs = (ContainerShape) pictogramElement;
 			Shape s2 = cs.getChildren().get(1);
 			Text nameText = (Text) s2.getGraphicsAlgorithm();
+			boolean nameoutofDate = false;
 			if (!nameText.getValue().equals(m.getName() + "   " + m.getVersion())) {
 				updatePictogramElement(pictogramElement);
-				update(context);
-				return Reason.createTrueReason("Name or version is out of date!");
+
 			} else if (m.getModule() != null) {
 				try {
 					if (CoreUtil.isComponentNotSynched(m)) {
@@ -69,6 +77,10 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
+			}
+			if (nameoutofDate) {
+				update(context);
+				return Reason.createTrueReason("Name or version is out of date!");
 			}
 
 		}
@@ -107,8 +119,23 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 			Point newSecondPoint = gaService
 					.createPoint(context.getPictogramElement().getGraphicsAlgorithm().getWidth(), secondPoint.getY());
 			line.getPoints().set(1, newSecondPoint);
+			if (m.getIsPartOf() != null && m.getModule() == null) {
+//				RoundedRectangle roundedRectangle; // need to access it later
+//				roundedRectangle = gaService.createRoundedRectangle(cs, 5, 5);
+//				roundedRectangle.setForeground(manageColor(E_CLASS_FOREGROUND));
+//				roundedRectangle.setBackground(manageColor(E_CLASS_BACKGROUND));
+//				roundedRectangle.setLineWidth(2);
+//				final int width =cs.getGraphicsAlgorithm().getWidth();
+//				final int height =  cs.getGraphicsAlgorithm().getHeight();
+//				gaService.setLocationAndSize(roundedRectangle, cs.getGraphicsAlgorithm().getX(), cs.getGraphicsAlgorithm().getY(), width, height);
+//				
+				line.setForeground(manageColor(E_CLASS_FOREGROUND));
+				cs.getGraphicsAlgorithm().setBackground(manageColor(E_CLASS_BACKGROUND));
+				cs.getGraphicsAlgorithm().setForeground(manageColor(E_CLASS_FOREGROUND));
+//				
+//				
+			}
 			getDiagramBehavior().refreshContent();
-
 			for (Contract c : m.getContract()) {
 				for (PictogramLink p : getDiagram().getPictogramLinks()) {
 					if (p.getBusinessObjects().get(0) == c) {
@@ -117,17 +144,23 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 				}
 			}
 			for (Ports po : m.getPorts()) {
+				boolean found = false;
 				for (PictogramLink p : getDiagram().getPictogramLinks()) {
-					boolean found = false;
+
 					if (p.getBusinessObjects().get(0) == po) {
+						found = true;
 						updatePictogramElement(p.getPictogramElement());
 					}
+
+				}
+				if (!found) {
 					AddContext creat = new AddContext();
 					creat.setNewObject(po);
 					creat.setTargetContainer(cs);
 					creat.setLocation(0, 0);
 					getFeatureProvider().addIfPossible(creat);
 				}
+
 			}
 			if (m instanceof Compound) {
 				Compound co = (Compound) m;
