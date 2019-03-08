@@ -34,6 +34,7 @@ import de.tu_bs.ccc.contracting.core.guiFeatures.EditPropertyFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.OpenEditorFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.ReloadImportFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.VerifyCustomFeature;
+import de.tu_bs.ccc.contracting.core.synchronize.DeSynchronizeFeature;
 import de.tu_bs.ccc.contracting.core.synchronize.SynchronizeFeature;
 
 public class ContractModellingToolBehaviorProvider extends DefaultToolBehaviorProvider {
@@ -97,6 +98,17 @@ public class ContractModellingToolBehaviorProvider extends DefaultToolBehaviorPr
 				ContextButtonEntry button = new ContextButtonEntry((ReloadImportFeature) iCustomFeature, cc);
 				button.setText("Reload Import");
 				button.setDescription("Allows to update and reload the importted Components");
+				data.getDomainSpecificContextButtons().add(button);
+
+				break;
+			}
+		}
+		for (int i = 0; i < cf.length; i++) {
+			ICustomFeature iCustomFeature = cf[i];
+			if (iCustomFeature instanceof DeSynchronizeFeature) {
+				ContextButtonEntry button = new ContextButtonEntry((DeSynchronizeFeature) iCustomFeature, cc);
+				button.setText("DeSynch Component");
+				button.setDescription("Deletes the connection to the original");
 				data.getDomainSpecificContextButtons().add(button);
 
 				break;

@@ -58,6 +58,7 @@ import de.tu_bs.ccc.contracting.core.mapping.ImportMapping;
 import de.tu_bs.ccc.contracting.core.move.MovePortFeature;
 import de.tu_bs.ccc.contracting.core.propertyFeature.CreateProperty;
 import de.tu_bs.ccc.contracting.core.resize.ResizeModuleFeature;
+import de.tu_bs.ccc.contracting.core.synchronize.DeSynchronizeFeature;
 import de.tu_bs.ccc.contracting.core.synchronize.SynchronizeFeature;
 import de.tu_bs.ccc.contracting.core.update.UpdateContractFeature;
 import de.tu_bs.ccc.contracting.core.update.UpdateModuleFeature;
@@ -73,7 +74,7 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 	@Override
 	public ICustomFeature[] getCustomFeatures(ICustomContext context) {
 		return new ICustomFeature[] { new VerifyCustomFeature(this), new CollapseFeature(this),
-				new EditAbstractFeature(this), new ReloadImportFeature(this), new SynchronizeFeature(this) };
+				new EditAbstractFeature(this), new ReloadImportFeature(this), new SynchronizeFeature(this), new DeSynchronizeFeature(this) };
 	}
 
 	@Override
