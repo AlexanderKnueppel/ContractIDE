@@ -91,14 +91,25 @@ public class MovePortFeature extends DefaultMoveShapeFeature {
 	private void updateDirection(IMoveShapeContext context, String direction) {
 		PictogramElement pictogramElement = context.getPictogramElement();
 		ContainerShape cs = (ContainerShape) pictogramElement;
+		IGaService gaService = Graphiti.getGaService();
+		int width = context.getShape().getGraphicsAlgorithm().getWidth();
+		int height = context.getShape().getGraphicsAlgorithm().getHeight();
 		if (direction.equals("internal")) {
 			getPort(context).setOuterDirection(DirectionType.INTERNAL);
 			((Text) cs.getChildren().get(2).getGraphicsAlgorithm().eContents().get(0)).setValue("I");
-			cs.getChildren().get(2).getGraphicsAlgorithm().setBackground(manageColor(IColorConstant.DARK_GREEN));
+			gaService.setLocation(cs.getChildren().get(0).getGraphicsAlgorithm(), 25, 0);
+			//gaService.setLocation(cs.getChildren().get(1).getGraphicsAlgorithm(), 25, height/2);
+			gaService.setLocation(cs.getChildren().get(1).getGraphicsAlgorithm(), 25, 20);
+			gaService.setLocation(cs.getChildren().get(2).getGraphicsAlgorithm(), 2, height / 2 - 9);
+			cs.getChildren().get(2).getGraphicsAlgorithm().setBackground(manageColor(IColorConstant.GREEN));
 		} else {
 			getPort(context).setOuterDirection(DirectionType.EXTERNAL);
 			((Text) cs.getChildren().get(2).getGraphicsAlgorithm().eContents().get(0)).setValue("O");
-			cs.getChildren().get(2).getGraphicsAlgorithm().setBackground(manageColor(new ColorConstant(178,34,34)));
+			gaService.setLocation(cs.getChildren().get(0).getGraphicsAlgorithm(), 10, 0);
+			//gaService.setLocation(cs.getChildren().get(1).getGraphicsAlgorithm(), 10, height/2);
+			gaService.setLocation(cs.getChildren().get(1).getGraphicsAlgorithm(), 10, 20);
+			gaService.setLocation(cs.getChildren().get(2).getGraphicsAlgorithm(), width - 20, height / 2 - 9);
+			cs.getChildren().get(2).getGraphicsAlgorithm().setBackground(manageColor(IColorConstant.RED));
 		}
 	}
 

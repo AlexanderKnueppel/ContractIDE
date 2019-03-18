@@ -69,7 +69,7 @@ public class UpdatePortFeature extends AbstractUpdateFeature{
             Text typeText = (Text) type.getGraphicsAlgorithm();
             typeText.setValue(port.getType().toString());
             typeText.setWidth(cs.getGraphicsAlgorithm().getWidth());
-            nameText.setWidth(cs.getGraphicsAlgorithm().getWidth());
+            nameText.setWidth(cs.getGraphicsAlgorithm().getWidth() - 25);
         
 		return true;
 	}

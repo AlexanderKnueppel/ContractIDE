@@ -108,8 +108,10 @@ public class AddPortFeature extends AbstractAddFeature {
 			Ellipse ellipse = gaService.createEllipse(shape3);
 			
 			if(signifier == "i") {
+				
 				gaService.setLocationAndSize(text, 25, 0, portWidth - 25, portHeight / 2);
-				gaService.setLocationAndSize(text2, 25, portHeight / 2, portWidth, portHeight / 2);
+				//gaService.setLocationAndSize(text2, 25, portHeight / 2, portWidth, portHeight / 2);
+				gaService.setLocationAndSize(text2, 25, 20, portWidth, portHeight / 2);
 				ellipse.setForeground(manageColor(IColorConstant.WHITE));
 				ellipse.setBackground(manageColor(IColorConstant.GREEN));
 				gaService.setLocationAndSize(ellipse, 2, portHeight / 2 - 9, 18, 18);
@@ -119,8 +121,9 @@ public class AddPortFeature extends AbstractAddFeature {
 				text3.setForeground(gaService.manageColor(getDiagram(), ColorConstant.BLACK));
 				gaService.setLocationAndSize(text3, 0, 0, 18, 18);				
 			} else if(signifier == "o") {
-				gaService.setLocationAndSize(text, 10, 0, portWidth - 25, portHeight / 2);
-				gaService.setLocationAndSize(text2, 10, portHeight / 2, portWidth, portHeight / 2);
+				gaService.setLocationAndSize(text, 10, 0, 20, portHeight / 2);
+				//gaService.setLocationAndSize(text2, 10, portHeight / 2, portWidth, portHeight / 2);
+				gaService.setLocationAndSize(text2, 10, 20, portWidth, portHeight / 2);
 				ellipse.setForeground(manageColor(IColorConstant.WHITE));
 				ellipse.setBackground(manageColor(IColorConstant.RED));
 				gaService.setLocationAndSize(ellipse, portWidth - 20, portHeight / 2 - 9, 18, 18);

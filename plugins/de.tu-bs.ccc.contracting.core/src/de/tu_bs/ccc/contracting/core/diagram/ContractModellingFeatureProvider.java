@@ -55,6 +55,7 @@ import de.tu_bs.ccc.contracting.core.guiFeatures.VerifyCustomFeature;
 import de.tu_bs.ccc.contracting.core.move.MovePortFeature;
 import de.tu_bs.ccc.contracting.core.propertyFeature.CreateProperty;
 import de.tu_bs.ccc.contracting.core.resize.ResizeModuleFeature;
+import de.tu_bs.ccc.contracting.core.resize.ResizePortFeature;
 import de.tu_bs.ccc.contracting.core.update.UpdateContractFeature;
 import de.tu_bs.ccc.contracting.core.update.UpdateModuleFeature;
 import de.tu_bs.ccc.contracting.core.update.UpdatePortFeature;
@@ -184,6 +185,8 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 			Object bo = getBusinessObjectForPictogramElement(pictogramElement);
 			 if (bo instanceof Module) {
 				return new ResizeModuleFeature(this);
+			} else if(bo instanceof Ports) {
+				return new ResizePortFeature(this);
 			}
 		}
 		return super.getResizeShapeFeature(context);
