@@ -36,9 +36,8 @@ public enum DirectionType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	EXTERNAL(1, "EXTERNAL", "EXTERNAL"),
+	EXTERNAL(1, "EXTERNAL", "EXTERNAL");
 	
-	DEFAULT(2, "DEFAULT", "DEFAULT");
 
 	/**
 	 * The '<em><b>INTERNAL</b></em>' literal value.
@@ -69,8 +68,6 @@ public enum DirectionType implements Enumerator {
 	 * @ordered
 	 */
 	public static final int EXTERNAL_VALUE = 1;
-	
-	public static final int DEFAULT_VALUE = 2;
 
 	/**
 	 * An array of all the '<em><b>Direction Type</b></em>' enumerators.
@@ -78,7 +75,7 @@ public enum DirectionType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final DirectionType[] VALUES_ARRAY = new DirectionType[] { INTERNAL, EXTERNAL, DEFAULT };
+	private static final DirectionType[] VALUES_ARRAY = new DirectionType[] { INTERNAL, EXTERNAL};
 
 	/**
 	 * A public read-only list of all the '<em><b>Direction Type</b></em>' enumerators.

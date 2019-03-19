@@ -161,7 +161,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * @generated
 	 * @ordered
 	 */
-	//protected static final DirectionType OUTER_DIRECTION_EDEFAULT = DirectionType.INTERNAL;
+	protected static final DirectionType OUTER_DIRECTION_EDEFAULT = DirectionType.INTERNAL;
 
 	/**
 	 * The cached value of the '{@link #getOuterDirection() <em>Outer Direction</em>}' attribute.
@@ -171,7 +171,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * @generated
 	 * @ordered
 	 */
-	protected DirectionType outerDirection = DirectionType.DEFAULT;
+	protected DirectionType outerDirection = OUTER_DIRECTION_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getMaxClients() <em>Max Clients</em>}' attribute.
@@ -576,7 +576,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 */
 	public void setOuterDirection(DirectionType newOuterDirection) {
 		DirectionType oldOuterDirection = outerDirection;
-		outerDirection = newOuterDirection == null ? DirectionType.DEFAULT : newOuterDirection;
+		outerDirection = newOuterDirection == null ? OUTER_DIRECTION_EDEFAULT : newOuterDirection;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MmPackage.PORTS__OUTER_DIRECTION, oldOuterDirection,
 					outerDirection));
@@ -890,7 +890,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 			setService(SERVICE_EDEFAULT);
 			return;
 		case MmPackage.PORTS__OUTER_DIRECTION:
-			setOuterDirection(DirectionType.DEFAULT);
+			setOuterDirection(OUTER_DIRECTION_EDEFAULT);
 			return;
 		case MmPackage.PORTS__MAX_CLIENTS:
 			setMaxClients(MAX_CLIENTS_EDEFAULT);
@@ -936,7 +936,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 		case MmPackage.PORTS__SERVICE:
 			return SERVICE_EDEFAULT == null ? service != null : !SERVICE_EDEFAULT.equals(service);
 		case MmPackage.PORTS__OUTER_DIRECTION:
-			return outerDirection != DirectionType.DEFAULT;
+			return outerDirection != OUTER_DIRECTION_EDEFAULT;
 		case MmPackage.PORTS__MAX_CLIENTS:
 			return maxClients != MAX_CLIENTS_EDEFAULT;
 		case MmPackage.PORTS__FILTER:
