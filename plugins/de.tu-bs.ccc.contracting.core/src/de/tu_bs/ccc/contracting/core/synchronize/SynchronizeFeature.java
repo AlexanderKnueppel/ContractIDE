@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.graphiti.features.IDeleteFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IContext;
@@ -95,9 +96,8 @@ public class SynchronizeFeature extends AbstractCustomFeature {
 				for (IProject x : org.eclipse.core.resources.ResourcesPlugin.getWorkspace().getRoot().getProjects()) {
 					try {
 						if (pes != null) {
-
 							processContainer(x, m);
-
+							System.out.println("Auto Synch");
 						}
 
 					} catch (CoreException e) {
@@ -148,14 +148,18 @@ public class SynchronizeFeature extends AbstractCustomFeature {
 
 		instance.setName(original.getName());
 		try {
-
+			
 			instance.setDescription(original.getDescription());
 			instance.setVersion(original.getVersion());
 			instance.setRte(original.getRte());
 			instance.setSpec(original.getSpec());
 			instance.setRam(original.getRam());
 			instance.setCaps(original.getCaps());
-			for (int i = 0; i < instance.getPorts().size(); i++) {
+			for (int i = 0; i < original.getPorts().size(); i++) {
+				if(i+1>instance.getPorts().size()) {
+					System.out.println("ausgeführt");
+					instance.getPorts().add(EcoreUtil.copy(original.getPorts().get(i)	));
+				}
 				instance.getPorts().get(i).setName(original.getPorts().get(i).getName());
 				instance.getPorts().get(i).setMaxClients(original.getPorts().get(i).getMaxClients());
 				instance.getPorts().get(i).setService(original.getPorts().get(i).getService());
@@ -168,6 +172,7 @@ public class SynchronizeFeature extends AbstractCustomFeature {
 	}
 
 	void processContainer(IContainer container, Module original) throws CoreException {
+
 		IResource[] members = container.members();
 		for (IResource member : members) {
 			if (member instanceof IContainer)
@@ -187,18 +192,20 @@ public class SynchronizeFeature extends AbstractCustomFeature {
 		URI fileURI = URI.createFileURI(resource.getLocation().toFile().getAbsolutePath().toString());
 		if (resource.getName().contains(".model")) {
 			try {
-
 				Resource impResource = resourceSet.getResource(fileURI, true);
 
 				if (impResource.getContents().get(0) instanceof Compound) {
 					Compound container = (Compound) impResource.getContents().get(0);
 					for (Module copy : container.getConsistsOf()) {
-						if (copy.getModule().getName().equals(original.getName())) {
+						if (copy.getModule() != null) {
 
-							syncComponent(copy);
-							impResource.save(null);
-							impResource.setModified(true);
+							if (copy.getModule().getName().equals(original.getName())) {
 
+								syncComponent(copy);
+								impResource.save(null);
+								impResource.setModified(true);
+
+							}
 						}
 					}
 

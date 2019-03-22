@@ -65,7 +65,7 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 			Text nameText = (Text) s2.getGraphicsAlgorithm();
 			boolean nameoutofDate = false;
 			if (!nameText.getValue().equals(m.getName() + "   " + m.getVersion())) {
-				updatePictogramElement(pictogramElement);
+				nameoutofDate = true;
 
 			} else if (m.getModule() != null) {
 				try {
@@ -79,7 +79,8 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 				}
 			}
 			if (nameoutofDate) {
-				update(context);
+				updatePictogramElement(pictogramElement);
+				// update(context);
 				return Reason.createTrueReason("Name or version is out of date!");
 			}
 
@@ -95,9 +96,11 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 				}
 			}
 			if (!found) {
-				update(context);
+				updatePictogramElement(pictogramElement);
+				return Reason.createTrueReason("Port is out of date");
 			}
 		}
+
 		return Reason.createFalseReason();
 	}
 
@@ -120,20 +123,11 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 					.createPoint(context.getPictogramElement().getGraphicsAlgorithm().getWidth(), secondPoint.getY());
 			line.getPoints().set(1, newSecondPoint);
 			if (m.getIsPartOf() != null && m.getModule() == null) {
-//				RoundedRectangle roundedRectangle; // need to access it later
-//				roundedRectangle = gaService.createRoundedRectangle(cs, 5, 5);
-//				roundedRectangle.setForeground(manageColor(E_CLASS_FOREGROUND));
-//				roundedRectangle.setBackground(manageColor(E_CLASS_BACKGROUND));
-//				roundedRectangle.setLineWidth(2);
-//				final int width =cs.getGraphicsAlgorithm().getWidth();
-//				final int height =  cs.getGraphicsAlgorithm().getHeight();
-//				gaService.setLocationAndSize(roundedRectangle, cs.getGraphicsAlgorithm().getX(), cs.getGraphicsAlgorithm().getY(), width, height);
-//				
+
 				line.setForeground(manageColor(E_CLASS_FOREGROUND));
 				cs.getGraphicsAlgorithm().setBackground(manageColor(E_CLASS_BACKGROUND));
 				cs.getGraphicsAlgorithm().setForeground(manageColor(E_CLASS_FOREGROUND));
-//				
-//				
+
 			}
 			getDiagramBehavior().refreshContent();
 			for (Contract c : m.getContract()) {
