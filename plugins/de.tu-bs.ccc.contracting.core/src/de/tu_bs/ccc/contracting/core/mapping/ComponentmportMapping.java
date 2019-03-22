@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Module;
 
-public class ImportMapping {
+public class ComponentmportMapping {
 
 	public LinkedList<MappingEntry> mapping = new LinkedList<MappingEntry>();
 	public boolean initialized = false;
@@ -68,19 +68,16 @@ public class ImportMapping {
 	public void initialize(IProject p) {
 		if (!initialized) {
 			initialized = true;
-			
-				try {
 
-					processContainer(p);
+			try {
 
-				} catch (CoreException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				processContainer(p);
+
+			} catch (CoreException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-
-		
-		
+		}
 
 	}
 
@@ -108,10 +105,10 @@ public class ImportMapping {
 				if (impResource.getContents().get(0) instanceof Compound) {
 					Compound container = (Compound) impResource.getContents().get(0);
 					for (Module copy : container.getConsistsOf()) {
-						if (copy.getModule()!=null&&copy!=null) {
+						if (copy.getModule() != null && copy != null) {
 							addMappingEntry(copy.getModule(), copy);
 						}
-						
+
 					}
 
 				}
@@ -121,6 +118,19 @@ public class ImportMapping {
 
 		}
 
+	}
+
+	public void updateModule(String oldName, String newName) {
+		for (MappingEntry mappingEntry : mapping) {
+
+			if (mappingEntry.getOriginal().getName().equals((oldName))) {
+
+				mappingEntry.getOriginal().setName(newName);
+				mappingEntry.getInstance().setName(newName);
+
+			}
+		}
+	
 	}
 
 }

@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import org.eclipse.core.resources.IProject;
 
-public class ProjektsImportMapping extends HashMap<IProject, ImportMapping>{
+public class ProjektsImportMapping extends HashMap<IProject, ComponentmportMapping>{
 
 	/**
 	 * 

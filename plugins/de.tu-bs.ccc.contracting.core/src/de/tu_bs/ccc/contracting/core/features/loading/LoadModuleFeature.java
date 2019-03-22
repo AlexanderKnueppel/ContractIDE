@@ -22,7 +22,6 @@ import org.eclipse.ui.PlatformUI;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.System;
-import de.tu_bs.ccc.contracting.core.mapping.ImportMapping;
 import de.tu_bs.ccc.contracting.core.mapping.ProjectMapping;
 import de.tu_bs.ccc.contracting.core.util.CoreUtil;
 import de.tu_bs.ccc.contracting.ui.dialogs.LoadModuleDialog;

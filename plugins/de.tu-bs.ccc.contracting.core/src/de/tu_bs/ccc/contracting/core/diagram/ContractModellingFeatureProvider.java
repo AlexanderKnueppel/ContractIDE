@@ -54,7 +54,6 @@ import de.tu_bs.ccc.contracting.core.guiFeatures.EditAbstractFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.LayoutFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.ReloadImportFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.VerifyCustomFeature;
-import de.tu_bs.ccc.contracting.core.mapping.ImportMapping;
 import de.tu_bs.ccc.contracting.core.move.MovePortFeature;
 import de.tu_bs.ccc.contracting.core.propertyFeature.CreateProperty;
 import de.tu_bs.ccc.contracting.core.resize.ResizeModuleFeature;

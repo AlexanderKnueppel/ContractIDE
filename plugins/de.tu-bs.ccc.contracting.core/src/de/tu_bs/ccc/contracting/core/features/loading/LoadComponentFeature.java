@@ -5,26 +5,15 @@ import java.awt.FileDialog;
 import java.awt.Frame;
 import java.io.File;
 import java.io.FilenameFilter;
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import javax.swing.JOptionPane;
-
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateContext;
@@ -38,19 +27,12 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
-import general.SaveDomainModel;
 import de.tu_bs.ccc.contracting.Verification.Component;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Module;
-import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.core.localization.StringTable;
-import de.tu_bs.ccc.contracting.core.mapping.ImportMapping;
 import de.tu_bs.ccc.contracting.core.mapping.ProjectMapping;
-import de.tu_bs.ccc.contracting.Verification.MmFactory;
-import de.tu_bs.ccc.contracting.Verification.MmPackage;
 import windows.Dialog;
-import org.eclipse.emf.ecore.xmi.XMIResource;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 public class LoadComponentFeature extends AbstractCreateFeature {
 

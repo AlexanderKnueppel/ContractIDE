@@ -16,7 +16,6 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 import de.tu_bs.ccc.contracting.Verification.Ports;
-import de.tu_bs.ccc.contracting.core.mapping.ImportMapping;
 import de.tu_bs.ccc.contracting.core.mapping.ProjectMapping;
 
 public class DeletePortFeature extends DefaultDeleteFeature {

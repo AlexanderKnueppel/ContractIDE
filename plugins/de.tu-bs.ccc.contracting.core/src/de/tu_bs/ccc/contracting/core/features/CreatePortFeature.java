@@ -24,7 +24,7 @@ import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.PortType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.Verification.ProviderType;
-import de.tu_bs.ccc.contracting.core.mapping.ImportMapping;
+import de.tu_bs.ccc.contracting.core.mapping.ComponentmportMapping;
 import de.tu_bs.ccc.contracting.core.mapping.ProjectMapping;
 import de.tu_bs.ccc.contracting.Verification.MmFactory;
 
