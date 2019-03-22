@@ -42,17 +42,25 @@ public class UpdatePortFeature extends AbstractUpdateFeature{
 		 	if(port.getType().getValue() == PortType.SERVICE_VALUE) {
 		 		suffix +=  " : " + port.getService();
 		 	} 
+		 	boolean triggerupdate= false;
 		if(nameText.getValue().equals(port.getName()+suffix)&& typeText.getValue().equals(port.getType().toString())) {
-			return Reason.createFalseReason("Name is out of date");
+			triggerupdate=true;
 		}
+		if (!triggerupdate) {
+			updatePictogramElement(pictogramElement);
+			return Reason.createTrueReason("Name is out of date");
+		}
+
 
 	 
 	}
-        return Reason.createTrueReason();
+        return Reason.createFalseReason();
 	}
 
 	@Override
 	public boolean update(IUpdateContext context) {
+		
+		
 		PictogramElement pictogramElement = context.getPictogramElement();
 		Ports port = (Ports)getBusinessObjectForPictogramElement(pictogramElement);
         if (pictogramElement instanceof ContainerShape) {
