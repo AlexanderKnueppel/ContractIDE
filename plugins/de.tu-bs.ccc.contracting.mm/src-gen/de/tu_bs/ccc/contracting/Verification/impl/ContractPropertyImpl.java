@@ -56,7 +56,7 @@ public class ContractPropertyImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String PROPERTY_EDEFAULT = null;
+	protected static final String PROPERTY_EDEFAULT = "\"\"";
 
 	/**
 	 * The cached value of the '{@link #getProperty() <em>Property</em>}' attribute.
@@ -92,6 +92,7 @@ public class ContractPropertyImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PropertyType getPropertyTipe() {
 		return propertyTipe;
 	}
@@ -101,6 +102,7 @@ public class ContractPropertyImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPropertyTipe(PropertyType newPropertyTipe) {
 		PropertyType oldPropertyTipe = propertyTipe;
 		propertyTipe = newPropertyTipe == null ? PROPERTY_TIPE_EDEFAULT : newPropertyTipe;
@@ -114,6 +116,7 @@ public class ContractPropertyImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getProperty() {
 		return property;
 	}
@@ -123,6 +126,7 @@ public class ContractPropertyImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProperty(String newProperty) {
 		String oldProperty = property;
 		property = newProperty;
@@ -209,7 +213,7 @@ public class ContractPropertyImpl extends MinimalEObjectImpl.Container implement
 		if (eIsProxy())
 			return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (propertyTipe: ");
 		result.append(propertyTipe);
 		result.append(", property: ");

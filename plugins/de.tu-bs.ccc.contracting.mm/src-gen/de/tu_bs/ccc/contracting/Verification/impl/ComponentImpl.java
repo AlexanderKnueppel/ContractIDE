@@ -50,7 +50,7 @@ public class ComponentImpl extends ModuleImpl implements Component {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String BINARY_EDEFAULT = null;
+	protected static final String BINARY_EDEFAULT = "\"\"";
 	/**
 	 * The cached value of the '{@link #getBinary() <em>Binary</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -85,6 +85,7 @@ public class ComponentImpl extends ModuleImpl implements Component {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSingleton() {
 		return singleton;
 	}
@@ -94,6 +95,7 @@ public class ComponentImpl extends ModuleImpl implements Component {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSingleton(boolean newSingleton) {
 		boolean oldSingleton = singleton;
 		singleton = newSingleton;
@@ -107,6 +109,7 @@ public class ComponentImpl extends ModuleImpl implements Component {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getBinary() {
 		return binary;
 	}
@@ -116,6 +119,7 @@ public class ComponentImpl extends ModuleImpl implements Component {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBinary(String newBinary) {
 		String oldBinary = binary;
 		binary = newBinary;
@@ -201,7 +205,7 @@ public class ComponentImpl extends ModuleImpl implements Component {
 		if (eIsProxy())
 			return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (singleton: ");
 		result.append(singleton);
 		result.append(", binary: ");

@@ -54,6 +54,7 @@ public class GuaranteeImpl extends ContractPropertyImpl implements Guarantee {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Contract getContract() {
 		if (eContainerFeatureID() != MmPackage.GUARANTEE__CONTRACT)
 			return null;
@@ -75,6 +76,7 @@ public class GuaranteeImpl extends ContractPropertyImpl implements Guarantee {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContract(Contract newContract) {
 		if (newContract != eInternalContainer()
 				|| (eContainerFeatureID() != MmPackage.GUARANTEE__CONTRACT && newContract != null)) {
