@@ -97,7 +97,7 @@ public class ModulePropertiesContentProvider implements ITreeContentProvider {
 			}
 			if (realizedBy.length() > 0)
 				realizedBy = realizedBy.substring(0, realizedBy.length() - 2);
-			elements.add(new ModulePropertyElement("Realized by", realizedBy, m,
+			elements.add(new ModulePropertyElement("Realizes", realizedBy, m,
 					new TextCellEditor((Composite) getViewer().getControl())));
 		}
 		

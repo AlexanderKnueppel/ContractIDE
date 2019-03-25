@@ -31,7 +31,7 @@ public class ValueEditingSupport extends EditingSupport {
 	@Override
 	protected Object getValue(Object element) {
 		// TODO Auto-generated method stub
-		return ((ModulePropertyElement)element).getAttribute();
+		return ((ModulePropertyElement)element).getValue();
 	}
 
 	@Override

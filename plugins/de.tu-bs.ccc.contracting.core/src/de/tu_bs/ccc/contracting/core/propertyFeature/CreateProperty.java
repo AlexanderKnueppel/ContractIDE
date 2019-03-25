@@ -24,8 +24,11 @@ import windows.PropertyWindow;
 
 public class CreateProperty extends AbstractCreateFeature {
 
-	public CreateProperty(IFeatureProvider fp) {
-		super(fp, "Contract Porperty", "Creates a Contract Property");
+	private boolean assumption;
+
+	public CreateProperty(IFeatureProvider fp, boolean assumption) {
+		super(fp, (assumption ? "Add Assumption" : "Add Guarantee"), "Creates a Contract Property");
+		this.assumption = assumption;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -34,7 +37,7 @@ public class CreateProperty extends AbstractCreateFeature {
 		if (!(context.getTargetContainer() instanceof Diagram)) {
 			PictogramElement pict = context.getTargetContainer();
 			if (!(pict instanceof ContainerShape)) {
-				
+
 				return false;
 			}
 			EList<EObject> businessObjects = pict.getLink().getBusinessObjects();
@@ -46,41 +49,50 @@ public class CreateProperty extends AbstractCreateFeature {
 
 	@Override
 	public Object[] create(ICreateContext context) {
-    	
+
 		PictogramElement pict = context.getTargetContainer();
 		EList<EObject> businessObjects = pict.getLink().getBusinessObjects();
-		Contract containingContract = ((Contract) businessObjects.get(0));
-		PropertyWindow p = new PropertyWindow("",0,0);
-			p.setVisible(true);
-			if (p.getAssumption()==ContractType.ASSUMPTION_VALUE) {
-				Assumption a = MmFactory.eINSTANCE.createAssumption();
+		Contract contract = ((Contract) businessObjects.get(0));
+		// PropertyWindow p = new PropertyWindow("", 0, 0);
+		// p.setVisible(true);
+		// if (p.getAssumption() == ContractType.ASSUMPTION_VALUE) {
+		// Assumption a = MmFactory.eINSTANCE.createAssumption();
+		//
+		// a.setPropertyTipe(PropertyType.values()[p.getProptype()]);
+		// a.setProperty(p.getProp());
+		// containingContract.getAssumption().add(a);
+		// a.setContract(containingContract);
+		// updatePictogramElement(pict);
+		// return new Object[] { a };
+		// } else if (p.getAssumption() == ContractType.GUARANTEE_VALUE) {
+		// Guarantee g = MmFactory.eINSTANCE.createGuarantee();
+		//
+		// g.setPropertyTipe(PropertyType.values()[p.getProptype()]);
+		// containingContract.getGuarantee().add(g);
+		// g.setContract(containingContract);
+		// g.setProperty(p.getProp());
+		// updatePictogramElement(context.getTargetContainer());
+		// return new Object[] { g };
+		// }
 
-				a.setPropertyTipe(PropertyType.values()[p.getProptype()]);
-				a.setProperty(p.getProp());
-				containingContract.getAssumption().add(a);
-			a.setContract(containingContract);
+		if (assumption) {
+			Assumption a = MmFactory.eINSTANCE.createAssumption();
+			a.setProperty("true");
+			a.setPropertyTipe(PropertyType.EQUATION);
+			a.setContract(contract);
+			contract.getAssumption().add(a);
 			updatePictogramElement(pict);
 			return new Object[] { a };
-			}
-			else if (p.getAssumption()==ContractType.GUARANTEE_VALUE) {
-				Guarantee g = MmFactory.eINSTANCE.createGuarantee();
-				
-				g.setPropertyTipe(PropertyType.values()[p.getProptype()]);
-				containingContract.getGuarantee().add(g);
-				g.setContract(containingContract);
-				g.setProperty(p.getProp());
-				updatePictogramElement(context.getTargetContainer());
-				return new Object[] { g };
-			}
-		
-		
-		
-		
-		
-				
-		
-		
-		return null;
+		} else {
+			Guarantee g = MmFactory.eINSTANCE.createGuarantee();
+			g.setProperty("true");
+			g.setPropertyTipe(PropertyType.EQUATION);
+			g.setContract(contract);
+			contract.getGuarantee().add(g);
+			updatePictogramElement(pict);
+			return new Object[] { g };
+		}
+
 	}
 
 }

@@ -32,8 +32,9 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 public class EditPropertyWindow extends JDialog implements ActionListener {
-	
+
 	Assumption delA;
+
 	public Assumption getDelA() {
 		return delA;
 	}
@@ -56,12 +57,14 @@ public class EditPropertyWindow extends JDialog implements ActionListener {
 
 	Guarantee delG;
 	String propertyOfSelect;
+
 	public String getPropertyOfSelect() {
 		return propertyOfSelect;
 	}
 
 	PropertyType typeofSelect;
 	int selectCount;
+
 	public int getSelectCount() {
 		return selectCount;
 	}
@@ -76,7 +79,6 @@ public class EditPropertyWindow extends JDialog implements ActionListener {
 	Contract contract;
 	String[] assumption;
 	String[] guarantee;
-	
 
 	/**
 	 * Launch the application.
@@ -189,27 +191,25 @@ public class EditPropertyWindow extends JDialog implements ActionListener {
 					PropertyWindow win = new PropertyWindow(a.getProperty(), a.getPropertyTipe().getValue(),
 							ContractType.ASSUMPTION_VALUE);
 					win.setVisible(true);
-					this.propertyOfSelect= win.getProp();
-					this.typeofSelect=PropertyType.values()[win.getProptype()];
-					this.selectCount=ass.getSelectedIndex();
-					as=true;
-					
-				}} else if (ass.isSelectionEmpty()) {
-					if (!gua.isSelectionEmpty()) {
-						Guarantee a = contract.getGuarantee().get(gua.getSelectedIndex());
-						PropertyWindow win = new PropertyWindow(a.getProperty(), a.getPropertyTipe().getValue(),
-								ContractType.GUARANTEE_VALUE);
-						win.setVisible(true);
-						this.propertyOfSelect= win.getProp();
-						this.typeofSelect=PropertyType.values()[win.getProptype()];
-						this.selectCount=gua.getSelectedIndex();
-						ga=true;
-					}
+					this.propertyOfSelect = win.getProp();
+					this.typeofSelect = PropertyType.values()[win.getProptype()];
+					this.selectCount = ass.getSelectedIndex();
+					as = true;
 
 				}
+			} else if (ass.isSelectionEmpty()) {
+				if (!gua.isSelectionEmpty()) {
+					Guarantee a = contract.getGuarantee().get(gua.getSelectedIndex());
+					PropertyWindow win = new PropertyWindow(a.getProperty(), a.getPropertyTipe().getValue(),
+							ContractType.GUARANTEE_VALUE);
+					win.setVisible(true);
+					this.propertyOfSelect = win.getProp();
+					this.typeofSelect = PropertyType.values()[win.getProptype()];
+					this.selectCount = gua.getSelectedIndex();
+					ga = true;
+				}
 
-			
-			this.dispose();
+			}
 		} else if (e.getActionCommand() == "Delete") {
 
 			if (gua.isSelectionEmpty()) {

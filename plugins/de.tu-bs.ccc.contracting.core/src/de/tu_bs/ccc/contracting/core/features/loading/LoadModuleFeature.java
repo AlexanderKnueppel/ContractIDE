@@ -15,6 +15,7 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.System;
+import de.tu_bs.ccc.contracting.core.features.layout.LayoutDiagramFeature;
 import de.tu_bs.ccc.contracting.core.util.CoreUtil;
 import de.tu_bs.ccc.contracting.ui.dialogs.LoadModuleDialog;
 import de.tu_bs.ccc.contracting.ui.provider.LoadModuleLabelProvider;
@@ -34,7 +35,8 @@ public class LoadModuleFeature extends AbstractCreateFeature {
 			}
 
 			EList<EObject> businessObjects = pict.getLink().getBusinessObjects();
-			return businessObjects.size() == 1 && (businessObjects.get(0) instanceof Compound || businessObjects.get(0) instanceof System);
+			return businessObjects.size() == 1
+					&& (businessObjects.get(0) instanceof Compound || businessObjects.get(0) instanceof System);
 		} else {
 			return false;
 		}
@@ -64,25 +66,29 @@ public class LoadModuleFeature extends AbstractCreateFeature {
 			if (copy instanceof Compound) {
 				EcoreUtil.deleteAll(((Compound) copy).getConsistsOf(), true);
 			}
+			EcoreUtil.deleteAll(copy.getContract(), true);
 
 			addGraphicalRepresentation(context, copy);
 			PictogramElement pict = context.getTargetContainer();
-			
+
 			Object container = getBusinessObjectForPictogramElement(pict);
-			if(container instanceof Compound) {
+			if (container instanceof Compound) {
 				Compound x = (Compound) getBusinessObjectForPictogramElement(pict);
 				copy.setIsPartOf(x);
 				copy.getRealizedBy().addAll(c.getRealizedBy());
 				copy.setModule(c);
 				x.getConsistsOf().add(copy);
-			} else if(container instanceof System) {
+			} else if (container instanceof System) {
 				System x = (System) getBusinessObjectForPictogramElement(pict);
 				copy.setModule(c);
 				copy.getRealizedBy().addAll(c.getRealizedBy());
 				copy.setIsPartOf(null);
 				x.getConsistsOf().add(copy);
 			}
-			
+
+			new LayoutDiagramFeature(getFeatureProvider())
+					.layoutAtomic((ContainerShape) getFeatureProvider().getPictogramElementForBusinessObject(copy));
+
 			return new Object[] { copy };
 		}
 
