@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Abstract extends Module {
+public interface Abstract extends de.tu_bs.ccc.contracting.Verification.Module {
 	/**
 	 * Returns the value of the '<em><b>Realizes</b></em>' reference list.
 	 * The list contents are of type {@link de.tu_bs.ccc.contracting.Verification.Module}.
@@ -37,6 +37,6 @@ public interface Abstract extends Module {
 	 * @model opposite="realizedBy"
 	 * @generated
 	 */
-	EList<Module> getRealizes();
+	EList<de.tu_bs.ccc.contracting.Verification.Module> getRealizes();
 
 } // Abstract

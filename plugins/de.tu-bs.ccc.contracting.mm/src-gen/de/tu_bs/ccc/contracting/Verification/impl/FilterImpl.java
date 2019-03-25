@@ -36,7 +36,7 @@ public class FilterImpl extends ModuleTypeImpl implements Filter {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String ADD_EDEFAULT = null;
+	protected static final String ADD_EDEFAULT = "\"\"";
 
 	/**
 	 * The cached value of the '{@link #getAdd() <em>Add</em>}' attribute.
@@ -56,7 +56,7 @@ public class FilterImpl extends ModuleTypeImpl implements Filter {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String REMOVE_EDEFAULT = null;
+	protected static final String REMOVE_EDEFAULT = "\"\"";
 
 	/**
 	 * The cached value of the '{@link #getRemove() <em>Remove</em>}' attribute.
@@ -76,7 +76,7 @@ public class FilterImpl extends ModuleTypeImpl implements Filter {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String RESET_EDEFAULT = null;
+	protected static final String RESET_EDEFAULT = "\"\"";
 
 	/**
 	 * The cached value of the '{@link #getReset() <em>Reset</em>}' attribute.
@@ -96,7 +96,7 @@ public class FilterImpl extends ModuleTypeImpl implements Filter {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String ALIAS_EDEFAULT = null;
+	protected static final String ALIAS_EDEFAULT = "\"\"";
 
 	/**
 	 * The cached value of the '{@link #getAlias() <em>Alias</em>}' attribute.
@@ -132,6 +132,7 @@ public class FilterImpl extends ModuleTypeImpl implements Filter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getAdd() {
 		return add;
 	}
@@ -141,6 +142,7 @@ public class FilterImpl extends ModuleTypeImpl implements Filter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAdd(String newAdd) {
 		String oldAdd = add;
 		add = newAdd;
@@ -153,6 +155,7 @@ public class FilterImpl extends ModuleTypeImpl implements Filter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getRemove() {
 		return remove;
 	}
@@ -162,6 +165,7 @@ public class FilterImpl extends ModuleTypeImpl implements Filter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRemove(String newRemove) {
 		String oldRemove = remove;
 		remove = newRemove;
@@ -174,6 +178,7 @@ public class FilterImpl extends ModuleTypeImpl implements Filter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getReset() {
 		return reset;
 	}
@@ -183,6 +188,7 @@ public class FilterImpl extends ModuleTypeImpl implements Filter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReset(String newReset) {
 		String oldReset = reset;
 		reset = newReset;
@@ -195,6 +201,7 @@ public class FilterImpl extends ModuleTypeImpl implements Filter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getAlias() {
 		return alias;
 	}
@@ -204,6 +211,7 @@ public class FilterImpl extends ModuleTypeImpl implements Filter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAlias(String newAlias) {
 		String oldAlias = alias;
 		alias = newAlias;
@@ -309,7 +317,7 @@ public class FilterImpl extends ModuleTypeImpl implements Filter {
 		if (eIsProxy())
 			return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (add: ");
 		result.append(add);
 		result.append(", remove: ");

@@ -34,7 +34,7 @@ public class ProtocolImpl extends ModuleTypeImpl implements Protocol {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String FROM_EDEFAULT = null;
+	protected static final String FROM_EDEFAULT = "\"\"";
 
 	/**
 	 * The cached value of the '{@link #getFrom() <em>From</em>}' attribute.
@@ -54,7 +54,7 @@ public class ProtocolImpl extends ModuleTypeImpl implements Protocol {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String TO_EDEFAULT = null;
+	protected static final String TO_EDEFAULT = "\"\"";
 
 	/**
 	 * The cached value of the '{@link #getTo() <em>To</em>}' attribute.
@@ -90,6 +90,7 @@ public class ProtocolImpl extends ModuleTypeImpl implements Protocol {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFrom() {
 		return from;
 	}
@@ -99,6 +100,7 @@ public class ProtocolImpl extends ModuleTypeImpl implements Protocol {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFrom(String newFrom) {
 		String oldFrom = from;
 		from = newFrom;
@@ -111,6 +113,7 @@ public class ProtocolImpl extends ModuleTypeImpl implements Protocol {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getTo() {
 		return to;
 	}
@@ -120,6 +123,7 @@ public class ProtocolImpl extends ModuleTypeImpl implements Protocol {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTo(String newTo) {
 		String oldTo = to;
 		to = newTo;
@@ -205,7 +209,7 @@ public class ProtocolImpl extends ModuleTypeImpl implements Protocol {
 		if (eIsProxy())
 			return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (from: ");
 		result.append(from);
 		result.append(", to: ");

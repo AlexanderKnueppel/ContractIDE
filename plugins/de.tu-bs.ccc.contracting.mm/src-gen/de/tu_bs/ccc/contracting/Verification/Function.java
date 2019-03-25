@@ -21,6 +21,7 @@ package de.tu_bs.ccc.contracting.Verification;
 public interface Function extends ModuleType {
 	/**
 	 * Returns the value of the '<em><b>Function</b></em>' attribute.
+	 * The default value is <code>"\"\""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Function</em>' attribute isn't clear,
@@ -30,7 +31,7 @@ public interface Function extends ModuleType {
 	 * @return the value of the '<em>Function</em>' attribute.
 	 * @see #setFunction(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getFunction_Function()
-	 * @model
+	 * @model default="\"\""
 	 * @generated
 	 */
 	String getFunction();

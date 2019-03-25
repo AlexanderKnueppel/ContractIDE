@@ -33,7 +33,7 @@ public class FunctionImpl extends ModuleTypeImpl implements Function {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String FUNCTION_EDEFAULT = null;
+	protected static final String FUNCTION_EDEFAULT = "\"\"";
 
 	/**
 	 * The cached value of the '{@link #getFunction() <em>Function</em>}' attribute.
@@ -69,6 +69,7 @@ public class FunctionImpl extends ModuleTypeImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFunction() {
 		return function;
 	}
@@ -78,6 +79,7 @@ public class FunctionImpl extends ModuleTypeImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFunction(String newFunction) {
 		String oldFunction = function;
 		function = newFunction;
@@ -153,7 +155,7 @@ public class FunctionImpl extends ModuleTypeImpl implements Function {
 		if (eIsProxy())
 			return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (function: ");
 		result.append(function);
 		result.append(')');
