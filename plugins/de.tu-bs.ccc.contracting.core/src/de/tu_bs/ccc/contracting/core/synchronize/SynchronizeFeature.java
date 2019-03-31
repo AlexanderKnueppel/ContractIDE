@@ -40,6 +40,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.internal.decorators.DecoratorManager;
 
 import de.tu_bs.ccc.contracting.Verification.Compound;
+import de.tu_bs.ccc.contracting.Verification.MmFactory;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.core.diagram.ContractModellingImageProvider;
@@ -80,6 +81,7 @@ public class SynchronizeFeature extends AbstractCustomFeature {
 			} else {
 				syncComponent(m);
 				refresh();
+				
 
 			}
 
@@ -91,18 +93,17 @@ public class SynchronizeFeature extends AbstractCustomFeature {
 			int n = dialog.open();
 			if (n == 1) {
 
-				decoratorManager.update("de.tubs.ccc.contracting.core.decorators.SynchronizeDecorator");
+				refresh();
 			} else if (n == 0) {
+				
 				for (IProject x : org.eclipse.core.resources.ResourcesPlugin.getWorkspace().getRoot().getProjects()) {
 					try {
 						if (pes != null) {
 							processContainer(x, m);
-							System.out.println("Auto Synch");
 						}
 
 					} catch (CoreException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+					
 					}
 				}
 				refresh();
@@ -147,8 +148,8 @@ public class SynchronizeFeature extends AbstractCustomFeature {
 		Module original = instance.getModule();
 
 		instance.setName(original.getName());
-		try {
-			
+		
+
 			instance.setDescription(original.getDescription());
 			instance.setVersion(original.getVersion());
 			instance.setRte(original.getRte());
@@ -156,18 +157,44 @@ public class SynchronizeFeature extends AbstractCustomFeature {
 			instance.setRam(original.getRam());
 			instance.setCaps(original.getCaps());
 			for (int i = 0; i < original.getPorts().size(); i++) {
-				if(i+1>instance.getPorts().size()) {
-					System.out.println("ausgeführt");
-					instance.getPorts().add(EcoreUtil.copy(original.getPorts().get(i)	));
+				if (i + 1 > instance.getPorts().size()) {
+					instance.getPorts().add(EcoreUtil.copy(original.getPorts().get(i)));
 				}
 				instance.getPorts().get(i).setName(original.getPorts().get(i).getName());
 				instance.getPorts().get(i).setMaxClients(original.getPorts().get(i).getMaxClients());
 				instance.getPorts().get(i).setService(original.getPorts().get(i).getService());
+				instance.getPorts().get(i).setType(original.getPorts().get(i).getType());
 
 			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+			while (original.getContract().size() - instance.getContract().size() > 0) {
+
+				instance.getContract().add(MmFactory.eINSTANCE.createContract());
+			}
+			while (original.getContract().size() - instance.getContract().size() < 0) {
+
+				instance.getContract().remove(instance.getContract().size() - 1);
+			}
+
+			for (int i = 0; i < original.getContract().size(); i++) {
+				// instance.getContract().set(i,EcoreUtil.copy(original.getContract().get(i)));
+				while (instance.getContract().get(i).getGuarantee().size() > 0) {
+					EcoreUtil.delete(instance.getContract().get(i).getGuarantee()
+							.get(instance.getContract().get(i).getGuarantee().size() - 1));
+				}
+				while (instance.getContract().get(i).getAssumption().size() > 0) {
+					EcoreUtil.delete(instance.getContract().get(i).getAssumption()
+							.get(instance.getContract().get(i).getAssumption().size() - 1));
+				}
+				instance.getContract().get(i).setViewPoint(original.getContract().get(i).getViewPoint());
+				for (int j = 0; j < original.getContract().get(i).getAssumption().size(); j++) {
+					instance.getContract().get(i).getAssumption().add(EcoreUtil.copy(original.getContract().get(i).getAssumption().get(j)));
+				}
+				for (int j = 0; j < original.getContract().get(i).getGuarantee().size(); j++) {
+					instance.getContract().get(i).getGuarantee().add(EcoreUtil.copy(original.getContract().get(i).getGuarantee().get(j)));
+				}
+
+			}
+		
 
 	}
 
@@ -179,7 +206,7 @@ public class SynchronizeFeature extends AbstractCustomFeature {
 				processContainer((IContainer) member, original);
 			else if (member instanceof IFile) {
 				processFile((IFile) member, original);
-				member.refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
+				//member.refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
 			}
 		}
 	}
@@ -200,7 +227,7 @@ public class SynchronizeFeature extends AbstractCustomFeature {
 						if (copy.getModule() != null) {
 
 							if (copy.getModule().getName().equals(original.getName())) {
-
+								
 								syncComponent(copy);
 								impResource.save(null);
 								impResource.setModified(true);
@@ -211,7 +238,7 @@ public class SynchronizeFeature extends AbstractCustomFeature {
 
 				}
 			} catch (Exception e) {
-				// TODO: handle exception
+	;
 			}
 
 		}
