@@ -50,8 +50,20 @@ public class ComponentmportMapping {
 			URI xx = EcoreUtil.getURI(mappingEntry.getOriginal());
 			
 			URI xy =EcoreUtil.getURI(searched);
+			System.out.println(xy.path());
+			System.out.println(xx.toPlatformString(false));
 
-			if (xy.path().equals(xx.toPlatformString(false))||mappingEntry.getOriginal().getName().equals((searched.getName()))) {
+			
+
+			if (xy.path().equals(xx.toPlatformString(false))) {
+
+				foundEntries.add(mappingEntry.getInstance());
+
+			}
+				
+				
+			
+			if (mappingEntry.getOriginal().getName().equals((searched.getName()))) {
 
 				foundEntries.add(mappingEntry.getInstance());
 
