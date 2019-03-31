@@ -1,5 +1,6 @@
 package de.tu_bs.ccc.contracting.core.mapping;
 
+import java.io.IOException;
 import java.util.LinkedList;
 
 import org.eclipse.core.resources.IContainer;
@@ -11,6 +12,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Module;
@@ -19,13 +21,37 @@ public class ComponentmportMapping {
 
 	public LinkedList<MappingEntry> mapping = new LinkedList<MappingEntry>();
 	public boolean initialized = false;
+	ResourceSet resourceSet = new ResourceSetImpl();
 
 	public LinkedList<Module> getMappingEntry(Module searched) {
 
 		LinkedList<Module> foundEntries = new LinkedList<Module>();
 		for (MappingEntry mappingEntry : mapping) {
+			if (mappingEntry.getOriginal().eResource()!=null) {
+				
+				Resource e = mappingEntry.getOriginal().eResource();
+				e.unload();
+				try {
+					e.load(null);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			Resource impResource = resourceSet.getResource(EcoreUtil.getURI(mappingEntry.getOriginal()), true);
+			impResource.unload();
+			try {
+				impResource.load(null);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Module container = (Module) impResource.getContents().get(0);
+			URI xx = EcoreUtil.getURI(mappingEntry.getOriginal());
+			
+			URI xy =EcoreUtil.getURI(searched);
 
-			if (mappingEntry.getOriginal().getName().equals((searched.getName()))) {
+			if (xy.path().equals(xx.toPlatformString(false))||mappingEntry.getOriginal().getName().equals((searched.getName()))) {
 
 				foundEntries.add(mappingEntry.getInstance());
 
@@ -94,7 +120,7 @@ public class ComponentmportMapping {
 	private void processFile(IFile member) {
 
 		IFile resource = member;
-		ResourceSet resourceSet = new ResourceSetImpl();
+		
 
 		URI fileURI = URI.createFileURI(resource.getLocation().toFile().getAbsolutePath().toString());
 		if (resource.getName().contains(".model")) {
