@@ -23,8 +23,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
@@ -32,8 +30,6 @@ import org.eclipse.graphiti.features.IAddFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.impl.AddContext;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
-import org.eclipse.graphiti.mm.pictograms.PictogramLink;
-import org.eclipse.graphiti.mm.pictograms.PictogramsFactory;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.services.GraphitiUi;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -46,7 +42,6 @@ import org.eclipse.ui.PlatformUI;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.System;
 import de.tu_bs.ccc.contracting.core.localization.StringTable;
-import de.tu_bs.ccc.contracting.ui.wizards.CreationType;
 
 public class CoreUtil {
 	public static IProject getCurrentProject() {
@@ -341,58 +336,111 @@ public class CoreUtil {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		for (int i = 0; (i < copy.getPorts().size() && i < copy.getModule().getPorts().size()); i++) {
+		if (copy.getModule().getPorts().size() == copy.getPorts().size()) {
 
-
-			if (!copy.getPorts().get(i).getName().equals(copy.getModule().getPorts().get(i).getName())) {
-
-				synch = true;
-			}
-			if (copy.getPorts().get(i).getMaxClients() != copy.getModule().getPorts().get(i).getMaxClients()) {
-
-				synch = true;
-			}
-			if (!copy.getPorts().get(i).getLabel().equals(copy.getModule().getPorts().get(i).getLabel())) {
-
-				synch = true;
-			}
-			if (!copy.getPorts().get(i).getService().equals(copy.getModule().getPorts().get(i).getService())) {
-
-				synch = true;
-			}
-		}
-		return synch;
-
-	}
-	static void getDifferences() {
-		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-		IProject[] projects = root.getProjects();
-		
-		for (IProject iProject : projects) {
-			
-		
-		List<IFile> list = CoreUtil.getModelFiles(iProject);
-		for (IFile iFile : list) {
-			ResourceSet resourceSet1 = new ResourceSetImpl();
-			ResourceSet resourceSet2 = new ResourceSetImpl();
-
-			URI fileURI = URI.createFileURI(iFile.getLocation().toFile().getAbsolutePath().toString());
-			if (iFile.getName().contains(".model")) {
+			for (int i = 0; i < copy.getModule().getPorts().size(); i++) {
 				try {
 
-					Resource impResource = resourceSet2.getResource(fileURI, true);
+				if (!copy.getPorts().get(i).getName().equals(copy.getModule().getPorts().get(i).getName())) {
 
-					if (impResource.getContents().get(0) instanceof Module) {
-						//IComparisonScope scope = new DefaultComparisonScope(resourceSet1, resourceSet2);
-						//Comparison comparison = EMFCompare.builder().build().compare(scope);
-						//List<Diff> differences = comparison.getDifferences();
-					}
+					synch = true;
+				}
+				if (!copy.getPorts().get(i).getType().equals(copy.getModule().getPorts().get(i).getType())) {
 
+					synch = true;
+				}
+				if (copy.getPorts().get(i).getMaxClients() != copy.getModule().getPorts().get(i).getMaxClients()) {
+
+					synch = true;
+				}
+				if (!copy.getPorts().get(i).getLabel().equals(copy.getModule().getPorts().get(i).getLabel())) {
+
+					synch = true;
+				}
+				if (!copy.getPorts().get(i).getService().equals(copy.getModule().getPorts().get(i).getService())) {
+
+					synch = true;
+				}
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
 			}
+		} else {
+			synch = true;
+		}
+		try {
+			
+		
+		if (copy.getModule().getContract().size() == copy.getContract().size()) {
+
+			for (int i = 0; i < copy.getModule().getContract().size(); i++) {
+				if (!copy.getContract().get(i).getViewPoint()
+						.equals(copy.getModule().getContract().get(i).getViewPoint())) {
+					synch = true;
+				}
+				for (int j = 0; j < copy.getModule().getContract().get(i).getGuarantee().size(); j++) {
+					if (!copy.getContract().get(i).getGuarantee().get(j).getProperty()
+							.equals((copy.getModule().getContract().get(i).getGuarantee().get(j).getProperty()))) {
+						synch = true;
+					}
+					if (copy.getContract().get(i).getGuarantee().get(j).getPropertyTipe() != (copy.getModule()
+							.getContract().get(i).getGuarantee().get(j).getPropertyTipe())) {
+						synch = true;
+					}
+				}
+				for (int j = 0; j < copy.getModule().getContract().get(i).getAssumption().size(); j++) {
+					if (!copy.getContract().get(i).getAssumption().get(j).getProperty()
+							.equals((copy.getModule().getContract().get(i).getAssumption().get(j).getProperty()))) {
+						synch = true;
+					}
+					if (copy.getContract().get(i).getAssumption().get(j).getPropertyTipe() != (copy.getModule()
+							.getContract().get(i).getAssumption().get(j).getPropertyTipe())) {
+						synch = true;
+					}
+				}
+
+			}
+		} else {
+			synch = true;
+		}
+		} catch (Exception e) {
+
 		}
 		
-	}}
+		return synch;
+
+	}
+
+	static void getDifferences() {
+		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+		IProject[] projects = root.getProjects();
+
+		for (IProject iProject : projects) {
+
+			List<IFile> list = CoreUtil.getModelFiles(iProject);
+			for (IFile iFile : list) {
+				ResourceSet resourceSet1 = new ResourceSetImpl();
+				ResourceSet resourceSet2 = new ResourceSetImpl();
+
+				URI fileURI = URI.createFileURI(iFile.getLocation().toFile().getAbsolutePath().toString());
+				if (iFile.getName().contains(".model")) {
+					try {
+
+						Resource impResource = resourceSet2.getResource(fileURI, true);
+
+						if (impResource.getContents().get(0) instanceof Module) {
+							// IComparisonScope scope = new DefaultComparisonScope(resourceSet1,
+							// resourceSet2);
+							// Comparison comparison = EMFCompare.builder().build().compare(scope);
+							// List<Diff> differences = comparison.getDifferences();
+						}
+
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
+				}
+			}
+
+		}
+	}
 }
