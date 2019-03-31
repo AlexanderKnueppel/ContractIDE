@@ -28,7 +28,11 @@ public class EditPropertyFeature extends AbstractCustomFeature {
       
             Object bo = getBusinessObjectForPictogramElement(pes);
             if (bo instanceof Contract) {
-                ret = true;
+            	Contract c = (Contract) bo;
+            	if (c.getModule().getModule()==null) {
+            		 ret = true;
+				}
+               
             }
         }
         return ret;
