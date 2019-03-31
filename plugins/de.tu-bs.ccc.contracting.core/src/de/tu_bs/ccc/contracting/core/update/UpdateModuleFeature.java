@@ -1,22 +1,16 @@
 package de.tu_bs.ccc.contracting.core.update;
 
-import java.io.IOException;
-import java.net.URI;
-import java.util.Iterator;
-
-import org.antlr.v4.parse.ANTLRParser.element_return;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.graphiti.features.IDeleteFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.IReason;
+import org.eclipse.graphiti.features.context.IMultiDeleteInfo;
 import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.features.context.impl.AddContext;
+import org.eclipse.graphiti.features.context.impl.DeleteContext;
+import org.eclipse.graphiti.features.context.impl.MultiDeleteInfo;
 import org.eclipse.graphiti.features.impl.AbstractUpdateFeature;
 import org.eclipse.graphiti.features.impl.Reason;
 import org.eclipse.graphiti.mm.algorithms.Polyline;
-import org.eclipse.graphiti.mm.algorithms.RoundedRectangle;
 import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.algorithms.styles.Point;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
@@ -32,11 +26,10 @@ import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Contract;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.core.diagram.ContractModellingFeatureProvider;
 import de.tu_bs.ccc.contracting.core.util.CoreUtil;
-import de.tu_bs.ccc.contracting.Verification.MmFactory;
 
 public class UpdateModuleFeature extends AbstractUpdateFeature {
-	private static final IColorConstant E_CLASS_TEXT_FOREGROUND = IColorConstant.BLACK;
 
 	private static final IColorConstant E_CLASS_FOREGROUND = new ColorConstant(255, 0, 0);
 
@@ -68,15 +61,13 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 				nameoutofDate = true;
 
 			} else if (m.getModule() != null) {
-				try {
-					if (CoreUtil.isComponentNotSynched(m)) {
-						return Reason.createTrueReason("Instance is not synchromized with its Original");
-					} else {
-						return Reason.createFalseReason();
-					}
-				} catch (Exception e) {
-					// TODO: handle exception
+
+				if (CoreUtil.isComponentNotSynched(m)) {
+					return Reason.createTrueReason("Instance is not synchromized with its Original");
+				} else {
+					return Reason.createFalseReason();
 				}
+
 			}
 			if (nameoutofDate) {
 				updatePictogramElement(pictogramElement);
@@ -97,7 +88,21 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 			}
 			if (!found) {
 				updatePictogramElement(pictogramElement);
-				return Reason.createTrueReason("Port is out of date");
+				return Reason.createTrueReason("Port doesn't exist");
+			}
+		}
+		for (Contract c : m.getContract()) {
+			boolean found = false;
+
+			for (PictogramLink p : getDiagram().getPictogramLinks()) {
+
+				if (p.getBusinessObjects().get(0) == c) {
+					found = true;
+				}
+			}
+			if (!found) {
+				updatePictogramElement(pictogramElement);
+				return Reason.createTrueReason("Contract doesn't exist");
 			}
 		}
 
@@ -129,14 +134,7 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 				cs.getGraphicsAlgorithm().setForeground(manageColor(E_CLASS_FOREGROUND));
 
 			}
-			getDiagramBehavior().refreshContent();
-			for (Contract c : m.getContract()) {
-				for (PictogramLink p : getDiagram().getPictogramLinks()) {
-					if (p.getBusinessObjects().get(0) == c) {
-						updatePictogramElement(p.getPictogramElement());
-					}
-				}
-			}
+
 			for (Ports po : m.getPorts()) {
 				boolean found = false;
 				for (PictogramLink p : getDiagram().getPictogramLinks()) {
@@ -156,6 +154,51 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 				}
 
 			}
+
+			for (PictogramLink p : getDiagram().getPictogramLinks()) {
+				if (p.getBusinessObjects().get(0) instanceof Contract) {
+
+					Contract c = (Contract) p.getBusinessObjects().get(0);
+					if (c.getModule() == null) {
+
+						DeleteContext deleteContext = new DeleteContext(p.getPictogramElement());
+						IMultiDeleteInfo multiDeleteInfo = new MultiDeleteInfo(false, false, 0);
+						deleteContext.setMultiDeleteInfo(multiDeleteInfo);
+						IDeleteFeature deleteFeature = getFeatureProvider().getDeleteFeature(deleteContext);
+						deleteFeature.execute(deleteContext);
+					}
+				}
+			}
+
+			for (Contract c : m.getContract()) {
+				boolean found = false;
+
+				for (PictogramLink p : getDiagram().getPictogramLinks()) {
+
+					if (p.getBusinessObjects().get(0) == c) {
+						found = true;
+						updatePictogramElement(p.getPictogramElement());
+					}
+				}
+				if (!found) {
+					System.out.println("laufe");
+					AddContext creat = new AddContext();
+				creat.setNewObject(c);
+				creat.setTargetContainer(cs);
+
+					creat.setLocation(cs.getGraphicsAlgorithm().getX(), cs.getGraphicsAlgorithm().getY());
+					getFeatureProvider().addIfPossible(creat);
+				}
+
+			}
+			for (Contract c : m.getContract()) {
+				for (PictogramLink p : getDiagram().getPictogramLinks()) {
+					if (p.getBusinessObjects().get(0) == c) {
+						System.out.println(m.getName()+m.getModule()+"con-update");
+						updatePictogramElement(p.getPictogramElement());
+					}
+				}
+			}
 			if (m instanceof Compound) {
 				Compound co = (Compound) m;
 				for (Module mo : co.getConsistsOf()) {
@@ -166,6 +209,7 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 					}
 				}
 			}
+			getDiagramBehavior().refresh();
 			return true;
 		}
 
