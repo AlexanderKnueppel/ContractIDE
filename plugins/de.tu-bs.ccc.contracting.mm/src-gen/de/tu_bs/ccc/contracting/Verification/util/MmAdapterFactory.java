@@ -12,7 +12,6 @@ import de.tu_bs.ccc.contracting.Verification.Filter;
 import de.tu_bs.ccc.contracting.Verification.Function;
 import de.tu_bs.ccc.contracting.Verification.Guarantee;
 import de.tu_bs.ccc.contracting.Verification.MmPackage;
-import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.ModuleType;
 import de.tu_bs.ccc.contracting.Verification.Mux;
 import de.tu_bs.ccc.contracting.Verification.Ports;
@@ -81,7 +80,7 @@ public class MmAdapterFactory extends AdapterFactoryImpl {
 	 */
 	protected MmSwitch<Adapter> modelSwitch = new MmSwitch<Adapter>() {
 		@Override
-		public Adapter caseModule(Module object) {
+		public Adapter caseModule(de.tu_bs.ccc.contracting.Verification.Module object) {
 			return createModuleAdapter();
 		}
 

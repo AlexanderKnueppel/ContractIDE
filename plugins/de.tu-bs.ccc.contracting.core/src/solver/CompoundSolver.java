@@ -1,10 +1,18 @@
 package solver;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.swing.JOptionPane;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import com.microsoft.z3.Context;
 import com.microsoft.z3.FuncDecl;
@@ -23,6 +31,12 @@ import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.Verification.PropertyType;
 import de.tu_bs.ccc.contracting.Verification.ViewPoint;
 import de.tu_bs.ccc.contracting.core.grammar.GrammarSolver;
+import de.tu_bs.ccc.contracting.core.util.CoreUtil;
+import de.tu_bs.ccc.contracting.idl.CidlPersistenceManager;
+import de.tu_bs.ccc.contracting.idl.cidl.Attribute;
+import de.tu_bs.ccc.contracting.idl.cidl.BasicTypeId;
+import de.tu_bs.ccc.contracting.idl.cidl.Interface;
+import de.tu_bs.ccc.contracting.idl.cidl.Model;
 import general.LogWriter;
 
 public class CompoundSolver {
@@ -67,29 +81,73 @@ public class CompoundSolver {
 			p.add(port);
 		}
 
-		Symbol[] declNames = new Symbol[p.size()];
-		FuncDecl[] decl = new FuncDecl[p.size()];
-		for (int i = 0; i < decl.length; i++) {
-			declNames[i] = this.ctx.mkSymbol(p.get(i).getModule().getName() + "." + p.get(i).getName());
-			switch (p.get(i).getType().getValue()) {
+		// Symbol[] declNames = new Symbol[p.size()];
+		// FuncDecl[] decl = new FuncDecl[p.size()];
 
-			case PortType.BOOLEAN_VALUE:
-				decl[i] = this.ctx.mkConstDecl(declNames[i], ctx.mkBoolSort());
-				break;
-			case PortType.REAL_VALUE:
-				decl[i] = this.ctx.mkConstDecl(declNames[i], ctx.mkRealSort());
-				break;
-			case PortType.STRING_VALUE:
-				decl[i] = this.ctx.mkConstDecl(declNames[i], ctx.mkStringSort());
-				break;
+		ArrayList<Symbol> symbolList = new ArrayList<Symbol>();
+		ArrayList<FuncDecl> funcDeclList = new ArrayList<FuncDecl>();
 
-			default:
-				decl[i] = this.ctx.mkConstDecl(declNames[i], ctx.mkIntSort());
-				break;
+		// create symbols
+		for (Ports elem : p) {
+			if (elem.getType() == PortType.SERVICE) {
+				List<Interface> interfaces = CidlPersistenceManager.getIdlModels(CoreUtil.getCurrentProject()).stream()
+						.map(m -> ((Model) m).getInterfaces()).flatMap(j -> j.stream()).collect(Collectors.toList());
+
+				if (interfaces.stream().anyMatch(j -> j.getName().equals(elem.getService()))) {
+					Interface serviceInterface = interfaces.stream().filter(j -> j.getName().equals(elem.getService()))
+							.findFirst().get();
+					for (Attribute attr : serviceInterface.getAttributes()) {
+						String symbolname = elem.getModule().getName() + "." + elem.getName() + "." + attr.getName();
+						symbolList.add(this.ctx.mkSymbol(symbolname));
+						switch (attr.getType().getPredefined().getValue()) {
+						case BasicTypeId.BOOLEAN_VALUE:
+							funcDeclList.add(this.ctx.mkConstDecl(symbolname, ctx.mkBoolSort()));
+							break;
+						case BasicTypeId.FLOAT_VALUE:
+						case BasicTypeId.DOUBLE_VALUE:
+							funcDeclList.add(this.ctx.mkConstDecl(symbolname, ctx.mkRealSort()));
+							break;
+						case BasicTypeId.STRING_VALUE:
+							funcDeclList.add(this.ctx.mkConstDecl(symbolname, ctx.mkStringSort()));
+							break;
+						default:
+							funcDeclList.add(this.ctx.mkConstDecl(symbolname, ctx.mkIntSort()));
+							break;
+						}
+					}
+				}
+			} else {
+				String symbolname = elem.getModule().getName() + "." + elem.getName();
+				symbolList.add(this.ctx.mkSymbol(symbolname));
+				switch (elem.getType().getValue()) {
+				case PortType.BOOLEAN_VALUE:
+					funcDeclList.add(this.ctx.mkConstDecl(symbolname, ctx.mkBoolSort()));
+					break;
+				case PortType.REAL_VALUE:
+					funcDeclList.add(this.ctx.mkConstDecl(symbolname, ctx.mkRealSort()));
+					break;
+				case PortType.STRING_VALUE:
+					funcDeclList.add(this.ctx.mkConstDecl(symbolname, ctx.mkStringSort()));
+					break;
+				default:
+					funcDeclList.add(this.ctx.mkConstDecl(symbolname, ctx.mkIntSort()));
+					break;
+				}
 
 			}
-
 		}
+
+		Symbol[] declNames = symbolList.toArray(new Symbol[0]);
+		FuncDecl[] decl = funcDeclList.toArray(new FuncDecl[0]);
+		
+		for(Symbol s : symbolList) {
+			System.out.println(s);
+		}
+		
+		for(FuncDecl s : funcDeclList) {
+			System.out.println(s);
+		}
+
 		Solver solver = this.ctx.mkSolver();
 		for (Ports port : p) {
 			for (Ports oppositePort : port.getPorts()) {
@@ -121,7 +179,7 @@ public class CompoundSolver {
 
 		}
 		for (Module component : this.m.getConsistsOf()) {
-			for (Contract c : component.getContract()) {
+			for (Contract c : component.getModule().getContract()) {
 				if (c.getViewPoint().getValue() == ViewPoint.FUNCTIONAL_VALUE) {
 					try {
 						solver.add(

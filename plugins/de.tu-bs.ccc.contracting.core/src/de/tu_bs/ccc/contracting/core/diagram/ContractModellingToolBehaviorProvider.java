@@ -36,6 +36,7 @@ import de.tu_bs.ccc.contracting.core.guiFeatures.ReloadImportFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.VerifyCustomFeature;
 import de.tu_bs.ccc.contracting.core.synchronize.DeSynchronizeFeature;
 import de.tu_bs.ccc.contracting.core.synchronize.SynchronizeFeature;
+import de.tu_bs.ccc.contracting.core.guiFeatures.ViewpointVerificationFeature;
 
 public class ContractModellingToolBehaviorProvider extends DefaultToolBehaviorProvider {
 
@@ -47,7 +48,7 @@ public class ContractModellingToolBehaviorProvider extends DefaultToolBehaviorPr
 
 		// 1. set the generic context buttons
 		// note, that we do not add 'remove' (just as an example)
-		setGenericContextButtons(data, pe, CONTEXT_BUTTON_DELETE);
+		setGenericContextButtons(data, pe, CONTEXT_BUTTON_DELETE | CONTEXT_BUTTON_UPDATE);
 		ICustomFeature[] cf = getFeatureProvider().getCustomFeatures(cc);
 		ICustomFeature[] cf2 = getFeatureProvider().getCustomFeatures(cc);
 		for (int i = 0; i < cf2.length; i++) {
@@ -61,8 +62,8 @@ public class ContractModellingToolBehaviorProvider extends DefaultToolBehaviorPr
 		}
 		for (int i = 0; i < cf.length; i++) {
 			ICustomFeature iCustomFeature = cf[i];
-			if (iCustomFeature instanceof VerifyCustomFeature) {
-				ContextButtonEntry button = new ContextButtonEntry((VerifyCustomFeature) iCustomFeature, cc);
+			if (iCustomFeature instanceof ViewpointVerificationFeature) {
+				ContextButtonEntry button = new ContextButtonEntry((ViewpointVerificationFeature) iCustomFeature, cc);
 				button.setText("Verify Component");
 				button.setDescription("Verifies the Compound or Interface");
 				data.getDomainSpecificContextButtons().add(button);
@@ -81,6 +82,17 @@ public class ContractModellingToolBehaviorProvider extends DefaultToolBehaviorPr
 				break;
 			}
 		}
+//		for (int i = 0; i < cf.length; i++) {
+//		ICustomFeature iCustomFeature = cf[i];
+//		if (iCustomFeature instanceof ReloadImportFeature) {
+//			ContextButtonEntry button = new ContextButtonEntry((ReloadImportFeature) iCustomFeature, cc);
+//			button.setText("Reload Import");
+//			button.setDescription("Allows to update and reload the importted Components");
+//			data.getDomainSpecificContextButtons().add(button);
+//
+//			break;
+//		}
+//	}
 		for (int i = 0; i < cf.length; i++) {
 			ICustomFeature iCustomFeature = cf[i];
 			if (iCustomFeature instanceof SynchronizeFeature) {
@@ -144,7 +156,7 @@ public class ContractModellingToolBehaviorProvider extends DefaultToolBehaviorPr
 		if (openFile.canExecute(context)) {
 			ContextMenuEntry menuEntry = new ContextMenuEntry(openFile, context);
 			menuEntry.setText("Open Module");
-			menuEntry.setDescription("Opens Module in anew Editor.");
+			menuEntry.setDescription("Opens Module in a new Editor.");
 			menuEntries.add(menuEntry);
 		}
 

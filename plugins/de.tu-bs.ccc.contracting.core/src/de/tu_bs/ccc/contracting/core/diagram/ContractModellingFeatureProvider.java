@@ -26,7 +26,6 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
 import de.tu_bs.ccc.contracting.Verification.Abstract;
-import de.tu_bs.ccc.contracting.Verification.System;
 import de.tu_bs.ccc.contracting.Verification.Component;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Contract;
@@ -47,13 +46,14 @@ import de.tu_bs.ccc.contracting.core.features.DeletePortConnectionFeature;
 import de.tu_bs.ccc.contracting.core.features.DeletePortFeature;
 import de.tu_bs.ccc.contracting.core.features.connections.AddContractConnectionFeature;
 import de.tu_bs.ccc.contracting.core.features.connections.ReconnectionFeature;
+import de.tu_bs.ccc.contracting.core.features.layout.LayoutDiagramFeature;
+import de.tu_bs.ccc.contracting.core.features.layout.LayoutPortFeature;
 import de.tu_bs.ccc.contracting.core.features.loading.AssignAbstractFeature;
 import de.tu_bs.ccc.contracting.core.features.loading.LoadModuleFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.CollapseFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.EditAbstractFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.LayoutFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.ReloadImportFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.VerifyCustomFeature;
+import de.tu_bs.ccc.contracting.core.guiFeatures.ViewpointVerificationFeature;
 import de.tu_bs.ccc.contracting.core.move.MovePortFeature;
 import de.tu_bs.ccc.contracting.core.propertyFeature.CreateProperty;
 import de.tu_bs.ccc.contracting.core.resize.ResizeModuleFeature;
@@ -72,8 +72,9 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 
 	@Override
 	public ICustomFeature[] getCustomFeatures(ICustomContext context) {
-		return new ICustomFeature[] { new VerifyCustomFeature(this), new CollapseFeature(this),
-				new EditAbstractFeature(this), new ReloadImportFeature(this), new SynchronizeFeature(this), new DeSynchronizeFeature(this) };
+		return new ICustomFeature[] { //new VerifyCustomFeature(this), 
+				new ViewpointVerificationFeature(this), new CollapseFeature(this),
+				new EditAbstractFeature(this), new LayoutDiagramFeature(this) };
 	}
 
 	@Override
@@ -117,7 +118,7 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 				// new CreateComponentFeature(this),
 				new CreateContractFeature(this),
 				// new CreateAbstractFeature(this),
-				new CreatePortFeature(this), new LoadModuleFeature(this), new CreateProperty(this),
+				new CreatePortFeature(this), new LoadModuleFeature(this), new CreateProperty(this, true), new CreateProperty(this, false),
 				new AssignAbstractFeature(this) };
 	}
 

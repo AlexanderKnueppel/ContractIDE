@@ -17,7 +17,7 @@ public class ContractModellingImageProvider extends AbstractImageProvider {
     @Override
     protected void addAvailableImages() {
         // register the path for each image identifier
-        addImageFilePath(IMG_PORT_INPUT, "icons/ports/input.png");
+        addImageFilePath(IMG_PORT_INPUT, "icons/ports/output.png"); //input.png
         addImageFilePath(IMG_PORT_OUTPUT, "icons/ports/output.png");
         addImageFilePath(IMG_SYNCHRONIZE, "icons/synchronize.png");
         addImageFilePath(IMG_DESYNCHRONIZE, "icons/desynchronize.png");

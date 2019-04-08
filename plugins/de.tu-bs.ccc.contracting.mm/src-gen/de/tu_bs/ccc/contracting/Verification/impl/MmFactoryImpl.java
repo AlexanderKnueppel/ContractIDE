@@ -15,7 +15,6 @@ import de.tu_bs.ccc.contracting.Verification.Function;
 import de.tu_bs.ccc.contracting.Verification.Guarantee;
 import de.tu_bs.ccc.contracting.Verification.MmFactory;
 import de.tu_bs.ccc.contracting.Verification.MmPackage;
-import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.Mux;
 import de.tu_bs.ccc.contracting.Verification.PortType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
@@ -166,7 +165,8 @@ public class MmFactoryImpl extends EFactoryImpl implements MmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Module createModule() {
+	@Override
+	public de.tu_bs.ccc.contracting.Verification.Module createModule() {
 		ModuleImpl module = new ModuleImpl();
 		return module;
 	}
@@ -176,6 +176,7 @@ public class MmFactoryImpl extends EFactoryImpl implements MmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Abstract createAbstract() {
 		AbstractImpl abstract_ = new AbstractImpl();
 		return abstract_;
@@ -186,6 +187,7 @@ public class MmFactoryImpl extends EFactoryImpl implements MmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Component createComponent() {
 		ComponentImpl component = new ComponentImpl();
 		return component;
@@ -196,6 +198,7 @@ public class MmFactoryImpl extends EFactoryImpl implements MmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Compound createCompound() {
 		CompoundImpl compound = new CompoundImpl();
 		return compound;
@@ -206,6 +209,7 @@ public class MmFactoryImpl extends EFactoryImpl implements MmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Contract createContract() {
 		ContractImpl contract = new ContractImpl();
 		return contract;
@@ -216,6 +220,7 @@ public class MmFactoryImpl extends EFactoryImpl implements MmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Ports createPorts() {
 		PortsImpl ports = new PortsImpl();
 		return ports;
@@ -226,6 +231,7 @@ public class MmFactoryImpl extends EFactoryImpl implements MmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ContractProperty createContractProperty() {
 		ContractPropertyImpl contractProperty = new ContractPropertyImpl();
 		return contractProperty;
@@ -236,6 +242,7 @@ public class MmFactoryImpl extends EFactoryImpl implements MmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Guarantee createGuarantee() {
 		GuaranteeImpl guarantee = new GuaranteeImpl();
 		return guarantee;
@@ -246,6 +253,7 @@ public class MmFactoryImpl extends EFactoryImpl implements MmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Assumption createAssumption() {
 		AssumptionImpl assumption = new AssumptionImpl();
 		return assumption;
@@ -256,6 +264,7 @@ public class MmFactoryImpl extends EFactoryImpl implements MmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public de.tu_bs.ccc.contracting.Verification.System createSystem() {
 		SystemImpl system = new SystemImpl();
 		return system;
@@ -266,6 +275,7 @@ public class MmFactoryImpl extends EFactoryImpl implements MmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Proxy createProxy() {
 		ProxyImpl proxy = new ProxyImpl();
 		return proxy;
@@ -276,6 +286,7 @@ public class MmFactoryImpl extends EFactoryImpl implements MmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Filter createFilter() {
 		FilterImpl filter = new FilterImpl();
 		return filter;
@@ -286,6 +297,7 @@ public class MmFactoryImpl extends EFactoryImpl implements MmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Mux createMux() {
 		MuxImpl mux = new MuxImpl();
 		return mux;
@@ -296,6 +308,7 @@ public class MmFactoryImpl extends EFactoryImpl implements MmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Protocol createProtocol() {
 		ProtocolImpl protocol = new ProtocolImpl();
 		return protocol;
@@ -306,6 +319,7 @@ public class MmFactoryImpl extends EFactoryImpl implements MmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Function createFunction() {
 		FunctionImpl function = new FunctionImpl();
 		return function;
@@ -448,6 +462,7 @@ public class MmFactoryImpl extends EFactoryImpl implements MmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MmPackage getMmPackage() {
 		return (MmPackage) getEPackage();
 	}

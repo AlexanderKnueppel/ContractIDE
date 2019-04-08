@@ -31,6 +31,7 @@ import de.tu_bs.ccc.contracting.ui.dialogs.EditPortFeatureDialog;
 import de.tu_bs.ccc.contracting.ui.dialogs.EditProviderPortFeatureDialog;
 
 public class EditPortFeature extends AbstractCustomFeature {
+	private boolean changed = true;
 
 	@Override
 	public boolean canExecute(ICustomContext context) {
@@ -62,7 +63,7 @@ public class EditPortFeature extends AbstractCustomFeature {
 				.map(m -> ((Model) m).getInterfaces()).flatMap(i -> i.stream()).collect(Collectors.toList());
 
 		EditPortFeatureDialog dialog;
-		if (((Ports) object).getOuterDirection() == DirectionType.EXTERNAL)
+		if (((Ports) object).getOuterDirection() == DirectionType.INTERNAL)
 			dialog = new EditConsumerPortFeatureDialog(shell, interfaces);
 		else
 			dialog = new EditProviderPortFeatureDialog(shell, interfaces);
@@ -95,16 +96,24 @@ public class EditPortFeature extends AbstractCustomFeature {
 						dialog.setOldProperties(object);
 						dialog.create();
 						dialog.open();
+						changed = dialog.getReturnCode() == EditPortFeatureDialog.OK;
 					}
 
 				} else {
 					dialog.setOldProperties(object);
 					dialog.create();
 					dialog.open();
+					changed = dialog.getReturnCode() == EditPortFeatureDialog.OK;
 				}
 		}
 		
 		
-
+		
+		changed = dialog.getReturnCode() == EditPortFeatureDialog.OK;
+	}
+	
+	@Override
+	public boolean hasDoneChanges() {
+		return changed;
 	}
 }

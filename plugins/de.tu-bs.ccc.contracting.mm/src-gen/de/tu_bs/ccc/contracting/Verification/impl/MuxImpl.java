@@ -33,7 +33,7 @@ public class MuxImpl extends ModuleTypeImpl implements Mux {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String SERVICE_EDEFAULT = null;
+	protected static final String SERVICE_EDEFAULT = "\"\"";
 
 	/**
 	 * The cached value of the '{@link #getService() <em>Service</em>}' attribute.
@@ -69,6 +69,7 @@ public class MuxImpl extends ModuleTypeImpl implements Mux {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getService() {
 		return service;
 	}
@@ -78,6 +79,7 @@ public class MuxImpl extends ModuleTypeImpl implements Mux {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setService(String newService) {
 		String oldService = service;
 		service = newService;
@@ -153,7 +155,7 @@ public class MuxImpl extends ModuleTypeImpl implements Mux {
 		if (eIsProxy())
 			return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (service: ");
 		result.append(service);
 		result.append(')');

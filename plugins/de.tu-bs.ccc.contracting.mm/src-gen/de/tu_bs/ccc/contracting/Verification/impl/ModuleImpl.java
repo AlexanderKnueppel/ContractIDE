@@ -6,7 +6,6 @@ import de.tu_bs.ccc.contracting.Verification.Abstract;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Contract;
 import de.tu_bs.ccc.contracting.Verification.MmPackage;
-import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.ModuleType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 
@@ -54,7 +53,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
+public class ModuleImpl extends MinimalEObjectImpl.Container implements de.tu_bs.ccc.contracting.Verification.Module {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -63,7 +62,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = null;
+	protected static final String NAME_EDEFAULT = "\"\"";
 
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -93,7 +92,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String DESCRIPTION_EDEFAULT = null;
+	protected static final String DESCRIPTION_EDEFAULT = "\"\"";
 
 	/**
 	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
@@ -133,7 +132,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * @generated
 	 * @ordered
 	 */
-	protected Module module;
+	protected de.tu_bs.ccc.contracting.Verification.Module module;
 
 	/**
 	 * The default value of the '{@link #getVersion() <em>Version</em>}' attribute.
@@ -163,7 +162,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String RTE_EDEFAULT = null;
+	protected static final String RTE_EDEFAULT = "\"\"";
 
 	/**
 	 * The cached value of the '{@link #getRte() <em>Rte</em>}' attribute.
@@ -183,7 +182,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String SPEC_EDEFAULT = null;
+	protected static final String SPEC_EDEFAULT = "\"\"";
 
 	/**
 	 * The cached value of the '{@link #getSpec() <em>Spec</em>}' attribute.
@@ -223,7 +222,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final BigInteger CAPS_EDEFAULT = null;
+	protected static final BigInteger CAPS_EDEFAULT = new BigInteger("-1");
 
 	/**
 	 * The cached value of the '{@link #getCaps() <em>Caps</em>}' attribute.
@@ -269,6 +268,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -278,6 +278,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -290,6 +291,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Compound getIsPartOf() {
 		if (eContainerFeatureID() != MmPackage.MODULE__IS_PART_OF)
 			return null;
@@ -311,6 +313,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsPartOf(Compound newIsPartOf) {
 		if (newIsPartOf != eInternalContainer()
 				|| (eContainerFeatureID() != MmPackage.MODULE__IS_PART_OF && newIsPartOf != null)) {
@@ -335,6 +338,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Abstract> getRealizedBy() {
 		if (realizedBy == null) {
 			realizedBy = new EObjectWithInverseResolvingEList.ManyInverse<Abstract>(Abstract.class, this,
@@ -348,6 +352,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return description;
 	}
@@ -357,6 +362,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		String oldDescription = description;
 		description = newDescription;
@@ -370,6 +376,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Ports> getPorts() {
 		if (ports == null) {
 			ports = new EObjectContainmentWithInverseEList<Ports>(Ports.class, this, MmPackage.MODULE__PORTS,
@@ -383,6 +390,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Contract> getContract() {
 		if (contract == null) {
 			contract = new EObjectContainmentWithInverseEList<Contract>(Contract.class, this,
@@ -396,10 +404,11 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Module getModule() {
+	@Override
+	public de.tu_bs.ccc.contracting.Verification.Module getModule() {
 		if (module != null && module.eIsProxy()) {
 			InternalEObject oldModule = (InternalEObject) module;
-			module = (Module) eResolveProxy(oldModule);
+			module = (de.tu_bs.ccc.contracting.Verification.Module) eResolveProxy(oldModule);
 			if (module != oldModule) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MmPackage.MODULE__MODULE, oldModule,
@@ -414,7 +423,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Module basicGetModule() {
+	public de.tu_bs.ccc.contracting.Verification.Module basicGetModule() {
 		return module;
 	}
 
@@ -423,8 +432,9 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setModule(Module newModule) {
-		Module oldModule = module;
+	@Override
+	public void setModule(de.tu_bs.ccc.contracting.Verification.Module newModule) {
+		de.tu_bs.ccc.contracting.Verification.Module oldModule = module;
 		module = newModule;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MmPackage.MODULE__MODULE, oldModule, module));
@@ -435,6 +445,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getVersion() {
 		return version;
 	}
@@ -444,6 +455,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVersion(String newVersion) {
 		String oldVersion = version;
 		version = newVersion;
@@ -456,6 +468,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getRte() {
 		return rte;
 	}
@@ -465,6 +478,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRte(String newRte) {
 		String oldRte = rte;
 		rte = newRte;
@@ -477,6 +491,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSpec() {
 		return spec;
 	}
@@ -486,6 +501,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSpec(String newSpec) {
 		String oldSpec = spec;
 		spec = newSpec;
@@ -498,6 +514,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BigInteger getRam() {
 		return ram;
 	}
@@ -507,6 +524,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRam(BigInteger newRam) {
 		BigInteger oldRam = ram;
 		ram = newRam;
@@ -519,6 +537,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BigInteger getCaps() {
 		return caps;
 	}
@@ -528,6 +547,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCaps(BigInteger newCaps) {
 		BigInteger oldCaps = caps;
 		caps = newCaps;
@@ -540,6 +560,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ModuleType getModuleType() {
 		return moduleType;
 	}
@@ -568,6 +589,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setModuleType(ModuleType newModuleType) {
 		if (newModuleType != moduleType) {
 			NotificationChain msgs = null;
@@ -715,7 +737,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 			getContract().addAll((Collection<? extends Contract>) newValue);
 			return;
 		case MmPackage.MODULE__MODULE:
-			setModule((Module) newValue);
+			setModule((de.tu_bs.ccc.contracting.Verification.Module) newValue);
 			return;
 		case MmPackage.MODULE__VERSION:
 			setVersion((String) newValue);
@@ -766,7 +788,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 			getContract().clear();
 			return;
 		case MmPackage.MODULE__MODULE:
-			setModule((Module) null);
+			setModule((de.tu_bs.ccc.contracting.Verification.Module) null);
 			return;
 		case MmPackage.MODULE__VERSION:
 			setVersion(VERSION_EDEFAULT);
@@ -838,7 +860,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 		if (eIsProxy())
 			return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
 		result.append(", description: ");

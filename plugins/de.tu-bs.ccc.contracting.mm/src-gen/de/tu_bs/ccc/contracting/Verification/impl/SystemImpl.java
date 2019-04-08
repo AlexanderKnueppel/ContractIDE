@@ -3,8 +3,6 @@
 package de.tu_bs.ccc.contracting.Verification.impl;
 
 import de.tu_bs.ccc.contracting.Verification.MmPackage;
-import de.tu_bs.ccc.contracting.Verification.Module;
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -44,7 +42,7 @@ public class SystemImpl extends MinimalEObjectImpl.Container implements de.tu_bs
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = null;
+	protected static final String NAME_EDEFAULT = "\"\"";
 
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -64,7 +62,7 @@ public class SystemImpl extends MinimalEObjectImpl.Container implements de.tu_bs
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Module> consistsOf;
+	protected EList<de.tu_bs.ccc.contracting.Verification.Module> consistsOf;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -90,6 +88,7 @@ public class SystemImpl extends MinimalEObjectImpl.Container implements de.tu_bs
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -99,6 +98,7 @@ public class SystemImpl extends MinimalEObjectImpl.Container implements de.tu_bs
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -111,9 +111,11 @@ public class SystemImpl extends MinimalEObjectImpl.Container implements de.tu_bs
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Module> getConsistsOf() {
+	@Override
+	public EList<de.tu_bs.ccc.contracting.Verification.Module> getConsistsOf() {
 		if (consistsOf == null) {
-			consistsOf = new EObjectContainmentEList<Module>(Module.class, this, MmPackage.SYSTEM__CONSISTS_OF);
+			consistsOf = new EObjectContainmentEList<de.tu_bs.ccc.contracting.Verification.Module>(
+					de.tu_bs.ccc.contracting.Verification.Module.class, this, MmPackage.SYSTEM__CONSISTS_OF);
 		}
 		return consistsOf;
 	}
@@ -162,7 +164,7 @@ public class SystemImpl extends MinimalEObjectImpl.Container implements de.tu_bs
 			return;
 		case MmPackage.SYSTEM__CONSISTS_OF:
 			getConsistsOf().clear();
-			getConsistsOf().addAll((Collection<? extends Module>) newValue);
+			getConsistsOf().addAll((Collection<? extends de.tu_bs.ccc.contracting.Verification.Module>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -212,7 +214,7 @@ public class SystemImpl extends MinimalEObjectImpl.Container implements de.tu_bs
 		if (eIsProxy())
 			return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
 		result.append(')');

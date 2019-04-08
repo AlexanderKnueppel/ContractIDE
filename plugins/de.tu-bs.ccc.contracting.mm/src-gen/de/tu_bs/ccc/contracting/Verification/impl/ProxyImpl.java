@@ -33,7 +33,7 @@ public class ProxyImpl extends ModuleTypeImpl implements Proxy {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String CARRIER_EDEFAULT = null;
+	protected static final String CARRIER_EDEFAULT = "\"\"";
 
 	/**
 	 * The cached value of the '{@link #getCarrier() <em>Carrier</em>}' attribute.
@@ -69,6 +69,7 @@ public class ProxyImpl extends ModuleTypeImpl implements Proxy {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getCarrier() {
 		return carrier;
 	}
@@ -78,6 +79,7 @@ public class ProxyImpl extends ModuleTypeImpl implements Proxy {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCarrier(String newCarrier) {
 		String oldCarrier = carrier;
 		carrier = newCarrier;
@@ -153,7 +155,7 @@ public class ProxyImpl extends ModuleTypeImpl implements Proxy {
 		if (eIsProxy())
 			return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (carrier: ");
 		result.append(carrier);
 		result.append(')');

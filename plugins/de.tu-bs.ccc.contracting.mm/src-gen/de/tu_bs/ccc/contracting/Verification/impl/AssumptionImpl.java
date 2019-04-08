@@ -54,6 +54,7 @@ public class AssumptionImpl extends ContractPropertyImpl implements Assumption {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Contract getContract() {
 		if (eContainerFeatureID() != MmPackage.ASSUMPTION__CONTRACT)
 			return null;
@@ -75,6 +76,7 @@ public class AssumptionImpl extends ContractPropertyImpl implements Assumption {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContract(Contract newContract) {
 		if (newContract != eInternalContainer()
 				|| (eContainerFeatureID() != MmPackage.ASSUMPTION__CONTRACT && newContract != null)) {

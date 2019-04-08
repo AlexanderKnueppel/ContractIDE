@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface ContractProperty extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Property Tipe</b></em>' attribute.
+	 * The default value is <code>"EQUATION"</code>.
 	 * The literals are from the enumeration {@link de.tu_bs.ccc.contracting.Verification.PropertyType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -35,7 +36,7 @@ public interface ContractProperty extends EObject {
 	 * @see de.tu_bs.ccc.contracting.Verification.PropertyType
 	 * @see #setPropertyTipe(PropertyType)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getContractProperty_PropertyTipe()
-	 * @model
+	 * @model default="EQUATION"
 	 * @generated
 	 */
 	PropertyType getPropertyTipe();
@@ -53,6 +54,7 @@ public interface ContractProperty extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Property</b></em>' attribute.
+	 * The default value is <code>"\"\""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Property</em>' attribute isn't clear,
@@ -62,7 +64,7 @@ public interface ContractProperty extends EObject {
 	 * @return the value of the '<em>Property</em>' attribute.
 	 * @see #setProperty(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getContractProperty_Property()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+	 * @model default="\"\"" dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
 	 * @generated
 	 */
 	String getProperty();

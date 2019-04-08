@@ -13,7 +13,7 @@ import org.eclipse.graphiti.mm.pictograms.Shape;
 import de.tu_bs.ccc.contracting.Verification.PortType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 
-public class UpdatePortFeature extends AbstractUpdateFeature{
+public class UpdatePortFeature extends AbstractUpdateFeature {
 
 	public UpdatePortFeature(IFeatureProvider fp) {
 		super(fp);
@@ -22,9 +22,8 @@ public class UpdatePortFeature extends AbstractUpdateFeature{
 
 	@Override
 	public boolean canUpdate(IUpdateContext context) {
-		Object bo =
-	            getBusinessObjectForPictogramElement(context.getPictogramElement());
-	        return (bo instanceof Ports);
+		Object bo = getBusinessObjectForPictogramElement(context.getPictogramElement());
+		return (bo instanceof Ports);
 	}
 
 	@Override
@@ -59,8 +58,6 @@ public class UpdatePortFeature extends AbstractUpdateFeature{
 
 	@Override
 	public boolean update(IUpdateContext context) {
-		
-		
 		PictogramElement pictogramElement = context.getPictogramElement();
 		Ports port = (Ports)getBusinessObjectForPictogramElement(pictogramElement);
         if (pictogramElement instanceof ContainerShape) {

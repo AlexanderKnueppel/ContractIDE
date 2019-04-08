@@ -3,6 +3,7 @@ package de.tu_bs.ccc.contracting.core.features;
 import org.eclipse.graphiti.features.IAddFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
+import org.eclipse.graphiti.features.context.impl.AddContext;
 import org.eclipse.graphiti.features.impl.AbstractAddFeature;
 import org.eclipse.graphiti.mm.algorithms.Polyline;
 import org.eclipse.graphiti.mm.algorithms.RoundedRectangle;
@@ -18,6 +19,8 @@ import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
 
 import de.tu_bs.ccc.contracting.Verification.Abstract;
+import de.tu_bs.ccc.contracting.Verification.Contract;
+import de.tu_bs.ccc.contracting.Verification.Ports;
 
 public class AddAbstractFeature extends AbstractAddFeature implements IAddFeature {
 
@@ -98,6 +101,31 @@ public class AddAbstractFeature extends AbstractAddFeature implements IAddFeatur
 			link(shape, addedClass);
 		}
 		peCreateService.createChopboxAnchor(containerShape);
+		
+		int i = addedClass.getPorts().size();
+		int j = addedClass.getPorts().size();
+		for (Ports element : addedClass.getPorts()) {
+			AddContext a = new AddContext();
+			a.setTargetContainer(containerShape);
+
+			a.setX(containerShape.getGraphicsAlgorithm().getWidth() / 2);
+			a.setY((containerShape.getGraphicsAlgorithm().getHeight() * i) / j);
+			a.setSize(40, 40);
+			i--;
+			addGraphicalRepresentation(a, element);
+		}
+		i = addedClass.getContract().size();
+		j = addedClass.getContract().size();
+		for (Contract element : addedClass.getContract()) {
+			AddContext a = new AddContext();
+			a.setTargetContainer(containerShape);
+
+			a.setX(((containerShape.getGraphicsAlgorithm().getX()) * i) / j);
+			a.setY(((containerShape.getGraphicsAlgorithm().getY()) * i) / j);
+			a.setSize(40, 40);
+			i--;
+			addGraphicalRepresentation(a, element);
+		}
 
 		return containerShape;
 	}

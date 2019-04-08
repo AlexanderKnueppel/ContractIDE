@@ -3,9 +3,11 @@ package de.tu_bs.ccc.contracting.core.io.ccc;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.xml.bind.JAXBContext;
@@ -22,6 +24,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
@@ -47,10 +50,13 @@ import de.tu_bs.ccc.contracting.core.io.ccc.CompositeType.Pattern;
 import de.tu_bs.ccc.contracting.core.io.ccc.ProvidesType.Service;
 import de.tu_bs.ccc.contracting.core.util.CoreUtil;
 import de.tu_bs.ccc.contracting.core.util.SaveModuleToFile;
+import de.tu_bs.ccc.contracting.core.util.SaveSystemToFile;
+import de.tu_bs.ccc.contracting.Verification.System;
 
 public class CCCImporter {
 	private Map<String, Object> _services = new HashMap<String, Object>();
-	private Map<String, Component> _components = new HashMap<String, Component>();
+	private Map<String, Module> _modules = new HashMap<String, Module>();
+	private List<BinaryType> _binaries = new ArrayList<BinaryType>();
 
 	private ObjectFactory factory = new ObjectFactory();
 
@@ -127,10 +133,29 @@ public class CCCImporter {
 		editingDomain.dispose();
 	}
 
+	private void saveSystem(System sys, IFolder folder) throws Exception {
+		ResourceSet rSet = new ResourceSetImpl();
+		TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(rSet);
+		if (editingDomain == null) {
+			// Not yet existing, create one
+			editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(rSet);
+		}
+
+		SaveSystemToFile operation = new SaveSystemToFile(editingDomain, folder, sys);
+		editingDomain.getCommandStack().execute(operation);
+
+		editingDomain.dispose();
+	}
+
 	public void createCompound(CompositeType ct) {
 		Compound c = MmFactory.eINSTANCE.createCompound();
 
 		c.setName(ct.getName());
+
+		if (_modules.keySet().stream().filter(k -> k.toLowerCase().equals(ct.getName().toLowerCase())).count() > 0) {
+			c.setName(ct.getName() + "_comp");
+		}
+
 		c.setDescription("");
 
 		if (ct.getFunction() != null) {
@@ -173,68 +198,153 @@ public class CCCImporter {
 		}
 
 		////// Provided services
-		for (CompositeType.Provides.Service service : ct.getProvides().getService()) {
-			Ports provided = MmFactory.eINSTANCE.createPorts();
-			provided.setOuterDirection(DirectionType.EXTERNAL);
+		if (ct.getProvides() != null) {
+			for (CompositeType.Provides.Service service : ct.getProvides().getService()) {
+				Ports provided = MmFactory.eINSTANCE.createPorts();
+				provided.setOuterDirection(DirectionType.EXTERNAL);
 
-			String ref = service.getRef();
-			if (service.getRef() == null) {
-				ref = service.getName().toLowerCase() + "_out";
+				String ref = service.getRef();
+				if (service.getRef() == null) {
+					ref = service.getName().toLowerCase() + "_out";
+				}
+				provided.setName(ref);
+
+				provided.setType(PortType.SERVICE);
+				provided.setService(service.getName());
+				if (!_services.containsKey(service.getName()))
+					_services.put(service.getName(), null);
+
+				if (service.getMaxClients() != null)
+					provided.setMaxClients(Integer.getInteger(service.getMaxClients()));
+
+				provided.setFilter(service.getFilter() != null ? service.getFilter() : "");
+
+				provided.setModule(c);
+				c.getPorts().add(provided);
 			}
-			provided.setName(ref);
-
-			provided.setType(PortType.SERVICE);
-			provided.setService(service.getName());
-			if (!_services.containsKey(service.getName()))
-				_services.put(service.getName(), null);
-
-			if (service.getMaxClients() != null)
-				provided.setMaxClients(Integer.getInteger(service.getMaxClients()));
-
-			provided.setFilter(service.getFilter() != null ? service.getFilter() : "");
-
-			provided.setModule(c);
-			c.getPorts().add(provided);
 		}
 
 		///// Required services
-		for (CompositeRequiresType.Service service : ct.getRequires().getService()) {
-			// TODO exclude componnents
-			Ports required = MmFactory.eINSTANCE.createPorts();
-			required.setOuterDirection(DirectionType.INTERNAL);
+		if (ct.getRequires() != null) {
+			for (CompositeRequiresType.Service service : ct.getRequires().getService()) {
+				// TODO exclude componnents
+				Ports required = MmFactory.eINSTANCE.createPorts();
+				required.setOuterDirection(DirectionType.INTERNAL);
 
-			String ref = service.getRef();
-			if (service.getRef() == null) {
-				ref = service.getName().toLowerCase() + "_in";
+				String ref = service.getRef();
+				if (service.getRef() == null) {
+					ref = service.getName().toLowerCase() + "_in";
+				}
+				required.setName(ref);
+
+				required.setType(PortType.SERVICE);
+				required.setService(service.getName());
+				if (!_services.containsKey(service.getName()))
+					_services.put(service.getName(), null);
+
+				required.setLabel(service.getLabel());
+				required.setFilter(service.getFilter());
+				required.setFunction(service.getFunction());
+
+				required.setModule(c);
+				c.getPorts().add(required);
+
 			}
-			required.setName(ref);
-
-			required.setType(PortType.SERVICE);
-			required.setService(service.getName());
-			if (!_services.containsKey(service.getName()))
-				_services.put(service.getName(), null);
-
-			required.setLabel(service.getLabel());
-			required.setFilter(service.getFilter());
-			required.setFunction(service.getFunction());
-
-			required.setModule(c);
-			c.getPorts().add(required);
-
 		}
 
 		///// Add modules (interfaces?)
 		for (Pattern pt : ct.getPattern()) {
-			for (PatternComponentType pct : pt.getComponent()) {
-				Component sub = _components.get(pct.getName());
-				sub.setModule(c);
-				c.getConsistsOf().add(sub);
+			Map<String, Component> copies = new HashMap<String, Component>();
+			Map<Ports, String> connections = new HashMap<Ports, String>();
 
-				// pct.get
+			for (PatternComponentType pct : pt.getComponent()) {
+				Component copy = EcoreUtil.copy((Component) _modules.get(pct.getName()));
+				copy.setModule(_modules.get(pct.getName()));
+				copy.setIsPartOf(c);
+				c.getConsistsOf().add(copy);
+				copies.put(copy.getName(), copy);
+
+				for (PatternComponentType.Route.Service service : pct.getRoute().getService()) {
+					if (service.getExternal() != null) {
+
+						// if (service.getExternal().getRef() == null)
+						// continue; // TODO external should have a reference, right?
+						Ports fromPort, toPort;
+						if (service.getExternal().getRef() != null) {
+							fromPort = c.getPorts().stream()
+									.filter(p -> p.getName().equals(service.getExternal().getRef())
+											&& p.getOuterDirection() == DirectionType.INTERNAL)
+									.findFirst().get();
+						} else {
+							fromPort = c.getPorts().stream().filter(p -> p.getService().equals(service.getName())
+									&& p.getOuterDirection() == DirectionType.INTERNAL).findFirst().get();
+						}
+
+						toPort = copy.getPorts().stream().filter(p -> p.getService().equals(service.getName())
+								&& p.getOuterDirection() == DirectionType.INTERNAL).findFirst().get();
+
+						toPort.setInsidePortseOpposite(fromPort);
+						fromPort.getInsidePorts().add(toPort);
+					}
+					// set connection from component to component (child)
+					if (service.getChild() != null) {
+						Ports toPort = copy.getPorts().stream().filter(p -> p.getService().equals(service.getName())
+								&& p.getOuterDirection() == DirectionType.INTERNAL).findFirst().get();
+						connections.put(toPort, service.getChild().getName());
+					}
+				}
+
+				// set connection from component to compound (expose)
+				for (PatternComponentType.Expose expose : pct.getExpose()) {
+					if (expose.getService() != null) {
+						Ports fromPort, toPort;
+						if (expose.getService().getRef() != null) {
+							fromPort = copy.getPorts().stream()
+									.filter(p -> p.getName().equals(expose.getService().getRef())
+											&& p.getOuterDirection() == DirectionType.EXTERNAL)
+									.findFirst().get();
+						} else {
+							fromPort = copy.getPorts().stream()
+									.filter(p -> p.getService().equals(expose.getService().getName())
+											&& p.getOuterDirection() == DirectionType.EXTERNAL)
+									.findFirst().get();
+						}
+
+						if (expose.getRef() != null) {
+							toPort = c.getPorts().stream().filter(p -> p.getName().equals(expose.getRef())
+									&& p.getOuterDirection() == DirectionType.EXTERNAL).findFirst().get();
+						} else {
+							toPort = c.getPorts().stream()
+									.filter(p -> p.getService().equals(expose.getService().getName())
+											&& p.getOuterDirection() == DirectionType.EXTERNAL)
+									.findFirst().get();
+						}
+
+						toPort.setInsidePortseOpposite(fromPort);
+						fromPort.getInsidePorts().add(toPort);
+					}
+				}
 			}
+
+			// Connection from component to component
+			connections.forEach((k, v) -> {
+				Ports fromPort = copies.get(v).getPorts().stream().filter(
+						p -> p.getService().equals(k.getService()) && p.getOuterDirection() == DirectionType.EXTERNAL)
+						.findFirst().get();
+				k.setPortseOpposite(fromPort);
+			});
 		}
 
 		c.setVersion("1.0");
+
+		try {
+			saveModule(c, repositoryFolder);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		_modules.put(c.getName(), c);
 	}
 
 	public void createComponent(ComponentType ct) {
@@ -283,80 +393,93 @@ public class CCCImporter {
 		}
 
 		////// Provided services
-		for (Service service : ct.getProvides().getService()) {
-			Ports provided = MmFactory.eINSTANCE.createPorts();
-			provided.setOuterDirection(DirectionType.EXTERNAL);
-
-			String ref = service.getRef();
-			if (service.getRef() == null) {
-				ref = service.getName().toLowerCase() + "_out";
-			}
-			provided.setName(ref);
-
-			provided.setType(PortType.SERVICE);
-			provided.setService(service.getName());
-			if (!_services.containsKey(service.getName()))
-				_services.put(service.getName(), null);
-
-			if (service.getMaxClients() != null)
-				provided.setMaxClients(service.getMaxClients().intValue());
-
-			provided.setFilter(service.getFilter() != null ? service.getFilter() : "");
-
-			if (service.getType().equals("legacy")) {
-				provided.setProviderType(ProviderType.LEGACY);
-			} else if (service.getType().equals("network")) {
-				provided.setProviderType(ProviderType.NETWORK);
-			} else {
-				provided.setProviderType(ProviderType.NATIVE);
-			}
-			provided.setModule(c);
-			c.getPorts().add(provided);
-		}
-
-		///// Required services
-		for (JAXBElement<?> element : ct.getRequires().getServiceOrRteOrSpec()) {
-
-			if (element.getName().equals(new QName("service"))) {
-				RequiresType.Service service = (RequiresType.Service) element.getValue();
-
-				// TODO exclude componnents
-
-				Ports required = MmFactory.eINSTANCE.createPorts();
-				required.setOuterDirection(DirectionType.INTERNAL);
+		if (ct.getProvides() != null) {
+			for (Service service : ct.getProvides().getService()) {
+				Ports provided = MmFactory.eINSTANCE.createPorts();
+				provided.setOuterDirection(DirectionType.EXTERNAL);
 
 				String ref = service.getRef();
 				if (service.getRef() == null) {
-					ref = service.getName().toLowerCase() + "_in";
+					ref = service.getName().toLowerCase() + "_out";
 				}
-				required.setName(ref);
+				provided.setName(ref);
 
-				required.setType(PortType.SERVICE);
-				required.setService(service.getName());
+				provided.setType(PortType.SERVICE);
+				provided.setService(service.getName());
 				if (!_services.containsKey(service.getName()))
 					_services.put(service.getName(), null);
 
-				required.setLabel(service.getLabel());
-				required.setFilter(service.getFilter());
-				required.setFunction(service.getFunction());
+				if (service.getMaxClients() != null)
+					provided.setMaxClients(service.getMaxClients().intValue());
 
-				required.setModule(c);
-				c.getPorts().add(required);
+				provided.setFilter(service.getFilter() != null ? service.getFilter() : "");
 
-			} else if (element.getName().equals(new QName("rte"))) {
-				c.setRte(((NameType) element.getValue()).getName());
-			} else if (element.getName().equals(new QName("spec"))) {
-				c.setSpec(((NameType) element.getValue()).getName());
-			} else if (element.getName().equals(new QName("ram"))) {
-				c.setRam(((QuantumType) element.getValue()).getQuantum());
-			} else if (element.getName().equals(new QName("caps"))) {
-				c.setCaps(((QuantumType) element.getValue()).getQuantum());
+				if (service.getType().equals("legacy")) {
+					provided.setProviderType(ProviderType.LEGACY);
+				} else if (service.getType().equals("network")) {
+					provided.setProviderType(ProviderType.NETWORK);
+				} else {
+					provided.setProviderType(ProviderType.NATIVE);
+				}
+				provided.setModule(c);
+				c.getPorts().add(provided);
 			}
 		}
-		// c.setBinary(value);
+
+		///// Required services
+		if (ct.getRequires() != null) {
+			for (JAXBElement<?> element : ct.getRequires().getServiceOrRteOrSpec()) {
+
+				if (element.getName().equals(new QName("service"))) {
+					RequiresType.Service service = (RequiresType.Service) element.getValue();
+
+					// TODO exclude componnents
+
+					Ports required = MmFactory.eINSTANCE.createPorts();
+					required.setOuterDirection(DirectionType.INTERNAL);
+
+					String ref = service.getRef();
+					if (service.getRef() == null) {
+						ref = service.getName().toLowerCase() + "_in";
+					}
+					required.setName(ref);
+
+					required.setType(PortType.SERVICE);
+					required.setService(service.getName());
+					if (!_services.containsKey(service.getName()))
+						_services.put(service.getName(), null);
+
+					required.setLabel(service.getLabel());
+					required.setFilter(service.getFilter());
+					required.setFunction(service.getFunction());
+
+					required.setModule(c);
+					c.getPorts().add(required);
+
+				} else if (element.getName().equals(new QName("rte"))) {
+					c.setRte(((NameType) element.getValue()).getName());
+				} else if (element.getName().equals(new QName("spec"))) {
+					c.setSpec(((NameType) element.getValue()).getName());
+				} else if (element.getName().equals(new QName("ram"))) {
+					c.setRam(((QuantumType) element.getValue()).getQuantum());
+				} else if (element.getName().equals(new QName("caps"))) {
+					c.setCaps(((QuantumType) element.getValue()).getQuantum());
+				}
+			}
+		}
 
 		c.setVersion(ct.getVersion() != null ? ct.getVersion() : "1.0");
 		c.setSingleton(ct.isSingleton() != null ? ct.isSingleton() : false);
+
+		Optional<BinaryType> bt = _binaries.stream()
+				.filter(b -> b.getName().equals(ct.getName()) || (b.getComponent() != null
+						&& b.getComponent().stream().anyMatch(com -> com.getName().equals(ct.getName()))))
+				.findFirst();
+		
+		if(bt.isPresent())
+			c.setBinary(bt.get().getName());
+		else
+			java.lang.System.err.println(c.getName() + " has no binary...");
 
 		try {
 			saveModule(c, repositoryFolder);
@@ -365,29 +488,75 @@ public class CCCImporter {
 			e.printStackTrace();
 		}
 
-		_components.put(c.getName(), c);
+		_modules.put(c.getName(), c);
 	}
 
 	public void handleRepository(RepositoryType repo) {
 		// Start with binaries
-		List<BinaryType> binaries = repo.getBinaryOrComponentOrComposite().stream().filter(x -> x instanceof BinaryType)
+		_binaries = repo.getBinaryOrComponentOrComposite().stream().filter(x -> x instanceof BinaryType)
 				.map(x -> (BinaryType) x).collect(Collectors.toList());
 		List<ComponentType> components = repo.getBinaryOrComponentOrComposite().stream()
 				.filter(x -> x instanceof ComponentType).map(x -> (ComponentType) x).collect(Collectors.toList());
 		List<CompositeType> compounds = repo.getBinaryOrComponentOrComposite().stream()
 				.filter(x -> x instanceof CompositeType).map(x -> (CompositeType) x).collect(Collectors.toList());
 
-		for (BinaryType bt : binaries) {
-			System.out.println(bt.getName());
+		for (BinaryType bt : _binaries) {
+			java.lang.System.out.println(bt.getName());
 		}
 
 		components.forEach(this::createComponent);
+		compounds.forEach(this::createCompound);
 	}
 
-	public void handleSystem(SystemType sys) {
-		// for(List<List<Object>> elements : repo.getBinaryOrComponentOrComposite()) {
-		//
-		// }
+	public void handleSystem(SystemType sysType) {
+		de.tu_bs.ccc.contracting.Verification.System system = MmFactory.eINSTANCE.createSystem();
+		system.setName(sysType.getName());
+
+		Map<String, Component> copies = new HashMap<String, Component>();
+		Map<Ports, String> connections = new HashMap<Ports, String>();
+
+		for (SystemType.Child child : sysType.getChild()) {
+
+			if (child.getFunction() != null) {
+				List<Module> candidates = _modules.values().stream()
+						.filter(m -> m.getModuleType() instanceof Function
+								&& ((Function) m.getModuleType()).getFunction().equals(child.getFunction().getName()))
+						.collect(Collectors.toList());
+				// TODO Only first candidate right now....
+				if (candidates.size() > 0) {
+					Module copy = EcoreUtil.copy(candidates.get(0));
+					copy.setName(child.getName());
+					copy.setModule(candidates.get(0));
+					if (copy instanceof Compound) {
+						EcoreUtil.deleteAll(((Compound) copy).getConsistsOf(), true);
+					}
+					copy.setIsPartOf(null);
+
+					system.getConsistsOf().add(copy);
+				}
+			}
+
+			if (child.getComponent() != null) {
+				Module copy = EcoreUtil.copy(_modules.get(child.getComponent().getName()));
+				copy.setName(child.getName());
+				copy.setModule(_modules.get(child.getComponent().getName()));
+				// TODO can only be a atomic, right?
+				if (copy instanceof Compound) {
+					EcoreUtil.deleteAll(((Compound) copy).getConsistsOf(), true);
+				}
+				copy.setIsPartOf(null);
+
+				system.getConsistsOf().add(copy);
+			}
+
+		}
+
+		try {
+			saveSystem(system, systemFolder);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void createFiles(IProject p) {
@@ -411,30 +580,30 @@ public class CCCImporter {
 			handleRepository(xml.getRepository());
 			// Handle the system
 			handleSystem(xml.getSystem());
-
+			// Handle services
 			createServiceStubs();
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public static void main(String[] args) {
-		try {
-			File file = new File("example_object_recognition.xml");
-			JAXBContext jaxbContext = JAXBContext.newInstance(Xml.class);
-
-			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-
-			Xml xml = (Xml) jaxbUnmarshaller.unmarshal(file);
-
-			CCCImporter imp = new CCCImporter();
-			// Handle the repository
-			imp.handleRepository(xml.getRepository());
-			// Handle the system
-			imp.handleSystem(xml.getSystem());
-
-		} catch (JAXBException e) {
-			e.printStackTrace();
-		}
-	}
+	// public static void main(String[] args) {
+	// try {
+	// File file = new File("example_object_recognition.xml");
+	// JAXBContext jaxbContext = JAXBContext.newInstance(Xml.class);
+	//
+	// Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+	//
+	// Xml xml = (Xml) jaxbUnmarshaller.unmarshal(file);
+	//
+	// CCCImporter imp = new CCCImporter();
+	// // Handle the repository
+	// imp.handleRepository(xml.getRepository());
+	// // Handle the system
+	// imp.handleSystem(xml.getSystem());
+	//
+	// } catch (JAXBException e) {
+	// e.printStackTrace();
+	// }
+	// }
 }

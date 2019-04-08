@@ -19,7 +19,7 @@ package de.tu_bs.ccc.contracting.Verification;
  * @model
  * @generated
  */
-public interface Component extends Module {
+public interface Component extends de.tu_bs.ccc.contracting.Verification.Module {
 
 	/**
 	 * Returns the value of the '<em><b>Singleton</b></em>' attribute.
@@ -50,6 +50,7 @@ public interface Component extends Module {
 
 	/**
 	 * Returns the value of the '<em><b>Binary</b></em>' attribute.
+	 * The default value is <code>"\"\""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Binary</em>' attribute isn't clear,
@@ -59,7 +60,7 @@ public interface Component extends Module {
 	 * @return the value of the '<em>Binary</em>' attribute.
 	 * @see #setBinary(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getComponent_Binary()
-	 * @model
+	 * @model default="\"\""
 	 * @generated
 	 */
 	String getBinary();

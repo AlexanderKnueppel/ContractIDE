@@ -42,8 +42,26 @@
                   label="Import CCC config. (.xml)"
                   style="push">
             </command>
+            <command
+                  commandId="de.tu-bs.ccc.contracting.deploy"
+                  label="Deploy to CCC context"
+                  style="push">
+            </command>
          </menu>
 	  </menuContribution>
+   <menuContribution
+         allPopups="false"
+         locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+      <toolbar
+            id="de.tu-bs.ccc.contracting.core.contractidetoolbar">
+         <command
+               commandId="de.tu-bs.ccc.contracting.core.deploybtn"
+               icon="icons/Icon-Deployment-Teal@16.png"
+               label="Deploy"
+               style="push">
+         </command>
+      </toolbar>
+   </menuContribution>
 	</extension>
  <extension
        point="org.eclipse.ui.commands">
@@ -56,6 +74,16 @@
           defaultHandler="de.tu_bs.ccc.contracting.core.io.handler.ImportHandler"
           id="de.tu-bs.ccc.contracting.io.importer_command"
           name="ImportXML">
+    </command>
+    <command
+          defaultHandler="de.tu_bs.ccc.contracting.core.io.handler.DeployHandler"
+          id="de.tu-bs.ccc.contracting.deploy"
+          name="Deploy">
+    </command>
+    <command
+          defaultHandler="de.tu_bs.ccc.contracting.core.io.handler.DeployHandler2"
+          id="de.tu-bs.ccc.contracting.core.deploybtn"
+          name="Deploy2">
     </command>
  </extension>
    <extension
@@ -73,6 +101,7 @@
             extensions="cide"
             icon="icons/cide2_16.png"
             id="de.tu-bs.ccc.contracting.diagram.editor"
+            matchingStrategy="org.eclipse.graphiti.ui.editor.DiagramEditorMatchingStrategy"
             name="ContractIDE Editor">
       </editor>
    </extension>

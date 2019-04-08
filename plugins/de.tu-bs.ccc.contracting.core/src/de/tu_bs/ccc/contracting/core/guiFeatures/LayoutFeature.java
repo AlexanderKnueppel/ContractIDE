@@ -23,51 +23,43 @@ public class LayoutFeature extends AbstractLayoutFeature {
 
 	@Override
 	public boolean canLayout(ILayoutContext context) {
-		   // return true, if pictogram element is linked to an EClass
-	       PictogramElement pe = context.getPictogramElement();
-	       if (!(pe instanceof ContainerShape))
-	           return false;
-	       
-	       return true;
+		// return true, if pictogram element is linked to an EClass
+		PictogramElement pe = context.getPictogramElement();
+		if (!(pe instanceof ContainerShape))
+			return false;
+
+		return true;
 	}
 
 	@Override
 	public boolean layout(ILayoutContext context) {
 		boolean change = false;
-		ContainerShape containerShape =
-	            (ContainerShape) context.getPictogramElement();
-	        GraphicsAlgorithm contGa = containerShape.getGraphicsAlgorithm();
-	        int containerWidth = contGa.getWidth();
-	        for (Shape shape : containerShape.getChildren()){
-	        	GraphicsAlgorithm graphicsAlgorithm = shape.getGraphicsAlgorithm();
-	            IGaService gaService = Graphiti.getGaService();
-	            IDimension size = 
-	                 gaService.calculateSize(graphicsAlgorithm);
-	            if (containerWidth != size.getWidth()) {
-	        	if (graphicsAlgorithm instanceof Polyline) {
-	        		Polyline polyline = (Polyline) graphicsAlgorithm;
-                    Point secondPoint = polyline.getPoints().get(1);
-                    Point newSecondPoint =
-                        gaService.createPoint(containerWidth, secondPoint.getY()); 
-                    polyline.getPoints().set(1, newSecondPoint);
-                    change = true;
-	        		
-	        	}
-	        	if (graphicsAlgorithm instanceof Text) {
-	        		gaService.setWidth(graphicsAlgorithm,
-	                        containerWidth);
-	                    change = true;
-	        		
-	        	}
-	            }
-	            
-	        	
-	        }
-	        
-	        
-		return false;
+		ContainerShape containerShape = (ContainerShape) context.getPictogramElement();
+		GraphicsAlgorithm contGa = containerShape.getGraphicsAlgorithm();
+		int containerWidth = contGa.getWidth();
+		for (Shape shape : containerShape.getChildren()) {
+			GraphicsAlgorithm graphicsAlgorithm = shape.getGraphicsAlgorithm();
+			IGaService gaService = Graphiti.getGaService();
+			IDimension size = gaService.calculateSize(graphicsAlgorithm);
+			if (containerWidth != size.getWidth()) {
+				if (graphicsAlgorithm instanceof Polyline) {
+					Polyline polyline = (Polyline) graphicsAlgorithm;
+					Point secondPoint = polyline.getPoints().get(1);
+					Point newSecondPoint = gaService.createPoint(containerWidth, secondPoint.getY());
+					polyline.getPoints().set(1, newSecondPoint);
+					change = true;
+
+				}
+				if (graphicsAlgorithm instanceof Text) {
+					gaService.setWidth(graphicsAlgorithm, containerWidth);
+					change = true;
+
+				}
+			}
+
+		}
+
+		return change;
 	}
-	
-	
 
 }

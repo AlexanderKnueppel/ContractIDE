@@ -1,4 +1,4 @@
-package de.tu_bs.ccc.contracting.core.features;
+package de.tu_bs.ccc.contracting.core.features.layout;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.graphiti.features.IFeatureProvider;

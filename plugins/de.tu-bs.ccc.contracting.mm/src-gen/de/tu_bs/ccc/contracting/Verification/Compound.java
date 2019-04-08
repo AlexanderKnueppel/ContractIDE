@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Compound extends Module {
+public interface Compound extends de.tu_bs.ccc.contracting.Verification.Module {
 	/**
 	 * Returns the value of the '<em><b>Consists Of</b></em>' containment reference list.
 	 * The list contents are of type {@link de.tu_bs.ccc.contracting.Verification.Module}.
@@ -37,6 +37,6 @@ public interface Compound extends Module {
 	 * @model opposite="isPartOf" containment="true"
 	 * @generated
 	 */
-	EList<Module> getConsistsOf();
+	EList<de.tu_bs.ccc.contracting.Verification.Module> getConsistsOf();
 
 } // Compound

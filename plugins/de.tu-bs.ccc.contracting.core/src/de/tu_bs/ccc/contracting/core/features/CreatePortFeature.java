@@ -1,8 +1,8 @@
 package de.tu_bs.ccc.contracting.core.features;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
@@ -20,6 +20,8 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
+import de.tu_bs.ccc.contracting.Verification.DirectionType;
+import de.tu_bs.ccc.contracting.Verification.MmFactory;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.PortType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
@@ -44,8 +46,8 @@ public class CreatePortFeature extends AbstractCreateFeature implements ICreateF
 
 				return false;
 			}
-			EList<EObject> businessObjects = pict.getLink().getBusinessObjects();
 
+			EList<EObject> businessObjects = pict.getLink().getBusinessObjects();
 			return businessObjects.size() == 1 && businessObjects.get(0) instanceof Module;
 		} else {
 			return false;
@@ -54,6 +56,9 @@ public class CreatePortFeature extends AbstractCreateFeature implements ICreateF
 
 	@Override
 	public Object[] create(ICreateContext context) {
+		Ports addedObject = MmFactory.eINSTANCE.createPorts();
+
+		addedObject.setType(pt);
 		PictogramElement pict = context.getTargetContainer();
 		EList<EObject> businessObjects = pict.getLink().getBusinessObjects();
 		if (businessObjects.get(0) instanceof Module) {
@@ -85,7 +90,6 @@ public class CreatePortFeature extends AbstractCreateFeature implements ICreateF
 
 			}
 		}
-		Ports addedObject = MmFactory.eINSTANCE.createPorts();
 
 		addedObject.setType(pt);
 		Module expandWithPort = ((Module) businessObjects.get(0));
@@ -101,14 +105,22 @@ public class CreatePortFeature extends AbstractCreateFeature implements ICreateF
 		expandWithPort.getPorts().add(addedObject);
 		AddContext contextAdd = new AddContext(context, addedObject);
 		contextAdd.setTargetContainer(context.getTargetContainer());
+		
+
+		int widthContainer = (context.getTargetContainer().getGraphicsAlgorithm().getWidth());
+		int calcPosX = context.getX();
+		calcPosX = calcPosX - (widthContainer / 2);
+
+		if (calcPosX < 0) {
+			addedObject.setOuterDirection(DirectionType.INTERNAL);
+		} else {
+			addedObject.setOuterDirection(DirectionType.EXTERNAL);
+		}
+
 		addGraphicalRepresentation(contextAdd, addedObject);
 
-//		 try {
-//		 SaveDomainModel.saveToModelFile(addedObject, getDiagram());
-//		 } catch (CoreException | IOException e) {
-//		 JOptionPane.showConfirmDialog(null, "Fehler");
-//		 }
 		return new Object[] { addedObject };
 	}
+
 
 }

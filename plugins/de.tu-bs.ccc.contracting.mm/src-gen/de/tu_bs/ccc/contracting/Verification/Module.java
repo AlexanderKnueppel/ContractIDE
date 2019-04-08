@@ -38,6 +38,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface Module extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * The default value is <code>"\"\""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
@@ -47,7 +48,7 @@ public interface Module extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getModule_Name()
-	 * @model
+	 * @model default="\"\""
 	 * @generated
 	 */
 	String getName();
@@ -110,6 +111,7 @@ public interface Module extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.
+	 * The default value is <code>"\"\""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Description</em>' attribute isn't clear,
@@ -119,7 +121,7 @@ public interface Module extends EObject {
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getModule_Description()
-	 * @model
+	 * @model default="\"\""
 	 * @generated
 	 */
 	String getDescription();
@@ -225,6 +227,7 @@ public interface Module extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Rte</b></em>' attribute.
+	 * The default value is <code>"\"\""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Rte</em>' attribute isn't clear,
@@ -234,7 +237,7 @@ public interface Module extends EObject {
 	 * @return the value of the '<em>Rte</em>' attribute.
 	 * @see #setRte(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getModule_Rte()
-	 * @model
+	 * @model default="\"\""
 	 * @generated
 	 */
 	String getRte();
@@ -251,6 +254,7 @@ public interface Module extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Spec</b></em>' attribute.
+	 * The default value is <code>"\"\""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Spec</em>' attribute isn't clear,
@@ -260,7 +264,7 @@ public interface Module extends EObject {
 	 * @return the value of the '<em>Spec</em>' attribute.
 	 * @see #setSpec(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getModule_Spec()
-	 * @model
+	 * @model default="\"\""
 	 * @generated
 	 */
 	String getSpec();
@@ -304,6 +308,7 @@ public interface Module extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Caps</b></em>' attribute.
+	 * The default value is <code>"-1"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Caps</em>' attribute isn't clear,
@@ -313,7 +318,7 @@ public interface Module extends EObject {
 	 * @return the value of the '<em>Caps</em>' attribute.
 	 * @see #setCaps(BigInteger)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getModule_Caps()
-	 * @model
+	 * @model default="-1"
 	 * @generated
 	 */
 	BigInteger getCaps();

@@ -19,24 +19,26 @@ import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IAddFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.IUpdateFeature;
+import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
 import org.eclipse.graphiti.features.context.impl.AddContext;
+import org.eclipse.graphiti.features.context.impl.CustomContext;
 import org.eclipse.graphiti.features.context.impl.UpdateContext;
+import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
-import org.eclipse.graphiti.mm.pictograms.PictogramLink;
-import org.eclipse.graphiti.mm.pictograms.PictogramsFactory;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.services.GraphitiUi;
 
-import de.tu_bs.ccc.contracting.Verification.Component;
-import de.tu_bs.ccc.contracting.Verification.MmFactory;
+import de.tu_bs.ccc.contracting.Verification.DirectionType;
 import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.core.features.layout.LayoutDiagramFeature;
 import de.tu_bs.ccc.contracting.core.localization.StringTable;
 
 public class SaveModuleToFile extends RecordingCommand {
 	private TransactionalEditingDomain editingDomain;
 	private Module module;
 	private IFolder folder;
-	
+
 	public SaveModuleToFile(TransactionalEditingDomain domain, IFolder folder, Module module) {
 		super(domain);
 		this.editingDomain = domain;
@@ -62,9 +64,9 @@ public class SaveModuleToFile extends RecordingCommand {
 		}
 		IContainer container = (IContainer) resource;
 		final IFile file = container.getFile(new Path(fileName));
-		
+
 		System.out.println(file.getName());
-		
+
 		String diagramTypeId = "ContractModelling";
 		Diagram diagram = Graphiti.getPeCreateService().createDiagram(diagramTypeId, module.getName(), true);
 		ResourceSet rSet = editingDomain.getResourceSet();
@@ -85,11 +87,11 @@ public class SaveModuleToFile extends RecordingCommand {
 		final Resource resource2 = rSet.getResource(uri, true);
 
 		resource2.getContents().add(diagram);
-		resource2.getContents().add(MmFactory.eINSTANCE.createComponent());
+		// resource2.getContents().add(MmFactory.eINSTANCE.createComponent());
+
 		IDiagramTypeProvider dtp = GraphitiUi.getExtensionManager().createDiagramTypeProvider(diagram,
 				"ContractModelling.ContractModellingDiagramTypeProvider"); //$NON-NLS-1$
 		IFeatureProvider featureProvider = dtp.getFeatureProvider();
-		AddContext create = new AddContext();
 
 		int dot = file.getName().lastIndexOf(".");
 
@@ -108,7 +110,7 @@ public class SaveModuleToFile extends RecordingCommand {
 
 		}
 
-		create.setNewObject(module);
+		// Save .model-file
 		final Resource resourceDomain = rSet.getResource(uri, true);
 		resourceDomain.getContents().add(module);
 		try {
@@ -118,20 +120,100 @@ public class SaveModuleToFile extends RecordingCommand {
 			e1.printStackTrace();
 		}
 
+		// Build graphical representation
+		AddContext create = new AddContext();
+		create.setNewObject(module);
 		create.setTargetContainer(diagram);
-
 		create.setX(100);
 		create.setY(100);
 		create.setSize(200, 200);
+
 		IAddFeature add = featureProvider.getAddFeature(create);
 
 		if (add.canAdd(create)) {
 			add.add(create);
 		}
-		
+
+		if (module instanceof de.tu_bs.ccc.contracting.Verification.Compound) {
+			de.tu_bs.ccc.contracting.Verification.Compound comp = (de.tu_bs.ccc.contracting.Verification.Compound) module;
+
+			// Create all components
+			for (Module m : comp.getConsistsOf()) {
+				create.setNewObject(m);
+				create.setTargetContainer(
+						(ContainerShape) featureProvider.getPictogramElementForBusinessObject(module));
+				create.setX(50);
+				create.setY(50);
+				create.setSize(100, 100);
+				add = featureProvider.getAddFeature(create);
+
+				if (add.canAdd(create)) {
+					add.add(create);
+				}
+			}
+
+			// Connect all components
+			for (Module m : comp.getConsistsOf()) {
+				for (Ports p : m.getPorts()) {
+					// Connection from compound to component
+					if (p.getOuterDirection() == DirectionType.INTERNAL && p.getInsidePortseOpposite() != null) {
+						Ports from = p.getInsidePortseOpposite();
+						ContainerShape fromContainer = (ContainerShape) featureProvider
+								.getPictogramElementForBusinessObject(from);
+						ContainerShape toContainer = (ContainerShape) featureProvider
+								.getPictogramElementForBusinessObject(p);
+						AddContext createConnection = new AddConnectionContext(fromContainer.getAnchors().get(0),
+								toContainer.getAnchors().get(0));
+
+						add = featureProvider.getAddFeature(createConnection);
+						if (add.canAdd(createConnection)) {
+							add.add(createConnection);
+						}
+					}
+
+					// //Connection from component to component
+					if (p.getOuterDirection() == DirectionType.INTERNAL && p.getPortseOpposite() != null) {
+						Ports from = p.getPortseOpposite();
+						ContainerShape fromContainer = (ContainerShape) featureProvider
+								.getPictogramElementForBusinessObject(from);
+						ContainerShape toContainer = (ContainerShape) featureProvider
+								.getPictogramElementForBusinessObject(p);
+						AddContext createConnection = new AddConnectionContext(fromContainer.getAnchors().get(0),
+								toContainer.getAnchors().get(0));
+
+						add = featureProvider.getAddFeature(createConnection);
+						if (add.canAdd(createConnection)) {
+							add.add(createConnection);
+						}
+					}
+				}
+			}
+
+			for (Ports p : module.getPorts()) {
+				// Connection from component to compound
+				if (p.getOuterDirection() == DirectionType.EXTERNAL && p.getInsidePortseOpposite() != null) {
+					Ports from = p.getInsidePortseOpposite();
+					ContainerShape fromContainer = (ContainerShape) featureProvider
+							.getPictogramElementForBusinessObject(from);
+					ContainerShape toContainer = (ContainerShape) featureProvider
+							.getPictogramElementForBusinessObject(p);
+					AddContext createConnection = new AddConnectionContext(fromContainer.getAnchors().get(0),
+							toContainer.getAnchors().get(0));
+
+					add = featureProvider.getAddFeature(createConnection);
+					if (add.canAdd(createConnection)) {
+						add.add(createConnection);
+					}
+				}
+			}
+		}
+
 		UpdateContext updateContext = new UpdateContext(diagram.getChildren().get(0));
 		IUpdateFeature updateFeature = dtp.getFeatureProvider().getUpdateFeature(updateContext);
 		updateFeature.update(updateContext);
+		
+		// layout module
+		new LayoutDiagramFeature(dtp.getFeatureProvider()).execute(diagram);
 
 		try {
 			resource2.save(null);

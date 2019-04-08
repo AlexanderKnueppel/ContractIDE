@@ -264,7 +264,7 @@ public class CCCExporter extends AbstractObjectWriter<System> {
 		SubsystemType.Provides provides = new SubsystemType.Provides();
 		NameType spec = new NameType();
 		spec.setName("zync");
-		provides.getRteAndSpec().add(factory.createSubsystemTypeProvidesSpec(spec));
+		provides.getRteAndSpecAndRam().add(factory.createSubsystemTypeProvidesSpec(spec));
 
 		// Requires comm
 		SubsystemType.Requires requires = new SubsystemType.Requires();
@@ -280,11 +280,13 @@ public class CCCExporter extends AbstractObjectWriter<System> {
 		sub_zynq.setRequires(requires);
 		sub_zynq.setConfig(config);
 
-		pt.getSubsystem().add(sub_zynq);
+		//pt.getSubsystem().add(sub_zynq);
 
 		CommType ct = new CommType();
 		ct.setName("Network");
 		pt.getComm().add(ct);
+		
+		/*Subsystems are now in components*/
 
 		return pt;
 	}
@@ -468,7 +470,7 @@ public class CCCExporter extends AbstractObjectWriter<System> {
 
 							SystemType.Child.Dependency.Child2 c2 = new SystemType.Child.Dependency.Child2();
 							c2.setName(port.getPortseOpposite().getModule().getName());
-							dep.getChild().add(c2);
+							dep.getChildOrFunction().add(c2);
 							child.setDependency(dep);
 						}
 					}

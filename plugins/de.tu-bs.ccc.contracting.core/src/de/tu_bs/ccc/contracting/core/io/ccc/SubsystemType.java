@@ -2,7 +2,7 @@
 // Diese Datei wurde mit der JavaTM Architecture for XML Binding(JAXB) Reference Implementation, v2.2.8-b130911.1802 generiert 
 // Siehe <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Änderungen an dieser Datei gehen bei einer Neukompilierung des Quellschemas verloren. 
-// Generiert: 2018.10.04 um 12:30:04 PM CEST 
+// Generiert: 2019.02.11 um 10:27:32 AM CET 
 //
 
 
@@ -14,7 +14,6 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlElementRefs;
 import javax.xml.bind.annotation.XmlType;
@@ -37,6 +36,8 @@ import javax.xml.bind.annotation.XmlType;
  *                 &lt;sequence maxOccurs="unbounded">
  *                   &lt;element name="rte" type="{}NameType" minOccurs="0"/>
  *                   &lt;element name="spec" type="{}NameType" minOccurs="0"/>
+ *                   &lt;element name="ram" type="{}QuantumType" minOccurs="0"/>
+ *                   &lt;element name="caps" type="{}QuantumType" minOccurs="0"/>
  *                 &lt;/sequence>
  *               &lt;/restriction>
  *             &lt;/complexContent>
@@ -53,7 +54,7 @@ import javax.xml.bind.annotation.XmlType;
  *             &lt;/complexContent>
  *           &lt;/complexType>
  *         &lt;/element>
- *         &lt;element name="config" type="{}NameType"/>
+ *         &lt;element name="config" type="{}NameType" minOccurs="0"/>
  *       &lt;/sequence>
  *       &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
@@ -73,7 +74,6 @@ public class SubsystemType {
 
     protected SubsystemType.Provides provides;
     protected SubsystemType.Requires requires;
-    @XmlElement(required = true)
     protected NameType config;
     @XmlAttribute(name = "name", required = true)
     protected String name;
@@ -187,6 +187,8 @@ public class SubsystemType {
      *       &lt;sequence maxOccurs="unbounded">
      *         &lt;element name="rte" type="{}NameType" minOccurs="0"/>
      *         &lt;element name="spec" type="{}NameType" minOccurs="0"/>
+     *         &lt;element name="ram" type="{}QuantumType" minOccurs="0"/>
+     *         &lt;element name="caps" type="{}QuantumType" minOccurs="0"/>
      *       &lt;/sequence>
      *     &lt;/restriction>
      *   &lt;/complexContent>
@@ -197,44 +199,48 @@ public class SubsystemType {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "rteAndSpec"
+        "rteAndSpecAndRam"
     })
     public static class Provides {
 
         @XmlElementRefs({
-            @XmlElementRef(name = "rte", type = JAXBElement.class, required = false),
-            @XmlElementRef(name = "spec", type = JAXBElement.class, required = false)
+            @XmlElementRef(name = "caps", type = JAXBElement.class, required = false),
+            @XmlElementRef(name = "ram", type = JAXBElement.class, required = false),
+            @XmlElementRef(name = "spec", type = JAXBElement.class, required = false),
+            @XmlElementRef(name = "rte", type = JAXBElement.class, required = false)
         })
-        protected List<JAXBElement<NameType>> rteAndSpec;
+        protected List<JAXBElement<?>> rteAndSpecAndRam;
 
         /**
-         * Gets the value of the rteAndSpec property.
+         * Gets the value of the rteAndSpecAndRam property.
          * 
          * <p>
          * This accessor method returns a reference to the live list,
          * not a snapshot. Therefore any modification you make to the
          * returned list will be present inside the JAXB object.
-         * This is why there is not a <CODE>set</CODE> method for the rteAndSpec property.
+         * This is why there is not a <CODE>set</CODE> method for the rteAndSpecAndRam property.
          * 
          * <p>
          * For example, to add a new item, do as follows:
          * <pre>
-         *    getRteAndSpec().add(newItem);
+         *    getRteAndSpecAndRam().add(newItem);
          * </pre>
          * 
          * 
          * <p>
          * Objects of the following type(s) are allowed in the list
+         * {@link JAXBElement }{@code <}{@link QuantumType }{@code >}
          * {@link JAXBElement }{@code <}{@link NameType }{@code >}
+         * {@link JAXBElement }{@code <}{@link QuantumType }{@code >}
          * {@link JAXBElement }{@code <}{@link NameType }{@code >}
          * 
          * 
          */
-        public List<JAXBElement<NameType>> getRteAndSpec() {
-            if (rteAndSpec == null) {
-                rteAndSpec = new ArrayList<JAXBElement<NameType>>();
+        public List<JAXBElement<?>> getRteAndSpecAndRam() {
+            if (rteAndSpecAndRam == null) {
+                rteAndSpecAndRam = new ArrayList<JAXBElement<?>>();
             }
-            return this.rteAndSpec;
+            return this.rteAndSpecAndRam;
         }
 
     }
