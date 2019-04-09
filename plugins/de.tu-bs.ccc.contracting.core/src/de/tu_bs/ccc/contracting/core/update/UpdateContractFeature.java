@@ -61,32 +61,30 @@ public class UpdateContractFeature extends AbstractUpdateFeature {
 			Shape s = cs.getChildren().get(i);
 			if (i >= 3 && i < c.getAssumption().size() + 3) {
 				Text t = (Text) s.getGraphicsAlgorithm();
-				if (!t.getValue().equals(c.getAssumption().get(i - 3).getPropertyTipe() + ":"
-						+ c.getAssumption().get(i - 3).getProperty())) {
+				if (!t.getValue().equals(
+						c.getAssumption().get(i - 3).getProperty())) {
 					updateneeded = true;
 				}
 
 			} else if (i >= c.getAssumption().size() + 4
 					&& i <= c.getAssumption().size() + 3 + c.getGuarantee().size()) {
 				Text t = (Text) s.getGraphicsAlgorithm();
-				if (!t.getValue().equals(c.getGuarantee().get(i - (c.getAssumption().size() + 4)).getPropertyTipe()
-						+ ":" + c.getGuarantee().get(i - (c.getAssumption().size() + 4)).getProperty())) {
+				if (!t.getValue().equals(c.getGuarantee().get(i - (c.getAssumption().size() + 4)).getProperty())) {
 					updateneeded = true;
 				}
 			}
 
 		}
 		if (updateneeded) {
-			TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(c);
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
-
-				@Override
-				protected void doExecute() {
-					// Implement your write operations here,
-		
-					updatePictogramElement(pictogramElement);
-				}
-			});
+//			TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(c);
+//			domain.getCommandStack().execute(new RecordingCommand(domain) {
+//
+//				@Override
+//				protected void doExecute() {
+//
+//					updatePictogramElement(pictogramElement);
+//				}
+//			});
 
 			return Reason.createTrueReason("Wrong Constraint");
 
@@ -200,7 +198,7 @@ public class UpdateContractFeature extends AbstractUpdateFeature {
 					text3.setForeground(manageColor(E_CLASS_TEXT_FOREGROUND));
 				}
 			}
-			getDiagramBehavior().refreshContent();
+			//getDiagramBehavior().refreshContent();
 		return true;
 		}
 		return false;

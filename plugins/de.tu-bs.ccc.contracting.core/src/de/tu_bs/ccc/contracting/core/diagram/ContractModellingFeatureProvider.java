@@ -74,7 +74,7 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 	public ICustomFeature[] getCustomFeatures(ICustomContext context) {
 		return new ICustomFeature[] { //new VerifyCustomFeature(this), 
 				new ViewpointVerificationFeature(this), new CollapseFeature(this),
-				new EditAbstractFeature(this), new LayoutDiagramFeature(this) };
+				new EditAbstractFeature(this), new LayoutDiagramFeature(this), new SynchronizeFeature(this) };
 	}
 
 	@Override

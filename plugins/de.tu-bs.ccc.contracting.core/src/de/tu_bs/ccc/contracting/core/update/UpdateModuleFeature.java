@@ -181,7 +181,7 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 					}
 				}
 				if (!found) {
-					System.out.println("laufe");
+		
 					AddContext creat = new AddContext();
 				creat.setNewObject(c);
 				creat.setTargetContainer(cs);
@@ -194,7 +194,6 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 			for (Contract c : m.getContract()) {
 				for (PictogramLink p : getDiagram().getPictogramLinks()) {
 					if (p.getBusinessObjects().get(0) == c) {
-						System.out.println(m.getName()+m.getModule()+"con-update");
 						updatePictogramElement(p.getPictogramElement());
 					}
 				}
