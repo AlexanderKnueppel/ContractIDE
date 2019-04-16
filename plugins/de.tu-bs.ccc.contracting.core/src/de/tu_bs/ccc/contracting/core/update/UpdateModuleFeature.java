@@ -91,6 +91,9 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 				return Reason.createTrueReason("Port doesn't exist");
 			}
 		}
+		if(m.getModule()==null) {
+			
+		
 		for (Contract c : m.getContract()) {
 			boolean found = false;
 
@@ -105,7 +108,7 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 				return Reason.createTrueReason("Contract doesn't exist");
 			}
 		}
-
+		}
 		return Reason.createFalseReason();
 	}
 
@@ -169,7 +172,7 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 					}
 				}
 			}
-
+			if(m.getModule()==null) {
 			for (Contract c : m.getContract()) {
 				boolean found = false;
 
@@ -190,6 +193,7 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 					getFeatureProvider().addIfPossible(creat);
 				}
 
+			}
 			}
 			for (Contract c : m.getContract()) {
 				for (PictogramLink p : getDiagram().getPictogramLinks()) {

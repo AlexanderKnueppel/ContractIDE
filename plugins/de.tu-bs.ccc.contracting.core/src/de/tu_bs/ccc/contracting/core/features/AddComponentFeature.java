@@ -130,6 +130,9 @@ public class AddComponentFeature extends AbstractAddFeature implements IAddFeatu
 		}
 		i = addedClass.getContract().size();
 		j = addedClass.getContract().size();
+		if (addedClass.getModule()==null) {
+			
+		
 		for (Contract element : addedClass.getContract()) {
 			AddContext a = new AddContext();
 			a.setTargetContainer(containerShape);
@@ -139,7 +142,7 @@ public class AddComponentFeature extends AbstractAddFeature implements IAddFeatu
 			a.setSize(40, 40);
 			i--;
 			addGraphicalRepresentation(a, element);
-		}
+		}}
 		return containerShape;
 	}
 

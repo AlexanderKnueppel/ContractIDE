@@ -82,7 +82,7 @@ public class UpdateContractFeature extends AbstractUpdateFeature {
 //				@Override
 //				protected void doExecute() {
 //
-//					updatePictogramElement(pictogramElement);
+					//updatePictogramElement(pictogramElement);
 //				}
 //			});
 
@@ -101,13 +101,13 @@ public class UpdateContractFeature extends AbstractUpdateFeature {
 		if (pictogramElement instanceof ContainerShape) {
 
 			ContainerShape cs = (ContainerShape) pictogramElement;
+			cs.getChildren().clear();
 			for (int i = (cs.getChildren().size() - 1); i >= 0; i--) {
 				Shape s = cs.getChildren().get(i);
 				if (s.getLink() != null) {
 					EcoreUtil.delete(s.getLink());
 				}
-				EcoreUtil.delete(s);
-
+				cs.getChildren().clear();
 			}
 
 			IPeCreateService peCreateService = Graphiti.getPeCreateService();
