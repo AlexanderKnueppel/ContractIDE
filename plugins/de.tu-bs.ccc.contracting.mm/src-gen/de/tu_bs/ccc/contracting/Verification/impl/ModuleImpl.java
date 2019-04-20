@@ -62,7 +62,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements de.tu_bs
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = "\"\"";
+	protected static final String NAME_EDEFAULT = "";
 
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -162,7 +162,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements de.tu_bs
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String RTE_EDEFAULT = "\"\"";
+	protected static final String RTE_EDEFAULT = "";
 
 	/**
 	 * The cached value of the '{@link #getRte() <em>Rte</em>}' attribute.
@@ -182,7 +182,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements de.tu_bs
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String SPEC_EDEFAULT = "\"\"";
+	protected static final String SPEC_EDEFAULT = "";
 
 	/**
 	 * The cached value of the '{@link #getSpec() <em>Spec</em>}' attribute.

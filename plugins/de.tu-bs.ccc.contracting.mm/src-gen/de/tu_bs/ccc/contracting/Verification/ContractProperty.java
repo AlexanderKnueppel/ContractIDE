@@ -54,7 +54,7 @@ public interface ContractProperty extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Property</b></em>' attribute.
-	 * The default value is <code>"\"\""</code>.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Property</em>' attribute isn't clear,
@@ -64,7 +64,7 @@ public interface ContractProperty extends EObject {
 	 * @return the value of the '<em>Property</em>' attribute.
 	 * @see #setProperty(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getContractProperty_Property()
-	 * @model default="\"\"" dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+	 * @model default="" dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
 	 * @generated
 	 */
 	String getProperty();

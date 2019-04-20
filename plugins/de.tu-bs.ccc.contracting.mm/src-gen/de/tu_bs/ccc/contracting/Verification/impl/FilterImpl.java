@@ -36,7 +36,7 @@ public class FilterImpl extends ModuleTypeImpl implements Filter {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String ADD_EDEFAULT = "\"\"";
+	protected static final String ADD_EDEFAULT = "";
 
 	/**
 	 * The cached value of the '{@link #getAdd() <em>Add</em>}' attribute.
@@ -56,7 +56,7 @@ public class FilterImpl extends ModuleTypeImpl implements Filter {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String REMOVE_EDEFAULT = "\"\"";
+	protected static final String REMOVE_EDEFAULT = "";
 
 	/**
 	 * The cached value of the '{@link #getRemove() <em>Remove</em>}' attribute.
@@ -76,7 +76,7 @@ public class FilterImpl extends ModuleTypeImpl implements Filter {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String RESET_EDEFAULT = "\"\"";
+	protected static final String RESET_EDEFAULT = "";
 
 	/**
 	 * The cached value of the '{@link #getReset() <em>Reset</em>}' attribute.
@@ -96,7 +96,7 @@ public class FilterImpl extends ModuleTypeImpl implements Filter {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String ALIAS_EDEFAULT = "\"\"";
+	protected static final String ALIAS_EDEFAULT = "";
 
 	/**
 	 * The cached value of the '{@link #getAlias() <em>Alias</em>}' attribute.

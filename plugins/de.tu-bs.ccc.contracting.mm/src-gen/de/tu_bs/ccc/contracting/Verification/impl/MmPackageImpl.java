@@ -1161,7 +1161,7 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 		// Initialize classes, features, and operations; add parameters
 		initEClass(moduleEClass, de.tu_bs.ccc.contracting.Verification.Module.class, "Module", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getModule_Name(), ecorePackage.getEString(), "name", "\"\"", 0, 1,
+		initEAttribute(getModule_Name(), ecorePackage.getEString(), "name", "", 0, 1,
 				de.tu_bs.ccc.contracting.Verification.Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModule_IsPartOf(), this.getCompound(), this.getCompound_ConsistsOf(), "isPartOf", null, 0, 1,
@@ -1185,10 +1185,10 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 		initEAttribute(getModule_Version(), ecorePackage.getEString(), "version", "1.0", 0, 1,
 				de.tu_bs.ccc.contracting.Verification.Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getModule_Rte(), ecorePackage.getEString(), "rte", "\"\"", 0, 1,
+		initEAttribute(getModule_Rte(), ecorePackage.getEString(), "rte", "", 0, 1,
 				de.tu_bs.ccc.contracting.Verification.Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getModule_Spec(), ecorePackage.getEString(), "spec", "\"\"", 0, 1,
+		initEAttribute(getModule_Spec(), ecorePackage.getEString(), "spec", "", 0, 1,
 				de.tu_bs.ccc.contracting.Verification.Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getModule_Ram(), ecorePackage.getEBigInteger(), "ram", "-1", 0, 1,
@@ -1212,7 +1212,7 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 		initEAttribute(getComponent_Singleton(), ecorePackage.getEBoolean(), "singleton", "false", 0, 1,
 				Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getComponent_Binary(), ecorePackage.getEString(), "binary", "\"\"", 0, 1, Component.class,
+		initEAttribute(getComponent_Binary(), ecorePackage.getEString(), "binary", "", 0, 1, Component.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compoundEClass, Compound.class, "Compound", !IS_ABSTRACT, !IS_INTERFACE,
@@ -1223,8 +1223,8 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 
 		initEClass(contractEClass, Contract.class, "Contract", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getContract_Name(), ecorePackage.getEString(), "name", "\"\"", 0, 1, Contract.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getContract_Name(), ecorePackage.getEString(), "name", "", 0, 1, Contract.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getContract_Module(), this.getModule(), this.getModule_Contract(), "module", null, 1, 1,
 				Contract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1238,7 +1238,7 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(portsEClass, Ports.class, "Ports", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPorts_Name(), theXMLTypePackage.getString(), "name", "\"\"", 0, 1, Ports.class, !IS_TRANSIENT,
+		initEAttribute(getPorts_Name(), theXMLTypePackage.getString(), "name", "", 0, 1, Ports.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPorts_Type(), this.getPortType(), "type", "INT", 0, 1, Ports.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1257,19 +1257,19 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 		initEReference(getPorts_InsidePortseOpposite(), this.getPorts(), this.getPorts_InsidePorts(),
 				"insidePortseOpposite", null, 0, 1, Ports.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPorts_Service(), theXMLTypePackage.getString(), "service", "\"\"", 0, 1, Ports.class,
+		initEAttribute(getPorts_Service(), theXMLTypePackage.getString(), "service", "", 0, 1, Ports.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPorts_OuterDirection(), this.getDirectionType(), "OuterDirection", "INTERNAL", 0, 1,
 				Ports.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 		initEAttribute(getPorts_MaxClients(), ecorePackage.getEInt(), "maxClients", "-1", 0, 1, Ports.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPorts_Filter(), ecorePackage.getEString(), "filter", "\"\"", 0, 1, Ports.class, !IS_TRANSIENT,
+		initEAttribute(getPorts_Filter(), ecorePackage.getEString(), "filter", "", 0, 1, Ports.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPorts_Label(), ecorePackage.getEString(), "label", "\"\"", 0, 1, Ports.class, !IS_TRANSIENT,
+		initEAttribute(getPorts_Label(), ecorePackage.getEString(), "label", "", 0, 1, Ports.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPorts_Function(), ecorePackage.getEString(), "function", "\"\"", 0, 1, Ports.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPorts_Function(), ecorePackage.getEString(), "function", "", 0, 1, Ports.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPorts_ProviderType(), this.getProviderType(), "providerType", "NATIVE", 0, 1, Ports.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1278,7 +1278,7 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 		initEAttribute(getContractProperty_PropertyTipe(), this.getPropertyType(), "propertyTipe", "EQUATION", 0, 1,
 				ContractProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getContractProperty_Property(), theXMLTypePackage.getString(), "property", "\"\"", 1, 1,
+		initEAttribute(getContractProperty_Property(), theXMLTypePackage.getString(), "property", "", 1, 1,
 				ContractProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 
@@ -1296,7 +1296,7 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 
 		initEClass(systemEClass, de.tu_bs.ccc.contracting.Verification.System.class, "System", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSystem_Name(), ecorePackage.getEString(), "name", "\"\"", 0, 1,
+		initEAttribute(getSystem_Name(), ecorePackage.getEString(), "name", "", 0, 1,
 				de.tu_bs.ccc.contracting.Verification.System.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSystem_ConsistsOf(), this.getModule(), null, "consistsOf", null, 0, -1,
@@ -1307,33 +1307,33 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 				IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(proxyEClass, Proxy.class, "Proxy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getProxy_Carrier(), ecorePackage.getEString(), "carrier", "\"\"", 0, 1, Proxy.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProxy_Carrier(), ecorePackage.getEString(), "carrier", "", 0, 1, Proxy.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(filterEClass, Filter.class, "Filter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getFilter_Add(), ecorePackage.getEString(), "add", "\"\"", 0, 1, Filter.class, !IS_TRANSIENT,
+		initEAttribute(getFilter_Add(), ecorePackage.getEString(), "add", "", 0, 1, Filter.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFilter_Remove(), ecorePackage.getEString(), "remove", "\"\"", 0, 1, Filter.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFilter_Reset(), ecorePackage.getEString(), "reset", "\"\"", 0, 1, Filter.class, !IS_TRANSIENT,
+		initEAttribute(getFilter_Remove(), ecorePackage.getEString(), "remove", "", 0, 1, Filter.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFilter_Alias(), ecorePackage.getEString(), "alias", "\"\"", 0, 1, Filter.class, !IS_TRANSIENT,
+		initEAttribute(getFilter_Reset(), ecorePackage.getEString(), "reset", "", 0, 1, Filter.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFilter_Alias(), ecorePackage.getEString(), "alias", "", 0, 1, Filter.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(muxEClass, Mux.class, "Mux", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMux_Service(), ecorePackage.getEString(), "service", "\"\"", 0, 1, Mux.class, !IS_TRANSIENT,
+		initEAttribute(getMux_Service(), ecorePackage.getEString(), "service", "", 0, 1, Mux.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(protocolEClass, Protocol.class, "Protocol", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getProtocol_From(), ecorePackage.getEString(), "from", "\"\"", 0, 1, Protocol.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getProtocol_To(), ecorePackage.getEString(), "to", "\"\"", 0, 1, Protocol.class, !IS_TRANSIENT,
+		initEAttribute(getProtocol_From(), ecorePackage.getEString(), "from", "", 0, 1, Protocol.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProtocol_To(), ecorePackage.getEString(), "to", "", 0, 1, Protocol.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(functionEClass, Function.class, "Function", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getFunction_Function(), ecorePackage.getEString(), "function", "\"\"", 0, 1, Function.class,
+		initEAttribute(getFunction_Function(), ecorePackage.getEString(), "function", "", 0, 1, Function.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals

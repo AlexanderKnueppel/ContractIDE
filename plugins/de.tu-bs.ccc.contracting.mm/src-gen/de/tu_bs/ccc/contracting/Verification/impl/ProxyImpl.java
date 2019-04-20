@@ -33,7 +33,7 @@ public class ProxyImpl extends ModuleTypeImpl implements Proxy {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String CARRIER_EDEFAULT = "\"\"";
+	protected static final String CARRIER_EDEFAULT = "";
 
 	/**
 	 * The cached value of the '{@link #getCarrier() <em>Carrier</em>}' attribute.

@@ -21,7 +21,7 @@ package de.tu_bs.ccc.contracting.Verification;
 public interface Proxy extends ModuleType {
 	/**
 	 * Returns the value of the '<em><b>Carrier</b></em>' attribute.
-	 * The default value is <code>"\"\""</code>.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Carrier</em>' attribute isn't clear,
@@ -31,7 +31,7 @@ public interface Proxy extends ModuleType {
 	 * @return the value of the '<em>Carrier</em>' attribute.
 	 * @see #setCarrier(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getProxy_Carrier()
-	 * @model default="\"\""
+	 * @model default=""
 	 * @generated
 	 */
 	String getCarrier();

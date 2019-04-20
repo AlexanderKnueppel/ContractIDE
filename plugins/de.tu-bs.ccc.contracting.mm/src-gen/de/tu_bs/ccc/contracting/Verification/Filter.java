@@ -24,7 +24,7 @@ package de.tu_bs.ccc.contracting.Verification;
 public interface Filter extends ModuleType {
 	/**
 	 * Returns the value of the '<em><b>Add</b></em>' attribute.
-	 * The default value is <code>"\"\""</code>.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Add</em>' attribute isn't clear,
@@ -34,7 +34,7 @@ public interface Filter extends ModuleType {
 	 * @return the value of the '<em>Add</em>' attribute.
 	 * @see #setAdd(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getFilter_Add()
-	 * @model default="\"\""
+	 * @model default=""
 	 * @generated
 	 */
 	String getAdd();
@@ -51,7 +51,7 @@ public interface Filter extends ModuleType {
 
 	/**
 	 * Returns the value of the '<em><b>Remove</b></em>' attribute.
-	 * The default value is <code>"\"\""</code>.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Remove</em>' attribute isn't clear,
@@ -61,7 +61,7 @@ public interface Filter extends ModuleType {
 	 * @return the value of the '<em>Remove</em>' attribute.
 	 * @see #setRemove(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getFilter_Remove()
-	 * @model default="\"\""
+	 * @model default=""
 	 * @generated
 	 */
 	String getRemove();
@@ -78,7 +78,7 @@ public interface Filter extends ModuleType {
 
 	/**
 	 * Returns the value of the '<em><b>Reset</b></em>' attribute.
-	 * The default value is <code>"\"\""</code>.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Reset</em>' attribute isn't clear,
@@ -88,7 +88,7 @@ public interface Filter extends ModuleType {
 	 * @return the value of the '<em>Reset</em>' attribute.
 	 * @see #setReset(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getFilter_Reset()
-	 * @model default="\"\""
+	 * @model default=""
 	 * @generated
 	 */
 	String getReset();
@@ -105,7 +105,7 @@ public interface Filter extends ModuleType {
 
 	/**
 	 * Returns the value of the '<em><b>Alias</b></em>' attribute.
-	 * The default value is <code>"\"\""</code>.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Alias</em>' attribute isn't clear,
@@ -115,7 +115,7 @@ public interface Filter extends ModuleType {
 	 * @return the value of the '<em>Alias</em>' attribute.
 	 * @see #setAlias(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getFilter_Alias()
-	 * @model default="\"\""
+	 * @model default=""
 	 * @generated
 	 */
 	String getAlias();

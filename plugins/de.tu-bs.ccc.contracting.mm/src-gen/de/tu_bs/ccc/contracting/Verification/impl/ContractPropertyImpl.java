@@ -56,7 +56,7 @@ public class ContractPropertyImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String PROPERTY_EDEFAULT = "\"\"";
+	protected static final String PROPERTY_EDEFAULT = "";
 
 	/**
 	 * The cached value of the '{@link #getProperty() <em>Property</em>}' attribute.
