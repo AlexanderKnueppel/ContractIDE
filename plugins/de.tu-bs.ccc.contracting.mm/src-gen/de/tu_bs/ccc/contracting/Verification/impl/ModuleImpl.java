@@ -9,6 +9,7 @@ import de.tu_bs.ccc.contracting.Verification.MmPackage;
 import de.tu_bs.ccc.contracting.Verification.ModuleType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 
+import de.tu_bs.ccc.contracting.Verification.Property;
 import java.math.BigInteger;
 import java.util.Collection;
 
@@ -23,6 +24,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -49,6 +51,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.ModuleImpl#getRam <em>Ram</em>}</li>
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.ModuleImpl#getCaps <em>Caps</em>}</li>
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.ModuleImpl#getModuleType <em>Module Type</em>}</li>
+ *   <li>{@link de.tu_bs.ccc.contracting.Verification.impl.ModuleImpl#getEnviromentalProperties <em>Enviromental Properties</em>}</li>
  * </ul>
  *
  * @generated
@@ -243,6 +246,16 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements de.tu_bs
 	 * @ordered
 	 */
 	protected ModuleType moduleType;
+
+	/**
+	 * The cached value of the '{@link #getEnviromentalProperties() <em>Enviromental Properties</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEnviromentalProperties()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Property> enviromentalProperties;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -612,6 +625,20 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements de.tu_bs
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public EList<Property> getEnviromentalProperties() {
+		if (enviromentalProperties == null) {
+			enviromentalProperties = new EObjectContainmentEList<Property>(Property.class, this,
+					MmPackage.MODULE__ENVIROMENTAL_PROPERTIES);
+		}
+		return enviromentalProperties;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -648,6 +675,8 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements de.tu_bs
 			return ((InternalEList<?>) getContract()).basicRemove(otherEnd, msgs);
 		case MmPackage.MODULE__MODULE_TYPE:
 			return basicSetModuleType(null, msgs);
+		case MmPackage.MODULE__ENVIROMENTAL_PROPERTIES:
+			return ((InternalEList<?>) getEnviromentalProperties()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -702,6 +731,8 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements de.tu_bs
 			return getCaps();
 		case MmPackage.MODULE__MODULE_TYPE:
 			return getModuleType();
+		case MmPackage.MODULE__ENVIROMENTAL_PROPERTIES:
+			return getEnviromentalProperties();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -757,6 +788,10 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements de.tu_bs
 		case MmPackage.MODULE__MODULE_TYPE:
 			setModuleType((ModuleType) newValue);
 			return;
+		case MmPackage.MODULE__ENVIROMENTAL_PROPERTIES:
+			getEnviromentalProperties().clear();
+			getEnviromentalProperties().addAll((Collection<? extends Property>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -808,6 +843,9 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements de.tu_bs
 		case MmPackage.MODULE__MODULE_TYPE:
 			setModuleType((ModuleType) null);
 			return;
+		case MmPackage.MODULE__ENVIROMENTAL_PROPERTIES:
+			getEnviromentalProperties().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -846,6 +884,8 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements de.tu_bs
 			return CAPS_EDEFAULT == null ? caps != null : !CAPS_EDEFAULT.equals(caps);
 		case MmPackage.MODULE__MODULE_TYPE:
 			return moduleType != null;
+		case MmPackage.MODULE__ENVIROMENTAL_PROPERTIES:
+			return enviromentalProperties != null && !enviromentalProperties.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

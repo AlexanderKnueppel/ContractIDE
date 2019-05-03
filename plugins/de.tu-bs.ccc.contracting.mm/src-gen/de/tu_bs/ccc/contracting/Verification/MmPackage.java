@@ -185,13 +185,22 @@ public interface MmPackage extends EPackage {
 	int MODULE__MODULE_TYPE = 12;
 
 	/**
+	 * The feature id for the '<em><b>Enviromental Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODULE__ENVIROMENTAL_PROPERTIES = 13;
+
+	/**
 	 * The number of structural features of the '<em>Module</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODULE_FEATURE_COUNT = 13;
+	int MODULE_FEATURE_COUNT = 14;
 
 	/**
 	 * The number of operations of the '<em>Module</em>' class.
@@ -328,6 +337,15 @@ public interface MmPackage extends EPackage {
 	 * @ordered
 	 */
 	int ABSTRACT__MODULE_TYPE = MODULE__MODULE_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Enviromental Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT__ENVIROMENTAL_PROPERTIES = MODULE__ENVIROMENTAL_PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Realizes</b></em>' reference list.
@@ -482,6 +500,15 @@ public interface MmPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPONENT__MODULE_TYPE = MODULE__MODULE_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Enviromental Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT__ENVIROMENTAL_PROPERTIES = MODULE__ENVIROMENTAL_PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Singleton</b></em>' attribute.
@@ -645,6 +672,15 @@ public interface MmPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPOUND__MODULE_TYPE = MODULE__MODULE_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Enviromental Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND__ENVIROMENTAL_PROPERTIES = MODULE__ENVIROMENTAL_PROPERTIES;
 
 	/**
 	 * The feature id for the '<em><b>Consists Of</b></em>' containment reference list.
@@ -1352,6 +1388,61 @@ public interface MmPackage extends EPackage {
 	int FUNCTION_OPERATION_COUNT = MODULE_TYPE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link de.tu_bs.ccc.contracting.Verification.impl.PropertyImpl <em>Property</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.tu_bs.ccc.contracting.Verification.impl.PropertyImpl
+	 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getProperty()
+	 * @generated
+	 */
+	int PROPERTY = 16;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__VALUE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__TYPE = 2;
+
+	/**
+	 * The number of structural features of the '<em>Property</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Property</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link de.tu_bs.ccc.contracting.Verification.PortType <em>Port Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1359,7 +1450,7 @@ public interface MmPackage extends EPackage {
 	 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getPortType()
 	 * @generated
 	 */
-	int PORT_TYPE = 16;
+	int PORT_TYPE = 17;
 
 	/**
 	 * The meta object id for the '{@link de.tu_bs.ccc.contracting.Verification.ViewPoint <em>View Point</em>}' enum.
@@ -1369,7 +1460,7 @@ public interface MmPackage extends EPackage {
 	 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getViewPoint()
 	 * @generated
 	 */
-	int VIEW_POINT = 17;
+	int VIEW_POINT = 18;
 
 	/**
 	 * The meta object id for the '{@link de.tu_bs.ccc.contracting.Verification.PropertyType <em>Property Type</em>}' enum.
@@ -1379,7 +1470,7 @@ public interface MmPackage extends EPackage {
 	 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getPropertyType()
 	 * @generated
 	 */
-	int PROPERTY_TYPE = 18;
+	int PROPERTY_TYPE = 19;
 
 	/**
 	 * The meta object id for the '{@link de.tu_bs.ccc.contracting.Verification.ContractType <em>Contract Type</em>}' enum.
@@ -1389,7 +1480,7 @@ public interface MmPackage extends EPackage {
 	 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getContractType()
 	 * @generated
 	 */
-	int CONTRACT_TYPE = 19;
+	int CONTRACT_TYPE = 20;
 
 	/**
 	 * The meta object id for the '{@link de.tu_bs.ccc.contracting.Verification.DirectionType <em>Direction Type</em>}' enum.
@@ -1399,7 +1490,7 @@ public interface MmPackage extends EPackage {
 	 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getDirectionType()
 	 * @generated
 	 */
-	int DIRECTION_TYPE = 20;
+	int DIRECTION_TYPE = 21;
 
 	/**
 	 * The meta object id for the '{@link de.tu_bs.ccc.contracting.Verification.ProviderType <em>Provider Type</em>}' enum.
@@ -1409,7 +1500,7 @@ public interface MmPackage extends EPackage {
 	 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getProviderType()
 	 * @generated
 	 */
-	int PROVIDER_TYPE = 21;
+	int PROVIDER_TYPE = 22;
 
 	/**
 	 * Returns the meta object for class '{@link de.tu_bs.ccc.contracting.Verification.Module <em>Module</em>}'.
@@ -1563,6 +1654,17 @@ public interface MmPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getModule_ModuleType();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link de.tu_bs.ccc.contracting.Verification.Module#getEnviromentalProperties <em>Enviromental Properties</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Enviromental Properties</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Module#getEnviromentalProperties()
+	 * @see #getModule()
+	 * @generated
+	 */
+	EReference getModule_EnviromentalProperties();
 
 	/**
 	 * Returns the meta object for class '{@link de.tu_bs.ccc.contracting.Verification.Abstract <em>Abstract</em>}'.
@@ -2133,6 +2235,49 @@ public interface MmPackage extends EPackage {
 	EAttribute getFunction_Function();
 
 	/**
+	 * Returns the meta object for class '{@link de.tu_bs.ccc.contracting.Verification.Property <em>Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Property</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Property
+	 * @generated
+	 */
+	EClass getProperty();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.ccc.contracting.Verification.Property#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Property#getName()
+	 * @see #getProperty()
+	 * @generated
+	 */
+	EAttribute getProperty_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.ccc.contracting.Verification.Property#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Property#getValue()
+	 * @see #getProperty()
+	 * @generated
+	 */
+	EAttribute getProperty_Value();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.ccc.contracting.Verification.Property#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Property#getType()
+	 * @see #getProperty()
+	 * @generated
+	 */
+	EAttribute getProperty_Type();
+
+	/**
 	 * Returns the meta object for enum '{@link de.tu_bs.ccc.contracting.Verification.PortType <em>Port Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2328,6 +2473,14 @@ public interface MmPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MODULE__MODULE_TYPE = eINSTANCE.getModule_ModuleType();
+
+		/**
+		 * The meta object literal for the '<em><b>Enviromental Properties</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODULE__ENVIROMENTAL_PROPERTIES = eINSTANCE.getModule_EnviromentalProperties();
 
 		/**
 		 * The meta object literal for the '{@link de.tu_bs.ccc.contracting.Verification.impl.AbstractImpl <em>Abstract</em>}' class.
@@ -2782,6 +2935,40 @@ public interface MmPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FUNCTION__FUNCTION = eINSTANCE.getFunction_Function();
+
+		/**
+		 * The meta object literal for the '{@link de.tu_bs.ccc.contracting.Verification.impl.PropertyImpl <em>Property</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.tu_bs.ccc.contracting.Verification.impl.PropertyImpl
+		 * @see de.tu_bs.ccc.contracting.Verification.impl.MmPackageImpl#getProperty()
+		 * @generated
+		 */
+		EClass PROPERTY = eINSTANCE.getProperty();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROPERTY__NAME = eINSTANCE.getProperty_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROPERTY__VALUE = eINSTANCE.getProperty_Value();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROPERTY__TYPE = eINSTANCE.getProperty_Type();
 
 		/**
 		 * The meta object literal for the '{@link de.tu_bs.ccc.contracting.Verification.PortType <em>Port Type</em>}' enum.

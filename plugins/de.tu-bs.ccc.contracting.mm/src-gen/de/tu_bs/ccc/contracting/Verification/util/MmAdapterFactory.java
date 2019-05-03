@@ -15,6 +15,7 @@ import de.tu_bs.ccc.contracting.Verification.MmPackage;
 import de.tu_bs.ccc.contracting.Verification.ModuleType;
 import de.tu_bs.ccc.contracting.Verification.Mux;
 import de.tu_bs.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.Verification.Property;
 import de.tu_bs.ccc.contracting.Verification.Protocol;
 import de.tu_bs.ccc.contracting.Verification.Proxy;
 import org.eclipse.emf.common.notify.Adapter;
@@ -157,6 +158,11 @@ public class MmAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseFunction(Function object) {
 			return createFunctionAdapter();
+		}
+
+		@Override
+		public Adapter caseProperty(Property object) {
+			return createPropertyAdapter();
 		}
 
 		@Override
@@ -399,6 +405,20 @@ public class MmAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFunctionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.tu_bs.ccc.contracting.Verification.Property <em>Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.tu_bs.ccc.contracting.Verification.Property
+	 * @generated
+	 */
+	public Adapter createPropertyAdapter() {
 		return null;
 	}
 
