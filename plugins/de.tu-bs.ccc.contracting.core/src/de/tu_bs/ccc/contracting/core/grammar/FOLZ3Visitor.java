@@ -1,4 +1,4 @@
-// Generated from C:/Users/Markus/OneDrive/Bachelor-Arbeitwc/Project/ContractModelling/src/contractmodelling/grammar/FOLZ3.g4 by ANTLR 4.7
+// Generated from FOLZ3.g4 by ANTLR 4.7.1
 
 	package de.tu_bs.ccc.contracting.core.grammar;
 
@@ -20,17 +20,41 @@ public interface FOLZ3Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCondition(FOLZ3Parser.ConditionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link FOLZ3Parser#notformula}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitNotformula(FOLZ3Parser.NotformulaContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link FOLZ3Parser#formula}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitFormula(FOLZ3Parser.FormulaContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FOLZ3Parser#connectiveformula}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConnectiveformula(FOLZ3Parser.ConnectiveformulaContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FOLZ3Parser#compareformula}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCompareformula(FOLZ3Parser.CompareformulaContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FOLZ3Parser#summformula}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSummformula(FOLZ3Parser.SummformulaContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FOLZ3Parser#faktorformula}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFaktorformula(FOLZ3Parser.FaktorformulaContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FOLZ3Parser#powerformula}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPowerformula(FOLZ3Parser.PowerformulaContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link FOLZ3Parser#notterm}.
 	 * @param ctx the parse tree
@@ -44,9 +68,33 @@ public interface FOLZ3Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTerm(FOLZ3Parser.TermContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link FOLZ3Parser#operator}.
+	 * Visit a parse tree produced by {@link FOLZ3Parser#compoperator}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitOperator(FOLZ3Parser.OperatorContext ctx);
+	T visitCompoperator(FOLZ3Parser.CompoperatorContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FOLZ3Parser#multoperator}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMultoperator(FOLZ3Parser.MultoperatorContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FOLZ3Parser#addoperator}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAddoperator(FOLZ3Parser.AddoperatorContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FOLZ3Parser#connectoperator}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConnectoperator(FOLZ3Parser.ConnectoperatorContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FOLZ3Parser#pred_constant}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPred_constant(FOLZ3Parser.Pred_constantContext ctx);
 }
