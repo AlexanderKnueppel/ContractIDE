@@ -78,6 +78,32 @@ Attribute:
 		)
 	;
 
+// **************************************************************
+// specifications
+SpecificationBlock:
+	{SpecificationBlock}
+	(comment=AnnotationBlock)?
+	'functional' '{'
+		(contracts+=ContractPair)
+		('also'
+			contracts+=ContractPair
+		)*
+	'}'
+;
+
+ContractPair:
+	{ContractPair} 
+	(req+=Requires)*
+	(ens+=Ensures)*
+;
+
+Requires:
+	'requires' ':' (expr=LogicalOrExpression) ';'
+;
+
+Ensures:
+	'ensures' ':' (expr=LogicalOrExpression) ';'
+;
 
 // **************************************************************
 // methods / broadcasts
@@ -87,6 +113,7 @@ Method returns Method:
 	(comment=AnnotationBlock)?
 	'method' name=ID (':' selector=ID)? (fireAndForget?='fireAndForget')?
 	'{'
+		(spec=SpecificationBlock)?
 		('in' '{' (inArgs+=Argument)* '}' )?
 		('out' '{' (outArgs+=Argument)* '}' )?
 		(

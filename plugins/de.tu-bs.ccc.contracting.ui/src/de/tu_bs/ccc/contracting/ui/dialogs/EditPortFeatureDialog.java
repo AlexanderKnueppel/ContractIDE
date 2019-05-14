@@ -127,9 +127,11 @@ public abstract class EditPortFeatureDialog extends TitleAreaDialog implements I
 		lbType.setText(StringTable.EDIT_PORT_DIALOG_TYPE);
 
 		comboType = new Combo(container, SWT.DROP_DOWN);
-
-		String[] items = new String[] { PortType.get(0).getName(), PortType.get(1).getName(), PortType.get(2).getName(),
-				PortType.get(3).getName(), PortType.get(4).getName() };
+		
+		String[] items = new String[PortType.values().length];
+		for(int i = 0; i < items.length; ++i)
+			items[i] = PortType.get(i).getName();
+		
 		comboType.setItems(items);
 		comboType.select(currentType);
 		comboType.addSelectionListener(new SelectionAdapter() {
