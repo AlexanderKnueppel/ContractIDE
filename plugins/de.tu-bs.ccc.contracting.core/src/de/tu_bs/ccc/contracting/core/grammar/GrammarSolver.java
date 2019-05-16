@@ -12,7 +12,7 @@ public class GrammarSolver {
 
 		
 		
-		String input = "Memory=\"BLAAA\"";
+		String input = "HALLO->GEHT-22^44/7>22";
 		FOLZ3Lexer lexer = new FOLZ3Lexer(CharStreams.fromString(input));
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
 		FOLZ3Parser parser = new FOLZ3Parser(tokens);

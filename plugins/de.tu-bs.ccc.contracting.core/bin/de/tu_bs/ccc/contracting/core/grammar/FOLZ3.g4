@@ -1,147 +1,264 @@
 grammar FOLZ3;
 
 @header {
-	package contractmodelling.grammar;
+	package de.tu_bs.ccc.contracting.core.grammar;
 
 }
 
 condition
 :
-	
-		notformula
-	
+	formula
 ;
-notformula:
-	formula |
-	(NOT formula)
-	;
+
 formula
 :
-	(notterm operator notterm)|
-	(LPAREN formula RPAREN)
+	connectiveformula
+	| FORALL LPAREN VARIABLE RPAREN formula
+	| EXISTS LPAREN VARIABLE RPAREN formula
+	| pred_constant LPAREN term
+	(
+		',' term
+	)* RPAREN
+;
+
+connectiveformula
+:
+	(
+		compareformula (connectoperator compareformula)*
+	)
+;
+
+compareformula
+:
+	(
+		summformula
+		(
+			compoperator summformula
+		)*
+	)
+;
+
+summformula
+:
+	(
+		faktorformula
+		(
+			addoperator faktorformula
+		)*
+	)
+;
+
+faktorformula
+:
+	(
+		powerformula
+		(
+			multoperator powerformula
+		)*
+	)
+;
+
+powerformula
+:
+	(
+		notterm
+		( 
+			POWER notterm
+		)*
+	)
 ;
 
 notterm
-:	term |
-	(NOT term)
+:
+	term
+	|
+	(
+		NOT term
+	)
 ;
 
 term
-:	
+:
 	VARIABLE
-	|(LPAREN MINUS VARIABLE RPAREN)
+	|
+	(
+		LPAREN MINUS VARIABLE RPAREN
+	)
 	| TRUE
 	| FALSE
 	| STRING
-	| (LPAREN term RPAREN)
-	| (LPAREN notformula RPAREN)
+	|
+	(
+		LPAREN term RPAREN
+	)
+	|
+	(
+		LPAREN formula RPAREN
+	)
+
 ;
 
-operator
+compoperator
 :
 	GREATER
 	| SMALLER
 	| SMALLEREQ
 	| GREATEREQ
 	| EQUAL
-	| CONJ
-	| DISJ
-	| IMPL
-	| BICOND
-	| MINUS
-	| MULTI
+;
+
+multoperator
+:
+	MULTI
 	| DIVISION
+;
+
+addoperator
+:
+	MINUS
 	| ADD
 ;
 
+connectoperator
+:
+	CONJ
+	| DISJ
+	| IMPL
+	| BICOND
+;
+
+pred_constant
+:
+	'_' CHARACTER*
+;
+FORALL
+:
+	'Forall'
+;
+
+EXISTS
+:
+	'Exists'
+;
 
 STRING
-:	'"' CHARACTER+ '"'
+:
+	'"' CHARACTER+ '"'
 ;
 
 VARIABLE
-:	CHARACTER+
+:
+	CHARACTER+
 ;
 
-
-
 LPAREN
-:	'('
+:
+	'('
 ;
 
 NOT
-:	'!'
+:
+	'!'
 ;
 
+
 RPAREN
-:	')'
+:
+	')'
+;
+
+POWER
+:
+	'^'
 ;
 
 EQUAL
-:	'='
+:
+	'='
 ;
+
 ADD
-:	'+'
+:
+	'+'
 ;
+
 MINUS
-:	'-'
+:
+	'-'
 ;
+
 MULTI
-:	'*'
+:
+	'*'
 ;
+
 DIVISION
 :
 	'/'
 ;
 
-
-
 CHARACTER
-:			 [0-9] | [A-Z]	| [a-z]	| '.'	
+:
+	[0-9]
+	| [A-Z]
+	| [a-z]
+	| '.'
 ;
 
 CONJ
-:'&'
+:
+	'&'
 ;
 
 DISJ
-:'|'
+:
+	'|'
 ;
 
 IMPL
-:'->'
+:
+	'->'
 ;
 
 BICOND
-:'<>'
+:
+	'<>'
 ;
 
 GREATER
-:'>>'
+:
+	'>'
 ;
 
 SMALLER
-:'<<'
+:
+	'<'
 ;
 
 SMALLEREQ
-:'<='
+:
+	'<='
 ;
 
 GREATEREQ
-:'>='
+:
+	'>='
 ;
 
 TRUE
-:'TRUE'
+:
+	'TRUE'
 ;
 
 FALSE
-:'FALSE'
+:
+	'FALSE'
 ;
 
 WHITESPACE
-:(
-	' '|'\t'
+:
+	(
+		' '
+		| '\t'
 	)+ -> skip
 ; 

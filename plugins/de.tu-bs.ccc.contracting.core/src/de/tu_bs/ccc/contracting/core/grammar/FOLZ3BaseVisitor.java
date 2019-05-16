@@ -1,4 +1,4 @@
-// Generated from C:/Users/Markus/OneDrive/Bachelor-Arbeitwc/Project/ContractModelling/src/contractmodelling/grammar/FOLZ3.g4 by ANTLR 4.7
+// Generated from FOLZ3.g4 by ANTLR 4.7.1
 
 	package de.tu_bs.ccc.contracting.core.grammar;
 
@@ -27,14 +27,42 @@ public class FOLZ3BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements 
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitNotformula(FOLZ3Parser.NotformulaContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFormula(FOLZ3Parser.FormulaContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFormula(FOLZ3Parser.FormulaContext ctx) { return visitChildren(ctx); }
+	@Override public T visitConnectiveformula(FOLZ3Parser.ConnectiveformulaContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitCompareformula(FOLZ3Parser.CompareformulaContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitSummformula(FOLZ3Parser.SummformulaContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitFaktorformula(FOLZ3Parser.FaktorformulaContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitPowerformula(FOLZ3Parser.PowerformulaContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -55,5 +83,33 @@ public class FOLZ3BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements 
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitOperator(FOLZ3Parser.OperatorContext ctx) { return visitChildren(ctx); }
+	@Override public T visitCompoperator(FOLZ3Parser.CompoperatorContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitMultoperator(FOLZ3Parser.MultoperatorContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitAddoperator(FOLZ3Parser.AddoperatorContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitConnectoperator(FOLZ3Parser.ConnectoperatorContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitPred_constant(FOLZ3Parser.Pred_constantContext ctx) { return visitChildren(ctx); }
 }
