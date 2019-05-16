@@ -38,20 +38,18 @@ public class ComponentmportMapping {
 					e1.printStackTrace();
 				}
 			}
-			Resource impResource = resourceSet.getResource(EcoreUtil.getURI(mappingEntry.getOriginal()), true);
-			impResource.unload();
-			try {
-				impResource.load(null);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			Module container = (Module) impResource.getContents().get(0);
+//			Resource impResource = resourceSet.getResource(EcoreUtil.getURI(mappingEntry.getOriginal()), true);
+//			impResource.unload();
+//			try {
+//				impResource.load(null);
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			Module container = (Module) impResource.getContents().get(0);
 			URI xx = EcoreUtil.getURI(mappingEntry.getOriginal());
 			
 			URI xy =EcoreUtil.getURI(searched);
-			System.out.println(xy.path());
-			System.out.println(xx.toPlatformString(false));
 
 			
 
