@@ -63,6 +63,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Module/ram"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Module/caps"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mm.ecore#//Module/moduleType"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//Module/EnviromentalProperties"/>
     </genClasses>
     <genClasses ecoreClass="mm.ecore#//Abstract">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference mm.ecore#//Abstract/realizes"/>
@@ -130,6 +131,11 @@
     </genClasses>
     <genClasses ecoreClass="mm.ecore#//Function">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Function/function"/>
+    </genClasses>
+    <genClasses ecoreClass="mm.ecore#//Property">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Property/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Property/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Property/type"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

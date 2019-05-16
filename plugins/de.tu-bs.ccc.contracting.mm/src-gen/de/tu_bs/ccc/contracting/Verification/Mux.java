@@ -21,7 +21,7 @@ package de.tu_bs.ccc.contracting.Verification;
 public interface Mux extends ModuleType {
 	/**
 	 * Returns the value of the '<em><b>Service</b></em>' attribute.
-	 * The default value is <code>"\"\""</code>.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Service</em>' attribute isn't clear,
@@ -31,7 +31,7 @@ public interface Mux extends ModuleType {
 	 * @return the value of the '<em>Service</em>' attribute.
 	 * @see #setService(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getMux_Service()
-	 * @model default="\"\""
+	 * @model default=""
 	 * @generated
 	 */
 	String getService();

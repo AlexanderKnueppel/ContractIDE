@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.Module#getRam <em>Ram</em>}</li>
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.Module#getCaps <em>Caps</em>}</li>
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.Module#getModuleType <em>Module Type</em>}</li>
+ *   <li>{@link de.tu_bs.ccc.contracting.Verification.Module#getEnviromentalProperties <em>Enviromental Properties</em>}</li>
  * </ul>
  *
  * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getModule()
@@ -38,7 +39,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface Module extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * The default value is <code>"\"\""</code>.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
@@ -48,7 +49,7 @@ public interface Module extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getModule_Name()
-	 * @model default="\"\""
+	 * @model default=""
 	 * @generated
 	 */
 	String getName();
@@ -227,7 +228,7 @@ public interface Module extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Rte</b></em>' attribute.
-	 * The default value is <code>"\"\""</code>.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Rte</em>' attribute isn't clear,
@@ -237,7 +238,7 @@ public interface Module extends EObject {
 	 * @return the value of the '<em>Rte</em>' attribute.
 	 * @see #setRte(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getModule_Rte()
-	 * @model default="\"\""
+	 * @model default=""
 	 * @generated
 	 */
 	String getRte();
@@ -254,7 +255,7 @@ public interface Module extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Spec</b></em>' attribute.
-	 * The default value is <code>"\"\""</code>.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Spec</em>' attribute isn't clear,
@@ -264,7 +265,7 @@ public interface Module extends EObject {
 	 * @return the value of the '<em>Spec</em>' attribute.
 	 * @see #setSpec(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getModule_Spec()
-	 * @model default="\"\""
+	 * @model default=""
 	 * @generated
 	 */
 	String getSpec();
@@ -358,5 +359,17 @@ public interface Module extends EObject {
 	 * @generated
 	 */
 	void setModuleType(ModuleType value);
+
+	/**
+	 * Returns the value of the '<em><b>Enviromental Properties</b></em>' containment reference list.
+	 * The list contents are of type {@link de.tu_bs.ccc.contracting.Verification.Property}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Enviromental Properties</em>' containment reference list.
+	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getModule_EnviromentalProperties()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Property> getEnviromentalProperties();
 
 } // Module

@@ -22,7 +22,7 @@ package de.tu_bs.ccc.contracting.Verification;
 public interface Protocol extends ModuleType {
 	/**
 	 * Returns the value of the '<em><b>From</b></em>' attribute.
-	 * The default value is <code>"\"\""</code>.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>From</em>' attribute isn't clear,
@@ -32,7 +32,7 @@ public interface Protocol extends ModuleType {
 	 * @return the value of the '<em>From</em>' attribute.
 	 * @see #setFrom(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getProtocol_From()
-	 * @model default="\"\""
+	 * @model default=""
 	 * @generated
 	 */
 	String getFrom();
@@ -49,7 +49,7 @@ public interface Protocol extends ModuleType {
 
 	/**
 	 * Returns the value of the '<em><b>To</b></em>' attribute.
-	 * The default value is <code>"\"\""</code>.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>To</em>' attribute isn't clear,
@@ -59,7 +59,7 @@ public interface Protocol extends ModuleType {
 	 * @return the value of the '<em>To</em>' attribute.
 	 * @see #setTo(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getProtocol_To()
-	 * @model default="\"\""
+	 * @model default=""
 	 * @generated
 	 */
 	String getTo();

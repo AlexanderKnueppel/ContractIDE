@@ -33,7 +33,7 @@ public class FunctionImpl extends ModuleTypeImpl implements Function {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String FUNCTION_EDEFAULT = "\"\"";
+	protected static final String FUNCTION_EDEFAULT = "";
 
 	/**
 	 * The cached value of the '{@link #getFunction() <em>Function</em>}' attribute.

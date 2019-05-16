@@ -18,6 +18,7 @@ import de.tu_bs.ccc.contracting.Verification.MmPackage;
 import de.tu_bs.ccc.contracting.Verification.Mux;
 import de.tu_bs.ccc.contracting.Verification.PortType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.Verification.Property;
 import de.tu_bs.ccc.contracting.Verification.PropertyType;
 import de.tu_bs.ccc.contracting.Verification.Protocol;
 import de.tu_bs.ccc.contracting.Verification.ProviderType;
@@ -105,6 +106,8 @@ public class MmFactoryImpl extends EFactoryImpl implements MmFactory {
 			return createProtocol();
 		case MmPackage.FUNCTION:
 			return createFunction();
+		case MmPackage.PROPERTY:
+			return createProperty();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -323,6 +326,17 @@ public class MmFactoryImpl extends EFactoryImpl implements MmFactory {
 	public Function createFunction() {
 		FunctionImpl function = new FunctionImpl();
 		return function;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Property createProperty() {
+		PropertyImpl property = new PropertyImpl();
+		return property;
 	}
 
 	/**

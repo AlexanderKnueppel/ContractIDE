@@ -33,7 +33,7 @@ public class MuxImpl extends ModuleTypeImpl implements Mux {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String SERVICE_EDEFAULT = "\"\"";
+	protected static final String SERVICE_EDEFAULT = "";
 
 	/**
 	 * The cached value of the '{@link #getService() <em>Service</em>}' attribute.

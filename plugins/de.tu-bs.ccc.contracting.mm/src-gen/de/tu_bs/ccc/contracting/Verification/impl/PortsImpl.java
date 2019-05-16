@@ -60,7 +60,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = "\"\"";
+	protected static final String NAME_EDEFAULT = "";
 
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -140,7 +140,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String SERVICE_EDEFAULT = "\"\"";
+	protected static final String SERVICE_EDEFAULT = "";
 
 	/**
 	 * The cached value of the '{@link #getService() <em>Service</em>}' attribute.
@@ -200,7 +200,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String FILTER_EDEFAULT = "\"\"";
+	protected static final String FILTER_EDEFAULT = "";
 
 	/**
 	 * The cached value of the '{@link #getFilter() <em>Filter</em>}' attribute.
@@ -220,7 +220,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String LABEL_EDEFAULT = "\"\"";
+	protected static final String LABEL_EDEFAULT = "";
 
 	/**
 	 * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
@@ -240,7 +240,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String FUNCTION_EDEFAULT = "\"\"";
+	protected static final String FUNCTION_EDEFAULT = "";
 
 	/**
 	 * The cached value of the '{@link #getFunction() <em>Function</em>}' attribute.

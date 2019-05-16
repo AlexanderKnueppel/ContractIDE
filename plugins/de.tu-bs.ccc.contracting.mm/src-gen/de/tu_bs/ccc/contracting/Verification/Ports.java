@@ -38,7 +38,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface Ports extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * The default value is <code>"\"\""</code>.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
@@ -48,7 +48,7 @@ public interface Ports extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getPorts_Name()
-	 * @model default="\"\"" dataType="org.eclipse.emf.ecore.xml.type.String"
+	 * @model default="" dataType="org.eclipse.emf.ecore.xml.type.String"
 	 * @generated
 	 */
 	String getName();
@@ -215,7 +215,7 @@ public interface Ports extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Service</b></em>' attribute.
-	 * The default value is <code>"\"\""</code>.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Service</em>' attribute isn't clear,
@@ -225,7 +225,7 @@ public interface Ports extends EObject {
 	 * @return the value of the '<em>Service</em>' attribute.
 	 * @see #setService(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getPorts_Service()
-	 * @model default="\"\"" dataType="org.eclipse.emf.ecore.xml.type.String"
+	 * @model default="" dataType="org.eclipse.emf.ecore.xml.type.String"
 	 * @generated
 	 */
 	String getService();
@@ -299,7 +299,7 @@ public interface Ports extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Filter</b></em>' attribute.
-	 * The default value is <code>"\"\""</code>.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Filter</em>' attribute isn't clear,
@@ -309,7 +309,7 @@ public interface Ports extends EObject {
 	 * @return the value of the '<em>Filter</em>' attribute.
 	 * @see #setFilter(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getPorts_Filter()
-	 * @model default="\"\""
+	 * @model default=""
 	 * @generated
 	 */
 	String getFilter();
@@ -326,7 +326,7 @@ public interface Ports extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Label</b></em>' attribute.
-	 * The default value is <code>"\"\""</code>.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Label</em>' attribute isn't clear,
@@ -336,7 +336,7 @@ public interface Ports extends EObject {
 	 * @return the value of the '<em>Label</em>' attribute.
 	 * @see #setLabel(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getPorts_Label()
-	 * @model default="\"\""
+	 * @model default=""
 	 * @generated
 	 */
 	String getLabel();
@@ -353,7 +353,7 @@ public interface Ports extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Function</b></em>' attribute.
-	 * The default value is <code>"\"\""</code>.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Function</em>' attribute isn't clear,
@@ -363,7 +363,7 @@ public interface Ports extends EObject {
 	 * @return the value of the '<em>Function</em>' attribute.
 	 * @see #setFunction(String)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getPorts_Function()
-	 * @model default="\"\""
+	 * @model default=""
 	 * @generated
 	 */
 	String getFunction();

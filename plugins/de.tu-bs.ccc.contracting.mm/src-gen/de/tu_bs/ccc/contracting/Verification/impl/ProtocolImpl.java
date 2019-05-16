@@ -34,7 +34,7 @@ public class ProtocolImpl extends ModuleTypeImpl implements Protocol {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String FROM_EDEFAULT = "\"\"";
+	protected static final String FROM_EDEFAULT = "";
 
 	/**
 	 * The cached value of the '{@link #getFrom() <em>From</em>}' attribute.
@@ -54,7 +54,7 @@ public class ProtocolImpl extends ModuleTypeImpl implements Protocol {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String TO_EDEFAULT = "\"\"";
+	protected static final String TO_EDEFAULT = "";
 
 	/**
 	 * The cached value of the '{@link #getTo() <em>To</em>}' attribute.

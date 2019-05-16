@@ -50,7 +50,7 @@ public class ComponentImpl extends ModuleImpl implements Component {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String BINARY_EDEFAULT = "\"\"";
+	protected static final String BINARY_EDEFAULT = "";
 	/**
 	 * The cached value of the '{@link #getBinary() <em>Binary</em>}' attribute.
 	 * <!-- begin-user-doc -->
