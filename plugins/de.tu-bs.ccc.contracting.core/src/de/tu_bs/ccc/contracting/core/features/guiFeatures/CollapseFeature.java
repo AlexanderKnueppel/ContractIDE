@@ -8,6 +8,8 @@ import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.platform.IPlatformImageConstants;
 
+import de.tu_bs.ccc.contracting.core.localization.StringTable;
+
 public class CollapseFeature extends AbstractCustomFeature {
 
 	public CollapseFeature(IFeatureProvider fp) {
@@ -29,13 +31,13 @@ public class CollapseFeature extends AbstractCustomFeature {
 
 	@Override
 	public String getName() {
-		return "Collapse";
+		return StringTable.COLLAPSE_NAME;
 	}
 
 	@Override
 	public String getDescription() {
 
-		return "Collapse Figure";
+		return StringTable.COLLAPSE_DESC;
 	}
 
 	@Override

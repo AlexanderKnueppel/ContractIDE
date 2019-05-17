@@ -27,6 +27,7 @@ import de.tu_bs.ccc.contracting.Verification.Contract;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.core.diagram.ContractModellingFeatureProvider;
+import de.tu_bs.ccc.contracting.core.localization.StringTable;
 import de.tu_bs.ccc.contracting.core.util.CoreUtil;
 
 public class UpdateModuleFeature extends AbstractUpdateFeature {
@@ -63,7 +64,7 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 			} else if (m.getModule() != null) {
 
 				if (CoreUtil.isComponentNotSynched(m)) {
-					return Reason.createTrueReason("Instance is not synchromized with its Original");
+					return Reason.createTrueReason(StringTable.UPDATE_MODULE_REASON_NOTSYNCHED);
 				} else {
 					return Reason.createFalseReason();
 				}
@@ -72,7 +73,7 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 			if (nameoutofDate) {
 				updatePictogramElement(pictogramElement);
 				// update(context);
-				return Reason.createTrueReason("Name or version is out of date!");
+				return Reason.createTrueReason(StringTable.UPDATE_MODULE_REASON_NAME);
 			}
 
 		}
@@ -88,7 +89,7 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 			}
 			if (!found) {
 				updatePictogramElement(pictogramElement);
-				return Reason.createTrueReason("Port doesn't exist");
+				return Reason.createTrueReason(StringTable.UPDATE_MODULE_REASON_PORT);
 			}
 		}
 		if(m.getModule()==null) {
@@ -105,7 +106,7 @@ public class UpdateModuleFeature extends AbstractUpdateFeature {
 			}
 			if (!found) {
 				updatePictogramElement(pictogramElement);
-				return Reason.createTrueReason("Contract doesn't exist");
+				return Reason.createTrueReason(StringTable.UPDATE_MODULE_REASON_CONTRACT);
 			}
 		}
 		}

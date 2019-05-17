@@ -19,6 +19,7 @@ import de.tu_bs.ccc.contracting.Verification.Guarantee;
 import de.tu_bs.ccc.contracting.Verification.MmFactory;
 import de.tu_bs.ccc.contracting.Verification.PropertyType;
 import de.tu_bs.ccc.contracting.Verification.ViewPoint;
+import de.tu_bs.ccc.contracting.core.localization.StringTable;
 
 public class DirectEditContractPropertyFeature extends AbstractDirectEditingFeature {
 
@@ -80,7 +81,7 @@ public class DirectEditContractPropertyFeature extends AbstractDirectEditingFeat
 			if (sh.getGraphicsAlgorithm() instanceof Text) {
 				String val = ((Text) sh.getGraphicsAlgorithm()).getValue();
 
-				if (val.equals("Guarantees")) {
+				if (val.equals(StringTable.CONTRACT_GUARANTEES)) {
 					assumption = false;
 				} else if (blacklist.contains(val) || val.trim().equals("")) {
 					// skip
@@ -95,11 +96,11 @@ public class DirectEditContractPropertyFeature extends AbstractDirectEditingFeat
 		}
 
 		if (assumptions.isEmpty()) {
-			assumptions.add("true");
+			assumptions.add(StringTable.CONTRACT_ASSUMPTION_DEFAULT_FUNC);
 		}
 
 		if (guarantees.isEmpty()) {
-			assumptions.add("true");
+			assumptions.add(StringTable.CONTRACT_GUARANTEE_DEFAULT_FUNC);
 		}
 
 		Contract contract = (Contract) getBusinessObjectForPictogramElement(pe);

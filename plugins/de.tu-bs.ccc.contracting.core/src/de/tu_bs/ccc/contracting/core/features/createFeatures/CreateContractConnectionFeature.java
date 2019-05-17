@@ -14,11 +14,12 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 
 import de.tu_bs.ccc.contracting.Verification.Contract;
 import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.core.localization.StringTable;
 
 public class CreateContractConnectionFeature extends AbstractCreateConnectionFeature{
 
 	public CreateContractConnectionFeature(IFeatureProvider fp) {
-		super(fp, "Connect Contract", "Connect Contract with Module");
+		super(fp, StringTable.CREATE_CONTRACT_CONNECTION_NAME, StringTable.CREATE_CONTRACT_CONNECTION_DESC);
 		// TODO Auto-generated constructor stub
 	}
 

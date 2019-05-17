@@ -46,12 +46,12 @@ public class OpenEditorFeature extends AbstractCustomFeature {
 
 	@Override
 	public String getName() {
-		return "Open Module";
+		return StringTable.OPEN_EDITOR_NAME;
 	}
 
 	@Override
 	public String getDescription() {
-		return "Open Module in new Editor";
+		return StringTable.OPEN_EDITOR_DESC;
 	}
 
 	@Override
@@ -73,7 +73,7 @@ public class OpenEditorFeature extends AbstractCustomFeature {
 			Module m = ((Module) pes[0].getLink().getBusinessObjects().get(0));
 			m = (Module) EcoreUtil.resolve(m.getModule(), m);
 			URI uri = m.eResource().getURI();
-			String str = uri.path().replace(StringTable.MODEL_FILE_EXTENSION, StringTable.DIAGRAM_FILE_EXTENSION).replace("/resource", "");
+			String str = uri.path().replace(StringTable.MODEL_FILE_EXTENSION, StringTable.DIAGRAM_FILE_EXTENSION).replace(StringTable.OPEN_EDITOR_REPLACE, "");
 
 			final IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(str));
 			try {

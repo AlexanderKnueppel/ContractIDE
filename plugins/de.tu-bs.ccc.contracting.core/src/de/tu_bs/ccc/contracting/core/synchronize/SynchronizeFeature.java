@@ -42,7 +42,6 @@ public class SynchronizeFeature extends AbstractCustomFeature {
 		Object bo = getBusinessObjectForPictogramElement(pes);
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		Module m = (Module) bo;
-		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
 		if (m.getModule() != null) {
 			if (m.getModule().getName() == null) {
 				MessageBox dialog2 = new MessageBox(shell, SWT.ICON_QUESTION | SWT.OK | SWT.CANCEL);

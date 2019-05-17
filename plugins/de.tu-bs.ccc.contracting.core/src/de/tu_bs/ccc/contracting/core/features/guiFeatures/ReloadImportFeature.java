@@ -16,13 +16,14 @@ import org.eclipse.graphiti.platform.IPlatformImageConstants;import com.microsof
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Contract;
 import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.core.localization.StringTable;
 
 public class ReloadImportFeature extends AbstractCustomFeature {
 
 	@Override
 	public String getDescription() {
 		// TODO Auto-generated method stub
-		return "Update the Import";
+		return StringTable.RELOAD_IMPORT_DESC;
 	}
 
 	@Override

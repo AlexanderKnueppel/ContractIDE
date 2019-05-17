@@ -8,6 +8,7 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.platform.IPlatformImageConstants;
 
 import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.core.localization.StringTable;
 import de.tu_bs.ccc.contracting.ui.dialogs.ChangeDescriptionDialog;
 
 public class EditDescriptionFeature extends AbstractCustomFeature {
@@ -32,12 +33,12 @@ public class EditDescriptionFeature extends AbstractCustomFeature {
 
 	@Override
 	public String getName() {
-		return "Description";
+		return StringTable.EDIT_DESCRIPTION_NAME;
 	}
 
 	@Override
 	public String getDescription() {
-		return "Edit Description";
+		return StringTable.EDIT_ABSTRACT_DESC;
 	}
 
 	@Override

@@ -15,6 +15,7 @@ import org.eclipse.graphiti.platform.IPlatformImageConstants;
 
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.core.localization.StringTable;
 import de.tu_bs.ccc.contracting.core.verification.IViewpointSolver;
 import de.tu_bs.ccc.contracting.core.verification.MemorySolver;
 import de.tu_bs.ccc.contracting.ui.views.ViewUtil;
@@ -42,12 +43,12 @@ public class ViewpointVerificationFeature extends AbstractCustomFeature {
 
 	@Override
 	public String getName() {
-		return "Verify";
+		return StringTable.VIEWPOINT_VERIFICATION_NAME;
 	}
 
 	@Override
 	public String getDescription() {
-		return "Verify Figure";
+		return StringTable.VIEWPOINT_VERIFICATION_DESC;
 	}
 
 	@Override

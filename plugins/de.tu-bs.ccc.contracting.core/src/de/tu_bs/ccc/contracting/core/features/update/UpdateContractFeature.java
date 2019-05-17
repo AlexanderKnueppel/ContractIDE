@@ -29,6 +29,7 @@ import de.tu_bs.ccc.contracting.Verification.Contract;
 import de.tu_bs.ccc.contracting.Verification.Guarantee;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.Verification.ViewPoint;
+import de.tu_bs.ccc.contracting.core.localization.StringTable;
 
 public class UpdateContractFeature extends AbstractUpdateFeature {
 
@@ -86,11 +87,11 @@ public class UpdateContractFeature extends AbstractUpdateFeature {
 //				}
 //			});
 
-			return Reason.createTrueReason("Wrong Constraint");
+			return Reason.createTrueReason(StringTable.UPDATE_CONTRACT_REASON_TRUE);
 
 		}
 
-		return Reason.createFalseReason("Name is out of date");
+		return Reason.createFalseReason(StringTable.UPDATE_CONTRACT_REASON_TRUE);
 
 	}
 

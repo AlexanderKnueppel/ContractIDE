@@ -15,12 +15,13 @@ import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 
 import de.tu_bs.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.core.localization.StringTable;
 
 
 public class CreatePortConnection extends AbstractCreateConnectionFeature {
 
 	public CreatePortConnection(IFeatureProvider fp) {
-		super(fp, "Connect Ports", "Connects two ports");
+		super(fp, StringTable.CREATE_PORT_CONNECTION_NAME, StringTable.CREATE_PORT_CONNECTION_DESC);
 		// TODO Auto-generated constructor stub
 	}
 

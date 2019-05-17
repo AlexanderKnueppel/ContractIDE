@@ -17,6 +17,7 @@ import de.tu_bs.ccc.contracting.Verification.Component;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.core.localization.StringTable;
 import de.tu_bs.ccc.contracting.core.util.CoreUtil;
 import de.tu_bs.ccc.contracting.core.util.ModuleFilter;
 import de.tu_bs.ccc.contracting.ui.dialogs.LoadModuleDialog;
@@ -25,7 +26,7 @@ import de.tu_bs.ccc.contracting.ui.provider.LoadModuleLabelProvider;
 public class AssignAbstractFeature extends AbstractCreateFeature {
 
 	public AssignAbstractFeature(IFeatureProvider fp) {
-		super(fp, "Assign to Abstract", "Assign a Module to a Abstract Component");
+		super(fp, StringTable.ASSIGN_ABSTRACT_SHORT, StringTable.ASSIGN_ABSTRACT);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -27,8 +27,8 @@ public class ComponentmportMapping {
 
 		LinkedList<Module> foundEntries = new LinkedList<Module>();
 		for (MappingEntry mappingEntry : mapping) {
-			if (mappingEntry.getOriginal().eResource()!=null) {
-				
+			if (mappingEntry.getOriginal().eResource() != null) {
+
 				Resource e = mappingEntry.getOriginal().eResource();
 				e.unload();
 				try {
@@ -48,19 +48,15 @@ public class ComponentmportMapping {
 //			}
 //			Module container = (Module) impResource.getContents().get(0);
 			URI xx = EcoreUtil.getURI(mappingEntry.getOriginal());
-			
-			URI xy =EcoreUtil.getURI(searched);
 
-			
+			URI xy = EcoreUtil.getURI(searched);
 
 			if (xy.path().equals(xx.toPlatformString(false))) {
 
 				foundEntries.add(mappingEntry.getInstance());
 
 			}
-				
-				
-			
+
 			if (mappingEntry.getOriginal().getName().equals((searched.getName()))) {
 
 				foundEntries.add(mappingEntry.getInstance());
@@ -130,7 +126,6 @@ public class ComponentmportMapping {
 	private void processFile(IFile member) {
 
 		IFile resource = member;
-		
 
 		URI fileURI = URI.createFileURI(resource.getLocation().toFile().getAbsolutePath().toString());
 		if (resource.getName().contains(".model")) {
@@ -166,7 +161,7 @@ public class ComponentmportMapping {
 
 			}
 		}
-	
+
 	}
 
 }

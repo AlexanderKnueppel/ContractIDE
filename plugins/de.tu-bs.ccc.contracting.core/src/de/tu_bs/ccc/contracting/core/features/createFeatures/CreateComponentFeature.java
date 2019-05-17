@@ -19,6 +19,7 @@ import general.SaveDomainModel;
 import de.tu_bs.ccc.contracting.Verification.Component;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.MmFactory;
+import de.tu_bs.ccc.contracting.core.localization.StringTable;
 
 public class CreateComponentFeature extends AbstractCreateFeature implements ICreateFeature {
 
@@ -28,7 +29,7 @@ public class CreateComponentFeature extends AbstractCreateFeature implements ICr
 
 	public CreateComponentFeature(IFeatureProvider fp) {
 		// set name and description of the creation feature
-		super(fp, "Component", "Create Component");
+		super(fp, StringTable.CREATE_COMPONENT_NAME, StringTable.CREATE_COMPONENT_DESC);
 	}
 
 	public boolean canCreate(ICreateContext context) {
@@ -53,8 +54,8 @@ public class CreateComponentFeature extends AbstractCreateFeature implements ICr
 		//
 		// String result = dialog.getFile();
 		Component newClass = MmFactory.eINSTANCE.createComponent();
-		newClass.setName("new Component");
-		newClass.setDescription("Describe");
+		newClass.setName(StringTable.CREATE_COMPONENT_DEFAULT_NAME);
+		newClass.setDescription(StringTable.CREATE_COMPONENT_DEFAULT_DESC);
 		try {
 			SaveDomainModel.saveToModelFile(newClass, getDiagram());
 		} catch (CoreException | IOException e) {

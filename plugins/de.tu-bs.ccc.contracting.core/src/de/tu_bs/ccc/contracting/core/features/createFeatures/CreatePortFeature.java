@@ -26,13 +26,14 @@ import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.PortType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.Verification.ProviderType;
+import de.tu_bs.ccc.contracting.core.localization.StringTable;
 import de.tu_bs.ccc.contracting.core.synchronize.mapping.ProjectMapping;
 
 public class CreatePortFeature extends AbstractCreateFeature implements ICreateFeature {
 	public static final PortType pt = PortType.STRING;
 
 	public CreatePortFeature(IFeatureProvider fp) {
-		super(fp, "Port", "Adds a Port to a Module");
+		super(fp, StringTable.CREATE_PORT_NAME, StringTable.CREATE_PORT_DESC);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -79,8 +80,8 @@ public class CreatePortFeature extends AbstractCreateFeature implements ICreateF
 				if (ProjectMapping.getMapPro().get(project).getMappingEntry(m).size() != 0) {
 
 					Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-					MessageDialog dialog = new MessageDialog(shell, "Componetent already instanced", null,
-							"You can not add ports to an component with instances!", MessageDialog.INFORMATION,
+					MessageDialog dialog = new MessageDialog(shell, StringTable.COMPONENT_USED, null,
+							StringTable.CREATE_PORT_NOT, MessageDialog.INFORMATION,
 							new String[] { "OK" }, 0);
 					dialog.open();
 					return null;
@@ -91,7 +92,7 @@ public class CreatePortFeature extends AbstractCreateFeature implements ICreateF
 
 		addedObject.setType(pt);
 		Module expandWithPort = ((Module) businessObjects.get(0));
-		String classname = "port" + expandWithPort.getPorts().size();
+		String classname = StringTable.CREATE_PORT_DEFAULT_NAME + expandWithPort.getPorts().size();
 		addedObject.setName(classname);
 
 		addedObject.setLabel("");

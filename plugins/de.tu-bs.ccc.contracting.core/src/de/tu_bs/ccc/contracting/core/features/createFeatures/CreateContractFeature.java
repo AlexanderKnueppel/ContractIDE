@@ -14,17 +14,14 @@ import de.tu_bs.ccc.contracting.Verification.MmFactory;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.PropertyType;
 import de.tu_bs.ccc.contracting.Verification.ViewPoint;
+import de.tu_bs.ccc.contracting.core.localization.StringTable;
 
 public class CreateContractFeature extends AbstractCreateFeature {
-	private static String type;
 
-	private static final String TITLE = "Create class";
-
-	private static final String USER_QUESTION = "Enter new class name";
 
 	public CreateContractFeature(IFeatureProvider fp) {
 		// set name and description of the creation feature
-		super(fp, "Contract", "Create Contract");
+		super(fp, StringTable.CREATE_CONTRACT_NAME, StringTable.CREATE_CONTRACT_DESC);
 	}
 
 	public boolean canCreate(ICreateContext context) {
@@ -49,7 +46,7 @@ public class CreateContractFeature extends AbstractCreateFeature {
 		}
 
 		Object initialSelection = ViewPoint.get(0);
-		Object selection = JOptionPane.showInputDialog(null, "Chose Contract Dimension", "Dimension",
+		Object selection = JOptionPane.showInputDialog(null, StringTable.CREATE_CONTRACT_WINDOW_TEXT, StringTable.CREATE_CONTRACT_WINDOW_TITLE,
 				JOptionPane.QUESTION_MESSAGE, null, selectionValues, initialSelection);
 		contract.setViewPoint(ViewPoint.get(selection.toString()));
 		Module m = (Module) getBusinessObjectForPictogramElement(context.getTargetContainer());
@@ -70,25 +67,25 @@ public class CreateContractFeature extends AbstractCreateFeature {
 			contract.getGuarantee().add(g);
 		} else 	if(contract.getViewPoint() == ViewPoint.MEMORY) {
 			Assumption a = MmFactory.eINSTANCE.createAssumption();
-			a.setProperty("true");
+			a.setProperty(StringTable.CONTRACT_ASSUMPTION_DEFAULT_MEMORY);
 			a.setPropertyTipe(PropertyType.MEMORY);
 			a.setContract(contract);
 			contract.getAssumption().add(a);
 			
 			Guarantee g = MmFactory.eINSTANCE.createGuarantee();
-			g.setProperty("Memory > 0");
+			g.setProperty(StringTable.CONTRACT_GUARANTEE_DEFAULT_MEMORY);
 			g.setPropertyTipe(PropertyType.MEMORY);
 			g.setContract(contract);
 			contract.getGuarantee().add(g);
 		} else 	if(contract.getViewPoint() == ViewPoint.TIMING) {
 			Assumption a = MmFactory.eINSTANCE.createAssumption();
-			a.setProperty("true");
+			a.setProperty(StringTable.CONTRACT_ASSUMPTION_DEFAULT_TIME);
 			a.setPropertyTipe(PropertyType.MINDURATION);
 			a.setContract(contract);
 			contract.getAssumption().add(a);
 			
 			Guarantee g = MmFactory.eINSTANCE.createGuarantee();
-			g.setProperty("Minduration > 0");
+			g.setProperty(StringTable.CONTRACT_GUARANTEE_DEFAULT_TIME);
 			g.setPropertyTipe(PropertyType.MINDURATION);
 			g.setContract(contract);
 			contract.getGuarantee().add(g);

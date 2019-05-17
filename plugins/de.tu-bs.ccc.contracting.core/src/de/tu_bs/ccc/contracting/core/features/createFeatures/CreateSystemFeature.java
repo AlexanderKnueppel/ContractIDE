@@ -13,17 +13,15 @@ import org.eclipse.graphiti.mm.pictograms.Diagram;
 
 import de.tu_bs.ccc.contracting.Verification.MmFactory;
 import de.tu_bs.ccc.contracting.Verification.System;
+import de.tu_bs.ccc.contracting.core.localization.StringTable;
 import general.SaveDomainModel;
 
 public class CreateSystemFeature extends AbstractCreateFeature implements ICreateFeature {
 
-	private static final String TITLE = "Create class";
-
-	private static final String USER_QUESTION = "Enter new class name";
 
 	public CreateSystemFeature(IFeatureProvider fp) {
 		// set name and description of the creation feature
-		super(fp, "System", "Create System");
+		super(fp, StringTable.CREATE_SYSTEM_NAME, StringTable.CREATE_SYSTEM_DESC);
 	}
 
 	public boolean canCreate(ICreateContext context) {
@@ -35,7 +33,7 @@ public class CreateSystemFeature extends AbstractCreateFeature implements ICreat
 
 	public Object[] create(ICreateContext context) {
 		System newClass = MmFactory.eINSTANCE.createSystem();
-		newClass.setName("New System");
+		newClass.setName(StringTable.CREATE_SYSTEM_DEFAULT_NAME);
 		try {
 			SaveDomainModel.saveToModelFile(newClass, getDiagram());
 		} catch (CoreException | IOException e) {

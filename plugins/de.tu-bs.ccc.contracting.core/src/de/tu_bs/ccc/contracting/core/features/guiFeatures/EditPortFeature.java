@@ -21,6 +21,7 @@ import org.eclipse.ui.PlatformUI;
 import de.tu_bs.ccc.contracting.Verification.DirectionType;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.core.localization.StringTable;
 import de.tu_bs.ccc.contracting.core.synchronize.mapping.ProjectMapping;
 import de.tu_bs.ccc.contracting.core.util.CoreUtil;
 import de.tu_bs.ccc.contracting.idl.CidlPersistenceManager;
@@ -87,8 +88,8 @@ public class EditPortFeature extends AbstractCustomFeature {
 		   if(ProjectMapping.getMapPro().get(project).getMappingEntry(((Ports) object).getModule()).size() > 0) {
 
 					MessageBox dialog2 = new MessageBox(shell, SWT.ICON_QUESTION | SWT.OK | SWT.CANCEL);
-					dialog2.setText("Component already used");
-					dialog2.setMessage("This compoent already has instances, do you really want to change its ports?");
+					dialog2.setText(StringTable.COMPONENT_USED);
+					dialog2.setMessage(StringTable.EDIT_PORT_WINDOW_TEXT);
 
 					// open dialog and await user selection
 					int returnCode = dialog2.open();

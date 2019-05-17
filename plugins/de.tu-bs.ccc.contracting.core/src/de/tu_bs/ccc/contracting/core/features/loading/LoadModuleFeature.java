@@ -23,6 +23,7 @@ import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.System;
 import de.tu_bs.ccc.contracting.core.features.layout.LayoutDiagramFeature;
+import de.tu_bs.ccc.contracting.core.localization.StringTable;
 import de.tu_bs.ccc.contracting.core.synchronize.mapping.ProjectMapping;
 import de.tu_bs.ccc.contracting.core.util.CoreUtil;
 import de.tu_bs.ccc.contracting.ui.dialogs.LoadModuleDialog;
@@ -31,7 +32,7 @@ import de.tu_bs.ccc.contracting.ui.provider.LoadModuleLabelProvider;
 public class LoadModuleFeature extends AbstractCreateFeature {
 
 	public LoadModuleFeature(IFeatureProvider fp) {
-		super(fp, "Load Module", "Adds component or interface to a compound.");
+		super(fp, StringTable.LOAD_MODULE_SHORT, StringTable.LOAD_MODULE);
 	}
 
 	@Override

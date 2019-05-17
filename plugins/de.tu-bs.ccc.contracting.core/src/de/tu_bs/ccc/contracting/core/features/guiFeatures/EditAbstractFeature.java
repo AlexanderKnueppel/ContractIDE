@@ -9,6 +9,7 @@ import org.eclipse.graphiti.platform.IPlatformImageConstants;
 
 import de.tu_bs.ccc.contracting.Verification.Abstract;
 import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.core.localization.StringTable;
 import windows.InterfaceList;
 
 public class EditAbstractFeature extends AbstractCustomFeature {
@@ -33,13 +34,13 @@ public class EditAbstractFeature extends AbstractCustomFeature {
 
 	@Override
 	public String getName() {
-		return "Check Interface";
+		return StringTable.EDIT_ABSTRACT_NAME;
 	}
 
 	@Override
 	public String getDescription() {
 
-		return "Edit Interfaces/Implemnetaitons";
+		return StringTable.EDIT_ABSTRACT_DESC;
 	}
 
 	@Override
