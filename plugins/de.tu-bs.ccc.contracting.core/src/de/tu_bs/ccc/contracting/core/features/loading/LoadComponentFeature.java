@@ -31,7 +31,7 @@ import de.tu_bs.ccc.contracting.Verification.Component;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.core.localization.StringTable;
-import de.tu_bs.ccc.contracting.core.mapping.ProjectMapping;
+import de.tu_bs.ccc.contracting.core.synchronize.mapping.ProjectMapping;
 import windows.Dialog;
 
 public class LoadComponentFeature extends AbstractCreateFeature {

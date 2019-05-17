@@ -25,18 +25,17 @@ import org.eclipse.graphiti.tb.ImageDecorator;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Component;
 import de.tu_bs.ccc.contracting.Verification.Module;
-import de.tu_bs.ccc.contracting.core.guiFeatures.CollapseFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.EditAbstractFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.EditDescriptionFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.EditModuleFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.EditPortFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.EditPropertyFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.OpenEditorFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.ReloadImportFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.VerifyCustomFeature;
+import de.tu_bs.ccc.contracting.core.features.guiFeatures.CollapseFeature;
+import de.tu_bs.ccc.contracting.core.features.guiFeatures.EditAbstractFeature;
+import de.tu_bs.ccc.contracting.core.features.guiFeatures.EditDescriptionFeature;
+import de.tu_bs.ccc.contracting.core.features.guiFeatures.EditModuleFeature;
+import de.tu_bs.ccc.contracting.core.features.guiFeatures.EditPortFeature;
+import de.tu_bs.ccc.contracting.core.features.guiFeatures.EditPropertyFeature;
+import de.tu_bs.ccc.contracting.core.features.guiFeatures.OpenEditorFeature;
+import de.tu_bs.ccc.contracting.core.features.guiFeatures.ReloadImportFeature;
+import de.tu_bs.ccc.contracting.core.features.guiFeatures.ViewpointVerificationFeature;
 import de.tu_bs.ccc.contracting.core.synchronize.DeSynchronizeFeature;
 import de.tu_bs.ccc.contracting.core.synchronize.SynchronizeFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.ViewpointVerificationFeature;
 
 public class ContractModellingToolBehaviorProvider extends DefaultToolBehaviorProvider {
 

@@ -1,29 +1,10 @@
 package de.tu_bs.ccc.contracting.core.startup;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResourceChangeEvent;
-import org.eclipse.core.resources.IResourceChangeListener;
-import org.eclipse.core.resources.IWorkspace;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ui.IStartup;
 
-import de.tu_bs.ccc.contracting.Verification.Module;
-import de.tu_bs.ccc.contracting.core.mapping.ComponentmportMapping;
-import de.tu_bs.ccc.contracting.core.mapping.ProjectMapping;
-import de.tu_bs.ccc.contracting.core.util.CoreUtil;
+import de.tu_bs.ccc.contracting.core.synchronize.mapping.ComponentmportMapping;
+import de.tu_bs.ccc.contracting.core.synchronize.mapping.ProjectMapping;
 
 public class Starter implements IStartup {
 

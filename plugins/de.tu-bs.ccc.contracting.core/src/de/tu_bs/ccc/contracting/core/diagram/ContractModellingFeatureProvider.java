@@ -31,37 +31,35 @@ import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Contract;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.Ports;
-import de.tu_bs.ccc.contracting.core.features.AddAbstractFeature;
-import de.tu_bs.ccc.contracting.core.features.AddComponentFeature;
-import de.tu_bs.ccc.contracting.core.features.AddCompoundFeature;
-import de.tu_bs.ccc.contracting.core.features.AddContractFeature;
-import de.tu_bs.ccc.contracting.core.features.AddPortConnetion;
-import de.tu_bs.ccc.contracting.core.features.AddPortFeature;
-import de.tu_bs.ccc.contracting.core.features.AddSystemFeature;
-import de.tu_bs.ccc.contracting.core.features.CreateContractFeature;
-import de.tu_bs.ccc.contracting.core.features.CreatePortConnection;
-import de.tu_bs.ccc.contracting.core.features.CreatePortFeature;
-import de.tu_bs.ccc.contracting.core.features.DeleteModuleFeature;
-import de.tu_bs.ccc.contracting.core.features.DeletePortConnectionFeature;
-import de.tu_bs.ccc.contracting.core.features.DeletePortFeature;
-import de.tu_bs.ccc.contracting.core.features.connections.AddContractConnectionFeature;
+import de.tu_bs.ccc.contracting.core.features.addFeature.AddComponentFeature;
+import de.tu_bs.ccc.contracting.core.features.addFeature.AddContractConnectionFeature;
+import de.tu_bs.ccc.contracting.core.features.addFeature.AddContractFeature;
+import de.tu_bs.ccc.contracting.core.features.addFeature.AddPortConnetion;
+import de.tu_bs.ccc.contracting.core.features.addFeature.AddPortFeature;
+import de.tu_bs.ccc.contracting.core.features.addFeature.AddSystemFeature;
 import de.tu_bs.ccc.contracting.core.features.connections.ReconnectionFeature;
+import de.tu_bs.ccc.contracting.core.features.createFeatures.CreateContractFeature;
+import de.tu_bs.ccc.contracting.core.features.createFeatures.CreatePortConnection;
+import de.tu_bs.ccc.contracting.core.features.createFeatures.CreatePortFeature;
+import de.tu_bs.ccc.contracting.core.features.deleteFeature.DeleteModuleFeature;
+import de.tu_bs.ccc.contracting.core.features.deleteFeature.DeletePortConnectionFeature;
+import de.tu_bs.ccc.contracting.core.features.deleteFeature.DeletePortFeature;
+import de.tu_bs.ccc.contracting.core.features.guiFeatures.CollapseFeature;
+import de.tu_bs.ccc.contracting.core.features.guiFeatures.EditAbstractFeature;
+import de.tu_bs.ccc.contracting.core.features.guiFeatures.LayoutFeature;
+import de.tu_bs.ccc.contracting.core.features.guiFeatures.ViewpointVerificationFeature;
 import de.tu_bs.ccc.contracting.core.features.layout.LayoutDiagramFeature;
 import de.tu_bs.ccc.contracting.core.features.layout.LayoutPortFeature;
 import de.tu_bs.ccc.contracting.core.features.loading.AssignAbstractFeature;
 import de.tu_bs.ccc.contracting.core.features.loading.LoadModuleFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.CollapseFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.EditAbstractFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.LayoutFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.ViewpointVerificationFeature;
-import de.tu_bs.ccc.contracting.core.move.MovePortFeature;
+import de.tu_bs.ccc.contracting.core.features.move.MovePortFeature;
+import de.tu_bs.ccc.contracting.core.features.resize.ResizeModuleFeature;
+import de.tu_bs.ccc.contracting.core.features.update.UpdateContractFeature;
+import de.tu_bs.ccc.contracting.core.features.update.UpdateModuleFeature;
+import de.tu_bs.ccc.contracting.core.features.update.UpdatePortFeature;
 import de.tu_bs.ccc.contracting.core.propertyFeature.CreateProperty;
-import de.tu_bs.ccc.contracting.core.resize.ResizeModuleFeature;
 import de.tu_bs.ccc.contracting.core.synchronize.DeSynchronizeFeature;
 import de.tu_bs.ccc.contracting.core.synchronize.SynchronizeFeature;
-import de.tu_bs.ccc.contracting.core.update.UpdateContractFeature;
-import de.tu_bs.ccc.contracting.core.update.UpdateModuleFeature;
-import de.tu_bs.ccc.contracting.core.update.UpdatePortFeature;
 
 public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 
@@ -131,14 +129,10 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 	public IAddFeature getAddFeature(IAddContext context) {
 		Object obj = context.getNewObject();
 
-		if (obj instanceof Component) {
+		if (obj instanceof Module) {
 			return new AddComponentFeature(this);
 		} else if (obj instanceof Contract) {
 			return new AddContractFeature(this);
-		} else if (obj instanceof Abstract) {
-			return new AddAbstractFeature(this);
-		} else if (obj instanceof Compound) {
-			return new AddCompoundFeature(this);
 		} else if (obj instanceof System) {
 			return new AddSystemFeature(this);
 		} else if (obj instanceof Ports) {

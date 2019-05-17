@@ -14,11 +14,10 @@ import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Contract;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.ViewPoint;
-import de.tu_bs.ccc.contracting.core.grammar.GrammarSolver;
+import de.tu_bs.ccc.contracting.core.verification.grammar.GrammarSolver;
 import de.tu_bs.ccc.contracting.ui.views.verification.VerificationViewElement;
 import de.tu_bs.ccc.contracting.ui.views.verification.VerificationViewElement.Property;
 import de.tu_bs.ccc.contracting.ui.views.verification.VerificationViewElement.Result;
-import general.LogWriter;
 
 public class SafetyLevelSolver implements IViewpointSolver {
 	private Context ctx;
@@ -114,7 +113,6 @@ public class SafetyLevelSolver implements IViewpointSolver {
 					realizable = false;
 					URI fileURI = c.eResource().getURI();
 					fileURI = fileURI.trimFileExtension();
-					LogWriter.writeLog(s.getModel().toString(), fileURI.toString());
 
 					vve.add(new VerificationViewElement(ViewPoint.MEMORY_VALUE, s.getModel().toString(), c.getName(), c,
 							Result.FAILED, Property.SUBSTITUTABILITY));

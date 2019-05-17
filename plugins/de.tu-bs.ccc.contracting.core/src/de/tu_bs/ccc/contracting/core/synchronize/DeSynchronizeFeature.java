@@ -6,7 +6,6 @@ import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IContext;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
-import org.eclipse.graphiti.features.impl.AbstractFeature;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.MessageBox;
@@ -20,7 +19,7 @@ import org.eclipse.ui.PlatformUI;
 
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.core.diagram.ContractModellingImageProvider;
-import de.tu_bs.ccc.contracting.core.mapping.ProjectMapping;
+import de.tu_bs.ccc.contracting.core.synchronize.mapping.ProjectMapping;
 
 public class DeSynchronizeFeature extends AbstractCustomFeature {
 
