@@ -1,4 +1,4 @@
-package solver;
+package de.tu_bs.ccc.contracting.core.verification.solver;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryPoolMXBean;

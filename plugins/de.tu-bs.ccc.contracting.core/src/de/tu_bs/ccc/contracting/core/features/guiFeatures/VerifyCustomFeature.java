@@ -18,8 +18,8 @@ import de.tu_bs.ccc.contracting.Verification.Abstract;
 import de.tu_bs.ccc.contracting.Verification.Component;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Module;
-import solver.CompoundSolver;
-import solver.InterfaceSolver;
+import de.tu_bs.ccc.contracting.core.verification.solver.CompoundSolver;
+import de.tu_bs.ccc.contracting.core.verification.solver.InterfaceSolver;
 
 public class VerifyCustomFeature extends AbstractCustomFeature {
 
