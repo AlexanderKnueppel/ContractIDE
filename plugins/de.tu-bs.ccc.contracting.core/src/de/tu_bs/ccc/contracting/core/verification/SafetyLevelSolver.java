@@ -133,4 +133,10 @@ public class SafetyLevelSolver implements IViewpointSolver {
 		return null;
 	}
 
+	@Override
+	public boolean checkConsistency(Module m) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

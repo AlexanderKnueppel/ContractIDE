@@ -136,4 +136,10 @@ public class MemorySolver implements IViewpointSolver {
 		return "Memory Viewpoint";
 	}
 
+	@Override
+	public boolean checkConsistency(Module m) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
