@@ -15,10 +15,7 @@
   <genPackages prefix="Mm" basePackage="de.tu_bs.ccc.contracting" disposableProviderFactory="true"
       ecorePackage="mm.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="mm.ecore#//PortType">
-      <genEnumLiterals ecoreEnumLiteral="mm.ecore#//PortType/INT"/>
-      <genEnumLiterals ecoreEnumLiteral="mm.ecore#//PortType/STRING"/>
-      <genEnumLiterals ecoreEnumLiteral="mm.ecore#//PortType/BOOLEAN"/>
-      <genEnumLiterals ecoreEnumLiteral="mm.ecore#//PortType/REAL"/>
+      <genEnumLiterals ecoreEnumLiteral="mm.ecore#//PortType/JAVA"/>
       <genEnumLiterals ecoreEnumLiteral="mm.ecore#//PortType/SERVICE"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="mm.ecore#//ViewPoint">

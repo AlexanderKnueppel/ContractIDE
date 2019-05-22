@@ -13,6 +13,7 @@ import org.eclipse.ui.PlatformUI;
 import de.tu_bs.ccc.contracting.Verification.DirectionType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.core.util.CoreUtil;
+import de.tu_bs.ccc.contracting.core.util.PortTypeManager;
 import de.tu_bs.ccc.contracting.idl.CidlPersistenceManager;
 import de.tu_bs.ccc.contracting.idl.cidl.Interface;
 import de.tu_bs.ccc.contracting.idl.cidl.Model;
@@ -50,12 +51,15 @@ public class EditPortFeature extends AbstractCustomFeature {
 		// get all interfaces from all models
 		List<Interface> interfaces = CidlPersistenceManager.getIdlModels(CoreUtil.getCurrentProject()).stream()
 				.map(m -> ((Model) m).getInterfaces()).flatMap(i -> i.stream()).collect(Collectors.toList());
+		
+		// get all allowed java types for the ports
+		List<String> types = PortTypeManager.getTypes();
 
 		EditPortFeatureDialog dialog;
 		if(((Ports)object).getOuterDirection() == DirectionType.INTERNAL)
-			dialog = new EditConsumerPortFeatureDialog(shell, interfaces);
+			dialog = new EditConsumerPortFeatureDialog(shell, types, interfaces);
 		else
-			dialog = new EditProviderPortFeatureDialog(shell, interfaces);
+			dialog = new EditProviderPortFeatureDialog(shell, types, interfaces);
 		
 		dialog.setOldProperties(object);
 		dialog.create();
@@ -63,7 +67,7 @@ public class EditPortFeature extends AbstractCustomFeature {
 		
 		changed = dialog.getReturnCode() == EditPortFeatureDialog.OK;
 	}
-	
+
 	@Override
 	public boolean hasDoneChanges() {
 		return changed;

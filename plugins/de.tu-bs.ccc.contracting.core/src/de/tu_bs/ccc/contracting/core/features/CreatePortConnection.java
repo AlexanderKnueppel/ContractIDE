@@ -44,7 +44,7 @@ public class CreatePortConnection extends AbstractCreateConnectionFeature {
 			{
 				Ports port1 = (Ports) businessObjectsSource.get(0);
 				Ports port2 = (Ports) businessObjectsTarget.get(0);
-				return port1.getType()==port2.getType();
+				return port1.getService().equals(port2.getService());
 			}
 		} else {
 			return false;

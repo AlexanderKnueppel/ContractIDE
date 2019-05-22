@@ -17,9 +17,10 @@ import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.PortType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.Verification.ProviderType;
+import de.tu_bs.ccc.contracting.core.util.PortTypeManager;
 
 public class CreatePortFeature extends AbstractCreateFeature implements ICreateFeature {
-	public static final PortType pt = PortType.STRING;
+	public static final PortType pt = PortType.JAVA;
 
 	public CreatePortFeature(IFeatureProvider fp) {
 		super(fp, "Port", "Adds a Port to a Module");
@@ -47,6 +48,8 @@ public class CreatePortFeature extends AbstractCreateFeature implements ICreateF
 		Ports addedObject = MmFactory.eINSTANCE.createPorts();
 
 		addedObject.setType(pt);
+		addedObject.setService(PortTypeManager.getTypes().get(0)); // use first element as default one
+		
 		PictogramElement pict = context.getTargetContainer();
 		EList<EObject> businessObjects = pict.getLink().getBusinessObjects();
 		Module expandWithPort = ((Module) businessObjects.get(0));

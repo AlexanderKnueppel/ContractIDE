@@ -19,7 +19,7 @@ package de.tu_bs.ccc.contracting.Verification;
  * @model
  * @generated
  */
-public interface Component extends de.tu_bs.ccc.contracting.Verification.Module {
+public interface Component extends Module {
 
 	/**
 	 * Returns the value of the '<em><b>Singleton</b></em>' attribute.

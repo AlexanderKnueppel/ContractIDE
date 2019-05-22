@@ -6,6 +6,7 @@ import de.tu_bs.ccc.contracting.Verification.Abstract;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Contract;
 import de.tu_bs.ccc.contracting.Verification.MmPackage;
+import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.ModuleType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 
@@ -53,7 +54,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class ModuleImpl extends MinimalEObjectImpl.Container implements de.tu_bs.ccc.contracting.Verification.Module {
+public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -132,7 +133,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements de.tu_bs
 	 * @generated
 	 * @ordered
 	 */
-	protected de.tu_bs.ccc.contracting.Verification.Module module;
+	protected Module module;
 
 	/**
 	 * The default value of the '{@link #getVersion() <em>Version</em>}' attribute.
@@ -405,10 +406,10 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements de.tu_bs
 	 * @generated
 	 */
 	@Override
-	public de.tu_bs.ccc.contracting.Verification.Module getModule() {
+	public Module getModule() {
 		if (module != null && module.eIsProxy()) {
 			InternalEObject oldModule = (InternalEObject) module;
-			module = (de.tu_bs.ccc.contracting.Verification.Module) eResolveProxy(oldModule);
+			module = (Module) eResolveProxy(oldModule);
 			if (module != oldModule) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MmPackage.MODULE__MODULE, oldModule,
@@ -423,7 +424,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements de.tu_bs
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public de.tu_bs.ccc.contracting.Verification.Module basicGetModule() {
+	public Module basicGetModule() {
 		return module;
 	}
 
@@ -432,9 +433,8 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements de.tu_bs
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setModule(de.tu_bs.ccc.contracting.Verification.Module newModule) {
-		de.tu_bs.ccc.contracting.Verification.Module oldModule = module;
+	public void setModule(Module newModule) {
+		Module oldModule = module;
 		module = newModule;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MmPackage.MODULE__MODULE, oldModule, module));
@@ -737,7 +737,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements de.tu_bs
 			getContract().addAll((Collection<? extends Contract>) newValue);
 			return;
 		case MmPackage.MODULE__MODULE:
-			setModule((de.tu_bs.ccc.contracting.Verification.Module) newValue);
+			setModule((Module) newValue);
 			return;
 		case MmPackage.MODULE__VERSION:
 			setVersion((String) newValue);
@@ -788,7 +788,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements de.tu_bs
 			getContract().clear();
 			return;
 		case MmPackage.MODULE__MODULE:
-			setModule((de.tu_bs.ccc.contracting.Verification.Module) null);
+			setModule((Module) null);
 			return;
 		case MmPackage.MODULE__VERSION:
 			setVersion(VERSION_EDEFAULT);
@@ -860,7 +860,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements de.tu_bs
 		if (eIsProxy())
 			return super.toString();
 
-		StringBuilder result = new StringBuilder(super.toString());
+		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");
 		result.append(name);
 		result.append(", description: ");

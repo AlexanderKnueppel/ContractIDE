@@ -4,6 +4,7 @@ package de.tu_bs.ccc.contracting.Verification.impl;
 
 import de.tu_bs.ccc.contracting.Verification.DirectionType;
 import de.tu_bs.ccc.contracting.Verification.MmPackage;
+import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.PortType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 
@@ -80,7 +81,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final PortType TYPE_EDEFAULT = PortType.INT;
+	protected static final PortType TYPE_EDEFAULT = PortType.JAVA;
 
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
@@ -427,10 +428,10 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * @generated
 	 */
 	@Override
-	public de.tu_bs.ccc.contracting.Verification.Module getModule() {
+	public Module getModule() {
 		if (eContainerFeatureID() != MmPackage.PORTS__MODULE)
 			return null;
-		return (de.tu_bs.ccc.contracting.Verification.Module) eInternalContainer();
+		return (Module) eInternalContainer();
 	}
 
 	/**
@@ -438,8 +439,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetModule(de.tu_bs.ccc.contracting.Verification.Module newModule,
-			NotificationChain msgs) {
+	public NotificationChain basicSetModule(Module newModule, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject) newModule, MmPackage.PORTS__MODULE, msgs);
 		return msgs;
 	}
@@ -449,8 +449,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setModule(de.tu_bs.ccc.contracting.Verification.Module newModule) {
+	public void setModule(Module newModule) {
 		if (newModule != eInternalContainer()
 				|| (eContainerFeatureID() != MmPackage.PORTS__MODULE && newModule != null)) {
 			if (EcoreUtil.isAncestor(this, newModule))
@@ -459,8 +458,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newModule != null)
-				msgs = ((InternalEObject) newModule).eInverseAdd(this, MmPackage.MODULE__PORTS,
-						de.tu_bs.ccc.contracting.Verification.Module.class, msgs);
+				msgs = ((InternalEObject) newModule).eInverseAdd(this, MmPackage.MODULE__PORTS, Module.class, msgs);
 			msgs = basicSetModule(newModule, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -735,7 +733,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 		case MmPackage.PORTS__MODULE:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetModule((de.tu_bs.ccc.contracting.Verification.Module) otherEnd, msgs);
+			return basicSetModule((Module) otherEnd, msgs);
 		case MmPackage.PORTS__INSIDE_PORTS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getInsidePorts()).basicAdd(otherEnd, msgs);
 		case MmPackage.PORTS__INSIDE_PORTSE_OPPOSITE:
@@ -778,8 +776,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 		case MmPackage.PORTS__MODULE:
-			return eInternalContainer().eInverseRemove(this, MmPackage.MODULE__PORTS,
-					de.tu_bs.ccc.contracting.Verification.Module.class, msgs);
+			return eInternalContainer().eInverseRemove(this, MmPackage.MODULE__PORTS, Module.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -851,7 +848,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 			setPortseOpposite((Ports) newValue);
 			return;
 		case MmPackage.PORTS__MODULE:
-			setModule((de.tu_bs.ccc.contracting.Verification.Module) newValue);
+			setModule((Module) newValue);
 			return;
 		case MmPackage.PORTS__INSIDE_PORTS:
 			getInsidePorts().clear();
@@ -906,7 +903,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 			setPortseOpposite((Ports) null);
 			return;
 		case MmPackage.PORTS__MODULE:
-			setModule((de.tu_bs.ccc.contracting.Verification.Module) null);
+			setModule((Module) null);
 			return;
 		case MmPackage.PORTS__INSIDE_PORTS:
 			getInsidePorts().clear();
@@ -989,7 +986,7 @@ public class PortsImpl extends MinimalEObjectImpl.Container implements Ports {
 		if (eIsProxy())
 			return super.toString();
 
-		StringBuilder result = new StringBuilder(super.toString());
+		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");
 		result.append(name);
 		result.append(", type: ");

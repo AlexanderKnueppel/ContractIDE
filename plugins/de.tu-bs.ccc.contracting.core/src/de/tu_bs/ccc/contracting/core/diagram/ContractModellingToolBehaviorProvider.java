@@ -33,7 +33,6 @@ import de.tu_bs.ccc.contracting.core.guiFeatures.EditPortFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.EditPropertyFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.OpenEditorFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.ReloadImportFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.VerifyCustomFeature;
 import de.tu_bs.ccc.contracting.core.guiFeatures.ViewpointVerificationFeature;
 
 public class ContractModellingToolBehaviorProvider extends DefaultToolBehaviorProvider {

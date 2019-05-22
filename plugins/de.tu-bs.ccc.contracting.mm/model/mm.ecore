@@ -1,448 +1,169 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage
-    xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    name="Verification"
-    nsURI="http://www.example.org/contractVerificationMM"
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="Verification" nsURI="http://www.example.org/contractVerificationMM"
     nsPrefix="Verification">
-  <eClassifiers
-      xsi:type="ecore:EClass"
-      name="Module">
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="name"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+  <eClassifiers xsi:type="ecore:EClass" name="Module">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral=""/>
-    <eStructuralFeatures
-        xsi:type="ecore:EReference"
-        name="isPartOf"
-        eType="#//Compound"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="isPartOf" eType="#//Compound"
         eOpposite="#//Compound/consistsOf"/>
-    <eStructuralFeatures
-        xsi:type="ecore:EReference"
-        name="realizedBy"
-        upperBound="-1"
-        eType="#//Abstract"
-        eOpposite="#//Abstract/realizes"/>
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="description"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="realizedBy" upperBound="-1"
+        eType="#//Abstract" eOpposite="#//Abstract/realizes"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral="&quot;&quot;"/>
-    <eStructuralFeatures
-        xsi:type="ecore:EReference"
-        name="ports"
-        upperBound="-1"
-        eType="#//Ports"
-        containment="true"
-        eOpposite="#//Ports/module"/>
-    <eStructuralFeatures
-        xsi:type="ecore:EReference"
-        name="contract"
-        upperBound="-1"
-        eType="#//Contract"
-        containment="true"
-        eOpposite="#//Contract/module"/>
-    <eStructuralFeatures
-        xsi:type="ecore:EReference"
-        name="module"
-        eType="#//Module"/>
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="version"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ports" upperBound="-1"
+        eType="#//Ports" containment="true" eOpposite="#//Ports/module"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contract" upperBound="-1"
+        eType="#//Contract" containment="true" eOpposite="#//Contract/module"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="module" eType="#//Module"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral="1.0"/>
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="rte"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rte" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral=""/>
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="spec"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="spec" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral=""/>
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="ram"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ram" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger"
         defaultValueLiteral="-1"/>
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="caps"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="caps" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger"
         defaultValueLiteral="-1"/>
-    <eStructuralFeatures
-        xsi:type="ecore:EReference"
-        name="moduleType"
-        lowerBound="1"
-        eType="#//ModuleType"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="moduleType" lowerBound="1"
+        eType="#//ModuleType" containment="true"/>
   </eClassifiers>
-  <eClassifiers
-      xsi:type="ecore:EClass"
-      name="Abstract"
-      eSuperTypes="#//Module">
-    <eStructuralFeatures
-        xsi:type="ecore:EReference"
-        name="realizes"
-        upperBound="-1"
-        eType="#//Module"
-        eOpposite="#//Module/realizedBy"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Abstract" eSuperTypes="#//Module">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="realizes" upperBound="-1"
+        eType="#//Module" eOpposite="#//Module/realizedBy"/>
   </eClassifiers>
-  <eClassifiers
-      xsi:type="ecore:EClass"
-      name="Component"
-      eSuperTypes="#//Module">
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="singleton"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+  <eClassifiers xsi:type="ecore:EClass" name="Component" eSuperTypes="#//Module">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="singleton" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="false"/>
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="binary"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="binary" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral=""/>
   </eClassifiers>
-  <eClassifiers
-      xsi:type="ecore:EClass"
-      name="Compound"
-      eSuperTypes="#//Module">
-    <eStructuralFeatures
-        xsi:type="ecore:EReference"
-        name="consistsOf"
-        upperBound="-1"
-        eType="#//Module"
-        containment="true"
-        eOpposite="#//Module/isPartOf"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Compound" eSuperTypes="#//Module">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="consistsOf" upperBound="-1"
+        eType="#//Module" containment="true" eOpposite="#//Module/isPartOf"/>
   </eClassifiers>
-  <eClassifiers
-      xsi:type="ecore:EClass"
-      name="Contract">
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="name"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+  <eClassifiers xsi:type="ecore:EClass" name="Contract">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral=""/>
-    <eStructuralFeatures
-        xsi:type="ecore:EReference"
-        name="module"
-        lowerBound="1"
-        eType="#//Module"
-        eOpposite="#//Module/contract"/>
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="ViewPoint"
-        eType="#//ViewPoint"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="module" lowerBound="1"
+        eType="#//Module" eOpposite="#//Module/contract"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ViewPoint" eType="#//ViewPoint"
         defaultValueLiteral="FUNCTIONAL"/>
-    <eStructuralFeatures
-        xsi:type="ecore:EReference"
-        name="assumption"
-        upperBound="-1"
-        eType="#//Assumption"
-        containment="true"
-        eOpposite="#//Assumption/contract"/>
-    <eStructuralFeatures
-        xsi:type="ecore:EReference"
-        name="guarantee"
-        upperBound="-1"
-        eType="#//Guarantee"
-        containment="true"
-        eOpposite="#//Guarantee/contract"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assumption" upperBound="-1"
+        eType="#//Assumption" containment="true" eOpposite="#//Assumption/contract"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="guarantee" upperBound="-1"
+        eType="#//Guarantee" containment="true" eOpposite="#//Guarantee/contract"/>
   </eClassifiers>
-  <eClassifiers
-      xsi:type="ecore:EClass"
-      name="Ports">
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="name"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"
+  <eClassifiers xsi:type="ecore:EClass" name="Ports">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"
         defaultValueLiteral=""/>
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="type"
-        eType="#//PortType"
-        defaultValueLiteral="INT"/>
-    <eStructuralFeatures
-        xsi:type="ecore:EReference"
-        name="ports"
-        upperBound="-1"
-        eType="#//Ports"
-        eOpposite="#//Ports/portseOpposite"/>
-    <eStructuralFeatures
-        xsi:type="ecore:EReference"
-        name="portseOpposite"
-        eType="#//Ports"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//PortType"
+        defaultValueLiteral="JAVA"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ports" upperBound="-1"
+        eType="#//Ports" eOpposite="#//Ports/portseOpposite"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="portseOpposite" eType="#//Ports"
         eOpposite="#//Ports/ports"/>
-    <eStructuralFeatures
-        xsi:type="ecore:EReference"
-        name="module"
-        lowerBound="1"
-        eType="#//Module"
-        eOpposite="#//Module/ports"/>
-    <eStructuralFeatures
-        xsi:type="ecore:EReference"
-        name="insidePorts"
-        upperBound="-1"
-        eType="#//Ports"
-        eOpposite="#//Ports/insidePortseOpposite"/>
-    <eStructuralFeatures
-        xsi:type="ecore:EReference"
-        name="insidePortseOpposite"
-        eType="#//Ports"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="module" lowerBound="1"
+        eType="#//Module" eOpposite="#//Module/ports"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="insidePorts" upperBound="-1"
+        eType="#//Ports" eOpposite="#//Ports/insidePortseOpposite"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="insidePortseOpposite" eType="#//Ports"
         eOpposite="#//Ports/insidePorts"/>
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="service"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="service" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"
         defaultValueLiteral=""/>
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="OuterDirection"
-        eType="#//DirectionType"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="OuterDirection" eType="#//DirectionType"
         defaultValueLiteral="INTERNAL"/>
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="maxClients"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxClients" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="-1"/>
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="filter"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="filter" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral=""/>
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="label"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral=""/>
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="function"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="function" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral=""/>
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="providerType"
-        eType="#//ProviderType"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="providerType" eType="#//ProviderType"
         defaultValueLiteral="NATIVE"/>
   </eClassifiers>
-  <eClassifiers
-      xsi:type="ecore:EEnum"
-      name="PortType">
-    <eLiterals
-        name="INT"
-        literal="INT"/>
-    <eLiterals
-        name="STRING"
-        value="1"/>
-    <eLiterals
-        name="BOOLEAN"
-        value="2"/>
-    <eLiterals
-        name="REAL"
-        value="3"/>
-    <eLiterals
-        name="SERVICE"
-        value="4"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="PortType">
+    <eLiterals name="JAVA" value="1" literal="JAVA"/>
+    <eLiterals name="SERVICE" value="4"/>
   </eClassifiers>
-  <eClassifiers
-      xsi:type="ecore:EClass"
-      name="ContractProperty">
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="propertyTipe"
-        eType="#//PropertyType"
+  <eClassifiers xsi:type="ecore:EClass" name="ContractProperty">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyTipe" eType="#//PropertyType"
         defaultValueLiteral="EQUATION"/>
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="property"
-        lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="property" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String" defaultValueLiteral=""/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ViewPoint">
+    <eLiterals name="FUNCTIONAL"/>
+    <eLiterals name="TIMING" value="1"/>
+    <eLiterals name="MEMORY" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PropertyType">
+    <eLiterals name="EQUATION"/>
+    <eLiterals name="MINDELAY" value="1"/>
+    <eLiterals name="MAXDELAY" value="2"/>
+    <eLiterals name="FREQUENCY" value="3"/>
+    <eLiterals name="JITTER" value="4"/>
+    <eLiterals name="MINDURATION" value="5"/>
+    <eLiterals name="MAXDURATION" value="6"/>
+    <eLiterals name="MEMORY" value="7"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ContractType">
+    <eLiterals name="ASSUMPTION"/>
+    <eLiterals name="GUARANTEE" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Guarantee" eSuperTypes="#//ContractProperty">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contract" lowerBound="1"
+        eType="#//Contract" eOpposite="#//Contract/guarantee"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Assumption" eSuperTypes="#//ContractProperty">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contract" lowerBound="1"
+        eType="#//Contract" eOpposite="#//Contract/assumption"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DirectionType">
+    <eLiterals name="INTERNAL" literal="INTERNAL"/>
+    <eLiterals name="EXTERNAL" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="System">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="consistsOf" upperBound="-1"
+        eType="#//Module" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ProviderType">
+    <eLiterals name="NATIVE"/>
+    <eLiterals name="LEGACY" value="1"/>
+    <eLiterals name="NETWORK" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModuleType" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Proxy" eSuperTypes="#//ModuleType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="carrier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral=""/>
   </eClassifiers>
-  <eClassifiers
-      xsi:type="ecore:EEnum"
-      name="ViewPoint">
-    <eLiterals
-        name="FUNCTIONAL"/>
-    <eLiterals
-        name="TIMING"
-        value="1"/>
-    <eLiterals
-        name="MEMORY"
-        value="2"/>
-  </eClassifiers>
-  <eClassifiers
-      xsi:type="ecore:EEnum"
-      name="PropertyType">
-    <eLiterals
-        name="EQUATION"/>
-    <eLiterals
-        name="MINDELAY"
-        value="1"/>
-    <eLiterals
-        name="MAXDELAY"
-        value="2"/>
-    <eLiterals
-        name="FREQUENCY"
-        value="3"/>
-    <eLiterals
-        name="JITTER"
-        value="4"/>
-    <eLiterals
-        name="MINDURATION"
-        value="5"/>
-    <eLiterals
-        name="MAXDURATION"
-        value="6"/>
-    <eLiterals
-        name="MEMORY"
-        value="7"/>
-  </eClassifiers>
-  <eClassifiers
-      xsi:type="ecore:EEnum"
-      name="ContractType">
-    <eLiterals
-        name="ASSUMPTION"/>
-    <eLiterals
-        name="GUARANTEE"
-        value="1"/>
-  </eClassifiers>
-  <eClassifiers
-      xsi:type="ecore:EClass"
-      name="Guarantee"
-      eSuperTypes="#//ContractProperty">
-    <eStructuralFeatures
-        xsi:type="ecore:EReference"
-        name="contract"
-        lowerBound="1"
-        eType="#//Contract"
-        eOpposite="#//Contract/guarantee"/>
-  </eClassifiers>
-  <eClassifiers
-      xsi:type="ecore:EClass"
-      name="Assumption"
-      eSuperTypes="#//ContractProperty">
-    <eStructuralFeatures
-        xsi:type="ecore:EReference"
-        name="contract"
-        lowerBound="1"
-        eType="#//Contract"
-        eOpposite="#//Contract/assumption"/>
-  </eClassifiers>
-  <eClassifiers
-      xsi:type="ecore:EEnum"
-      name="DirectionType">
-    <eLiterals
-        name="INTERNAL"
-        literal="INTERNAL"/>
-    <eLiterals
-        name="EXTERNAL"
-        value="1"/>
-  </eClassifiers>
-  <eClassifiers
-      xsi:type="ecore:EClass"
-      name="System">
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="name"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+  <eClassifiers xsi:type="ecore:EClass" name="Filter" eSuperTypes="#//ModuleType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="add" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral=""/>
-    <eStructuralFeatures
-        xsi:type="ecore:EReference"
-        name="consistsOf"
-        upperBound="-1"
-        eType="#//Module"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers
-      xsi:type="ecore:EEnum"
-      name="ProviderType">
-    <eLiterals
-        name="NATIVE"/>
-    <eLiterals
-        name="LEGACY"
-        value="1"/>
-    <eLiterals
-        name="NETWORK"
-        value="2"/>
-  </eClassifiers>
-  <eClassifiers
-      xsi:type="ecore:EClass"
-      name="ModuleType"
-      abstract="true"/>
-  <eClassifiers
-      xsi:type="ecore:EClass"
-      name="Proxy"
-      eSuperTypes="#//ModuleType">
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="carrier"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="remove" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reset" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alias" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral=""/>
   </eClassifiers>
-  <eClassifiers
-      xsi:type="ecore:EClass"
-      name="Filter"
-      eSuperTypes="#//ModuleType">
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="add"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral=""/>
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="remove"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral=""/>
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="reset"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral=""/>
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="alias"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+  <eClassifiers xsi:type="ecore:EClass" name="Mux" eSuperTypes="#//ModuleType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="service" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral=""/>
   </eClassifiers>
-  <eClassifiers
-      xsi:type="ecore:EClass"
-      name="Mux"
-      eSuperTypes="#//ModuleType">
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="service"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+  <eClassifiers xsi:type="ecore:EClass" name="Protocol" eSuperTypes="#//ModuleType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="from" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="to" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral=""/>
   </eClassifiers>
-  <eClassifiers
-      xsi:type="ecore:EClass"
-      name="Protocol"
-      eSuperTypes="#//ModuleType">
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="from"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral=""/>
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="to"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral=""/>
-  </eClassifiers>
-  <eClassifiers
-      xsi:type="ecore:EClass"
-      name="Function"
-      eSuperTypes="#//ModuleType">
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="function"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+  <eClassifiers xsi:type="ecore:EClass" name="Function" eSuperTypes="#//ModuleType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="function" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral=""/>
   </eClassifiers>
 </ecore:EPackage>

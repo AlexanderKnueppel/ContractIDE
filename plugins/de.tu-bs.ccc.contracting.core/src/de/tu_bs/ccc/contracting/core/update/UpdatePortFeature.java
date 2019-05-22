@@ -41,8 +41,15 @@ public class UpdatePortFeature extends AbstractUpdateFeature {
 			if (port.getType().getValue() == PortType.SERVICE_VALUE) {
 				suffix += " : " + port.getService();
 			}
+			
+			String subtext;
+			if (port.getType().getValue() == PortType.SERVICE_VALUE) 
+				subtext = port.getType().toString();
+			else
+				subtext = port.getService();
+			
 			if (nameText.getValue().equals(port.getName() + suffix)
-					&& typeText.getValue().equals(port.getType().toString())) {
+					&& typeText.getValue().equals(subtext)) {
 				return Reason.createFalseReason("Name is out of date");
 			}
 
@@ -66,8 +73,12 @@ public class UpdatePortFeature extends AbstractUpdateFeature {
 			}
 			nameText.setValue(port.getName() + suffix);
 			Text typeText = (Text) type.getGraphicsAlgorithm();
-			typeText.setValue(port.getType().toString());
-
+			
+			if (port.getType().getValue() == PortType.SERVICE_VALUE) 
+				typeText.setValue(port.getType().toString());
+			else
+				typeText.setValue(port.getService());
+			
 			return true;
 		}
 		return false;

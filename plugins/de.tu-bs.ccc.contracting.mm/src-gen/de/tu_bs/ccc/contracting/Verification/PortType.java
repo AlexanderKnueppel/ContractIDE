@@ -19,114 +19,38 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum PortType implements Enumerator {
 	/**
-	 * The '<em><b>INT</b></em>' literal object.
+	 * The '<em><b>JAVA</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #INT_VALUE
+	 * @see #JAVA_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	INT(0, "INT", "INT"),
-
+	JAVA(1, "JAVA", "JAVA"),
 	/**
-	 * The '<em><b>STRING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STRING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STRING(1, "STRING", "STRING"),
-
-	/**
-	 * The '<em><b>BOOLEAN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BOOLEAN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BOOLEAN(2, "BOOLEAN", "BOOLEAN"),
-
-	/**
-	 * The '<em><b>REAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #REAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	REAL(3, "REAL", "REAL"),
-
-	/**
-	 * The '<em><b>SERVICE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SERVICE_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	* The '<em><b>SERVICE</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #SERVICE_VALUE
+	* @generated
+	* @ordered
+	*/
 	SERVICE(4, "SERVICE", "SERVICE");
 
 	/**
-	 * The '<em><b>INT</b></em>' literal value.
+	 * The '<em><b>JAVA</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>INT</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>JAVA</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #INT
+	 * @see #JAVA
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INT_VALUE = 0;
-
-	/**
-	 * The '<em><b>STRING</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>STRING</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #STRING
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int STRING_VALUE = 1;
-
-	/**
-	 * The '<em><b>BOOLEAN</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>BOOLEAN</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #BOOLEAN
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int BOOLEAN_VALUE = 2;
-
-	/**
-	 * The '<em><b>REAL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>REAL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #REAL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int REAL_VALUE = 3;
+	public static final int JAVA_VALUE = 1;
 
 	/**
 	 * The '<em><b>SERVICE</b></em>' literal value.
@@ -149,7 +73,7 @@ public enum PortType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final PortType[] VALUES_ARRAY = new PortType[] { INT, STRING, BOOLEAN, REAL, SERVICE, };
+	private static final PortType[] VALUES_ARRAY = new PortType[] { JAVA, SERVICE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Port Type</b></em>' enumerators.
@@ -205,14 +129,8 @@ public enum PortType implements Enumerator {
 	 */
 	public static PortType get(int value) {
 		switch (value) {
-		case INT_VALUE:
-			return INT;
-		case STRING_VALUE:
-			return STRING;
-		case BOOLEAN_VALUE:
-			return BOOLEAN;
-		case REAL_VALUE:
-			return REAL;
+		case JAVA_VALUE:
+			return JAVA;
 		case SERVICE_VALUE:
 			return SERVICE;
 		}
