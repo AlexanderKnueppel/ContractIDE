@@ -19,6 +19,7 @@ import de.tu_bs.ccc.contracting.Verification.ModuleType;
 import de.tu_bs.ccc.contracting.Verification.Mux;
 import de.tu_bs.ccc.contracting.Verification.PortType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
+import de.tu_bs.ccc.contracting.Verification.Property;
 import de.tu_bs.ccc.contracting.Verification.PropertyType;
 import de.tu_bs.ccc.contracting.Verification.Protocol;
 import de.tu_bs.ccc.contracting.Verification.ProviderType;
@@ -153,6 +154,13 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 	 * @generated
 	 */
 	private EClass functionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass propertyEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -400,6 +408,16 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 	@Override
 	public EReference getModule_ModuleType() {
 		return (EReference) moduleEClass.getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getModule_EnviromentalProperties() {
+		return (EReference) moduleEClass.getEStructuralFeatures().get(13);
 	}
 
 	/**
@@ -938,6 +956,46 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 	 * @generated
 	 */
 	@Override
+	public EClass getProperty() {
+		return propertyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getProperty_Name() {
+		return (EAttribute) propertyEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getProperty_Value() {
+		return (EAttribute) propertyEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getProperty_Type() {
+		return (EAttribute) propertyEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EEnum getPortType() {
 		return portTypeEEnum;
 	}
@@ -1036,6 +1094,7 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 		createEAttribute(moduleEClass, MODULE__RAM);
 		createEAttribute(moduleEClass, MODULE__CAPS);
 		createEReference(moduleEClass, MODULE__MODULE_TYPE);
+		createEReference(moduleEClass, MODULE__ENVIROMENTAL_PROPERTIES);
 
 		abstractEClass = createEClass(ABSTRACT);
 		createEReference(abstractEClass, ABSTRACT__REALIZES);
@@ -1104,6 +1163,11 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 
 		functionEClass = createEClass(FUNCTION);
 		createEAttribute(functionEClass, FUNCTION__FUNCTION);
+
+		propertyEClass = createEClass(PROPERTY);
+		createEAttribute(propertyEClass, PROPERTY__NAME);
+		createEAttribute(propertyEClass, PROPERTY__VALUE);
+		createEAttribute(propertyEClass, PROPERTY__TYPE);
 
 		// Create enums
 		portTypeEEnum = createEEnum(PORT_TYPE);
@@ -1199,6 +1263,9 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModule_ModuleType(), this.getModuleType(), null, "moduleType", null, 1, 1,
 				de.tu_bs.ccc.contracting.Verification.Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModule_EnviromentalProperties(), this.getProperty(), null, "EnviromentalProperties", null, 0,
+				-1, de.tu_bs.ccc.contracting.Verification.Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(abstractEClass, Abstract.class, "Abstract", !IS_ABSTRACT, !IS_INTERFACE,
@@ -1335,6 +1402,15 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 				IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFunction_Function(), ecorePackage.getEString(), "function", "", 0, 1, Function.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(propertyEClass, Property.class, "Property", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getProperty_Name(), ecorePackage.getEString(), "name", null, 0, 1, Property.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProperty_Value(), ecorePackage.getEString(), "value", null, 0, 1, Property.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProperty_Type(), ecorePackage.getEString(), "type", null, 0, 1, Property.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(portTypeEEnum, PortType.class, "PortType");

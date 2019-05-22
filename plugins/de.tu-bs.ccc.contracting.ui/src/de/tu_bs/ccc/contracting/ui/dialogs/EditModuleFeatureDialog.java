@@ -18,6 +18,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.IDecoratorManager;
+import org.eclipse.ui.PlatformUI;
 
 import de.tu_bs.ccc.contracting.Verification.Abstract;
 import de.tu_bs.ccc.contracting.Verification.Module;
@@ -36,7 +38,6 @@ public class EditModuleFeatureDialog extends TitleAreaDialog implements IEditFea
 	private ArrayList<Abstract> realizes = new ArrayList<Abstract>();
 	private Object object;
 	private int currentModuleType = 0;
-	
 
 	public EditModuleFeatureDialog(Shell parentShell) {
 		super(parentShell);
@@ -132,7 +133,7 @@ public class EditModuleFeatureDialog extends TitleAreaDialog implements IEditFea
 
 		});
 	}
-	
+
 	private void createModuleType(Composite container) {
 		Label lbType = new Label(container, SWT.NONE);
 		lbType.setText(StringTable.EDIT_PORT_DIALOG_TYPE);
@@ -178,5 +179,12 @@ public class EditModuleFeatureDialog extends TitleAreaDialog implements IEditFea
 
 		module.getRealizedBy().clear();
 		module.getRealizedBy().addAll(realizes);
+		PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
+			@Override
+			public void run() {
+				IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
+				decoratorManager.update("de.tubs.ccc.contracting.core.decorators.SynchronizeDecorator");
+			}
+		});
 	}
 }

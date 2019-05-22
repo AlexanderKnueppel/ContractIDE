@@ -25,40 +25,37 @@ import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
-import de.tu_bs.ccc.contracting.Verification.Abstract;
-import de.tu_bs.ccc.contracting.Verification.Component;
-import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Contract;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.Verification.System;
-import de.tu_bs.ccc.contracting.core.features.AddAbstractFeature;
-import de.tu_bs.ccc.contracting.core.features.AddComponentFeature;
-import de.tu_bs.ccc.contracting.core.features.AddCompoundFeature;
-import de.tu_bs.ccc.contracting.core.features.AddContractFeature;
-import de.tu_bs.ccc.contracting.core.features.AddPortConnetion;
-import de.tu_bs.ccc.contracting.core.features.AddPortFeature;
-import de.tu_bs.ccc.contracting.core.features.AddSystemFeature;
-import de.tu_bs.ccc.contracting.core.features.CreateContractFeature;
-import de.tu_bs.ccc.contracting.core.features.CreatePortConnection;
-import de.tu_bs.ccc.contracting.core.features.CreatePortFeature;
-import de.tu_bs.ccc.contracting.core.features.DeletePortConnectionFeature;
-import de.tu_bs.ccc.contracting.core.features.connections.AddContractConnectionFeature;
+import de.tu_bs.ccc.contracting.core.features.addFeature.AddComponentFeature;
+import de.tu_bs.ccc.contracting.core.features.addFeature.AddContractConnectionFeature;
+import de.tu_bs.ccc.contracting.core.features.addFeature.AddContractFeature;
+import de.tu_bs.ccc.contracting.core.features.addFeature.AddPortConnetion;
+import de.tu_bs.ccc.contracting.core.features.addFeature.AddPortFeature;
+import de.tu_bs.ccc.contracting.core.features.addFeature.AddSystemFeature;
 import de.tu_bs.ccc.contracting.core.features.connections.ReconnectionFeature;
+import de.tu_bs.ccc.contracting.core.features.createFeatures.CreateContractFeature;
+import de.tu_bs.ccc.contracting.core.features.createFeatures.CreatePortConnection;
+import de.tu_bs.ccc.contracting.core.features.createFeatures.CreatePortFeature;
+import de.tu_bs.ccc.contracting.core.features.deleteFeature.DeleteModuleFeature;
+import de.tu_bs.ccc.contracting.core.features.deleteFeature.DeletePortConnectionFeature;
+import de.tu_bs.ccc.contracting.core.features.deleteFeature.DeletePortFeature;
+import de.tu_bs.ccc.contracting.core.features.guiFeatures.CollapseFeature;
+import de.tu_bs.ccc.contracting.core.features.guiFeatures.EditAbstractFeature;
+import de.tu_bs.ccc.contracting.core.features.guiFeatures.LayoutFeature;
+import de.tu_bs.ccc.contracting.core.features.guiFeatures.ViewpointVerificationFeature;
 import de.tu_bs.ccc.contracting.core.features.layout.LayoutDiagramFeature;
-import de.tu_bs.ccc.contracting.core.features.layout.LayoutPortFeature;
 import de.tu_bs.ccc.contracting.core.features.loading.AssignAbstractFeature;
 import de.tu_bs.ccc.contracting.core.features.loading.LoadModuleFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.CollapseFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.EditAbstractFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.LayoutFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.ViewpointVerificationFeature;
-import de.tu_bs.ccc.contracting.core.move.MovePortFeature;
+import de.tu_bs.ccc.contracting.core.features.move.MovePortFeature;
+import de.tu_bs.ccc.contracting.core.features.resize.ResizeModuleFeature;
+import de.tu_bs.ccc.contracting.core.features.update.UpdateContractFeature;
+import de.tu_bs.ccc.contracting.core.features.update.UpdateModuleFeature;
+import de.tu_bs.ccc.contracting.core.features.update.UpdatePortFeature;
 import de.tu_bs.ccc.contracting.core.propertyFeature.CreateProperty;
-import de.tu_bs.ccc.contracting.core.resize.ResizeModuleFeature;
-import de.tu_bs.ccc.contracting.core.update.UpdateContractFeature;
-import de.tu_bs.ccc.contracting.core.update.UpdateModuleFeature;
-import de.tu_bs.ccc.contracting.core.update.UpdatePortFeature;
+import de.tu_bs.ccc.contracting.core.synchronize.SynchronizeFeature;
 
 public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 
@@ -69,13 +66,15 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 
 	@Override
 	public ICustomFeature[] getCustomFeatures(ICustomContext context) {
-		return new ICustomFeature[] { //new VerifyCustomFeature(this), 
-				new ViewpointVerificationFeature(this), new CollapseFeature(this),
-				new EditAbstractFeature(this), new LayoutDiagramFeature(this) };
+		return new ICustomFeature[] { // new VerifyCustomFeature(this),
+				new ViewpointVerificationFeature(this), new CollapseFeature(this), new EditAbstractFeature(this),
+				new LayoutDiagramFeature(this), new SynchronizeFeature(this) };
 	}
 
 	@Override
 	public IDeleteFeature getDeleteFeature(IDeleteContext context) {
+		PictogramElement pes = context.getPictogramElement();
+		Object bo = getBusinessObjectForPictogramElement(pes);
 
 		if (context.getPictogramElement() instanceof Connection) {
 			Connection con = (Connection) context.getPictogramElement();
@@ -86,21 +85,24 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 			}
 
 		}
+
+		else if (bo instanceof Module) {
+			Module m = (Module) bo;
+			if (m.getModule() != null) {
+				return new DeleteModuleFeature(this);
+			}
+		} else if (bo instanceof Ports) {
+
+			return new DeletePortFeature(this);
+
+		}
+
 		return super.getDeleteFeature(context);
 	}
 
 	public ContractModellingFeatureProvider(IDiagramTypeProvider dtp) {
 		super(dtp);
 	}
-	
-//	@Override
-//	public IDirectEditingFeature getDirectEditingFeature(IDirectEditingContext context) {
-//	    PictogramElement pe = context.getPictogramElement();
-//	    if (pe.eContainer() instanceof ContainerShape &&  ((ContainerShape)pe.eContainer()).getLink().getBusinessObjects().get(0) instanceof Contract) {
-//	        return new DirectEditContractPropertyFeature(this);
-//	    }
-//	    return super.getDirectEditingFeature(context);
-//	}
 
 	@Override
 	public ICreateFeature[] getCreateFeatures() {
@@ -109,8 +111,8 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 				// new CreateComponentFeature(this),
 				new CreateContractFeature(this),
 				// new CreateAbstractFeature(this),
-				new CreatePortFeature(this), new LoadModuleFeature(this), new CreateProperty(this, true), new CreateProperty(this, false),
-				new AssignAbstractFeature(this) };
+				new CreatePortFeature(this), new LoadModuleFeature(this), new CreateProperty(this, true),
+				new CreateProperty(this, false), new AssignAbstractFeature(this) };
 	}
 
 	@Override
@@ -121,17 +123,12 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 	@Override
 	public IAddFeature getAddFeature(IAddContext context) {
 		Object obj = context.getNewObject();
-
-		if (obj instanceof Component) {
-			return new AddComponentFeature(this);
+		if (obj instanceof System) {
+			return new AddSystemFeature(this);
 		} else if (obj instanceof Contract) {
 			return new AddContractFeature(this);
-		} else if (obj instanceof Abstract) {
-			return new AddAbstractFeature(this);
-		} else if (obj instanceof Compound) {
-			return new AddCompoundFeature(this);
-		} else if (obj instanceof System) {
-			return new AddSystemFeature(this);
+		} else if (obj instanceof Module) {
+			return new AddComponentFeature(this);
 		} else if (obj instanceof Ports) {
 			return new AddPortFeature(this);
 		} else if (context instanceof IAddConnectionContext && (getBusinessObjectForPictogramElement(
@@ -149,10 +146,8 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 		// TODO: check for right domain object instances below
 		PictogramElement pictogramElement = context.getPictogramElement();
 		Object bo = getBusinessObjectForPictogramElement(pictogramElement);
-		if (bo instanceof Module || bo instanceof Contract || bo instanceof System) {
+		if (bo instanceof Ports || bo instanceof Module || bo instanceof Contract || bo instanceof System) {
 			return new LayoutFeature(this);
-		} else if (bo instanceof Ports) {
-			return new LayoutPortFeature(this);
 		}
 		return super.getLayoutFeature(context);
 	}

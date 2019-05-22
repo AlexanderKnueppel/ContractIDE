@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.Module#getRam <em>Ram</em>}</li>
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.Module#getCaps <em>Caps</em>}</li>
  *   <li>{@link de.tu_bs.ccc.contracting.Verification.Module#getModuleType <em>Module Type</em>}</li>
+ *   <li>{@link de.tu_bs.ccc.contracting.Verification.Module#getEnviromentalProperties <em>Enviromental Properties</em>}</li>
  * </ul>
  *
  * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getModule()
@@ -358,5 +359,17 @@ public interface Module extends EObject {
 	 * @generated
 	 */
 	void setModuleType(ModuleType value);
+
+	/**
+	 * Returns the value of the '<em><b>Enviromental Properties</b></em>' containment reference list.
+	 * The list contents are of type {@link de.tu_bs.ccc.contracting.Verification.Property}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Enviromental Properties</em>' containment reference list.
+	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getModule_EnviromentalProperties()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Property> getEnviromentalProperties();
 
 } // Module

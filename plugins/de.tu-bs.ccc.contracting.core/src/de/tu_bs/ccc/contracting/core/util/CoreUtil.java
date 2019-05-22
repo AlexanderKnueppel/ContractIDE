@@ -44,7 +44,6 @@ import de.tu_bs.ccc.contracting.Verification.System;
 import de.tu_bs.ccc.contracting.core.localization.StringTable;
 
 public class CoreUtil {
-
 	public static IProject getCurrentProject() {
 		IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 		IWorkbenchPage activePage = window.getActivePage();
@@ -284,6 +283,164 @@ public class CoreUtil {
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+		}
+	}
+
+	/**
+	 * States whether a Component(Instance) needs to be synched with its original
+	 * 
+	 * @param copy the instance/copy component
+	 * @return whether copy is not synched
+	 */
+	public static boolean isComponentNotSynched(Module copy) {
+		boolean synch = false;
+		try {
+			if (!copy.getName().equals(copy.getModule().getName())) {
+				synch = true;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		try {
+			if (!copy.getDescription().equals(copy.getModule().getDescription())) {
+				synch = true;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		try {
+			if (!copy.getCaps().equals(copy.getModule().getCaps())) {
+				synch = true;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		try {
+			if (!copy.getRam().equals(copy.getModule().getRam())) {
+				synch = true;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		try {
+			if (!copy.getSpec().equals(copy.getModule().getSpec())) {
+				synch = true;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		try {
+			if (!copy.getRte().equals(copy.getModule().getRte())) {
+				synch = true;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		if (copy.getModule().getPorts().size() == copy.getPorts().size()) {
+
+			for (int i = 0; i < copy.getModule().getPorts().size(); i++) {
+				try {
+
+				if (!copy.getPorts().get(i).getName().equals(copy.getModule().getPorts().get(i).getName())) {
+
+					synch = true;
+				}
+				if (!copy.getPorts().get(i).getType().equals(copy.getModule().getPorts().get(i).getType())) {
+
+					synch = true;
+				}
+				if (copy.getPorts().get(i).getMaxClients() != copy.getModule().getPorts().get(i).getMaxClients()) {
+
+					synch = true;
+				}
+				if (!copy.getPorts().get(i).getLabel().equals(copy.getModule().getPorts().get(i).getLabel())) {
+
+					synch = true;
+				}
+				if (!copy.getPorts().get(i).getService().equals(copy.getModule().getPorts().get(i).getService())) {
+
+					synch = true;
+				}
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+			}
+		} else {
+			synch = true;
+		}
+		try {
+			
+		
+		if (copy.getModule().getContract().size() == copy.getContract().size()) {
+
+			for (int i = 0; i < copy.getModule().getContract().size(); i++) {
+				if (!copy.getContract().get(i).getViewPoint()
+						.equals(copy.getModule().getContract().get(i).getViewPoint())) {
+					synch = true;
+				}
+				for (int j = 0; j < copy.getModule().getContract().get(i).getGuarantee().size(); j++) {
+					if (!copy.getContract().get(i).getGuarantee().get(j).getProperty()
+							.equals((copy.getModule().getContract().get(i).getGuarantee().get(j).getProperty()))) {
+						synch = true;
+					}
+					if (copy.getContract().get(i).getGuarantee().get(j).getPropertyTipe() != (copy.getModule()
+							.getContract().get(i).getGuarantee().get(j).getPropertyTipe())) {
+						synch = true;
+					}
+				}
+				for (int j = 0; j < copy.getModule().getContract().get(i).getAssumption().size(); j++) {
+					if (!copy.getContract().get(i).getAssumption().get(j).getProperty()
+							.equals((copy.getModule().getContract().get(i).getAssumption().get(j).getProperty()))) {
+						synch = true;
+					}
+					if (copy.getContract().get(i).getAssumption().get(j).getPropertyTipe() != (copy.getModule()
+							.getContract().get(i).getAssumption().get(j).getPropertyTipe())) {
+						synch = true;
+					}
+				}
+
+			}
+		} else {
+			synch = true;
+		}
+		} catch (Exception e) {
+
+		}
+		
+		return synch;
+
+	}
+
+	static void getDifferences() {
+		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+		IProject[] projects = root.getProjects();
+
+		for (IProject iProject : projects) {
+
+			List<IFile> list = CoreUtil.getModelFiles(iProject);
+			for (IFile iFile : list) {
+				ResourceSet resourceSet1 = new ResourceSetImpl();
+				ResourceSet resourceSet2 = new ResourceSetImpl();
+
+				URI fileURI = URI.createFileURI(iFile.getLocation().toFile().getAbsolutePath().toString());
+				if (iFile.getName().contains(".model")) {
+					try {
+
+						Resource impResource = resourceSet2.getResource(fileURI, true);
+
+						if (impResource.getContents().get(0) instanceof Module) {
+							// IComparisonScope scope = new DefaultComparisonScope(resourceSet1,
+							// resourceSet2);
+							// Comparison comparison = EMFCompare.builder().build().compare(scope);
+							// List<Diff> differences = comparison.getDifferences();
+						}
+
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
+				}
+			}
+
 		}
 	}
 }

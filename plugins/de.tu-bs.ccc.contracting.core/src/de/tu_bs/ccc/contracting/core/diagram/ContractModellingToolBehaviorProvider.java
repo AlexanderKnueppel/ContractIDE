@@ -25,16 +25,17 @@ import org.eclipse.graphiti.tb.ImageDecorator;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Component;
 import de.tu_bs.ccc.contracting.Verification.Module;
-import de.tu_bs.ccc.contracting.core.guiFeatures.CollapseFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.EditAbstractFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.EditDescriptionFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.EditModuleFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.EditPortFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.EditPropertyFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.OpenEditorFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.ReloadImportFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.VerifyCustomFeature;
-import de.tu_bs.ccc.contracting.core.guiFeatures.ViewpointVerificationFeature;
+import de.tu_bs.ccc.contracting.core.features.guiFeatures.CollapseFeature;
+import de.tu_bs.ccc.contracting.core.features.guiFeatures.EditAbstractFeature;
+import de.tu_bs.ccc.contracting.core.features.guiFeatures.EditDescriptionFeature;
+import de.tu_bs.ccc.contracting.core.features.guiFeatures.EditModuleFeature;
+import de.tu_bs.ccc.contracting.core.features.guiFeatures.EditPortFeature;
+import de.tu_bs.ccc.contracting.core.features.guiFeatures.EditPropertyFeature;
+import de.tu_bs.ccc.contracting.core.features.guiFeatures.OpenEditorFeature;
+import de.tu_bs.ccc.contracting.core.features.guiFeatures.ReloadImportFeature;
+import de.tu_bs.ccc.contracting.core.features.guiFeatures.ViewpointVerificationFeature;
+import de.tu_bs.ccc.contracting.core.synchronize.DeSynchronizeFeature;
+import de.tu_bs.ccc.contracting.core.synchronize.SynchronizeFeature;
 
 public class ContractModellingToolBehaviorProvider extends DefaultToolBehaviorProvider {
 
@@ -81,16 +82,49 @@ public class ContractModellingToolBehaviorProvider extends DefaultToolBehaviorPr
 			}
 		}
 //		for (int i = 0; i < cf.length; i++) {
-//			ICustomFeature iCustomFeature = cf[i];
-//			if (iCustomFeature instanceof ReloadImportFeature) {
-//				ContextButtonEntry button = new ContextButtonEntry((ReloadImportFeature) iCustomFeature, cc);
-//				button.setText("Reload Import");
-//				button.setDescription("Allows to update and reload the importted Components");
-//				data.getDomainSpecificContextButtons().add(button);
+//		ICustomFeature iCustomFeature = cf[i];
+//		if (iCustomFeature instanceof ReloadImportFeature) {
+//			ContextButtonEntry button = new ContextButtonEntry((ReloadImportFeature) iCustomFeature, cc);
+//			button.setText("Reload Import");
+//			button.setDescription("Allows to update and reload the importted Components");
+//			data.getDomainSpecificContextButtons().add(button);
 //
-//				break;
-//			}
+//			break;
 //		}
+//	}
+		for (int i = 0; i < cf.length; i++) {
+			ICustomFeature iCustomFeature = cf[i];
+			if (iCustomFeature instanceof SynchronizeFeature) {
+				ContextButtonEntry button = new ContextButtonEntry((SynchronizeFeature) iCustomFeature, cc);
+				button.setText("Synchronize Component");
+				button.setDescription("Allows to edit the interface or refinements");
+				data.getDomainSpecificContextButtons().add(button);
+
+				break;
+			}
+		}
+		for (int i = 0; i < cf.length; i++) {
+			ICustomFeature iCustomFeature = cf[i];
+			if (iCustomFeature instanceof ReloadImportFeature) {
+				ContextButtonEntry button = new ContextButtonEntry((ReloadImportFeature) iCustomFeature, cc);
+				button.setText("Reload Import");
+				button.setDescription("Allows to update and reload the importted Components");
+				data.getDomainSpecificContextButtons().add(button);
+
+				break;
+			}
+		}
+		for (int i = 0; i < cf.length; i++) {
+			ICustomFeature iCustomFeature = cf[i];
+			if (iCustomFeature instanceof DeSynchronizeFeature) {
+				ContextButtonEntry button = new ContextButtonEntry((DeSynchronizeFeature) iCustomFeature, cc);
+				button.setText("DeSynch Component");
+				button.setDescription("Deletes the connection to the original");
+				data.getDomainSpecificContextButtons().add(button);
+
+				break;
+			}
+		}
 
 		return data;
 	}

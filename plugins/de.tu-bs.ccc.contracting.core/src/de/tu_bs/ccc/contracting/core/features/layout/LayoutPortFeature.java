@@ -3,18 +3,14 @@ package de.tu_bs.ccc.contracting.core.features.layout;
 import org.eclipse.graphiti.datatypes.IDimension;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.ILayoutFeature;
-import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.context.ILayoutContext;
 import org.eclipse.graphiti.features.impl.AbstractLayoutFeature;
-import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.algorithms.Image;
 import org.eclipse.graphiti.mm.algorithms.Rectangle;
 import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
-import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
-import org.eclipse.graphiti.services.IGaLayoutService;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.ui.services.GraphitiUi;
 import org.eclipse.graphiti.ui.services.IUiLayoutService;
@@ -22,7 +18,7 @@ import org.eclipse.graphiti.ui.services.IUiLayoutService;
 import de.tu_bs.ccc.contracting.Verification.DirectionType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.core.diagram.ContractModellingImageProvider;
-import de.tu_bs.ccc.contracting.core.features.AddPortFeature;
+import de.tu_bs.ccc.contracting.core.features.addFeature.AddPortFeature;
 
 public class LayoutPortFeature extends AbstractLayoutFeature implements ILayoutFeature {
 	private String imageID;
