@@ -65,7 +65,7 @@ public interface Ports extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.
-	 * The default value is <code>"INT"</code>.
+	 * The default value is <code>"DATA"</code>.
 	 * The literals are from the enumeration {@link de.tu_bs.ccc.contracting.Verification.PortType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -77,7 +77,7 @@ public interface Ports extends EObject {
 	 * @see de.tu_bs.ccc.contracting.Verification.PortType
 	 * @see #setType(PortType)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getPorts_Type()
-	 * @model default="INT"
+	 * @model default="DATA"
 	 * @generated
 	 */
 	PortType getType();
@@ -149,13 +149,13 @@ public interface Ports extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Module</em>' container reference.
-	 * @see #setModule(de.tu_bs.ccc.contracting.Verification.Module)
+	 * @see #setModule(Module)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getPorts_Module()
 	 * @see de.tu_bs.ccc.contracting.Verification.Module#getPorts
 	 * @model opposite="ports" required="true" transient="false"
 	 * @generated
 	 */
-	de.tu_bs.ccc.contracting.Verification.Module getModule();
+	Module getModule();
 
 	/**
 	 * Sets the value of the '{@link de.tu_bs.ccc.contracting.Verification.Ports#getModule <em>Module</em>}' container reference.
@@ -165,7 +165,7 @@ public interface Ports extends EObject {
 	 * @see #getModule()
 	 * @generated
 	 */
-	void setModule(de.tu_bs.ccc.contracting.Verification.Module value);
+	void setModule(Module value);
 
 	/**
 	 * Returns the value of the '<em><b>Inside Ports</b></em>' reference list.

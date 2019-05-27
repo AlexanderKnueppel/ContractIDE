@@ -14,6 +14,7 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
+import de.tu_bs.ccc.contracting.core.util.PortTypeManager;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
@@ -62,12 +63,16 @@ public class EditPortFeature extends AbstractCustomFeature {
 		// get all interfaces from all models
 		List<Interface> interfaces = CidlPersistenceManager.getIdlModels(CoreUtil.getCurrentProject()).stream()
 				.map(m -> ((Model) m).getInterfaces()).flatMap(i -> i.stream()).collect(Collectors.toList());
+		
+
+ 		// get all allowed java types for the ports
+		List<String> types = PortTypeManager.getTypes();
 
 		EditPortFeatureDialog dialog;
 		if (((Ports) object).getOuterDirection() == DirectionType.INTERNAL)
-			dialog = new EditConsumerPortFeatureDialog(shell, interfaces);
+			dialog = new EditConsumerPortFeatureDialog(shell, types, interfaces);
 		else
-			dialog = new EditProviderPortFeatureDialog(shell, interfaces);
+			dialog = new EditProviderPortFeatureDialog(shell, types, interfaces);
 		
 		IWorkbenchWindow window = PlatformUI.getWorkbench()
 	            .getActiveWorkbenchWindow();

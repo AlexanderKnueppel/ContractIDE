@@ -47,6 +47,7 @@ import de.tu_bs.ccc.contracting.core.features.guiFeatures.EditAbstractFeature;
 import de.tu_bs.ccc.contracting.core.features.guiFeatures.LayoutFeature;
 import de.tu_bs.ccc.contracting.core.features.guiFeatures.ViewpointVerificationFeature;
 import de.tu_bs.ccc.contracting.core.features.layout.LayoutDiagramFeature;
+import de.tu_bs.ccc.contracting.core.features.layout.LayoutPortFeature;
 import de.tu_bs.ccc.contracting.core.features.loading.AssignAbstractFeature;
 import de.tu_bs.ccc.contracting.core.features.loading.LoadModuleFeature;
 import de.tu_bs.ccc.contracting.core.features.move.MovePortFeature;
@@ -146,8 +147,10 @@ public class ContractModellingFeatureProvider extends DefaultFeatureProvider {
 		// TODO: check for right domain object instances below
 		PictogramElement pictogramElement = context.getPictogramElement();
 		Object bo = getBusinessObjectForPictogramElement(pictogramElement);
-		if (bo instanceof Ports || bo instanceof Module || bo instanceof Contract || bo instanceof System) {
+		if (bo instanceof Module || bo instanceof Contract || bo instanceof System) {
 			return new LayoutFeature(this);
+		} else if (bo instanceof Ports) {
+			return new LayoutPortFeature(this);
 		}
 		return super.getLayoutFeature(context);
 	}

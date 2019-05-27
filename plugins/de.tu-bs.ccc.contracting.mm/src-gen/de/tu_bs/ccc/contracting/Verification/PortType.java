@@ -19,46 +19,6 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum PortType implements Enumerator {
 	/**
-	 * The '<em><b>INT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INT(0, "INT", "INT"),
-
-	/**
-	 * The '<em><b>STRING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STRING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STRING(1, "STRING", "STRING"),
-
-	/**
-	 * The '<em><b>BOOLEAN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BOOLEAN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BOOLEAN(2, "BOOLEAN", "BOOLEAN"),
-
-	/**
-	 * The '<em><b>REAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #REAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	REAL(3, "REAL", "REAL"),
-
-	/**
 	 * The '<em><b>SERVICE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,67 +26,16 @@ public enum PortType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SERVICE(4, "SERVICE", "SERVICE");
-
+	SERVICE(2, "SERVICE", "SERVICE"),
 	/**
-	 * The '<em><b>INT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>INT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #INT
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int INT_VALUE = 0;
-
-	/**
-	 * The '<em><b>STRING</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>STRING</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #STRING
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int STRING_VALUE = 1;
-
-	/**
-	 * The '<em><b>BOOLEAN</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>BOOLEAN</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #BOOLEAN
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int BOOLEAN_VALUE = 2;
-
-	/**
-	 * The '<em><b>REAL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>REAL</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #REAL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int REAL_VALUE = 3;
+	* The '<em><b>DATA</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #DATA_VALUE
+	* @generated
+	* @ordered
+	*/
+	DATA(1, "DATA", "DATA");
 
 	/**
 	 * The '<em><b>SERVICE</b></em>' literal value.
@@ -141,7 +50,22 @@ public enum PortType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SERVICE_VALUE = 4;
+	public static final int SERVICE_VALUE = 2;
+
+	/**
+	 * The '<em><b>DATA</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>DATA</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #DATA
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DATA_VALUE = 1;
 
 	/**
 	 * An array of all the '<em><b>Port Type</b></em>' enumerators.
@@ -149,7 +73,7 @@ public enum PortType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final PortType[] VALUES_ARRAY = new PortType[] { INT, STRING, BOOLEAN, REAL, SERVICE, };
+	private static final PortType[] VALUES_ARRAY = new PortType[] { SERVICE, DATA, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Port Type</b></em>' enumerators.
@@ -205,16 +129,10 @@ public enum PortType implements Enumerator {
 	 */
 	public static PortType get(int value) {
 		switch (value) {
-		case INT_VALUE:
-			return INT;
-		case STRING_VALUE:
-			return STRING;
-		case BOOLEAN_VALUE:
-			return BOOLEAN;
-		case REAL_VALUE:
-			return REAL;
 		case SERVICE_VALUE:
 			return SERVICE;
+		case DATA_VALUE:
+			return DATA;
 		}
 		return null;
 	}

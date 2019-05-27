@@ -92,6 +92,8 @@ public class LayoutPortFeature extends AbstractLayoutFeature implements ILayoutF
 				(AddPortFeature.PORT_MIN_HEIGHT) / 2);
 		gaService.setLocationAndSize(type, x, AddPortFeature.PORT_MIN_HEIGHT / 2,
 				rectangle.getWidth() - AddPortFeature.PORT_ICON_WIDTH, (AddPortFeature.PORT_MIN_HEIGHT) / 2);
+		
+		System.out.println("Hello");
 
 		anythingChanged = true;
 

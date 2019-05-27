@@ -12,6 +12,7 @@ import de.tu_bs.ccc.contracting.Verification.Filter;
 import de.tu_bs.ccc.contracting.Verification.Function;
 import de.tu_bs.ccc.contracting.Verification.Guarantee;
 import de.tu_bs.ccc.contracting.Verification.MmPackage;
+import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.ModuleType;
 import de.tu_bs.ccc.contracting.Verification.Mux;
 import de.tu_bs.ccc.contracting.Verification.Ports;
@@ -81,7 +82,7 @@ public class MmSwitch<T> extends Switch<T> {
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
 		case MmPackage.MODULE: {
-			de.tu_bs.ccc.contracting.Verification.Module module = (de.tu_bs.ccc.contracting.Verification.Module) theEObject;
+			Module module = (Module) theEObject;
 			T result = caseModule(module);
 			if (result == null)
 				result = defaultCase(theEObject);
@@ -235,7 +236,7 @@ public class MmSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModule(de.tu_bs.ccc.contracting.Verification.Module object) {
+	public T caseModule(Module object) {
 		return null;
 	}
 
