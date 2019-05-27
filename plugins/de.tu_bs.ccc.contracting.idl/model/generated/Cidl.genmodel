@@ -73,14 +73,17 @@
     </genClasses>
     <genClasses ecoreClass="Cidl.ecore#//SpecificationBlock">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cidl.ecore#//SpecificationBlock/comment"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cidl.ecore#//SpecificationBlock/req"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cidl.ecore#//SpecificationBlock/ens"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cidl.ecore#//SpecificationBlock/contracts"/>
+    </genClasses>
+    <genClasses ecoreClass="Cidl.ecore#//ContractPair">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cidl.ecore#//ContractPair/req"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cidl.ecore#//ContractPair/ens"/>
     </genClasses>
     <genClasses ecoreClass="Cidl.ecore#//Requires">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cidl.ecore#//Requires/expr"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cidl.ecore#//Requires/expr"/>
     </genClasses>
     <genClasses ecoreClass="Cidl.ecore#//Ensures">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cidl.ecore#//Ensures/expr"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cidl.ecore#//Ensures/expr"/>
     </genClasses>
     <genClasses ecoreClass="Cidl.ecore#//Method">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cidl.ecore#//Method/comment"/>

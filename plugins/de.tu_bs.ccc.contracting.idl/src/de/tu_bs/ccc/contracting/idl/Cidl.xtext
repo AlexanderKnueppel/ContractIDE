@@ -83,7 +83,7 @@ Attribute:
 SpecificationBlock:
 	{SpecificationBlock}
 	(comment=AnnotationBlock)?
-	'functional' '{'
+	'contract' '{'
 		(contracts+=ContractPair)
 		('also'
 			contracts+=ContractPair
@@ -98,12 +98,52 @@ ContractPair:
 ;
 
 Requires:
-	'requires' ':' (expr=LogicalOrExpression) ';'
+	'requires' ':' (expr=ContractExpression) ';'
 ;
 
 Ensures:
-	'ensures' ':' (expr=LogicalOrExpression) ';'
+	'ensures' ':' (expr=ContractExpression) ';'
 ;
+
+ContractExpression:
+	STRING
+;
+
+//ContractExpression :
+//  ContractAssigmentExpression;
+//  
+//ContractAssigmentExpression:
+//	ContractConditionalExpression (ContractAssignmentOperator assignments=ContractAssigmentExpression)?
+//;
+//
+//ContractAssignmentOperator:
+//	'=' | '+=' | '-=' | '*=' | '/=' | '%=' | '>>='  
+//        | '>>>=' | '<<=' | '&=' | '`|=\'' | '^='
+//;
+//
+//ContractConditionalExpression:
+//	ContractEquivalenceExpression ('?' exprIF=ContractConditionalExpression ':' exprThen=ContractConditionalExpression)
+//;
+//
+//ContractEquivalenceExpression:
+//	ContractImpliesExpression (ContractEquivalenceOperator implies+=ContractImpliesExpression)*
+//;
+//
+//ContractEquivalenceOperator:
+//	'<==>' | '<=!=>'
+//;
+//
+//ContractImpliesExpression:
+//	exprFirst=LogicalOrExpression ('==>' exprSecond=ContractImpliesNonBackwardExpression)?
+//	| exprFirst=LogicalOrExpression '<==' exprSecond=LogicalOrExpression ('<==' expr+=LogicalOrExpression)*
+//;
+//
+//ContractImpliesNonBackwardExpression:
+//	LogicalOrExpression ('==>' expr=ContractImpliesNonBackwardExpression)?
+//;
+
+
+
 
 // **************************************************************
 // methods / broadcasts
