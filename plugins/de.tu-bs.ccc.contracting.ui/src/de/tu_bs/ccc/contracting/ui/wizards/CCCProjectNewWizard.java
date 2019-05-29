@@ -69,6 +69,7 @@ public class CCCProjectNewWizard extends Wizard implements INewWizard {
 			IFolder srcFolder = project.getFolder("src");
 			IFolder systemFolder = project.getFolder("src/system");
 			IFolder repositoryFolder = project.getFolder("src/repository");
+			IFolder servicesFolder = project.getFolder("src/services");
 			try {
 				if (!project.exists()) {
 					project.create(null);
@@ -80,6 +81,9 @@ public class CCCProjectNewWizard extends Wizard implements INewWizard {
 				}
 				if (!repositoryFolder.exists()) {
 					repositoryFolder.create(false, true, null);
+				}
+				if (!servicesFolder.exists()) {
+					servicesFolder.create(false, true, null);
 				}
 				if (!systemFolder.exists()) {
 					systemFolder.create(false, true, null);
