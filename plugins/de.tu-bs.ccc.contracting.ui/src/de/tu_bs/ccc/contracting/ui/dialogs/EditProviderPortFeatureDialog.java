@@ -23,8 +23,8 @@ public class EditProviderPortFeatureDialog extends EditPortFeatureDialog {
 	private int currentMaxClients;
 	private int currentProviderType;
 
-	public EditProviderPortFeatureDialog(Shell parentShell, List<Interface> interfaces) {
-		super(parentShell, interfaces);
+	public EditProviderPortFeatureDialog(Shell parentShell, List<String> types, List<Interface> interfaces) {
+		super(parentShell, types, interfaces);
 	}
 
 	protected void createMaxClients(Composite container) {
@@ -34,6 +34,7 @@ public class EditProviderPortFeatureDialog extends EditPortFeatureDialog {
 		GridData dataName = new GridData();
 		dataName.grabExcessHorizontalSpace = true;
 		dataName.horizontalAlignment = GridData.FILL;
+		dataName.horizontalSpan = 2;
 		
 		portMaxClients = new Text(container, SWT.BORDER);
 		portMaxClients.setLayoutData(dataName);
@@ -51,10 +52,12 @@ public class EditProviderPortFeatureDialog extends EditPortFeatureDialog {
 
 		GridData dataName = new GridData();
 		dataName.grabExcessHorizontalSpace = true;
-		dataName.horizontalAlignment = GridData.FILL;
+		dataName.horizontalAlignment = GridData.BEGINNING;
+		dataName.horizontalSpan = 2;
 
 		comboProviderType.setItems(items);
 		comboProviderType.select(currentProviderType);
+		comboProviderType.setLayoutData(dataName);
 	}
 	
 	protected void createAdditionalControls(Composite container) {

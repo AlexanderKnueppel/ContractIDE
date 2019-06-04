@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Verification="http://www.example.org/contractVerificationMM" xmlns:al="http://eclipse.org/graphiti/mm/algorithms" xmlns:pi="http://eclipse.org/graphiti/mm/pictograms">
+  <pi:Diagram visible="true" gridUnit="10" diagramTypeId="ContractModelling" name="factorial.cide" snapToGrid="true" pictogramLinks="/0/@children.0/@link /0/@children.0/@children.1/@link /0/@children.0/@children.2/@link /0/@children.0/@children.3/@link /0/@children.0/@children.4/@link /0/@children.1/@link" version="0.14.0">
+    <graphicsAlgorithm xsi:type="al:Rectangle" background="/0/@colors.1" foreground="/0/@colors.0" lineWidth="1" transparency="0.0" width="1000" height="1000"/>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="/0/@colors.3" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="192" height="162" x="100" y="100" cornerHeight="5" cornerWidth="5"/>
+      <link>
+        <businessObjects href="/MathStuff/src/repository/factorial.model#/"/>
+      </link>
+      <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="/0/@connections.0"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.2" lineWidth="2" filled="false" transparency="0.0">
+          <points y="20"/>
+          <points x="192" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="192" height="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="factorial   1.0"/>
+        <link>
+          <businessObjects href="/MathStuff/src/repository/factorial.model#/"/>
+        </link>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Rectangle" background="/0/@colors.1" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="92" height="40" y="40">
+          <graphicsAlgorithmChildren xsi:type="al:Image" lineWidth="1" transparency="0.0" width="15" height="15" y="13" id="de.tu-bs.ccc.contracting.core.port.input" stretchH="true" stretchV="true" proportional="false"/>
+        </graphicsAlgorithm>
+        <link>
+          <businessObjects href="/MathStuff/src/repository/factorial.model#//@ports.0"/>
+        </link>
+        <anchors xsi:type="pi:ChopboxAnchor"/>
+        <children visible="true">
+          <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="77" height="20" x="15" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="math : IMath"/>
+        </children>
+        <children visible="true">
+          <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.5" lineWidth="1" filled="false" transparency="0.0" width="77" height="20" x="15" y="20" font="/0/@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="SERVICE"/>
+        </children>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Rectangle" background="/0/@colors.1" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="80" height="40" y="100">
+          <graphicsAlgorithmChildren xsi:type="al:Image" lineWidth="1" transparency="0.0" width="15" height="15" y="13" id="de.tu-bs.ccc.contracting.core.port.input" stretchH="true" stretchV="true" proportional="false"/>
+        </graphicsAlgorithm>
+        <link>
+          <businessObjects href="/MathStuff/src/repository/factorial.model#//@ports.1"/>
+        </link>
+        <anchors xsi:type="pi:ChopboxAnchor"/>
+        <children visible="true">
+          <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="65" height="20" x="15" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="v"/>
+        </children>
+        <children visible="true">
+          <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.5" lineWidth="1" filled="false" transparency="0.0" width="65" height="20" x="15" y="20" font="/0/@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="int"/>
+        </children>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Rectangle" background="/0/@colors.1" foreground="/0/@colors.2" lineWidth="2" transparency="0.0" width="80" height="40" x="112" y="40">
+          <graphicsAlgorithmChildren xsi:type="al:Image" lineWidth="1" transparency="0.0" width="15" height="15" x="65" y="13" id="de.tu-bs.ccc.contracting.core.port.output" stretchH="true" stretchV="true" proportional="false"/>
+        </graphicsAlgorithm>
+        <link>
+          <businessObjects href="/MathStuff/src/repository/factorial.model#//@ports.2"/>
+        </link>
+        <anchors xsi:type="pi:ChopboxAnchor"/>
+        <children visible="true">
+          <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="65" height="20" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="result"/>
+        </children>
+        <children visible="true">
+          <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.5" lineWidth="1" filled="false" transparency="0.0" width="65" height="20" y="20" font="/0/@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="int"/>
+        </children>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" background="/0/@colors.7" foreground="/0/@colors.6" lineWidth="2" transparency="0.0" width="181" height="111" x="322" y="111" cornerHeight="5" cornerWidth="5"/>
+      <link>
+        <businessObjects href="/MathStuff/src/repository/factorial.model#//@contract.0"/>
+      </link>
+      <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="/0/@connections.0"/>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.6" lineWidth="2" filled="false" transparency="0.0">
+          <points y="20"/>
+          <points x="181" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" background="/0/@colors.8" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="181" height="20" font="/0/@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="FUNCTIONAL"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="181" height="30" x="3" y="15" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="Assumptions"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="181" height="45" y="30" horizontalAlignment="ALIGNMENT_CENTER" value="v >= 0"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="181" height="60" y="45" font="/0/@fonts.0" horizontalAlignment="ALIGNMENT_CENTER" value="Guarantees"/>
+      </children>
+      <children visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" foreground="/0/@colors.4" lineWidth="1" filled="false" transparency="0.0" width="181" height="75" x="3" y="60" horizontalAlignment="ALIGNMENT_CENTER" value="result == math.factorial(v)"/>
+      </children>
+    </children>
+    <connections xsi:type="pi:ManhattanConnection" visible="true" active="true" start="/0/@children.1/@anchors.0" end="/0/@children.0/@anchors.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" foreground="/0/@colors.4" lineWidth="3" lineStyle="UNSPECIFIED"/>
+      <connectionDecorators visible="true" locationRelative="true" location="1.0"/>
+    </connections>
+    <colors red="227" green="238" blue="249"/>
+    <colors red="255" green="255" blue="255"/>
+    <colors red="98" green="131" blue="167"/>
+    <colors red="187" green="218" blue="247"/>
+    <colors/>
+    <colors blue="255"/>
+    <colors red="192" green="40" blue="30"/>
+    <colors red="240" green="80" blue="60"/>
+    <colors red="180" green="180" blue="180"/>
+    <fonts name="Arial" size="8" bold="true"/>
+    <fonts name="Arial" size="8" italic="true" bold="true"/>
+  </pi:Diagram>
+  <Verification:Component/>
+</xmi:XMI>

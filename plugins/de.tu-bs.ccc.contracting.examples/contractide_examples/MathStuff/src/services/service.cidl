@@ -1,0 +1,139 @@
+package services
+
+interface IMath {
+	version {
+		major 0
+		minor 1		
+	}
+	
+	method abs {
+	 	contract {
+			requires: "true";
+			ensures: "(a >= 0 => res == a) && (a < 0 ==> res == (-1)*a)";
+	 	}
+	 	in {
+			UInt32 a
+		}
+		out {
+			UInt32 res
+		}
+	}
+	
+	method isqrt {
+	 	contract {
+			requires: "y>=0";
+			ensures: "IMath.abs(res) <= y
+					  && res * res <= y
+					  && y < (IMath.abs(res) + 1) * (IMath.abs(res) + 1)";
+	 	}
+	 	in {
+			UInt32 y
+		}
+		out {
+			UInt32 res
+		}
+	}
+	
+	method max_array {
+	 	contract {
+			requires: "true";
+			ensures: "res == (\max int i; 0 <= i && i < arr.length; arr[i])";
+	 	}
+	 	in {
+			UInt32[] arr
+		}
+		out {
+			UInt32 res
+		}
+	}
+	
+	method max {
+	 	contract {
+			requires: "a<b";
+			ensures: "res==b";
+			also
+			requires: "a>=b";
+			ensures: "res==a";
+	 	}
+	 	in {
+	 		
+			UInt32 a
+			UInt32 b
+		}
+		out {
+			UInt32 res
+		}
+	}
+
+	method min {
+	 	contract {
+			requires: "true";
+			ensures: "(a<b ==> res==b) && (a>=b ==> res==a)";
+	 	}
+		in {
+			UInt32 i1
+			UInt32 i2
+		}
+		out {
+			Boolean res
+		}
+	}
+	
+	
+	
+	method sum {
+	 	contract {
+			requires: "true";
+			ensures: "res == (\sum int i; 0 <= i && i < arr.length; arr[i]);";
+	 	}
+		in {
+			UInt32[] arr
+		}
+		out {
+			UInt32 res
+		}
+	}
+	
+	method product {
+	 	contract {
+			requires: "true";
+			ensures: "res == (\product int i; 0 <= i && i < arr.length; arr[i]);";
+	 	}
+		in {
+			UInt32[] arr
+		}
+		out {
+			UInt32 res
+		}
+	}
+	
+	method exp {
+	 	contract {
+			requires: "n>0";
+			ensures: "res == (\product int i; 0 <= i && i < n; a);";
+	 	}
+		in {
+			UInt32 a
+			UInt32 n
+		}
+		out {
+			UInt32 res
+		}
+	}
+	
+	method factorial {
+	 	contract {
+			requires: "n>0";
+			ensures: "res == (\product int i; 0 < i && i <= n; n);";
+			also
+			requires: "n == 0";
+			ensures: "res == 1";
+	 	}
+		in {
+			UInt32 n
+		}
+		out {
+			UInt32 res
+		}
+	}
+}

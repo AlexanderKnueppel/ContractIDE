@@ -8,6 +8,8 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.ui.IViewReference;
 import org.eclipse.ui.PlatformUI;
 
+import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.ui.views.enviromentalView.EnviromentalView;
 import de.tu_bs.ccc.contracting.ui.views.verification.VerificationTopElement;
 import de.tu_bs.ccc.contracting.ui.views.verification.VerificationView;
@@ -25,8 +27,11 @@ public class ViewUtil {
 				view.refresh();
 			} else if (iViewReference.getId().equals("contractide.views.envprops")) {
 				TableViewer view = ((EnviromentalView) iViewReference.getView(true)).getViewer();
-				if (view.getInput() == null || !view.getInput().equals(obj)) {
+				if (view.getInput() == null || !view.getInput().equals(obj)&&obj instanceof Module) {
 					view.setInput(obj);
+				}
+				else if (view.getInput() == null || !view.getInput().equals(obj)&&obj instanceof Ports) {
+					view.setInput(((Ports) obj).getModule());
 				}
 				view.refresh();
 			}

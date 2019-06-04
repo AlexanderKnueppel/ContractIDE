@@ -437,6 +437,7 @@
     <wizard
           category="de.tu-bs.ccc.contracting.ui.wizards"
           class="de.tu_bs.ccc.contracting.idl.ui.wizards.CidlWizard"
+          icon="icons/service-interface.png"
           id="de.tu_bs.ccc.contracting.idl.ui.file"
           name="Service Description">
     </wizard>

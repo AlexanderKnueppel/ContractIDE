@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <projectRecords>
 	<project name="FileSystem" path="contractide_examples/FileSystem/.project"/>
+	<project name="MathStuff" path="contractide_examples/MathStuff/.project"/>
 </projectRecords>

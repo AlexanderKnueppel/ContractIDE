@@ -97,7 +97,7 @@ public class AddPortFeature extends AbstractAddFeature {
 
 			// Port Type
 			Shape shape2 = peCreateService.createShape(containerShape, false);
-			Text text2 = gaService.createText(shape2, addedClass.getType().toString());
+			Text text2 = gaService.createText(shape2, addedClass.getService().toString());
 			text2.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 			// vertical alignment has as default value "center"
 			text2.setFont(gaService.manageDefaultFont(getDiagram(), true, true));

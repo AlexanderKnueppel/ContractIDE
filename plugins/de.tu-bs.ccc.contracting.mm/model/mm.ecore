@@ -61,7 +61,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"
         defaultValueLiteral=""/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//PortType"
-        defaultValueLiteral="INT"/>
+        defaultValueLiteral="DATA"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ports" upperBound="-1"
         eType="#//Ports" eOpposite="#//Ports/portseOpposite"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="portseOpposite" eType="#//Ports"
@@ -88,11 +88,8 @@
         defaultValueLiteral="NATIVE"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="PortType">
-    <eLiterals name="INT" literal="INT"/>
-    <eLiterals name="STRING" value="1"/>
-    <eLiterals name="BOOLEAN" value="2"/>
-    <eLiterals name="REAL" value="3"/>
-    <eLiterals name="SERVICE" value="4"/>
+    <eLiterals name="SERVICE" value="2"/>
+    <eLiterals name="DATA" value="1" literal="DATA"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ContractProperty">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyTipe" eType="#//PropertyType"

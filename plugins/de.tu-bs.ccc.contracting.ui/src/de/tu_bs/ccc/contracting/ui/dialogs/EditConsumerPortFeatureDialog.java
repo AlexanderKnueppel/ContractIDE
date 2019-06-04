@@ -37,8 +37,8 @@ public class EditConsumerPortFeatureDialog extends EditPortFeatureDialog {
 	private String currentLabel;
 	private String currentFunction;
 
-	public EditConsumerPortFeatureDialog(Shell parentShell, List<Interface> interfaces) {
-		super(parentShell, interfaces);
+	public EditConsumerPortFeatureDialog(Shell parentShell, List<String> types, List<Interface> interfaces) {
+		super(parentShell, types, interfaces);
 	}
 
 	private void createFunction(Composite container) {
@@ -48,6 +48,7 @@ public class EditConsumerPortFeatureDialog extends EditPortFeatureDialog {
 		GridData dataName = new GridData();
 		dataName.grabExcessHorizontalSpace = true;
 		dataName.horizontalAlignment = GridData.FILL;
+		dataName.horizontalSpan = 2;
 
 		portFunction = new Text(container, SWT.BORDER);
 		portFunction.setLayoutData(dataName);
@@ -61,6 +62,7 @@ public class EditConsumerPortFeatureDialog extends EditPortFeatureDialog {
 		GridData dataName = new GridData();
 		dataName.grabExcessHorizontalSpace = true;
 		dataName.horizontalAlignment = GridData.FILL;
+		dataName.horizontalSpan = 2;
 
 		portLabel = new Text(container, SWT.BORDER);
 		portLabel.setLayoutData(dataName);

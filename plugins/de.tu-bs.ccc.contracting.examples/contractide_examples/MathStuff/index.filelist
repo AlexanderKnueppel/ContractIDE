@@ -1,0 +1,6 @@
+.project
+src/repository/factorial.cide
+src/repository/factorial.model
+src/repository/MATH.cide
+src/repository/MATH.model
+src/services/service.cidl

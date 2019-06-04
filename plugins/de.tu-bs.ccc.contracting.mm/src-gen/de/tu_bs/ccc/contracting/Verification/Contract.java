@@ -64,13 +64,13 @@ public interface Contract extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Module</em>' container reference.
-	 * @see #setModule(de.tu_bs.ccc.contracting.Verification.Module)
+	 * @see #setModule(Module)
 	 * @see de.tu_bs.ccc.contracting.Verification.MmPackage#getContract_Module()
 	 * @see de.tu_bs.ccc.contracting.Verification.Module#getContract
 	 * @model opposite="contract" required="true" transient="false"
 	 * @generated
 	 */
-	de.tu_bs.ccc.contracting.Verification.Module getModule();
+	Module getModule();
 
 	/**
 	 * Sets the value of the '{@link de.tu_bs.ccc.contracting.Verification.Contract#getModule <em>Module</em>}' container reference.
@@ -80,7 +80,7 @@ public interface Contract extends EObject {
 	 * @see #getModule()
 	 * @generated
 	 */
-	void setModule(de.tu_bs.ccc.contracting.Verification.Module value);
+	void setModule(Module value);
 
 	/**
 	 * Returns the value of the '<em><b>View Point</b></em>' attribute.

@@ -213,7 +213,7 @@ public class ContractPropertyImpl extends MinimalEObjectImpl.Container implement
 		if (eIsProxy())
 			return super.toString();
 
-		StringBuilder result = new StringBuilder(super.toString());
+		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (propertyTipe: ");
 		result.append(propertyTipe);
 		result.append(", property: ");

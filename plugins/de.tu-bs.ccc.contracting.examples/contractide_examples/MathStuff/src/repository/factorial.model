@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Verification:Component xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Verification="http://www.example.org/contractVerificationMM" name="factorial">
+  <ports name="math" type="SERVICE" service="IMath"/>
+  <ports name="v" service="int"/>
+  <ports name="result" service="int" OuterDirection="EXTERNAL"/>
+  <contract>
+    <assumption property="v >= 0"/>
+    <guarantee property="result == math.factorial(v)"/>
+  </contract>
+  <moduleType xsi:type="Verification:Function"/>
+</Verification:Component>

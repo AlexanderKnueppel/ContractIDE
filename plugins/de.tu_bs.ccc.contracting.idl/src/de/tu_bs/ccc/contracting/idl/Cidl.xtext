@@ -78,6 +78,72 @@ Attribute:
 		)
 	;
 
+// **************************************************************
+// specifications
+SpecificationBlock:
+	{SpecificationBlock}
+	(comment=AnnotationBlock)?
+	'contract' '{'
+		(contracts+=ContractPair)
+		('also'
+			contracts+=ContractPair
+		)*
+	'}'
+;
+
+ContractPair:
+	{ContractPair} 
+	(req+=Requires)*
+	(ens+=Ensures)*
+;
+
+Requires:
+	'requires' ':' (expr=ContractExpression) ';'
+;
+
+Ensures:
+	'ensures' ':' (expr=ContractExpression) ';'
+;
+
+ContractExpression:
+	STRING
+;
+
+//ContractExpression :
+//  ContractAssigmentExpression;
+//  
+//ContractAssigmentExpression:
+//	ContractConditionalExpression (ContractAssignmentOperator assignments=ContractAssigmentExpression)?
+//;
+//
+//ContractAssignmentOperator:
+//	'=' | '+=' | '-=' | '*=' | '/=' | '%=' | '>>='  
+//        | '>>>=' | '<<=' | '&=' | '`|=\'' | '^='
+//;
+//
+//ContractConditionalExpression:
+//	ContractEquivalenceExpression ('?' exprIF=ContractConditionalExpression ':' exprThen=ContractConditionalExpression)
+//;
+//
+//ContractEquivalenceExpression:
+//	ContractImpliesExpression (ContractEquivalenceOperator implies+=ContractImpliesExpression)*
+//;
+//
+//ContractEquivalenceOperator:
+//	'<==>' | '<=!=>'
+//;
+//
+//ContractImpliesExpression:
+//	exprFirst=LogicalOrExpression ('==>' exprSecond=ContractImpliesNonBackwardExpression)?
+//	| exprFirst=LogicalOrExpression '<==' exprSecond=LogicalOrExpression ('<==' expr+=LogicalOrExpression)*
+//;
+//
+//ContractImpliesNonBackwardExpression:
+//	LogicalOrExpression ('==>' expr=ContractImpliesNonBackwardExpression)?
+//;
+
+
+
 
 // **************************************************************
 // methods / broadcasts
@@ -87,6 +153,7 @@ Method returns Method:
 	(comment=AnnotationBlock)?
 	'method' name=ID (':' selector=ID)? (fireAndForget?='fireAndForget')?
 	'{'
+		(spec=SpecificationBlock)?
 		('in' '{' (inArgs+=Argument)* '}' )?
 		('out' '{' (outArgs+=Argument)* '}' )?
 		(

@@ -65,6 +65,6 @@ public interface System extends EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<de.tu_bs.ccc.contracting.Verification.Module> getConsistsOf();
+	EList<Module> getConsistsOf();
 
 } // System

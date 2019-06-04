@@ -15,6 +15,7 @@ import de.tu_bs.ccc.contracting.Verification.Function;
 import de.tu_bs.ccc.contracting.Verification.Guarantee;
 import de.tu_bs.ccc.contracting.Verification.MmFactory;
 import de.tu_bs.ccc.contracting.Verification.MmPackage;
+import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.ModuleType;
 import de.tu_bs.ccc.contracting.Verification.Mux;
 import de.tu_bs.ccc.contracting.Verification.PortType;
@@ -232,7 +233,7 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 *
+	 * 
 	 * <p>This method is used to initialize {@link MmPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -247,9 +248,9 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 			return (MmPackage) EPackage.Registry.INSTANCE.getEPackage(MmPackage.eNS_URI);
 
 		// Obtain or create and register package
-		Object registeredMmPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
-		MmPackageImpl theMmPackage = registeredMmPackage instanceof MmPackageImpl ? (MmPackageImpl) registeredMmPackage
-				: new MmPackageImpl();
+		MmPackageImpl theMmPackage = (MmPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof MmPackageImpl
+				? EPackage.Registry.INSTANCE.get(eNS_URI)
+				: new MmPackageImpl());
 
 		isInited = true;
 
@@ -1223,50 +1224,42 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 		functionEClass.getESuperTypes().add(this.getModuleType());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(moduleEClass, de.tu_bs.ccc.contracting.Verification.Module.class, "Module", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getModule_Name(), ecorePackage.getEString(), "name", "", 0, 1,
-				de.tu_bs.ccc.contracting.Verification.Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(moduleEClass, Module.class, "Module", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getModule_Name(), ecorePackage.getEString(), "name", "", 0, 1, Module.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModule_IsPartOf(), this.getCompound(), this.getCompound_ConsistsOf(), "isPartOf", null, 0, 1,
-				de.tu_bs.ccc.contracting.Verification.Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModule_RealizedBy(), this.getAbstract(), this.getAbstract_Realizes(), "realizedBy", null, 0,
-				-1, de.tu_bs.ccc.contracting.Verification.Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getModule_Description(), ecorePackage.getEString(), "description", "\"\"", 0, 1,
-				de.tu_bs.ccc.contracting.Verification.Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModule_Ports(), this.getPorts(), this.getPorts_Module(), "ports", null, 0, -1,
-				de.tu_bs.ccc.contracting.Verification.Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				-1, Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModule_Description(), ecorePackage.getEString(), "description", "\"\"", 0, 1, Module.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModule_Ports(), this.getPorts(), this.getPorts_Module(), "ports", null, 0, -1, Module.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModule_Contract(), this.getContract(), this.getContract_Module(), "contract", null, 0, -1,
-				de.tu_bs.ccc.contracting.Verification.Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModule_Module(), this.getModule(), null, "module", null, 0, 1,
-				de.tu_bs.ccc.contracting.Verification.Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getModule_Version(), ecorePackage.getEString(), "version", "1.0", 0, 1,
-				de.tu_bs.ccc.contracting.Verification.Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getModule_Rte(), ecorePackage.getEString(), "rte", "", 0, 1,
-				de.tu_bs.ccc.contracting.Verification.Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getModule_Spec(), ecorePackage.getEString(), "spec", "", 0, 1,
-				de.tu_bs.ccc.contracting.Verification.Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getModule_Ram(), ecorePackage.getEBigInteger(), "ram", "-1", 0, 1,
-				de.tu_bs.ccc.contracting.Verification.Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getModule_Caps(), ecorePackage.getEBigInteger(), "caps", "-1", 0, 1,
-				de.tu_bs.ccc.contracting.Verification.Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModule_ModuleType(), this.getModuleType(), null, "moduleType", null, 1, 1,
-				de.tu_bs.ccc.contracting.Verification.Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModule_Module(), this.getModule(), null, "module", null, 0, 1, Module.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getModule_Version(), ecorePackage.getEString(), "version", "1.0", 0, 1, Module.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModule_Rte(), ecorePackage.getEString(), "rte", "", 0, 1, Module.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModule_Spec(), ecorePackage.getEString(), "spec", "", 0, 1, Module.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModule_Ram(), ecorePackage.getEBigInteger(), "ram", "-1", 0, 1, Module.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getModule_Caps(), ecorePackage.getEBigInteger(), "caps", "-1", 0, 1, Module.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModule_ModuleType(), this.getModuleType(), null, "moduleType", null, 1, 1, Module.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModule_EnviromentalProperties(), this.getProperty(), null, "EnviromentalProperties", null, 0,
-				-1, de.tu_bs.ccc.contracting.Verification.Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				-1, Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(abstractEClass, Abstract.class, "Abstract", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -1307,7 +1300,7 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 		initEClass(portsEClass, Ports.class, "Ports", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPorts_Name(), theXMLTypePackage.getString(), "name", "", 0, 1, Ports.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPorts_Type(), this.getPortType(), "type", "INT", 0, 1, Ports.class, !IS_TRANSIENT,
+		initEAttribute(getPorts_Type(), this.getPortType(), "type", "DATA", 0, 1, Ports.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPorts_Ports(), this.getPorts(), this.getPorts_PortseOpposite(), "ports", null, 0, -1,
 				Ports.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
@@ -1414,11 +1407,8 @@ public class MmPackageImpl extends EPackageImpl implements MmPackage {
 
 		// Initialize enums and add enum literals
 		initEEnum(portTypeEEnum, PortType.class, "PortType");
-		addEEnumLiteral(portTypeEEnum, PortType.INT);
-		addEEnumLiteral(portTypeEEnum, PortType.STRING);
-		addEEnumLiteral(portTypeEEnum, PortType.BOOLEAN);
-		addEEnumLiteral(portTypeEEnum, PortType.REAL);
 		addEEnumLiteral(portTypeEEnum, PortType.SERVICE);
+		addEEnumLiteral(portTypeEEnum, PortType.DATA);
 
 		initEEnum(viewPointEEnum, ViewPoint.class, "ViewPoint");
 		addEEnumLiteral(viewPointEEnum, ViewPoint.FUNCTIONAL);

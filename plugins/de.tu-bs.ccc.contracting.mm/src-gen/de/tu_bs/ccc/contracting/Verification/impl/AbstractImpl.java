@@ -4,6 +4,7 @@ package de.tu_bs.ccc.contracting.Verification.impl;
 
 import de.tu_bs.ccc.contracting.Verification.Abstract;
 import de.tu_bs.ccc.contracting.Verification.MmPackage;
+import de.tu_bs.ccc.contracting.Verification.Module;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -38,7 +39,7 @@ public class AbstractImpl extends ModuleImpl implements Abstract {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<de.tu_bs.ccc.contracting.Verification.Module> realizes;
+	protected EList<Module> realizes;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -65,11 +66,10 @@ public class AbstractImpl extends ModuleImpl implements Abstract {
 	 * @generated
 	 */
 	@Override
-	public EList<de.tu_bs.ccc.contracting.Verification.Module> getRealizes() {
+	public EList<Module> getRealizes() {
 		if (realizes == null) {
-			realizes = new EObjectWithInverseResolvingEList.ManyInverse<de.tu_bs.ccc.contracting.Verification.Module>(
-					de.tu_bs.ccc.contracting.Verification.Module.class, this, MmPackage.ABSTRACT__REALIZES,
-					MmPackage.MODULE__REALIZED_BY);
+			realizes = new EObjectWithInverseResolvingEList.ManyInverse<Module>(Module.class, this,
+					MmPackage.ABSTRACT__REALIZES, MmPackage.MODULE__REALIZED_BY);
 		}
 		return realizes;
 	}
@@ -128,7 +128,7 @@ public class AbstractImpl extends ModuleImpl implements Abstract {
 		switch (featureID) {
 		case MmPackage.ABSTRACT__REALIZES:
 			getRealizes().clear();
-			getRealizes().addAll((Collection<? extends de.tu_bs.ccc.contracting.Verification.Module>) newValue);
+			getRealizes().addAll((Collection<? extends Module>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

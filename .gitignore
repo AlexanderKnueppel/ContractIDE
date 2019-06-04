@@ -36,3 +36,4 @@ test-bin/
 # Plugin stuff
 plugins/de.tu-bs.ccc.contracting.core/libs/z3
 plugins/de.tu-bs.ccc.contracting.core/libs/*.jar
+/ContractIDE-eclipse-update-site/
