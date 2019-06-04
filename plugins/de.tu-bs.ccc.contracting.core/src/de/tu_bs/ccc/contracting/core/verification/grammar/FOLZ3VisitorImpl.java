@@ -93,19 +93,24 @@ public class FOLZ3VisitorImpl implements FOLZ3Visitor<String> {
 	@Override
 	public String visitFormula(FormulaContext ctx) {
 		if (ctx.FORALL() != null && ctx.formula().get(0)!=null) {
-			String ret = MessageFormat.format("forall ((Int {0})) (-> {1} {2})", ctx.VARIABLE().getText(),
+			String ret = MessageFormat.format("(forall (({0} Int)) (=> {1} {2}))", ctx.VARIABLE().getText(),
 					visitFormula(ctx.formula().get(0)), visitFormula(ctx.formula().get(1)));
 
 			return ret;
-		}
+		}else if (ctx.FORALL() != null && ctx.formula().get(0)==null) {
+			String ret = MessageFormat.format("(forall (({0} Int)) ({1}))", ctx.VARIABLE().getText(),
+					visitFormula(ctx.formula().get(1)));
+
+			return ret;
+			}
 
 		if (ctx.EXISTS() != null && ctx.formula().get(0)!=null) {
-			String ret = MessageFormat.format("forall ((Int {0})) (-> {1} {2})", ctx.VARIABLE().getText(),
+			String ret = MessageFormat.format("(exists (({0} Int)) (=> {1} {2}))", ctx.VARIABLE().getText(),
 					visitFormula(ctx.formula().get(0)), visitFormula(ctx.formula().get(1)));
 
 			return ret;
 		}else if (ctx.EXISTS() != null && ctx.formula().get(0)==null) {
-			String ret = MessageFormat.format("forall ((Int {0})) ({1})", ctx.VARIABLE().getText(),
+			String ret = MessageFormat.format("(exists (({0} Int)) ({1}))", ctx.VARIABLE().getText(),
 					visitFormula(ctx.formula().get(1)));
 
 			return ret;
