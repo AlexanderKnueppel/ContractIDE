@@ -1,7 +1,7 @@
 grammar FOLZ3;
 
 @header {
-	package de.tu_bs.ccc.contracting.core.grammar;
+	package de.tu_bs.ccc.contracting.core.verification.grammar;
 
 }
 
@@ -13,8 +13,14 @@ condition
 formula
 :
 	connectiveformula
-	| FORALL LPAREN VARIABLE RPAREN formula
-	| EXISTS LPAREN VARIABLE RPAREN formula
+	| FORALL LPAREN VARIABLE
+	(
+		',' formula
+	)? RPAREN LPAREN formula RPAREN
+	| EXISTS LPAREN VARIABLE
+	(
+		',' formula
+	)? RPAREN LPAREN formula RPAREN
 	| pred_constant LPAREN term
 	(
 		',' term
@@ -24,7 +30,10 @@ formula
 connectiveformula
 :
 	(
-		compareformula (connectoperator compareformula)*
+		compareformula
+		(
+			connectoperator compareformula
+		)*
 	)
 ;
 
@@ -62,7 +71,7 @@ powerformula
 :
 	(
 		notterm
-		( 
+		(
 			POWER notterm
 		)*
 	)
@@ -79,7 +88,15 @@ notterm
 
 term
 :
-	VARIABLE
+	(
+		COMPONENT? CODEWORD? VARIABLE
+		(
+			'[' VARIABLE ']'
+		)?
+		(
+			'.\\' VARIABLE
+		)?
+	)
 	|
 	(
 		LPAREN MINUS VARIABLE RPAREN
@@ -95,7 +112,6 @@ term
 	(
 		LPAREN formula RPAREN
 	)
-
 ;
 
 compoperator
@@ -131,14 +147,32 @@ pred_constant
 :
 	'_' CHARACTER*
 ;
+
+CODEWORD
+:
+	'.$'
+;
+
+NULL
+:
+	'\\null'
+;
+
 FORALL
 :
-	'Forall'
+	'\\forall'
 ;
+
+COMPONENT
+:
+	'\\super'
+	| '\\this'
+;
+
 
 EXISTS
 :
-	'Exists'
+	'\\exists'
 ;
 
 STRING
@@ -161,7 +195,6 @@ NOT
 	'!'
 ;
 
-
 RPAREN
 :
 	')'
@@ -174,7 +207,7 @@ POWER
 
 EQUAL
 :
-	'='
+	'=='
 ;
 
 ADD
@@ -247,12 +280,12 @@ GREATEREQ
 
 TRUE
 :
-	'TRUE'
+	'\\true'
 ;
 
 FALSE
 :
-	'FALSE'
+	'\\false'
 ;
 
 WHITESPACE

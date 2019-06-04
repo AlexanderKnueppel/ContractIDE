@@ -1,5 +1,7 @@
 package de.tu_bs.ccc.contracting.core.verification.grammar;
 
+import java.text.MessageFormat;
+
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.RuleNode;
@@ -49,19 +51,25 @@ public class FOLZ3VisitorImpl implements FOLZ3Visitor<String> {
 	public String visitTerm(TermContext ctx) {
 
 		if (ctx.LPAREN() != null && ctx.RPAREN() != null) {
-			if (ctx.formula()!= null) {
+			if (ctx.formula() != null) {
 				return this.visitFormula(ctx.formula());
 			} else {
 				return this.visitTerm(ctx.term());
 			}
 
 		}
-		if (ctx.VARIABLE() != null) {
-			if (ctx.VARIABLE().getText().equals("TRUE"))
+		if (ctx.VARIABLE().get(0) != null) {
+
+			if (ctx.VARIABLE().get(0).getText().equals("\\true"))
 				return "true";
-			if (ctx.VARIABLE().getText().equals("FALSE"))
+			if (ctx.VARIABLE().get(0).getText().equals("\\false"))
 				return "false";
-			return ctx.VARIABLE().getText();
+			if(ctx.VARIABLE().size()>1) {
+			if (ctx.VARIABLE().get(1) != null) {
+				return "(select " +ctx.VARIABLE().get(0).getText()+" "+ ctx.VARIABLE().get(1).getText() +")";
+			}}
+			return ctx.VARIABLE().get(0).getText();
+			
 
 		}
 
@@ -82,10 +90,32 @@ public class FOLZ3VisitorImpl implements FOLZ3Visitor<String> {
 
 	}
 
-
 	@Override
 	public String visitFormula(FormulaContext ctx) {
-	return this.visitConnectiveformula(ctx.connectiveformula());
+		if (ctx.FORALL() != null && ctx.formula().get(0)!=null) {
+			String ret = MessageFormat.format("forall ((Int {0})) (-> {1} {2})", ctx.VARIABLE().getText(),
+					visitFormula(ctx.formula().get(0)), visitFormula(ctx.formula().get(1)));
+
+			return ret;
+		}
+
+		if (ctx.EXISTS() != null && ctx.formula().get(0)!=null) {
+			String ret = MessageFormat.format("forall ((Int {0})) (-> {1} {2})", ctx.VARIABLE().getText(),
+					visitFormula(ctx.formula().get(0)), visitFormula(ctx.formula().get(1)));
+
+			return ret;
+		}else if (ctx.EXISTS() != null && ctx.formula().get(0)==null) {
+			String ret = MessageFormat.format("forall ((Int {0})) ({1})", ctx.VARIABLE().getText(),
+					visitFormula(ctx.formula().get(1)));
+
+			return ret;
+			}
+		
+		if (ctx.pred_constant() != null) {
+			// stub for actual pred constant
+
+		}
+		return this.visitConnectiveformula(ctx.connectiveformula());
 	}
 
 	@Override
@@ -285,6 +315,5 @@ public class FOLZ3VisitorImpl implements FOLZ3Visitor<String> {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 };
