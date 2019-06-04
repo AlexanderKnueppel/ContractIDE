@@ -17,6 +17,7 @@ import org.eclipse.ui.part.ViewPart;
 
 import de.tu_bs.ccc.contracting.Verification.MmFactory;
 import de.tu_bs.ccc.contracting.Verification.Module;
+import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.Verification.Property;
 
 public class EnviromentalView extends ViewPart {
@@ -65,18 +66,24 @@ public class EnviromentalView extends ViewPart {
 				parameter.setName("Acceleration");
 				parameter.setValue("a");
 				parameter.setType("String");
-				Module mod = ((Module) viewer.getInput());
+				Module mod = null;
+				if (viewer.getInput() instanceof Module) {
+					mod = ((Module) viewer.getInput());
+				}
+				if (viewer.getInput() instanceof Ports) {
+					mod = ((Ports) viewer.getInput()).getModule();
+				}
+				final Module mod2 = mod;
 				try {
-					
-				
-				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(mod);
-				domain.getCommandStack().execute(new RecordingCommand (domain) {
-					@Override
-					protected void doExecute() {
-						mod.getEnviromentalProperties().add(parameter);
-					}
-				});} 
-				catch (Exception e2) {
+
+					TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(mod);
+					domain.getCommandStack().execute(new RecordingCommand(domain) {
+						@Override
+						protected void doExecute() {
+							mod2.getEnviromentalProperties().add(parameter);
+						}
+					});
+				} catch (Exception e2) {
 					// TODO: handle exception
 				}
 				viewer.refresh();
@@ -89,12 +96,19 @@ public class EnviromentalView extends ViewPart {
 			@Override
 			public void run() {
 				Property deletParameter = (Property) viewer.getStructuredSelection().getFirstElement();
-				Module mod = ((Module) viewer.getInput());
+				Module mod = null;
+				if (viewer.getInput() instanceof Module) {
+					mod = ((Module) viewer.getInput());
+				}
+				if (viewer.getInput() instanceof Ports) {
+					mod = ((Ports) viewer.getInput()).getModule();
+				}
+				final Module mod2 = mod;
 				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(mod);
 				domain.getCommandStack().execute(new RecordingCommand(domain) {
 					@Override
 					protected void doExecute() {
-						mod.getEnviromentalProperties().remove(deletParameter);
+						mod2.getEnviromentalProperties().remove(deletParameter);
 					}
 				});
 				viewer.refresh();
