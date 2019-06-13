@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.exportWizards">
+      <category
+            id="de.tu-bs.ccc.contracting.builder.spring.category1"
+            name="ContractIDE">
+      </category>
+      <wizard
+            category="de.tu-bs.ccc.contracting.builder.spring.category1"
+            class="de.tu_bs.ccc.contracting.builder.spring.wizards.DeploymentWizard"
+            icon="icons/icon-spring-framework.png"
+            id="de.tu-bs.ccc.contracting.builder.spring.exportWizard"
+            name="Spring RESTful service">
+      </wizard>
+   </extension>
+
+</plugin>

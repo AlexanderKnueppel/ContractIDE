@@ -1,0 +1,8 @@
+.project
+.classpath
+pom.xml
+src/main/java/app/Application.java
+src/main/java/app/Controller.java
+src/main/resources/empty
+src/test/java/empty
+src/test/resources/empty
