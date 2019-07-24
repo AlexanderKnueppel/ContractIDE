@@ -67,6 +67,7 @@ public class EditPropertyFeature extends AbstractCustomFeature {
 					project = resource.getProject();
 				}
 			}
+			if (ProjectMapping.getMapPro()!=null) {
 			if (ProjectMapping.getMapPro().get(project).getMappingEntry((con).getModule()).size() > 0) {
 
 				MessageBox dialog2 = new MessageBox(shell, SWT.ICON_QUESTION | SWT.OK | SWT.CANCEL);
@@ -78,7 +79,7 @@ public class EditPropertyFeature extends AbstractCustomFeature {
 				}
 			}
 
-		}
+		}}
 		EditPropertyDialog dl = new EditPropertyDialog(null, con);
 		if (dl.open() == Window.OK) {
 

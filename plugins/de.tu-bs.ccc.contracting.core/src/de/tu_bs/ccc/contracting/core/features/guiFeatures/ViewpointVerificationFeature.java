@@ -16,8 +16,10 @@ import org.eclipse.graphiti.platform.IPlatformImageConstants;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.core.localization.StringTable;
+import de.tu_bs.ccc.contracting.core.verification.FunctionalSolver;
 import de.tu_bs.ccc.contracting.core.verification.IViewpointSolver;
 import de.tu_bs.ccc.contracting.core.verification.MemorySolver;
+import de.tu_bs.ccc.contracting.core.verification.TimingSolver;
 import de.tu_bs.ccc.contracting.ui.views.ViewUtil;
 import de.tu_bs.ccc.contracting.ui.views.verification.VerificationTopElement;
 import de.tu_bs.ccc.contracting.ui.views.verification.VerificationViewElement;
@@ -66,6 +68,8 @@ public class ViewpointVerificationFeature extends AbstractCustomFeature {
 
 		// Register solver
 		solvers.add(new MemorySolver());
+		solvers.add(new FunctionalSolver());
+		solvers.add(new TimingSolver());
 
 		ArrayList<VerificationViewElement> results = new ArrayList<VerificationViewElement>();
 		for (IViewpointSolver s : solvers) {
@@ -91,9 +95,11 @@ public class ViewpointVerificationFeature extends AbstractCustomFeature {
 				s.checkRealizability((Module) m);
 			stopTime = System.currentTimeMillis();
 			System.out.println(stopTime - startTime + "ms\n");
-
-			if (!s.getSummary().isEmpty())
-				results.addAll(s.getSummary());
+			if (s.getSummary() != null) {
+				
+				if (!s.getSummary().isEmpty())
+					results.addAll(s.getSummary());
+			}
 		}
 		return results;
 	}
@@ -108,15 +114,15 @@ public class ViewpointVerificationFeature extends AbstractCustomFeature {
 				return;
 
 			ArrayList<VerificationTopElement> results = new ArrayList<VerificationTopElement>();
-			
+
 			ArrayList<VerificationViewElement> elems = verifyModule((Module) bo);
-			if(!elems.isEmpty())
+			if (!elems.isEmpty())
 				results.add(new VerificationTopElement(elems));
 
 			if (bo instanceof Compound) {
 				for (Module child : ((Compound) bo).getConsistsOf()) {
 					elems = verifyModule(child);
-					if(!elems.isEmpty())
+					if (!elems.isEmpty())
 						results.add(new VerificationTopElement(elems));
 				}
 			}

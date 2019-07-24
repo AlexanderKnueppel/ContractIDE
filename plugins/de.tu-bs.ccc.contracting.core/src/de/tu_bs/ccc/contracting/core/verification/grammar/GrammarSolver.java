@@ -15,34 +15,43 @@ import org.antlr.v4.runtime.atn.ATNConfigSet;
 import org.antlr.v4.runtime.dfa.DFA;
 
 public class GrammarSolver {
+	FOLZ3VisitorImpl visitor = new FOLZ3VisitorImpl();
+	public FOLZ3VisitorImpl getVisitor() {
+		return visitor;
+	}
+
+	public void setVisitor(FOLZ3VisitorImpl visitor) {
+		this.visitor = visitor;
+	}
 
 	public static void main(String[] args) throws Exception {
 
-		String input = "\\forall( x ,x>12&x<10)(a[x]<x)";
-		System.out.println(input);
+		String input = "res == math.arr(12,math.arr(44,xxx,\"hallo\"),33)";
 		
 			FOLZ3Lexer lexer = new FOLZ3Lexer(CharStreams.fromString(input));
-			lexer.removeErrorListeners();
+			//lexer.removeErrorListeners();
 
-			lexer.addErrorListener(new CustomErrorListener());
+			//lexer.addErrorListener(new CustomErrorListener());
 			CommonTokenStream tokens = new CommonTokenStream(lexer);
 			FOLZ3Parser parser = new FOLZ3Parser(tokens);
 			parser.getBuildParseTree();
 			FOLZ3VisitorImpl xx = new FOLZ3VisitorImpl();
 			String traverseResult = xx.visitCondition(parser.condition());
 			System.out.println(traverseResult);
+
 		
 
 	}
 
 	public String parseString(String x) {
 		String input = x;
+
 		FOLZ3Lexer lexer = new FOLZ3Lexer(CharStreams.fromString(input));
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
 		FOLZ3Parser parser = new FOLZ3Parser(tokens);
 		parser.getBuildParseTree();
-		FOLZ3VisitorImpl xx = new FOLZ3VisitorImpl();
-		String traverseResult = xx.visitCondition(parser.condition());
+		
+		String traverseResult = visitor.visitCondition(parser.condition());
 		return traverseResult;
 
 	}

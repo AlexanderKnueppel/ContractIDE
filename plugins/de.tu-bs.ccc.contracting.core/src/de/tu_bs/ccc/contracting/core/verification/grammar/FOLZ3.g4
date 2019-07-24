@@ -12,19 +12,34 @@ condition
 
 formula
 :
-	connectiveformula
-	| FORALL LPAREN VARIABLE
-	(
-		',' formula
-	)? RPAREN LPAREN formula RPAREN
-	| EXISTS LPAREN VARIABLE
-	(
-		',' formula
-	)? RPAREN LPAREN formula RPAREN
+	'"' formula '"'
+	| tupelformula
+	| connectiveformula
+	| quantifier
+	| operatorformula
 	| pred_constant LPAREN term
 	(
-		',' term
+		';' term
 	)* RPAREN
+;
+
+quantifier
+:
+	QUANTIFER TYPE? IDENTIFIER
+	(
+		';' TYPE? IDENTIFIER
+	)*
+	(
+		';' formula
+	)? ';' formula
+;
+
+operatorformula
+:
+	OPERATOR TYPE? IDENTIFIER
+	(
+		';' term ';'  term
+	)? ';' formula
 ;
 
 connectiveformula
@@ -37,6 +52,18 @@ connectiveformula
 	)
 ;
 
+tupelformula
+:
+	(
+		tupel
+		| functioncall
+	) EQUAL
+	(
+		tupel
+		| functioncall
+	)
+;
+
 compareformula
 :
 	(
@@ -45,6 +72,14 @@ compareformula
 			compoperator summformula
 		)*
 	)
+;
+
+tupel
+:
+	LPAREN term
+	(
+		',' term
+	)* RPAREN
 ;
 
 summformula
@@ -88,18 +123,19 @@ notterm
 
 term
 :
-	(
-		COMPONENT? CODEWORD? VARIABLE
-		(
-			'[' VARIABLE ']'
-		)?
-		(
-			'.\\' VARIABLE
-		)?
-	)
+	compproperty
+	| portproperty
+	| port
+	| functioncall
+	| array
+	| IDENTIFIER
+	| NUMBER
 	|
 	(
-		LPAREN MINUS VARIABLE RPAREN
+		LPAREN MINUS
+		(
+			term
+		) RPAREN
 	)
 	| TRUE
 	| FALSE
@@ -112,6 +148,64 @@ term
 	(
 		LPAREN formula RPAREN
 	)
+;
+
+array
+:
+	(
+		(
+			COMPONENT CODEWORD
+		)
+		|
+		(
+			IDENTIFIER '.' 
+		)*
+	)? IDENTIFIER
+	(
+		'['
+		(
+			term
+			| formula
+		) ']'
+	)+
+;
+
+compproperty
+:
+	COMPONENT CODEWORD IDENTIFIER
+;
+
+portproperty
+:
+	IDENTIFIER CODEWORD
+	(
+		IDENTIFIER
+		| array
+	)
+;
+
+port
+:
+	IDENTIFIER
+	(
+		'.' IDENTIFIER
+	)+
+;
+
+functioncall
+:
+	IDENTIFIER '.' IDENTIFIER LPAREN
+	(
+		term
+		| formula
+	)
+	(
+		','
+		(
+			term
+			| formula
+		)
+	)* RPAREN
 ;
 
 compoperator
@@ -148,6 +242,22 @@ pred_constant
 	'_' CHARACTER*
 ;
 
+TYPE
+:
+	'int'
+	| 'float'
+;
+
+TRUE
+:
+	'\\true'
+;
+
+FALSE
+:
+	'\\false'
+;
+
 CODEWORD
 :
 	'.$'
@@ -158,9 +268,18 @@ NULL
 	'\\null'
 ;
 
-FORALL
+QUANTIFER
 :
 	'\\forall'
+	| '\\exists'
+;
+
+OPERATOR
+:
+	'\\sum'
+	| '\\product'
+	| '\\max'
+	| '\\min'
 ;
 
 COMPONENT
@@ -169,20 +288,23 @@ COMPONENT
 	| '\\this'
 ;
 
-
-EXISTS
-:
-	'\\exists'
-;
-
 STRING
 :
 	'"' CHARACTER+ '"'
 ;
 
-VARIABLE
+IDENTIFIER
 :
-	CHARACTER+
+	(
+		[A-Z]
+		| [a-z]
+		| '_'
+	)+
+;
+
+NUMBER
+:
+	[0-9]+
 ;
 
 LPAREN
@@ -240,17 +362,17 @@ CHARACTER
 
 CONJ
 :
-	'&'
+	'&&'
 ;
 
 DISJ
 :
-	'|'
+	'||'
 ;
 
 IMPL
 :
-	'->'
+	'=>'
 ;
 
 BICOND
@@ -278,20 +400,11 @@ GREATEREQ
 	'>='
 ;
 
-TRUE
-:
-	'\\true'
-;
-
-FALSE
-:
-	'\\false'
-;
-
 WHITESPACE
 :
 	(
 		' '
 		| '\t'
+		| '\n'
 	)+ -> skip
 ; 

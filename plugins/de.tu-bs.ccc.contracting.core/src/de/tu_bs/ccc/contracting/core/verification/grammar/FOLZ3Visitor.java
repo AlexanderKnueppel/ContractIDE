@@ -26,17 +26,41 @@ public interface FOLZ3Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFormula(FOLZ3Parser.FormulaContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link FOLZ3Parser#quantifier}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitQuantifier(FOLZ3Parser.QuantifierContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FOLZ3Parser#operatorformula}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOperatorformula(FOLZ3Parser.OperatorformulaContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link FOLZ3Parser#connectiveformula}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitConnectiveformula(FOLZ3Parser.ConnectiveformulaContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link FOLZ3Parser#tupelformula}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTupelformula(FOLZ3Parser.TupelformulaContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link FOLZ3Parser#compareformula}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitCompareformula(FOLZ3Parser.CompareformulaContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FOLZ3Parser#tupel}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTupel(FOLZ3Parser.TupelContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link FOLZ3Parser#summformula}.
 	 * @param ctx the parse tree
@@ -67,6 +91,36 @@ public interface FOLZ3Visitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitTerm(FOLZ3Parser.TermContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FOLZ3Parser#array}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArray(FOLZ3Parser.ArrayContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FOLZ3Parser#compproperty}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCompproperty(FOLZ3Parser.ComppropertyContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FOLZ3Parser#portproperty}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPortproperty(FOLZ3Parser.PortpropertyContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FOLZ3Parser#port}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPort(FOLZ3Parser.PortContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FOLZ3Parser#functioncall}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctioncall(FOLZ3Parser.FunctioncallContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link FOLZ3Parser#compoperator}.
 	 * @param ctx the parse tree

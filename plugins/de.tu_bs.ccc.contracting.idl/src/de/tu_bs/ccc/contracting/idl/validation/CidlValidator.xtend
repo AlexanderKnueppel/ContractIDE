@@ -3,6 +3,8 @@
  */
 package de.tu_bs.ccc.contracting.idl.validation
 
+import org.eclipse.xtext.validation.Check
+import de.tu_bs.ccc.contracting.idl.cidl.ContractPair
 
 /**
  * This class contains custom validation rules. 
@@ -11,15 +13,17 @@ package de.tu_bs.ccc.contracting.idl.validation
  */
 class CidlValidator extends AbstractCidlValidator {
 	
-//	public static val INVALID_NAME = 'invalidName'
+	public static val INVALID_NAME = 'invalidName'
 //
 //	@Check
-//	def checkGreetingStartsWithCapital(Greeting greeting) {
+//	def checkGreetingStartsWithCapital(ContractPair greeting) {
+//		GrammarSolver gs = new GrammarSolver;
 //		if (!Character.isUpperCase(greeting.name.charAt(0))) {
 //			warning('Name should start with a capital', 
 //					CidlPackage.Literals.GREETING__NAME,
 //					INVALID_NAME)
 //		}
 //	}
+	
 	
 }
