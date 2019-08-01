@@ -3,27 +3,38 @@
  */
 package de.tu_bs.ccc.contracting.idl.validation
 
+import de.tu_bs.ccc.contracting.idl.cidl.CidlPackage
+import de.tu_bs.ccc.contracting.idl.cidl.Ensures
 import org.eclipse.xtext.validation.Check
-import de.tu_bs.ccc.contracting.idl.cidl.ContractPair
+import de.tu_bs.ccc.contracting.idl.cidl.Requires
+import de.tu_bs.ccc.contracting.grammar.verification.GrammarChecker
 
 /**
  * This class contains custom validation rules. 
- *
+ * 
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class CidlValidator extends AbstractCidlValidator {
-	
-	public static val INVALID_NAME = 'invalidName'
-//
-//	@Check
-//	def checkGreetingStartsWithCapital(ContractPair greeting) {
-//		GrammarSolver gs = new GrammarSolver;
-//		if (!Character.isUpperCase(greeting.name.charAt(0))) {
-//			warning('Name should start with a capital', 
-//					CidlPackage.Literals.GREETING__NAME,
-//					INVALID_NAME)
-//		}
-//	}
-	
-	
+	GrammarChecker gs = new GrammarChecker();
+
+	@Check
+	def checkEns(Ensures greeting) {
+		try {
+			gs.parseString(greeting.expr);
+		} catch (Exception exception) {
+		//	warning(exception.message, CidlPackage.Literals.ENSURES__EXPR)
+			error(exception.message,CidlPackage.Literals.ENSURES__EXPR)
+		}
+
+	}
+	@Check
+	def checkReq(Requires req) {
+		try {
+			gs.parseString(req.getExpr);
+		} catch (Exception exception) {
+		//	warning(exception.message, CidlPackage.Literals.ENSURES__EXPR)
+			error(exception.message,CidlPackage.Literals.REQUIRES__EXPR)
+		}
+
+	}
 }

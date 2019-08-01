@@ -75,7 +75,7 @@ interface IMath {
 			UInt32 i2
 		}
 		out {
-			Boolean res
+			UInt32 res
 		}
 	}
 	
