@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Grammar
+Bundle-SymbolicName: de.tu_bs.ccc.contracting.grammar
+Bundle-Version: 1.0.0.qualifier
+Automatic-Module-Name: de.tu_bs.ccc.contracting.grammar
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: de.tu_bs.ccc.contracting.grammar.verification
+Bundle-ClassPath: antlr-4.7.1-complete.jar,
+ .
