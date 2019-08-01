@@ -20,6 +20,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: com.microsoft.z3,
  com.microsoft.z3.enumerations,
  de.tu_bs.ccc.contracting.Verification,
+ de.tu_bs.ccc.contracting.grammar.verification,
  de.tu_bs.ccc.contracting.idl,
  de.tu_bs.ccc.contracting.idl.cidl,
  de.tu_bs.ccc.contracting.ui.dialogs,

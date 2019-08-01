@@ -10,7 +10,7 @@ import com.microsoft.z3.Symbol;
 import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Contract;
 import de.tu_bs.ccc.contracting.Verification.ContractProperty;
-import de.tu_bs.ccc.contracting.core.verification.grammar.GrammarSolver;
+import de.tu_bs.ccc.contracting.grammar.verification.GrammarSolver;
 
 public class Z3Converter {
 	private static GrammarSolver gs = new GrammarSolver();

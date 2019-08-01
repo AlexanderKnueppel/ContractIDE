@@ -14,7 +14,7 @@ import de.tu_bs.ccc.contracting.Verification.Compound;
 import de.tu_bs.ccc.contracting.Verification.Contract;
 import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.ViewPoint;
-import de.tu_bs.ccc.contracting.core.verification.grammar.GrammarSolver;
+import de.tu_bs.ccc.contracting.grammar.verification.GrammarSolver;
 import de.tu_bs.ccc.contracting.ui.views.verification.VerificationViewElement;
 import de.tu_bs.ccc.contracting.ui.views.verification.VerificationViewElement.Property;
 import de.tu_bs.ccc.contracting.ui.views.verification.VerificationViewElement.Result;

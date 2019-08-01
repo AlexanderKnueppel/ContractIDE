@@ -25,7 +25,7 @@ import de.tu_bs.ccc.contracting.Verification.PortType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
 import de.tu_bs.ccc.contracting.Verification.ViewPoint;
 import de.tu_bs.ccc.contracting.core.util.CoreUtil;
-import de.tu_bs.ccc.contracting.core.verification.grammar.GrammarSolver;
+import de.tu_bs.ccc.contracting.grammar.verification.GrammarSolver;
 import de.tu_bs.ccc.contracting.idl.CidlPersistenceManager;
 import de.tu_bs.ccc.contracting.idl.cidl.Argument;
 import de.tu_bs.ccc.contracting.idl.cidl.Attribute;
