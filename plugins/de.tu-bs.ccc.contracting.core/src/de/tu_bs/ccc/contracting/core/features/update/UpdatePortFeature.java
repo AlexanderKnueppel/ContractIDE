@@ -9,6 +9,8 @@ import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
+import org.eclipse.graphiti.util.ColorConstant;
+import org.eclipse.graphiti.util.IColorConstant;
 
 import de.tu_bs.ccc.contracting.Verification.PortType;
 import de.tu_bs.ccc.contracting.Verification.Ports;
@@ -65,9 +67,17 @@ public class UpdatePortFeature extends AbstractUpdateFeature {
 	public boolean update(IUpdateContext context) {
 		PictogramElement pictogramElement = context.getPictogramElement();
 		Ports port = (Ports) getBusinessObjectForPictogramElement(pictogramElement);
+		
 		if (pictogramElement instanceof ContainerShape) {
-
 			ContainerShape cs = (ContainerShape) pictogramElement;
+			if (port.isIsDerived()) {
+				IColorConstant E_CLASS_FORE = new ColorConstant(198, 123, 0);
+
+				IColorConstant E_CLASS_BACK = new ColorConstant(255, 240, 160);
+
+				pictogramElement.getGraphicsAlgorithm().setForeground(manageColor(E_CLASS_FORE));
+				pictogramElement.getGraphicsAlgorithm().setBackground(manageColor(E_CLASS_BACK));
+			}
 			Shape name = cs.getChildren().get(0);
 			Shape type = cs.getChildren().get(1);
 			Text nameText = (Text) name.getGraphicsAlgorithm();

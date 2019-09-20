@@ -919,13 +919,22 @@ public interface MmPackage extends EPackage {
 	int PORTS__PROVIDER_TYPE = 13;
 
 	/**
+	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PORTS__IS_DERIVED = 14;
+
+	/**
 	 * The number of structural features of the '<em>Ports</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PORTS_FEATURE_COUNT = 14;
+	int PORTS_FEATURE_COUNT = 15;
 
 	/**
 	 * The number of operations of the '<em>Ports</em>' class.
@@ -1970,6 +1979,17 @@ public interface MmPackage extends EPackage {
 	EAttribute getPorts_ProviderType();
 
 	/**
+	 * Returns the meta object for the attribute '{@link de.tu_bs.ccc.contracting.Verification.Ports#isIsDerived <em>Is Derived</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Derived</em>'.
+	 * @see de.tu_bs.ccc.contracting.Verification.Ports#isIsDerived()
+	 * @see #getPorts()
+	 * @generated
+	 */
+	EAttribute getPorts_IsDerived();
+
+	/**
 	 * Returns the meta object for class '{@link de.tu_bs.ccc.contracting.Verification.ContractProperty <em>Contract Property</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2715,6 +2735,14 @@ public interface MmPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PORTS__PROVIDER_TYPE = eINSTANCE.getPorts_ProviderType();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Derived</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PORTS__IS_DERIVED = eINSTANCE.getPorts_IsDerived();
 
 		/**
 		 * The meta object literal for the '{@link de.tu_bs.ccc.contracting.Verification.impl.ContractPropertyImpl <em>Contract Property</em>}' class.

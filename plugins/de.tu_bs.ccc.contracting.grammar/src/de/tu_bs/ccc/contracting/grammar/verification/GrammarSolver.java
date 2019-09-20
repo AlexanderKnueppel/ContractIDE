@@ -26,7 +26,7 @@ public class GrammarSolver {
 
 	public static void main(String[] args) throws Exception {
 
-		String input = "res == math.arr(12,math.arr(44,xxx,\"hallo\"),33)";
+		String input = "atomic.port0==12";
 		
 			FOLZ3Lexer lexer = new FOLZ3Lexer(CharStreams.fromString(input));
 			//lexer.removeErrorListeners();
@@ -45,7 +45,7 @@ public class GrammarSolver {
 
 	public String parseString(String x) {
 		String input = x;
-
+System.out.println("parser: "+x);
 		FOLZ3Lexer lexer = new FOLZ3Lexer(CharStreams.fromString(input));
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
 		FOLZ3Parser parser = new FOLZ3Parser(tokens);

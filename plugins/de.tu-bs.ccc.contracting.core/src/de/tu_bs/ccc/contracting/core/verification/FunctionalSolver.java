@@ -1,14 +1,14 @@
 package de.tu_bs.ccc.contracting.core.verification;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.microsoft.z3.BoolExpr;
+import javax.swing.JOptionPane;
+
 import com.microsoft.z3.Context;
 import com.microsoft.z3.FuncDecl;
 import com.microsoft.z3.Global;
@@ -56,29 +56,77 @@ public class FunctionalSolver implements IViewpointSolver {
 	}
 
 	@Override
-	public boolean checkRealizability(Module m) {
-		if (m instanceof Abstract) {
+	public boolean checkRealizability(Module component) {
+
+		boolean contractIsMet = true;
+		for (Abstract m : component.getRealizedBy()) {
+
 			Solver solver = this.ctx.mkSolver();
 			ArrayList<String> methodContracts = new ArrayList<String>();
 			ArrayList<String> methodInit = new ArrayList<String>();
-			boolean contractIsMet = true;
-			for (Module replacement : ((Abstract) m).getRealizes()) {
-				replacement.getContract();
-				ArrayList<Symbol> symbolList = new ArrayList<Symbol>();
-				ArrayList<FuncDecl> funcDeclList = new ArrayList<FuncDecl>();
-				ArrayList<Ports> p = new ArrayList<Ports>();
+			ArrayList<String> subcompcontracts = new ArrayList<String>();
+			ArrayList<String> comcontracts = new ArrayList<String>();
+			Map<String, Integer> addedmethodcontracts = new HashMap<String, Integer>();
+			ArrayList<String> envproperty = new ArrayList<String>();
+			ArrayList<Symbol> symbolList = new ArrayList<Symbol>();
+			ArrayList<FuncDecl> funcDeclList = new ArrayList<FuncDecl>();
+			List<de.tu_bs.ccc.contracting.Verification.Property> list = getConstraints(m);
+			envproperty.addAll(replaceEnvNamesFunc(list, m));
+			List<de.tu_bs.ccc.contracting.Verification.Property> list2 = getConstraints(component);
+			envproperty.addAll(replaceEnvNamesFunc(list2, component));
+			for (int i = 0; i < list.size(); i++) {
+				Symbol x = this.ctx.mkSymbol(m.getName() + "." + list.get(i).getName());
+				symbolList.add(x);
+				funcDeclList.add(this.ctx.mkConstDecl(x, this.ctx.getStringSort()));
+			}
+			for (int i = 0; i < list2.size(); i++) {
+				Symbol x = this.ctx.mkSymbol(component.getName() + "." + list2.get(i).getName());
+				symbolList.add(x);
+				funcDeclList.add(this.ctx.mkConstDecl(x, this.ctx.getStringSort()));
+			}
+			for (Contract c : component.getContract()) {
 
-				for (Ports port : replacement.getPorts()) {
-					p.add(port);
+				if (c.getViewPoint().getValue() == ViewPoint.FUNCTIONAL_VALUE) {
+					// try {
+
+					System.out.println(this.getStringofContract(c));
+					subcompcontracts.add(this.getStringofContract(c));
+
+//						} catch (Exception e) {
+//							System.out.println(e.getMessage());
+//							String x = "Error caused by: " + c.getModule().getName() + " " + c.getViewPoint();
+//							JOptionPane.showMessageDialog(null, x, "Contract Parsing Error", JOptionPane.ERROR_MESSAGE);
+//						}
+
 				}
+			}
 
-				for (Ports port : m.getPorts()) {
-					p.add(port);
+			for (Contract con : m.getContract()) {
+				if (con.getViewPoint().getValue() == ViewPoint.FUNCTIONAL_VALUE) {
+
+					System.out.println(this.getStringofContract(con));
+					comcontracts.add(this.getStringFuncofContract(con, true));
+
 				}
+			}
+			ArrayList<Ports> p = new ArrayList<Ports>();
+			// add all Ports
 
-				// create symbols
-				for (Ports elem : p) {
-					if (elem.getType() == PortType.SERVICE) {
+			for (Ports port : component.getPorts()) {
+				p.add(port);
+			}
+
+			for (Ports port : m.getPorts()) {
+				p.add(port);
+			}
+
+			// for each port declare them and define their variables
+			for (Ports elem : p) {
+				if (elem.getType() == PortType.SERVICE) {
+					boolean allDefined = false;
+					while (!allDefined) {
+						System.out.println("Immer");
+						boolean nochange = true;
 						List<Interface> interfaces = CidlPersistenceManager.getIdlModels(CoreUtil.getCurrentProject())
 								.stream().map(mo -> ((Model) mo).getInterfaces()).flatMap(j -> j.stream())
 								.collect(Collectors.toList());
@@ -95,74 +143,28 @@ public class FunctionalSolver implements IViewpointSolver {
 								}
 							}
 							for (Method meth : serviceInterface.getMethods()) {
+								if (!addedmethodcontracts
+										.containsKey(serviceInterface.getName() + "." + meth.getName())) {
+
+									addedmethodcontracts.put(serviceInterface.getName() + "." + meth.getName(), 0);
+								}
 								String symbol = serviceInterface.getName() + "." + meth.getName();
 								if (!symbolList.contains(this.ctx.mkSymbol(symbol))) {
 
-									ArrayList<Argument> args = new ArrayList<Argument>();
-									args.addAll(meth.getInArgs());
-									args.addAll(meth.getOutArgs());
-									for (ContractPair c : meth.getSpec().getContracts()) {
-
-										String serviceContract = "(=> ";
-										if (c.getReq().size() > 1) {
-											serviceContract += "and (";
-										}
-										for (int i = 0; i < c.getReq().size(); i++) {
-
-//									serviceContract += gs
-//													.parseString(replacePortNamesFunc(c.getReq().get(i).getExpr(), args,
-//															meth.getName(), serviceInterface.getName()));
-										}
-										if (c.getReq().size() > 1) {
-											serviceContract += ")";
-										}
-
-										if (c.getEns().size() > 1) {
-											serviceContract += "and (";
-										}
-										serviceContract += " ";
-										for (int i = 0; i < c.getEns().size(); i++) {
-//
-//											serviceContract += gs
-//													.parseString(replacePortNamesFunc(c.getEns().get(i).getExpr(), args,
-//															meth.getName(), serviceInterface.getName()));
-										}
-										if (c.getEns().size() > 1) {
-											serviceContract += ")";
-										}
-										serviceContract += ")";
-										methodContracts.add(serviceContract);
-
-									}
 									ArrayList<Sort> paramlList = new ArrayList<Sort>();
-
-									String funcInit = " (=(" + symbol;
 									for (Argument argin : meth.getInArgs()) {
 										String symbolname = serviceInterface.getName() + "." + meth.getName() + "."
 												+ argin.getName();
-										funcInit += " " + symbolname;
-										Symbol s = this.ctx.mkSymbol(symbolname);
-										symbolList.add(s);
+
 										paramlList.add(createSort(argin.isArray(), argin.getType().getPredefined()));
-										funcDeclList.add(
-												createFunction(s, argin.isArray(), argin.getType().getPredefined()));
-										if (argin.isArray()) {
-											symbolList.add(this.ctx.mkSymbol(symbolname + ".length"));
-											funcDeclList
-													.add(this.ctx.mkConstDecl(symbolname + ".length", ctx.mkIntSort()));
-										}
+
 									}
 									Sort funout = ctx.mkBoolSort();
 									for (Argument argout : meth.getOutArgs()) {
 										String symbolname = serviceInterface.getName() + "." + meth.getName() + "."
 												+ argout.getName();
-										Symbol s = this.ctx.mkSymbol(symbolname);
-										symbolList.add(s);
+
 										funout = createSort(argout.isArray(), argout.getType().getPredefined());
-										funcDeclList.add(
-												createFunction(s, argout.isArray(), argout.getType().getPredefined()));
-										funcInit += ")" + symbolname + ")";
-										methodInit.add(funcInit);
 
 									}
 									Symbol funsymb = this.ctx.mkSymbol(symbol);
@@ -170,151 +172,226 @@ public class FunctionalSolver implements IViewpointSolver {
 									funcDeclList.add(this.ctx.mkFuncDecl(funsymb,
 											paramlList.toArray(new Sort[paramlList.size()]), funout));
 								}
+								if (gs.getVisitor().getFuncTupel()
+										.get(serviceInterface.getName() + "." + meth.getName()) != null) {
+									for (int j = addedmethodcontracts
+											.get(serviceInterface.getName() + "." + meth.getName()); j < gs.getVisitor()
+													.getFuncTupel()
+													.get(serviceInterface.getName() + "." + meth.getName())
+													.size(); j++) {
+										System.out.println("Contract!!!!!!");
+										addedmethodcontracts.put(serviceInterface.getName() + "." + meth.getName(),
+												j + 1);
+										nochange = false;
+										ArrayList<Argument> args = new ArrayList<Argument>();
+										args.addAll(meth.getInArgs());
+										args.addAll(meth.getOutArgs());
+
+										for (ContractPair c : meth.getSpec().getContracts()) {
+
+											String serviceContract = "(=> ";
+											if (c.getReq().size() > 1) {
+												serviceContract += "and (";
+											}
+											for (int i = 0; i < c.getReq().size(); i++) {
+
+												serviceContract += gs
+														.parseString(replacePortNamesFunc(c.getReq().get(i).getExpr(),
+																args, meth.getName(), serviceInterface.getName(), j));
+											}
+											if (c.getReq().size() > 1) {
+												serviceContract += ")";
+											}
+
+											if (c.getEns().size() > 1) {
+												serviceContract += "and (";
+											}
+											serviceContract += " ";
+											for (int i = 0; i < c.getEns().size(); i++) {
+
+												serviceContract += gs
+														.parseString(replacePortNamesFunc(c.getEns().get(i).getExpr(),
+																args, meth.getName(), serviceInterface.getName(), j));
+											}
+											if (c.getEns().size() > 1) {
+												serviceContract += ")";
+											}
+											serviceContract += ")";
+											methodContracts.add(serviceContract);
+
+										}
+
+										String funcInit = " (=(" + symbol;
+
+										for (int i = 0; i < meth.getInArgs().size(); i++) {
+											String symbolname = serviceInterface.getName() + "." + meth.getName() + "."
+													+ meth.getInArgs().get(i).getName();
+											funcInit += " " + symbolname;
+
+											Symbol s = this.ctx.mkSymbol(symbolname);
+											symbolList.add(s);
+
+											funcDeclList.add(createFunction(s, meth.getInArgs().get(i).isArray(),
+													meth.getInArgs().get(i).getType().getPredefined()));
+											if (meth.getInArgs().get(i).isArray()) {
+												symbolList.add(this.ctx.mkSymbol(symbolname + ".length"));
+												funcDeclList.add(
+														this.ctx.mkConstDecl(symbolname + ".length", ctx.mkIntSort()));
+											}
+											methodInit.add("(= " + symbolname + " "
+													+ gs.getVisitor().getFuncTupel().get(symbol).get(j).get(i) + ")");
+
+										}
+
+										for (int i = 0; i < meth.getOutArgs().size(); i++) {
+											String symbolname = serviceInterface.getName() + "." + meth.getName() + "."
+													+ meth.getOutArgs().get(i).getName();
+											Symbol s = this.ctx.mkSymbol(symbolname);
+											symbolList.add(s);
+
+											funcDeclList.add(createFunction(s, meth.getOutArgs().get(i).isArray(),
+													meth.getOutArgs().get(i).getType().getPredefined()));
+											funcInit += ")" + symbolname + ")";
+											// methodInit.add("(= " + symbolname + " " +
+											// gs.getVisitor().getFuncTupel()
+											// .get(symbol).get(j).get(meth.getInArgs().size() + i));
+											methodInit.add(funcInit);
+
+										}
+
+									}
+								}
 							}
 						}
-					} else if (elem.getType() == PortType.DATA) {
-						String symbolname = elem.getModule().getName() + "." + elem.getName();
-						symbolList.add(this.ctx.mkSymbol(symbolname));
-						System.out.println(symbolname);
-						switch (elem.getService()) {
-						case "int":
-							funcDeclList.add(this.ctx.mkConstDecl(symbolname, this.ctx.getIntSort()));
-							break;
-						case "real":
-							funcDeclList.add(this.ctx.mkConstDecl(symbolname, this.ctx.getRealSort()));
-							break;
-						case "bool":
-							funcDeclList.add(this.ctx.mkConstDecl(symbolname, this.ctx.getBoolSort()));
-							break;
-						case "String":
-							funcDeclList.add(this.ctx.mkConstDecl(symbolname, this.ctx.getStringSort()));
-							break;
-						case "int[]":
-							funcDeclList
-									.add(this.ctx.mkArrayConst(symbolname, this.ctx.getIntSort(), this.ctx.getIntSort())
-											.getFuncDecl());
-							break;
-						case "real[]":
-							funcDeclList.add(
-									this.ctx.mkArrayConst(symbolname, this.ctx.getIntSort(), this.ctx.getRealSort())
-											.getFuncDecl());
-							break;
-						case "bool[]":
-							funcDeclList.add(
-									this.ctx.mkArrayConst(symbolname, this.ctx.getIntSort(), this.ctx.getBoolSort())
-											.getFuncDecl());
-							break;
-						case "String[]":
-							funcDeclList.add(
-									this.ctx.mkArrayConst(symbolname, this.ctx.getIntSort(), this.ctx.getStringSort())
-											.getFuncDecl());
-							break;
+
+						if (nochange) {
+							allDefined = true;
 
 						}
+					}
+				} else if (elem.getType() == PortType.DATA) {
+					String symbolname = elem.getModule().getName() + "." + elem.getName();
+					symbolList.add(this.ctx.mkSymbol(symbolname));
+					System.out.println(symbolname);
+					switch (elem.getService()) {
+					case "int":
+						funcDeclList.add(this.ctx.mkConstDecl(symbolname, this.ctx.getIntSort()));
+						break;
+					case "real":
+						funcDeclList.add(this.ctx.mkConstDecl(symbolname, this.ctx.getRealSort()));
+						break;
+					case "bool":
+						funcDeclList.add(this.ctx.mkConstDecl(symbolname, this.ctx.getBoolSort()));
+						break;
+					case "String":
+						funcDeclList.add(this.ctx.mkConstDecl(symbolname, this.ctx.getStringSort()));
+						break;
+					case "int[]":
+						funcDeclList.add(this.ctx.mkArrayConst(symbolname, this.ctx.getIntSort(), this.ctx.getIntSort())
+								.getFuncDecl());
+						break;
+					case "real[]":
+						funcDeclList.add(this.ctx
+								.mkArrayConst(symbolname, this.ctx.getIntSort(), this.ctx.getRealSort()).getFuncDecl());
+						break;
+					case "bool[]":
+						funcDeclList.add(this.ctx
+								.mkArrayConst(symbolname, this.ctx.getIntSort(), this.ctx.getBoolSort()).getFuncDecl());
+						break;
+					case "String[]":
+						funcDeclList
+								.add(this.ctx.mkArrayConst(symbolname, this.ctx.getIntSort(), this.ctx.getStringSort())
+										.getFuncDecl());
+						break;
 
 					}
-				}
-				for (int i = 0; i < gs.getVisitor().getProductdef().size(); i++) {
-					funcDeclList.add(
-							this.ctx.mkFuncDecl("$product" + (i + 1), this.ctx.mkIntSort(), this.ctx.mkRealSort()));
-					symbolList.add(this.ctx.mkSymbol("$product" + (i + 1)));
-				}
-				for (int i = 0; i < gs.getVisitor().getSumdef().size(); i++) {
-					funcDeclList
-							.add(this.ctx.mkFuncDecl("$sum" + (i + 1), this.ctx.mkIntSort(), this.ctx.mkRealSort()));
-					symbolList.add(this.ctx.mkSymbol("$sum" + (i + 1)));
-				}
-
-				Symbol[] declNames = symbolList.toArray(new Symbol[0]);
-				FuncDecl[] decl = funcDeclList.toArray(new FuncDecl[0]);
-
-				for (Symbol funcDecl : declNames) {
-					System.out.println(funcDecl.toString());
-				}
-
-				List<Ports> listOutput = m.getPorts().stream().filter(e -> replacement.getPorts().stream()
-						.map(Ports::getName).anyMatch(name -> name.equals(e.getName()))).collect(Collectors.toList());
-				for (Ports port : listOutput) {
-					if (port.getType() == PortType.DATA) {
-
-						solver.add(this.ctx.parseSMTLIB2String(
-								"(assert (" + "= " + port.getModule().getName() + "." + port.getName() + " "
-										+ replacement.getName() + "." + port.getName() + "))",
-								null, null, declNames, decl));
-
-					}
 
 				}
+			}
+			for (int i = 0; i < gs.getVisitor().getProductdef().size(); i++) {
+				funcDeclList.add(this.ctx.mkFuncDecl("$product" + (i), this.ctx.mkIntSort(), this.ctx.mkRealSort()));
+				symbolList.add(this.ctx.mkSymbol("$product" + (i)));
+			}
+			for (int i = 0; i < gs.getVisitor().getSumdef().size(); i++) {
+				funcDeclList.add(this.ctx.mkFuncDecl("$sum" + (i), this.ctx.mkIntSort(), this.ctx.mkRealSort()));
+				symbolList.add(this.ctx.mkSymbol("$sum" + (i)));
+			}
 
-				for (String meth : methodInit) {
+			Symbol[] declNames = symbolList.toArray(new Symbol[0]);
+			FuncDecl[] decl = funcDeclList.toArray(new FuncDecl[0]);
 
-					solver.add(this.ctx.parseSMTLIB2String("(assert " + meth + ")", null, null, declNames, decl));
-					System.out.println("(assert " + meth + ")");
-				}
-				for (String meth : methodContracts) {
+			for (Symbol funcDecl : declNames) {
+				System.out.println("(declare-fun " + funcDecl.toString() + "() Real)");
+			}
+			for (Ports port : m.getPorts()) {
+				if (port.getType() == PortType.DATA) {
 
-					solver.add(this.ctx.parseSMTLIB2String("(assert " + meth + ")", null, null, declNames, decl));
-					System.out.println("(assert " + meth + ")");
-				}
-				for (String s : gs.getVisitor().getProductdef()) {
-					System.out.println("(assert " + s + ")");
-					solver.add((this.ctx.parseSMTLIB2String("(assert " + s + ")", null, null, declNames, decl)));
-				}
-				for (Contract c : replacement.getModule().getContract()) {
-					if (c.getViewPoint().getValue() == ViewPoint.FUNCTIONAL_VALUE) {
-						// try {
-						solver.add(this.ctx.parseSMTLIB2String(this.getStringFuncofContract(c, true), null, null,
-								declNames, decl));
-//				} catch (Exception e) {
-//					System.out.println(e.getMessage());
-//					String x = "Error caused by: " + c.getModule().getName() + " " + c.getViewPoint();
-//					JOptionPane.showMessageDialog(null, x, "Contract Parsing Error", JOptionPane.ERROR_MESSAGE);
-//				}
+					for (Ports oppositePort : component.getPorts()) {
+						if (port.getName().equals(oppositePort.getName())) {
+							System.out.println("(assert (" + "= " + port.getModule().getName() + "." + port.getName()
+									+ " " + oppositePort.getModule().getName() + "." + oppositePort.getName() + "))");
+							solver.add(this.ctx.parseSMTLIB2String(
+									"(assert (" + "= " + port.getModule().getName() + "." + port.getName() + " "
+											+ oppositePort.getModule().getName() + "." + oppositePort.getName() + "))",
+									null, null, declNames, decl));
 
-					}
-				}
-
-				for (Contract con : m.getContract()) {
-					if (con.getViewPoint().getValue() == ViewPoint.FUNCTIONAL_VALUE) {
-						solver.push();
-
-//			try {
-
-						solver.add(this.ctx.parseSMTLIB2String(this.getStringFuncofContract(con, true), null, null,
-								declNames, decl));
-
-//			} catch (Exception e) {
-//				throw e;
-//				System.out.println(e.getMessage());
-//				String x = "Error caused by: " + con.getModule().getName() + " " + con.getViewPoint();
-//				JOptionPane.showMessageDialog(null, x, "Contract Parsing Error", JOptionPane.ERROR_MESSAGE);
-//			}
-						if (solver.check() == Status.SATISFIABLE) {
-							vve.add(new VerificationViewElement(ViewPoint.FUNCTIONAL_VALUE,
-									con.getGuarantee().toString() + con.getAssumption().toString(), m.getName(), m,
-									Result.FAILED, Property.REALIZABILITY));
-							contractIsMet = false;
-
-						} else {
-
-							vve.add(new VerificationViewElement(ViewPoint.FUNCTIONAL_VALUE,
-									con.getGuarantee().toString() + con.getAssumption().toString(), m.getName(), m,
-									Result.SUCCESS, Property.REALIZABILITY));
 						}
-						System.out.println("passiert");
-						solver.pop();
 					}
+
 				}
-				if (contractIsMet) {
+			}
+			for (String enviromental : envproperty) {
+				System.out.println(enviromental);
+				solver.add(this.ctx.parseSMTLIB2String(enviromental, null, null, declNames, decl));
+			}
+			for (String meth : methodInit) {
+				System.out.println("(assert " + meth + ")");
+				solver.add(this.ctx.parseSMTLIB2String("(assert " + meth + ")", null, null, declNames, decl));
+
+			}
+			for (String meth : methodContracts) {
+				System.out.println("(assert " + meth + ")");
+				solver.add(this.ctx.parseSMTLIB2String("(assert " + meth + ")", null, null, declNames, decl));
+
+			}
+			for (String s : gs.getVisitor().getProductdef()) {
+				System.out.println("(assert " + s + ")");
+				solver.add((this.ctx.parseSMTLIB2String("(assert " + s + ")", null, null, declNames, decl)));
+
+			}
+			for (String contract : subcompcontracts) {
+				System.out.println(contract);
+				solver.add(this.ctx.parseSMTLIB2String(contract, null, null, declNames, decl));
+
+			}
+
+			for (String contract : comcontracts) {
+				solver.push();
+				try {
+					solver.add(this.ctx.parseSMTLIB2String(contract, null, null, declNames, decl));
+
+				} catch (Exception e) {
+
+					String x = "Error caused by: " + contract;
+					JOptionPane.showMessageDialog(null, x, "Contract Parsing Error", JOptionPane.ERROR_MESSAGE);
+				}
+				Status s = solver.check();
+				if (s == Status.UNKNOWN || s == Status.SATISFIABLE) {
+					vve.add(new VerificationViewElement(ViewPoint.FUNCTIONAL_VALUE, solver.getModel().toString(),
+							m.getName(), m, Result.FAILED, Property.SUBSTITUTABILITY));
+					contractIsMet = false;
 
 				} else {
-
+					vve.add(new VerificationViewElement(ViewPoint.FUNCTIONAL_VALUE, "Fehler", m.getName(), m,
+							Result.SUCCESS, Property.SUBSTITUTABILITY));
 				}
-				return contractIsMet;
+
+				solver.pop();
 			}
-			return true;
 		}
-		return true;
+
+		return contractIsMet;
+
 	}
 
 	@Override
@@ -337,9 +414,28 @@ public class FunctionalSolver implements IViewpointSolver {
 		ArrayList<String> methodInit = new ArrayList<String>();
 		ArrayList<String> subcompcontracts = new ArrayList<String>();
 		ArrayList<String> comcontracts = new ArrayList<String>();
+		ArrayList<String> envproperty = new ArrayList<String>();
 		Map<String, Integer> addedmethodcontracts = new HashMap<String, Integer>();
 		if (m instanceof Compound) {
+			List<de.tu_bs.ccc.contracting.Verification.Property> list = getConstraints(m);
+			envproperty.addAll(replaceEnvNamesFunc(list, m));
+			ArrayList<Symbol> symbolList = new ArrayList<Symbol>();
+			ArrayList<FuncDecl> funcDeclList = new ArrayList<FuncDecl>();
+			if(list!=null) {
+			for (int i = 0; i < list.size(); i++) {
+				Symbol x = this.ctx.mkSymbol(m.getName() + "." + list.get(i).getName());
+				symbolList.add(x);
+				funcDeclList.add(this.ctx.mkConstDecl(x, this.ctx.getStringSort()));
+			}}
 			for (Module component : ((Compound) m).getConsistsOf()) {
+				list = getConstraints(component);
+				envproperty.addAll(replaceEnvNamesFunc(list, component));
+				if(list!=null) {
+				for (int i = 0; i < list.size(); i++) {
+					Symbol x = this.ctx.mkSymbol(component.getName() + "." + list.get(i).getName());
+					symbolList.add(x);
+					funcDeclList.add(this.ctx.mkConstDecl(x, this.ctx.getStringSort()));
+				}}
 				for (Contract c : component.getModule().getContract()) {
 					if (c.getViewPoint().getValue() == ViewPoint.FUNCTIONAL_VALUE) {
 						// try {
@@ -371,9 +467,6 @@ public class FunctionalSolver implements IViewpointSolver {
 			for (Ports port : m.getPorts()) {
 				p.add(port);
 			}
-
-			ArrayList<Symbol> symbolList = new ArrayList<Symbol>();
-			ArrayList<FuncDecl> funcDeclList = new ArrayList<FuncDecl>();
 
 			// for each port declare them and define their variables
 			for (Ports elem : p) {
@@ -594,6 +687,7 @@ public class FunctionalSolver implements IViewpointSolver {
 							System.out.println(
 									"(assert (" + "= " + endport.getModule().getName() + "." + endport.getName() + " "
 											+ port.getModule().getName() + "." + port.getName() + "))");
+		
 							solver.add(this.ctx.parseSMTLIB2String(
 									"(assert (" + "= " + endport.getModule().getName() + "." + endport.getName() + " "
 											+ port.getModule().getName() + "." + port.getName() + "))",
@@ -619,24 +713,30 @@ public class FunctionalSolver implements IViewpointSolver {
 				}
 			}
 
-			for (String meth : methodInit) {
+			for (String enviromental : envproperty) {
+				System.out.println(enviromental);
+				solver.add(this.ctx.parseSMTLIB2String(enviromental, null, null, declNames, decl));
+			}
 
-				solver.add(this.ctx.parseSMTLIB2String("(assert " + meth + ")", null, null, declNames, decl));
+			for (String meth : methodInit) {
 				System.out.println("(assert " + meth + ")");
+				solver.add(this.ctx.parseSMTLIB2String("(assert " + meth + ")", null, null, declNames, decl));
+
 			}
 			for (String meth : methodContracts) {
-
-				solver.add(this.ctx.parseSMTLIB2String("(assert " + meth + ")", null, null, declNames, decl));
 				System.out.println("(assert " + meth + ")");
+				solver.add(this.ctx.parseSMTLIB2String("(assert " + meth + ")", null, null, declNames, decl));
+
 			}
 			for (String s : gs.getVisitor().getProductdef()) {
-
-				solver.add((this.ctx.parseSMTLIB2String("(assert " + s + ")", null, null, declNames, decl)));
 				System.out.println("(assert " + s + ")");
+				solver.add((this.ctx.parseSMTLIB2String("(assert " + s + ")", null, null, declNames, decl)));
+
 			}
 			for (String contract : subcompcontracts) {
-				solver.add(this.ctx.parseSMTLIB2String(contract, null, null, declNames, decl));
 				System.out.println(contract);
+				solver.add(this.ctx.parseSMTLIB2String(contract, null, null, declNames, decl));
+
 			}
 
 			for (String contract : comcontracts) {
@@ -755,6 +855,17 @@ public class FunctionalSolver implements IViewpointSolver {
 
 	}
 
+	List<String> replaceEnvNamesFunc(List<de.tu_bs.ccc.contracting.Verification.Property> prop, Module m) {
+		ArrayList<String> list = new ArrayList<String>();
+		if (prop != null) {
+			for (int i = 0; i < prop.size(); i++) {
+				list.add("(assert(= " + m.getName()+"." + prop.get(i).getName()+" " + gs.parseString(prop.get(i).getValue())
+						+ "))");
+			}
+		}
+		return list;
+	}
+
 	String getStringofContract(Contract c) {
 		String cont = new String("(assert(=> ");
 		if (c.getAssumption().size() == 0) {
@@ -793,7 +904,7 @@ public class FunctionalSolver implements IViewpointSolver {
 
 		}
 		cont = cont + "))";
-		cont = this.replacePortNamesFunc(cont, c.getModule());
+		// cont = this.replacePortNamesFunc(cont, c.getModule());
 		return cont;
 
 	}
@@ -924,4 +1035,24 @@ public class FunctionalSolver implements IViewpointSolver {
 		return f;
 	}
 
+	public List<de.tu_bs.ccc.contracting.Verification.Property> getConstraints(Module m) {
+		List<de.tu_bs.ccc.contracting.Verification.Property> constraints = new ArrayList<de.tu_bs.ccc.contracting.Verification.Property>();
+		if (m.getIsPartOf() != null) {
+			constraints = getConstraints(m.getIsPartOf());
+		}
+		for (de.tu_bs.ccc.contracting.Verification.Property p : m.getEnviromentalProperties()) {
+			boolean found = false;
+			for (int i = 0; i < constraints.size(); i++) {
+				if (p.getName().equals(constraints.get(i).getName())) {
+					constraints.set(i, p);
+					found = true;
+				}
+
+			}
+			if (!found) {
+				constraints.add(p);
+			}
+		}
+		return constraints;
+	}
 }

@@ -63,9 +63,8 @@ public class EditPortFeature extends AbstractCustomFeature {
 		// get all interfaces from all models
 		List<Interface> interfaces = CidlPersistenceManager.getIdlModels(CoreUtil.getCurrentProject()).stream()
 				.map(m -> ((Model) m).getInterfaces()).flatMap(i -> i.stream()).collect(Collectors.toList());
-		
 
- 		// get all allowed java types for the ports
+		// get all allowed java types for the ports
 		List<String> types = PortTypeManager.getTypes();
 
 		EditPortFeatureDialog dialog;
@@ -73,51 +72,48 @@ public class EditPortFeature extends AbstractCustomFeature {
 			dialog = new EditConsumerPortFeatureDialog(shell, types, interfaces);
 		else
 			dialog = new EditProviderPortFeatureDialog(shell, types, interfaces);
-		
-		IWorkbenchWindow window = PlatformUI.getWorkbench()
-	            .getActiveWorkbenchWindow();
+
+		IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 		IWorkbenchPage activePage = window.getActivePage();
 
 		IEditorPart activeEditor = activePage.getActiveEditor();
 
 		if (activeEditor != null) {
-		   IEditorInput input = activeEditor.getEditorInput();
+			IEditorInput input = activeEditor.getEditorInput();
 
-		   IProject project = input.getAdapter(IProject.class);
-		   if (project == null) {
-		      IResource resource = input.getAdapter(IResource.class);
-		      if (resource != null) {
-		         project = resource.getProject();
-		      }
-		   }
-		   if(ProjectMapping.getMapPro().get(project).getMappingEntry(((Ports) object).getModule()).size() > 0) {
+			IProject project = input.getAdapter(IProject.class);
+			if (project == null) {
+				IResource resource = input.getAdapter(IResource.class);
+				if (resource != null) {
+					project = resource.getProject();
+				}
+			}
+			if (ProjectMapping.getMapPro().get(project).getMappingEntry(((Ports) object).getModule()).size() > 0) {
 
-					MessageBox dialog2 = new MessageBox(shell, SWT.ICON_QUESTION | SWT.OK | SWT.CANCEL);
-					dialog2.setText(StringTable.COMPONENT_USED);
-					dialog2.setMessage(StringTable.EDIT_PORT_WINDOW_TEXT);
+				MessageBox dialog2 = new MessageBox(shell, SWT.ICON_QUESTION | SWT.OK | SWT.CANCEL);
+				dialog2.setText(StringTable.COMPONENT_USED);
+				dialog2.setMessage(StringTable.EDIT_PORT_WINDOW_TEXT);
 
-					// open dialog and await user selection
-					int returnCode = dialog2.open();
-					if (returnCode == SWT.OK) {
-						dialog.setOldProperties(object);
-						dialog.create();
-						dialog.open();
-						changed = dialog.getReturnCode() == EditPortFeatureDialog.OK;
-					}
-
-				} else {
+				// open dialog and await user selection
+				int returnCode = dialog2.open();
+				if (returnCode == SWT.OK) {
 					dialog.setOldProperties(object);
 					dialog.create();
 					dialog.open();
 					changed = dialog.getReturnCode() == EditPortFeatureDialog.OK;
 				}
+
+			} else {
+				dialog.setOldProperties(object);
+				dialog.create();
+				dialog.open();
+				changed = dialog.getReturnCode() == EditPortFeatureDialog.OK;
+			}
 		}
-		
-		
-		
+
 		changed = dialog.getReturnCode() == EditPortFeatureDialog.OK;
 	}
-	
+
 	@Override
 	public boolean hasDoneChanges() {
 		return changed;

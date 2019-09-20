@@ -91,9 +91,13 @@ public class AssignAbstractFeature extends AbstractCreateFeature {
 			for (Ports p : add) {
 				addGraphicalRepresentation(context, p);
 			}
+			for (Ports p : add) {
+				p.setIsDerived(true);
+			}
 			x.getPorts().addAll(add);
 		}
-
+		PictogramElement pict = context.getTargetContainer();
+		updatePictogramElement(pict);
 		return null;
 	}
 }

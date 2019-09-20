@@ -15,11 +15,8 @@
   <genPackages prefix="Mm" basePackage="de.tu_bs.ccc.contracting" disposableProviderFactory="true"
       ecorePackage="mm.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="mm.ecore#//PortType">
-      <genEnumLiterals ecoreEnumLiteral="mm.ecore#//PortType/INT"/>
-      <genEnumLiterals ecoreEnumLiteral="mm.ecore#//PortType/STRING"/>
-      <genEnumLiterals ecoreEnumLiteral="mm.ecore#//PortType/BOOLEAN"/>
-      <genEnumLiterals ecoreEnumLiteral="mm.ecore#//PortType/REAL"/>
       <genEnumLiterals ecoreEnumLiteral="mm.ecore#//PortType/SERVICE"/>
+      <genEnumLiterals ecoreEnumLiteral="mm.ecore#//PortType/DATA"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="mm.ecore#//ViewPoint">
       <genEnumLiterals ecoreEnumLiteral="mm.ecore#//ViewPoint/FUNCTIONAL"/>
@@ -97,6 +94,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Ports/label"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Ports/function"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Ports/providerType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//Ports/isDerived"/>
     </genClasses>
     <genClasses ecoreClass="mm.ecore#//ContractProperty">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mm.ecore#//ContractProperty/propertyTipe"/>

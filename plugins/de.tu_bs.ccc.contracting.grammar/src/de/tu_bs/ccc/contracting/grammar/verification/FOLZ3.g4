@@ -2,12 +2,13 @@ grammar FOLZ3;
 
 @header {
 	package de.tu_bs.ccc.contracting.grammar.verification
-
+ 
 }
 
 condition
 :
 	formula
+	
 ;
 
 formula
@@ -51,8 +52,9 @@ connectiveformula
 			connectoperator compareformula
 		)*
 	)
+	
 ;
-
+ 
 tupelformula
 :
 	(
@@ -295,12 +297,16 @@ STRING
 ;
 
 IDENTIFIER
-:
+:(
+[A-Z]
+		| [a-z]
+		| '_')
 	(
 		[A-Z]
 		| [a-z]
 		| '_'
-	)+
+		| NUMBER
+	)*
 ;
 
 NUMBER

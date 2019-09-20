@@ -6,7 +6,6 @@ import de.tu_bs.ccc.contracting.Verification.Assumption;
 import de.tu_bs.ccc.contracting.Verification.Contract;
 import de.tu_bs.ccc.contracting.Verification.Guarantee;
 import de.tu_bs.ccc.contracting.Verification.MmPackage;
-import de.tu_bs.ccc.contracting.Verification.Module;
 import de.tu_bs.ccc.contracting.Verification.ViewPoint;
 
 import java.util.Collection;
@@ -152,10 +151,10 @@ public class ContractImpl extends MinimalEObjectImpl.Container implements Contra
 	 * @generated
 	 */
 	@Override
-	public Module getModule() {
+	public de.tu_bs.ccc.contracting.Verification.Module getModule() {
 		if (eContainerFeatureID() != MmPackage.CONTRACT__MODULE)
 			return null;
-		return (Module) eInternalContainer();
+		return (de.tu_bs.ccc.contracting.Verification.Module) eInternalContainer();
 	}
 
 	/**
@@ -163,7 +162,8 @@ public class ContractImpl extends MinimalEObjectImpl.Container implements Contra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetModule(Module newModule, NotificationChain msgs) {
+	public NotificationChain basicSetModule(de.tu_bs.ccc.contracting.Verification.Module newModule,
+			NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject) newModule, MmPackage.CONTRACT__MODULE, msgs);
 		return msgs;
 	}
@@ -173,7 +173,8 @@ public class ContractImpl extends MinimalEObjectImpl.Container implements Contra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setModule(Module newModule) {
+	@Override
+	public void setModule(de.tu_bs.ccc.contracting.Verification.Module newModule) {
 		if (newModule != eInternalContainer()
 				|| (eContainerFeatureID() != MmPackage.CONTRACT__MODULE && newModule != null)) {
 			if (EcoreUtil.isAncestor(this, newModule))
@@ -182,7 +183,8 @@ public class ContractImpl extends MinimalEObjectImpl.Container implements Contra
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newModule != null)
-				msgs = ((InternalEObject) newModule).eInverseAdd(this, MmPackage.MODULE__CONTRACT, Module.class, msgs);
+				msgs = ((InternalEObject) newModule).eInverseAdd(this, MmPackage.MODULE__CONTRACT,
+						de.tu_bs.ccc.contracting.Verification.Module.class, msgs);
 			msgs = basicSetModule(newModule, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -254,7 +256,7 @@ public class ContractImpl extends MinimalEObjectImpl.Container implements Contra
 		case MmPackage.CONTRACT__MODULE:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetModule((Module) otherEnd, msgs);
+			return basicSetModule((de.tu_bs.ccc.contracting.Verification.Module) otherEnd, msgs);
 		case MmPackage.CONTRACT__ASSUMPTION:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAssumption()).basicAdd(otherEnd, msgs);
 		case MmPackage.CONTRACT__GUARANTEE:
@@ -290,7 +292,8 @@ public class ContractImpl extends MinimalEObjectImpl.Container implements Contra
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 		case MmPackage.CONTRACT__MODULE:
-			return eInternalContainer().eInverseRemove(this, MmPackage.MODULE__CONTRACT, Module.class, msgs);
+			return eInternalContainer().eInverseRemove(this, MmPackage.MODULE__CONTRACT,
+					de.tu_bs.ccc.contracting.Verification.Module.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -330,7 +333,7 @@ public class ContractImpl extends MinimalEObjectImpl.Container implements Contra
 			setName((String) newValue);
 			return;
 		case MmPackage.CONTRACT__MODULE:
-			setModule((Module) newValue);
+			setModule((de.tu_bs.ccc.contracting.Verification.Module) newValue);
 			return;
 		case MmPackage.CONTRACT__VIEW_POINT:
 			setViewPoint((ViewPoint) newValue);
@@ -359,7 +362,7 @@ public class ContractImpl extends MinimalEObjectImpl.Container implements Contra
 			setName(NAME_EDEFAULT);
 			return;
 		case MmPackage.CONTRACT__MODULE:
-			setModule((Module) null);
+			setModule((de.tu_bs.ccc.contracting.Verification.Module) null);
 			return;
 		case MmPackage.CONTRACT__VIEW_POINT:
 			setViewPoint(VIEW_POINT_EDEFAULT);
@@ -406,7 +409,7 @@ public class ContractImpl extends MinimalEObjectImpl.Container implements Contra
 		if (eIsProxy())
 			return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
 		result.append(", ViewPoint: ");
