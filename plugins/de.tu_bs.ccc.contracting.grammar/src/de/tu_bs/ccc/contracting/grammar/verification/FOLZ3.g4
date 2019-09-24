@@ -1,9 +1,6 @@
 grammar FOLZ3;
 
-@header {
-	package de.tu_bs.ccc.contracting.grammar.verification
- 
-}
+
 
 condition
 :
